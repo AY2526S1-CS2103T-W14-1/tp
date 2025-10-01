@@ -11,12 +11,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### John Doe
 
-<img src="images/johndoe.png" width="200px">
-
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
 * Responsibilities: Data
+
+### Annamalai Maniveerappan
+
+<img src="images/sabersmash1412.png" width="200px">
+
+[[homepage](https://www.linkedin.com/in/annamalai-maniveerappan-b12a60183/)]
+[[github](https://github.com/sabersmash1412)]
+[[portfolio](https://annamalaimaniveerappan.netlify.app)]
+
+* Role: Developer
+* Responsibilities: Ui
 
 ### William Liow
 
@@ -28,15 +37,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing
 
-### Jane Doe
+### Kee Huang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/coderkee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/CoderKee)]
+[[portfolio](team/coderkee.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Logic
 
 ### Johnny Doe
 
@@ -47,22 +56,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Toh Yan Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tohyanhui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tohyanhui)]
+[[portfolio](https://www.linkedin.com/in/tohyanhui/)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
