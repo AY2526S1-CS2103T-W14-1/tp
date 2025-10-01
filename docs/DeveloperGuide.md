@@ -290,60 +290,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `EduBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1** - Add a student.
+**Use case: UC1** - Add a student
 
 **MSS**
 
 1. User requests to add a student. 
 2. EduBook adds the student to the list of students.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. Missing student name.
-    * 1a1. EduBook informs the user of the missing input.
+* 1a. One or more details are missing or invalid (student name, class, phone number, email).
+  * 1a1. EduBook informs the user of the invalid input(s).
     
-    Use case ends.
+  Use case ends.
 
-* 1b. Invalid student name.
-    * 1b1. EduBook informs the user of the invalid input.
+* 1b. Student already exists in the list.
+  * 1b1. EduBook informs the user that the student already exists.
 
-    Use case ends.
-
-* 1c. Duplicate student name.
-    * 1c1. EduBook informs the user of the duplicated input.
-
-    Use case ends.
+  Use case ends.  
 
 **Use case: UC2** - Remove a student
 
 **MSS**
 
-1. User requests to remove a student 
-2. EduBook removes the student from the list of students
+1. User requests to remove a student.
+2. EduBook removes the student from the list of students.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 1a. No student matches the given input
-  * 1a1. EduBook informs the user that no matching student was found
-
-    Use case ends.
-
-* 1b. Missing student name.
-    * 1b1. EduBook informs the user of the missing input.
-
-  Use case ends.
-
-* 1c. Invalid student name.
-    * 1c1. EduBook informs the user of the invalid input.
-
-  Use case ends.
-
-* 1d. The given index is invalid.
-    * 1c1. EduBook informs the user of the invalid index.
+* 1a. Input is missing or invalid (student name, index).
+  * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
 
@@ -351,29 +331,22 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **MSS**
 
-1.  User requests to view a student
-2.  EduBook displays the student's details
+1.  User requests to view a student.
+2.  EduBook displays the student's details.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. No student matches the given input
-    * 1a1. EduBook informs the user that no matching student was found
-
-      Use case ends.
-
-* 1b. Missing student name.
-    * 1b1. EduBook informs the user of the missing input.
+* 1a. Input is missing or invalid (student name, index). 
+  * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
 
-* 1c. Invalid student name.
-    * 1c1. EduBook informs the user of the invalid input.
+* 1b. Student does not exist.
+  * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
-
-
 
 ### Non-Functional Requirements
 
