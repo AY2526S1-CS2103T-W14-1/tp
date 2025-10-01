@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Toh Yan Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tohyanhui.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tohyanhui)]
+[[portfolio](https://www.linkedin.com/in/tohyanhui/)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
