@@ -14,8 +14,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/williamoose.png" width="200px">
 
 [[github](https://github.com/williamoose)]
+[[portfolio](https://www.linkedin.com/in/william-liow-a865a41b3/)]
 
-* Role: Project Advisor
+* Role: Developer
 * Responsibilities: Testing
 
 ### Jane Doe
