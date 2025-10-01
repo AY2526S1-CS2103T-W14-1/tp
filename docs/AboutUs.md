@@ -31,11 +31,12 @@
 * Role: Developer
 * Responsibilities: Logic
 
-### Johnny Doe
+### Ronnie Fun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ronniefun1.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ronniefun1)] 
+[[portfolio](https://www.linkedin.com/in/ronnie-fun-35319a2b6/)]
 
 * Role: Developer
 * Responsibilities: Data
