@@ -9,6 +9,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### John Doe
+
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+
+* Role: Project Advisor
+* Responsibilities: Data
+
 ### Annamalai Maniveerappan
 
 <img src="images/sabersmash1412.png" width="200px">
@@ -19,6 +26,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Ui
+
+### William Liow
+
+<img src="images/williamoose.png" width="200px">
+
+[[github](https://github.com/williamoose)]
+[[portfolio](https://www.linkedin.com/in/william-liow-a865a41b3/)]
+
+* Role: Developer
+* Responsibilities: Testing
 
 ### Kee Huang
 
@@ -38,16 +55,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
 
 ### Toh Yan Hui
 
