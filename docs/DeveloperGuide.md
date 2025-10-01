@@ -327,6 +327,11 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+* 1b. Student does not exist.
+    * 1b1. EduBook informs the user that the student does not exist.
+
+  Use case ends.
+
 **Use case: UC3** - View a student
 
 **MSS**
