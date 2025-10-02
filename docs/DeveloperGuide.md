@@ -316,6 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `EduBook` and the **Actor** is the `user`, unless specified otherwise)
 
+
 **Use case: UC1** - Add a student
 
 **MSS**
@@ -379,6 +380,58 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+**Use case: UC4** - Assign an assignment to a student.
+
+**MSS**
+
+1. Tutor requests to assign an assignment to a student. 
+2. EduBook adds the assignment to the specified student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid (student name, assignment name).
+  * 1a1. EduBook informs the tutor of the invalid input(s).
+    
+  Use case ends.
+
+* 1b. Assignment already assigned to student.
+  * 1b1. EduBook informs the tutor that the assignment has been assigned.
+
+  Use case ends.  
+
+* 1c. Student does not exist.
+  * 1c1. EduBook informs the tutor that the student does not exist.
+
+  Use case ends.
+
+**Use case: UC5** - Unassign an assignment to a student.
+
+**MSS**
+
+1. Tutor requests to unassign an assignment to a student. 
+2. EduBook removes the assignment from the specified student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid (student name, assignment name).
+  * 1a1. EduBook informs the tutor of the invalid input(s).
+    
+  Use case ends.
+
+* 1b. Assignment does not exist for specified student.
+  * 1b1. EduBook informs the tutor that the assignment does not exist for the specified student.
+
+  Use case ends.  
+
+* 1c. Student does not exist.
+  * 1c1. EduBook informs the tutor that the student does not exist.
+
+  Use case ends.
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
