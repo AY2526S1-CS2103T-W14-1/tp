@@ -262,35 +262,125 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* is a private tutor who manages 10–30 students across multiple classes
+* has a need to manage a significant number of student records (attendance, assignments, payments, etc.)
+* prefers desktop apps over mobile/web alternatives
+* can type fast and prefers typing over mouse interactions
 * is reasonably comfortable using CLI apps
+* currently relies on spreadsheets/manual tracking but wants a faster, more organized system
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+Private tutors, without established systems, can use EduBook to efficiently keep track of information regarding students and classes (e.g., assignments completion, attendance, and payments) using a fast CLI-based workflow, faster than typical mouse/GUI-driven apps.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​  | I want to …​                                               | So that I can…​                                                   |
+|----------|----------|------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | tutor    | add a student to EduBook                                   | keep track of their information                                   |
+| `* * *`  | tutor    | delete a student from EduBook                              | remove entries for students who are no longer my tutees           |
+| `* * *`  | tutor    | view a student’s details                                   | review their information quickly                                  |
+| `* * *`  | tutor    | assign an assignment to students                           | track and manage their homework                                   |
+| `* * *`  | tutor    | unassign assignments                                       | reduce clutter once assignments are completed or no longer needed |
+| `* *`    | new user | clear all my data after trying out the app                 | prepare a new slate                                               |
+| `* *`    | new user | have a helper that introduces me to the features           | better understand how to use the app                              |
+| `* *`    | tutor    | create assignments without deadlines                       | assign them to students                                           |
+| `* *`    | tutor    | create assignments with deadlines                          | keep track of the due date                                        |
+| `* *`    | tutor    | mark assignments as done                                   | keep track of completion                                          |
+| `* *`    | tutor    | unmark assignments as not done                             | note when homework is incomplete                                  |
+| `* *`    | tutor    | view a list of students’ overdue assignments               | see which students did not submit                                 |
+| `* *`    | tutor    | view all of my students' information and assignments       | review overall information when needed                            |
+| `* *`    | tutor    | search for a student quickly by name                       | find their record without browsing manually                       |
+| `* *`    | tutor    | remind myself of assignments with impending deadlines      | better manage assignments                                         |
+| `* *`    | tutor    | remind myself of assignments which have exceeded deadlines | check for students who did not submit on time                     |
+| `* *`    | tutor    | edit a student’s details                                   | update if there is a change in their information                  |
+| `* *`    | tutor    | group students into classes                                | keep track of group work                                          |
+| `* *`    | tutor    | ungroup students                                           | reduce number of groups to keep track of                          |
+| `* *`    | tutor    | assign homework in batches                                 | send out copies of homework to multiple students at once          |
+| `* *`    | tutor    | mark homework as submitted in batches                      | save time marking multiple students’ homework at once             |
+| `* *`    | tutor    | mark the attendance of a student                           | keep track of whether they turned up for class                    |
+| `* *`    | tutor    | unmark the attendance of a student                         | correct mistakes in marking attendance                            |
+| `* *`    | tutor    | clear an entire group of students                          | remove them when they graduate                                    |
+| `* *`    | tutor    | clear all students in EduBook                              | reset EduBook for the next school year                            |
+| `* *`    | tutor    | filter students by assignment status or group              | find subsets of students efficiently                              |
+| `* *`    | tutor    | autosave student details to local hard disk                | persist data automatically                                        |
+| `* *`    | tutor    | retrieve student details from local hard disk              | reload persisted data                                             |        
+| `*`      | tutor    | mark a student’s payment status as paid                    | keep track of which students have paid                            |
+| `*`      | tutor    | mark a student’s payment status as unpaid                  | keep track of which students have not paid                        |
+| `*`      | tutor    | keep a record of my total pay                              | track all payments done by students                               |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is the `EduBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1** - Assign an assignment to a student.
+
+**Use case: UC1** - Add a student
+
+**MSS**
+
+1. User requests to add a student. 
+2. EduBook adds the student to the list of students.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid (student name, class, phone number, email).
+  * 1a1. EduBook informs the user of the invalid input(s).
+    
+  Use case ends.
+
+* 1b. Student already exists in the list.
+  * 1b1. EduBook informs the user that the student already exists.
+
+  Use case ends.  
+
+**Use case: UC2** - Remove a student
+
+**MSS**
+
+1. User requests to remove a student.
+2. EduBook removes the student from the list of students.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Input is missing or invalid (student name, index).
+  * 1a1. EduBook informs the user of the invalid input.
+
+  Use case ends.
+
+* 1b. Student does not exist.
+    * 1b1. EduBook informs the user that the student does not exist.
+
+  Use case ends.
+
+**Use case: UC3** - View a student
+
+**MSS**
+
+1.  User requests to view a student.
+2.  EduBook displays the student's details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input is missing or invalid (student name, index). 
+  * 1a1. EduBook informs the user of the invalid input.
+
+  Use case ends.
+
+* 1b. Student does not exist.
+  * 1b1. EduBook informs the user that the student does not exist.
+
+  Use case ends.
+
+**Use case: UC4** - Assign an assignment to a student.
 
 **MSS**
 
@@ -316,7 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC2** - Unassign an assignment to a student.
+**Use case: UC5** - Unassign an assignment to a student.
 
 **MSS**
 
@@ -341,21 +431,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. EduBook informs the tutor that the student does not exist.
 
   Use case ends.
-
-*{More to be added}*
-
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 1000 students and assignments without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to load the main interface in under 2 seconds on standard hardware.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  Search and filtering operations should complete within 1 second for up to 1000 entries.
+6.  The user interface should be simple and intuitive for tutors who are less tech-savvy.
+7.  Data entered should be auto-saved to prevent loss during unexpected shutdowns.
+8.  Personal data of students should be stored securely using cybersecurity measures to prevent a potential data leakage.
+9.  Font size and UI components should be adjustable for better readability.
+10. The system should provide clear error messages to guide the user.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Student**: A person receive tutoring lessons from tutors
+* **Tutor**: A person providing tutoring lessons to students
+* **Lesson**: A scheduled tutoring session between a tutor and one or more students 
+* **Personal Data**: The details of each student such as name, contact and class details
+* **Assignment**: Homework allocated to the respective student which may optionally have a deadline
+* **Payment**: The agreed cost of a lesson by tutor and student, which may be tracked for billing purposes
+* **Class**: A grouping of students to facilitate group work
 
 --------------------------------------------------------------------------------------------------------------------
 

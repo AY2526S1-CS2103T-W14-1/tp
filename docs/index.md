@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: EduBook
 ---
 
 [![CI Status](https://github.com/AY2526S1-CS2103T-W14-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2526S1-CS2103T-W14-1/tp/actions)
@@ -8,7 +8,7 @@ title: AddressBook Level-3
 
 ![Ui](images/Ui.png)
 
-**EduBook is a desktop application for managing your tutees.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**EduBook is a desktop application for managing your students.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using EduBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing EduBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

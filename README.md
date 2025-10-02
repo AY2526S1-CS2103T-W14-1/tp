@@ -4,14 +4,14 @@
 
 # EduBook
 
-EduBook is a desktop CLI-based application built upon AddressBook Level 3, designed to help tutors manage their tutees and classes efficiently.
+EduBook is a desktop CLI-based application built upon AddressBook Level 3, designed to help tutors manage their students and classes efficiently.
 
 ## Features
-- Add and delete tutees
-- Store tutees' details such as phone number and email
-- Group tutees by classes
-- View tutees' information
-- Assign and unassign assignments to tutees
+- Add and delete students
+- Store students' details such as phone number and email
+- Group students by classes
+- View students' information
+- Assign and unassign assignments to students
 (More features to be added soon)
 
 
