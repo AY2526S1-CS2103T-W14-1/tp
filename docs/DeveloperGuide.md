@@ -290,28 +290,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1** - Assign an assignment to a student.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Tutor requests to assign an assignment to a student. 
+2. EduBook adds the assignment to the specified student.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. One or more details are missing or invalid (student name, assignment name).
+  * 1a1. EduBook informs the tutor of the invalid input(s).
+    
+  Use case ends.
+
+* 1b. Assignment already assigned to student.
+  * 1b1. EduBook informs the tutor that the assignment has been assigned.
+
+  Use case ends.  
+
+* 1c. Student does not exist.
+  * 1c1. EduBook informs the tutor that the student does not exist.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: UC2** - Unassign an assignment to a student.
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. Tutor requests to unassign an assignment to a student. 
+2. EduBook removes the assignment from the specified student.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid (student name, assignment name).
+  * 1a1. EduBook informs the tutor of the invalid input(s).
+    
+  Use case ends.
+
+* 1b. Assignment does not exist for specified student.
+  * 1b1. EduBook informs the tutor that the assignment does not exist for the specified student.
+
+  Use case ends.  
+
+* 1c. Student does not exist.
+  * 1c1. EduBook informs the tutor that the student does not exist.
+
+  Use case ends.
 
 *{More to be added}*
 
