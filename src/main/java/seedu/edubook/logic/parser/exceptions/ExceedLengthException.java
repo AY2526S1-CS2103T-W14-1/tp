@@ -11,11 +11,4 @@ public class ExceedLengthException extends ParseException {
         super(message);
     }
 
-    /**
-     * @param message should contain relevant information on the failed constraint(s)
-     * @param cause of the main exception
-     */
-    public ExceedLengthException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }
