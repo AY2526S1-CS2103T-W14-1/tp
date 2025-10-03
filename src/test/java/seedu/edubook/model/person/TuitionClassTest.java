@@ -1,0 +1,56 @@
+package seedu.edubook.model.person;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.edubook.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+public class TuitionClassTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TuitionClass(null));
+    }
+
+    @Test
+    public void constructor_invalidClass_throwsIllegalArgumentException() {
+        String invalidClass = "";
+        assertThrows(IllegalArgumentException.class, () -> new TuitionClass(invalidClass));
+    }
+
+    @Test
+    public void isValidClass() {
+        // null class
+        assertThrows(NullPointerException.class, () -> TuitionClass.isValidClass(null));
+
+        // invalid classes
+        assertFalse(TuitionClass.isValidClass("")); // empty string
+        assertFalse(TuitionClass.isValidClass(" ")); // spaces only
+
+        // valid classes
+        assertTrue(TuitionClass.isValidClass("W-14"));
+        assertTrue(TuitionClass.isValidClass("-")); // one character
+        assertTrue(TuitionClass.isValidClass("Singapore tution centre T-01 9am class")); // long class name
+    }
+
+    @Test
+    public void equals() {
+        TuitionClass tuitionClass = new TuitionClass("Valid Class");
+
+        // same values -> returns true
+        assertTrue(tuitionClass.equals(new TuitionClass("Valid Class")));
+
+        // same object -> returns true
+        assertTrue(tuitionClass.equals(tuitionClass));
+
+        // null -> returns false
+        assertFalse(tuitionClass.equals(null));
+
+        // different types -> returns false
+        assertFalse(tuitionClass.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(tuitionClass.equals(new TuitionClass("Other Valid Class")));
+    }
+}
