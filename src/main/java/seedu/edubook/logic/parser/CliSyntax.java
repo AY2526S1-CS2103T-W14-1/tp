@@ -5,11 +5,15 @@ package seedu.edubook.logic.parser;
  */
 public class CliSyntax {
 
-    /* Prefix definitions */
+    /* Person Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_CLASS = new Prefix("c/");
-    public static final Prefix PREFIX_ASSIGNMENT = new Prefix("a/");
-
+    
+    // todo change this back to tag
+    public static final Prefix PREFIX_ASSIGNMENT = new Prefix("t/");
+    
+    /* Assignment Prefix definitions */
+    public static final Prefix PREFIX_ASSIGNMENT_NAME = new Prefix("a/");
 }

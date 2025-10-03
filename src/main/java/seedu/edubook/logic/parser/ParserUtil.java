@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Phone;
@@ -120,5 +121,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    
+    public static AssignmentName parseAssignmentName(String assignmentName) throws ParseException {
+        requireNonNull(assignmentName);
+        String trimmedName = assignmentName.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new AssignmentName(trimmedName);
     }
 }
