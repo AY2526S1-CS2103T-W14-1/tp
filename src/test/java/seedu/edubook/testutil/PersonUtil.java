@@ -1,10 +1,10 @@
 package seedu.edubook.testutil;
 
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
@@ -35,7 +35,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_CLASS + person.getTuitionClass().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_ASSIGNMENT + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -52,9 +52,9 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_ASSIGNMENT);
+                sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_ASSIGNMENT).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
         return sb.toString();
