@@ -3,11 +3,11 @@ package seedu.edubook.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
 import seedu.edubook.model.util.SampleDataUtil;
 

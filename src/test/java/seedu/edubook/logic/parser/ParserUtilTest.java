@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -114,7 +114,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseClass_validValueWithoutWhitespace_returnsClass() throws Exception {
-        TuitionClass expectedClass= new TuitionClass(VALID_CLASS);
+        TuitionClass expectedClass = new TuitionClass(VALID_CLASS);
         assertEquals(expectedClass, ParserUtil.parseClass(VALID_CLASS));
     }
 

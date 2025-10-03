@@ -1,7 +1,29 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.commands.CommandTestUtil.*;
+import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.edubook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.edubook.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.edubook.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,11 +37,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.AddCommand;
-import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
 import seedu.edubook.testutil.PersonBuilder;
 

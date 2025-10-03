@@ -2,11 +2,11 @@ package seedu.edubook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
