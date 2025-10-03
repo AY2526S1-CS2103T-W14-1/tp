@@ -11,6 +11,11 @@ public class TuitionClass {
 
     public static final String MESSAGE_CONSTRAINTS = "Classes can take any values, and it should not be blank";
 
+    public static final String MESSAGE_LENGTH_CONSTRAINTS =
+            "Class names should only contain a maximum of 20 characters (including spaces)";
+
+    public static final int MAX_CLASS_LENGTH = 20;
+
     /*
      * The first character of the class must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -35,6 +40,14 @@ public class TuitionClass {
      */
     public static boolean isValidClass(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is of valid length.
+     */
+    public static boolean isValidLength(String test) {
+        assert(test != null);
+        return test.length() <= MAX_CLASS_LENGTH;
     }
 
     @Override
