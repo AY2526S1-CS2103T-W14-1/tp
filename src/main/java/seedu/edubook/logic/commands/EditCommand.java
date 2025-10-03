@@ -1,11 +1,11 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,12 +21,13 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.

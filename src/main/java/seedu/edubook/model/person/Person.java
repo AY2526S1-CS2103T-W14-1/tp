@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.tag.Tag;
 

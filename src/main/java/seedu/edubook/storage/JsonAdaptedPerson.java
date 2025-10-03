@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
-import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -96,7 +97,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (tuitionClass == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TuitionClass.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TuitionClass.class.getSimpleName()));
         }
         if (!TuitionClass.isValidClass(tuitionClass)) {
             throw new IllegalValueException(TuitionClass.MESSAGE_CONSTRAINTS);

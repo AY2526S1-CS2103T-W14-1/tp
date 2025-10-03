@@ -1,23 +1,24 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.AddCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -31,7 +32,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS, PREFIX_ASSIGNMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_EMAIL, PREFIX_CLASS, PREFIX_ASSIGNMENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLASS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {

@@ -1,11 +1,11 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
