@@ -39,7 +39,6 @@ public class TuitionClass {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidClass(String test) {
-        assert(test != null);
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -9,6 +9,9 @@ import static seedu.edubook.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+    public static final String MESSAGE_LENGTH_CONSTRAINTS =
+            "Emails should only contain a maximum of 250 characters (including spaces)";
+    public static final int MAX_EMAIL_LENGTH = 250;
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -31,10 +34,6 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Emails should only contain a maximum of 250 characters (including spaces)";
-
-    public static final int MAX_EMAIL_LENGTH = 250;
 
     public final String value;
 
@@ -53,7 +52,6 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        assert test != null;
         return test.matches(VALIDATION_REGEX);
     }
 

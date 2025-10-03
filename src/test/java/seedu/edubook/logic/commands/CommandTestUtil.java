@@ -54,6 +54,15 @@ public class CommandTestUtil {
     public static final String INVALID_CLASS_DESC = " " + PREFIX_CLASS; // empty string not allowed for classes
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_CLASS_LENGTH =
+            " " + PREFIX_CLASS + String.join("", java.util.Collections.nCopies(10, "test"));
+    public static final String INVALID_EMAIL_LENGTH =
+            " " + PREFIX_EMAIL + String.join("", java.util.Collections.nCopies(80, "test"));
+    public static final String INVALID_NAME_LENGTH =
+            " " + PREFIX_NAME + String.join("", java.util.Collections.nCopies(50, "test"));
+    public static final String INVALID_PHONE_LENGTH =
+            " " + PREFIX_PHONE + String.join("", java.util.Collections.nCopies(10, "test"));
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
