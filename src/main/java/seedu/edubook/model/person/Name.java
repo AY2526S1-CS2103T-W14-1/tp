@@ -12,6 +12,11 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
+    public static final String MESSAGE_LENGTH_CONSTRAINTS =
+            "Names should only contain a maximum of 100 characters (including spaces)";
+
+    public static final int MAX_NAME_LENGTH = 100;
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -35,9 +40,17 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
+        assert test != null;
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is of valid length.
+     */
+    public static boolean isValidLength(String test) {
+        assert test != null;
+        return test.length() <= MAX_NAME_LENGTH;
+    }
 
     @Override
     public String toString() {

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.scene.image.Image;
 import seedu.edubook.MainApp;
+import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 
 /**
  * A container for App specific utility functions
