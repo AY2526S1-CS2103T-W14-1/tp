@@ -43,7 +43,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("class") String tuitionClass,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags
-                             //@JsonProperty("assignments") List<JsonAdaptedAssignments> assignments
+    // @JsonProperty("assignments") List<JsonAdaptedAssignments> assignments
     ) {
         this.name = name;
         this.phone = phone;
@@ -52,10 +52,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        /*
-        if (assignments != null) {
-            this.assignments.addAll(assignments);
-         */
+        // if (assignments != null) {
+        // this.assignments.addAll(assignments);
+        // }
     }
 
     /**
