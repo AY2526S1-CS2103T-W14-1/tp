@@ -1,19 +1,9 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;

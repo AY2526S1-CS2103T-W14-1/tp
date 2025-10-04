@@ -1,15 +1,12 @@
 package seedu.edubook.ui;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 
 /**

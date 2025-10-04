@@ -10,9 +10,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_CLASS = new Prefix("c/");
-    
-    // todo change this back to tag
-    public static final Prefix PREFIX_ASSIGNMENT = new Prefix("t/");
+    public static final Prefix PREFIX_TAG = new Prefix("t/");
     
     /* Assignment Prefix definitions */
     public static final Prefix PREFIX_ASSIGNMENT_NAME = new Prefix("a/");

@@ -51,6 +51,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        if (assignments != null) {
+            this.assignments.addAll(assignments);
+        }
     }
 
     /**
