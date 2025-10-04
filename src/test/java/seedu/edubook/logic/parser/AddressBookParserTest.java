@@ -29,7 +29,7 @@ import seedu.edubook.testutil.EditPersonDescriptorBuilder;
 import seedu.edubook.testutil.PersonBuilder;
 import seedu.edubook.testutil.PersonUtil;
 
-public class TuitionClassBookParserTest {
+public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
