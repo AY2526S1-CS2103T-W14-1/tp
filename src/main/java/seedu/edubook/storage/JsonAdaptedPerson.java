@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String tuitionClass;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
-
+    
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -42,8 +42,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("class") String tuitionClass,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags
+                             //@JsonProperty("assignments") List<JsonAdaptedAssignments> assignments
+    ) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,9 +52,10 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        /*
         if (assignments != null) {
             this.assignments.addAll(assignments);
-        }
+         */
     }
 
     /**
