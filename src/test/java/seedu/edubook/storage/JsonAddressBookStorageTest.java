@@ -19,7 +19,7 @@ import seedu.edubook.commons.exceptions.DataLoadingException;
 import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.ReadOnlyAddressBook;
 
-public class JsonTuitionClassBookStorageTest {
+public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
 
     @TempDir
