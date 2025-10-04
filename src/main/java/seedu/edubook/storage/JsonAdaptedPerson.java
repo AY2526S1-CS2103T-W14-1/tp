@@ -82,7 +82,7 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
         }
-        
+
         final List<Assignment> personAssignments = new ArrayList<>();
         for (JsonAdaptedAssignment assignment : assignments) {
             personAssignments.add(assignment.toModelType());
@@ -122,9 +122,9 @@ class JsonAdaptedPerson {
         final TuitionClass modelClass = new TuitionClass(tuitionClass);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        
+
         final Set<Assignment> modelAssignments = new HashSet<>(personAssignments);
-        
+
         return new Person(modelName, modelPhone, modelEmail, modelClass, modelTags, modelAssignments);
     }
 

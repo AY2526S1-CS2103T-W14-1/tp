@@ -12,9 +12,8 @@ import seedu.edubook.model.tag.Tag;
  * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedAssignment {
-    
     private final String assignmentName;
-    
+
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
@@ -22,19 +21,19 @@ class JsonAdaptedAssignment {
     public JsonAdaptedAssignment(String assignmentName) {
         this.assignmentName = assignmentName;
     }
-    
+
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
         assignmentName = source.assignmentName.fullName;
     }
-    
+
     @JsonValue
     public String getAssignmentName() {
         return assignmentName;
     }
-    
+
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
@@ -46,5 +45,5 @@ class JsonAdaptedAssignment {
         }
         return new Assignment(new Name(assignmentName));
     }
-    
+
 }

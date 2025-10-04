@@ -26,7 +26,7 @@ public class Person {
     private final TuitionClass tuitionClass;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
-    
+
     /**
      * Constructs a {@code Person}
      *
@@ -46,7 +46,7 @@ public class Person {
         this.tuitionClass = tuitionClass;
         this.tags.addAll(tags);
     }
-    
+
     /**
      * Every field must be present and not null.
      */
@@ -88,11 +88,11 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
-    
+
     public void addAssignment(Assignment assignment) {
         this.assignments.add(assignment);
     }
-    
+
     public Set<Assignment> getAssignments() {
         return this.assignments;
     }

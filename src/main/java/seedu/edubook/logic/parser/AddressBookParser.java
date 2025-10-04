@@ -56,7 +56,7 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-            
+
         case AssignCommand.COMMAND_WORD:
             return new AssignCommandParser().parse(arguments);
 
