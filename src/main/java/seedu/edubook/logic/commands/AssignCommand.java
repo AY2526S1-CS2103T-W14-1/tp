@@ -7,11 +7,17 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 
 public class AssignCommand extends Command {
@@ -24,32 +30,46 @@ public class AssignCommand extends Command {
     // public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     // todo add more error messages after settling logic
     
+    private final Name assignee;
     private final Assignment toAssign;
     
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AssignCommand(Assignment assignment) {
+    public AssignCommand(Name assignee, Assignment assignment) {
+        requireNonNull(assignee);
         requireNonNull(assignment);
-        toAssign = assignment;
+        this.assignee = assignee;
+        this.toAssign = assignment;
     }
     
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         
-        // todo handle duplicates
-        /*
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-         */
+        Person target = model.getFilteredPersonList().stream()
+                .filter(p -> p.getName().equals(assignee))
+                .findFirst()
+                .orElseThrow(() -> new CommandException("hehehehehehehaw"));
         
-        // todo add assignment to assignment list
-        // model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAssign));
+        Set<Assignment> updatedAssignments = target.getAssignments();
+        updatedAssignments.add(toAssign);
+        
+        Person updatedPerson = new Person(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getTuitionClass(),
+                target.getTags(),
+                updatedAssignments
+        );
+        
+        model.setPerson(target, updatedPerson);
+        
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPerson.getName()));
     }
 }
+
     
     /*
     @Override

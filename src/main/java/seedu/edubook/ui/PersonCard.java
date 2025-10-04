@@ -1,12 +1,15 @@
 package seedu.edubook.ui;
 
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 
 /**
@@ -40,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane assignments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,5 +60,10 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getAssignments().stream()
+                .sorted(Comparator.comparing(assignment -> assignment.assignmentName.fullName))
+                .forEach(assignment -> assignments
+                        .getChildren()
+                        .add(new Label(assignment.assignmentName.fullName)));
     }
 }

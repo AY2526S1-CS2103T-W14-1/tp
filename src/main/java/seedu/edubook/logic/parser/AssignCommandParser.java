@@ -1,25 +1,16 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.AddCommand;
 import seedu.edubook.logic.commands.AssignCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
-import seedu.edubook.model.person.Person;
-import seedu.edubook.model.person.Phone;
-import seedu.edubook.model.person.TuitionClass;
-import seedu.edubook.model.tag.Tag;
 
 public class AssignCommandParser implements Parser<AssignCommand> {
     
@@ -39,15 +30,16 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_NAME);
         
-        AssignmentName assignmentName = ParserUtil.parseAssignmentName(argMultimap
+        Name assignmentName = ParserUtil.parseName(argMultimap
                 .getValue(PREFIX_ASSIGNMENT_NAME)
-                .get()
-        );
-        Name personName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+                .get());
+        Name personName = ParserUtil.parseName(argMultimap
+                .getValue(PREFIX_NAME)
+                .get());
         
-        Assignment assignment = new Assignment(assignmentName, personName);
+        Assignment assignment = new Assignment(assignmentName);
         
-        return new AssignCommand(assignment);
+        return new AssignCommand(personName, assignment);
     }
     
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

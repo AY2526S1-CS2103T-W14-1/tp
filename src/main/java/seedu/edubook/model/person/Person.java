@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -24,10 +25,8 @@ public class Person {
     // Data fields
     private final TuitionClass tuitionClass;
     private final Set<Tag> tags = new HashSet<>();
-
-    /**
-     * Every field must be present and not null.
-     */
+    private final Set<Assignment> assignments = new HashSet<>();
+    
     public Person(Name name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tuitionClass, tags);
         this.name = name;
@@ -35,6 +34,19 @@ public class Person {
         this.email = email;
         this.tuitionClass = tuitionClass;
         this.tags.addAll(tags);
+    }
+    
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags, Set<Assignment> assignments) {
+        requireAllNonNull(name, phone, email, tuitionClass, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.tuitionClass = tuitionClass;
+        this.tags.addAll(tags);
+        this.assignments.addAll(assignments);
     }
 
     public Name getName() {
@@ -59,6 +71,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+    
+    public void addAssignment(Assignment assignment) {
+        this.assignments.add(assignment);
+    }
+    
+    public Set<Assignment> getAssignments() {
+        return this.assignments;
     }
 
     /**

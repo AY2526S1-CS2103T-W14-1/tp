@@ -4,34 +4,24 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
 import seedu.edubook.model.person.Name;
-import seedu.edubook.model.tag.Tag;
 
 public class Assignment {
     
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     
-    public final AssignmentName assignmentName;
-    public final Name assignmentAssignee;
-    public boolean isAssignmentDone = false;
+    public final Name assignmentName;
     
-    public Assignment(AssignmentName assignmentName, Name assignmentAssignee) {
+    public Assignment(Name assignmentName) {
         requireNonNull(assignmentName);
-        requireNonNull(assignmentAssignee);
-        
+        checkArgument(isValidAssignmentInput(assignmentName.fullName), MESSAGE_CONSTRAINTS);
         this.assignmentName = assignmentName;
-        this.assignmentAssignee = assignmentAssignee;
     }
     
     public static boolean isValidAssignmentInput(String test) {
         return test.matches(VALIDATION_REGEX);
     }
     
-    public void setAssignmentDone() {
-        this.isAssignmentDone = true;
-    }
-    
-    /*
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -39,24 +29,24 @@ public class Assignment {
         }
         
         // instanceof handles nulls
-        if (!(other instanceof Tag)) {
+        if (!(other instanceof Assignment)) {
             return false;
         }
         
-        Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        Assignment otherTag = (Assignment) other;
+        return assignmentName.equals(otherTag.assignmentName);
     }
     
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return assignmentName.hashCode();
     }
     
     /**
      * Format state as text for viewing.
+     */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + assignmentName.fullName + ']';
     }
-    */
     
 }
