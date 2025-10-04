@@ -35,6 +35,22 @@ public class TuitionClassTest {
     }
 
     @Test
+    public void isValidLength_nullInput_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> TuitionClass.isValidLength(null));
+    }
+
+    @Test
+    public void isValidLength_invalidInput_returnsFalse() {
+        String invalidLength = String.join("", java.util.Collections.nCopies(10, "test"));
+        assertFalse(TuitionClass.isValidLength(invalidLength));
+    }
+
+    @Test
+    public void isValidLength_validInput_returnsTrue() {
+        assertTrue(TuitionClass.isValidLength("W-14"));
+    }
+
+    @Test
     public void equals() {
         TuitionClass tuitionClass = new TuitionClass("Valid Class");
 

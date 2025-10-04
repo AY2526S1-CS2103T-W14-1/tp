@@ -6,9 +6,13 @@ import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_CLASS_LENGTH;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_EMAIL_LENGTH;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_LENGTH;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_PHONE_LENGTH;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -192,5 +196,28 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + CLASS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidLength_failure() {
+        // Name length exceeds
+        assertParseFailure(parser, INVALID_NAME_LENGTH + PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_LENGTH_CONSTRAINTS);
+
+        // Email length exceeds
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_LENGTH + CLASS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_LENGTH_CONSTRAINTS);
+
+        // Class length exceeds
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_CLASS_LENGTH
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
+
+        // Phone length exceeds
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_LENGTH + EMAIL_DESC_BOB + CLASS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_LENGTH_CONSTRAINTS);
+
+        // Multiple input lengths exceed should show error message for 1st failed input
+        assertParseFailure(parser, INVALID_NAME_LENGTH + INVALID_PHONE_LENGTH + INVALID_EMAIL_LENGTH
+                + INVALID_CLASS_LENGTH + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_LENGTH_CONSTRAINTS);
     }
 }

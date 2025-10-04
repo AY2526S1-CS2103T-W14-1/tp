@@ -22,10 +22,10 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -47,7 +47,7 @@ import seedu.edubook.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_ASSIGNMENT;
+    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.commons.util.StringUtil;
+import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
@@ -43,10 +44,15 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
+        if (!Name.isValidLength(name)) {
+            throw new ExceedLengthException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+
         return new Name(trimmedName);
     }
 
@@ -58,6 +64,11 @@ public class ParserUtil {
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
+
+        if (!Phone.isValidLength(phone)) {
+            throw new ExceedLengthException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
@@ -73,10 +84,17 @@ public class ParserUtil {
      */
     public static TuitionClass parseClass(String tuitionClass) throws ParseException {
         requireNonNull(tuitionClass);
+
+        if (!TuitionClass.isValidLength(tuitionClass)) {
+            throw new ExceedLengthException(TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+
         String trimmedClass = tuitionClass.trim();
         if (!TuitionClass.isValidClass(trimmedClass)) {
             throw new ParseException(TuitionClass.MESSAGE_CONSTRAINTS);
         }
+
         return new TuitionClass(trimmedClass);
     }
 
@@ -88,6 +106,11 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
+
+        if (!Email.isValidLength(email)) {
+            throw new ExceedLengthException(Email.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);

@@ -11,37 +11,37 @@
     "phone" : "98765432",
 
     "email" : "johnd@example.com",
-    "class" : "311, Clementi Ave 2, #02-25",
+    "class" : "311",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "class": "wall street",
+    "class": "T-01",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "class": "10th street",
+    "class": "T-01",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "class": "michegan ave",
+    "class": "W-14",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "class": "little tokyo",
+    "class": "Class 1-B",
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "class": "4th street",
+    "class": "Class A",
     "tags" : [ ]
   } ]
 }
