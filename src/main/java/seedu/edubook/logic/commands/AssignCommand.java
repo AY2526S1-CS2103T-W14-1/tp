@@ -10,6 +10,9 @@ import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 
+/**
+ * Assigns an assignment to a student.
+ */
 public class AssignCommand extends Command {
     
     public static final String COMMAND_WORD = "assign";
@@ -60,7 +63,6 @@ public class AssignCommand extends Command {
     }
 }
 
-    
     /*
     @Override
     public boolean equals(Object other) {

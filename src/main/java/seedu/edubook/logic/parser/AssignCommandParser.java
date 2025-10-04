@@ -12,6 +12,9 @@ import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Name;
 
+/**
+ * Parses input arguments and creates a new AssignCommand object
+ */
 public class AssignCommandParser implements Parser<AssignCommand> {
     
     /**

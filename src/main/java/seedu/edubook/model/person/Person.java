@@ -27,6 +27,17 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
     
+    /**
+     * Constructs a {@code Person}
+     *
+     * <p>This constructor is to be called during user commands, where there is no input assignment</p>
+     *
+     * @param name Name of person.
+     * @param phone Phone number of person.
+     * @param email Email-address of person.
+     * @param tuitionClass Class the person belongs to.
+     * @param tags Tags belonging to the person.
+     */
     public Person(Name name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tuitionClass, tags);
         this.name = name;
@@ -39,7 +50,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags, Set<Assignment> assignments) {
+    public Person(Name name,
+                  Phone phone,
+                  Email email,
+                  TuitionClass tuitionClass,
+                  Set<Tag> tags,
+                  Set<Assignment> assignments) {
         requireAllNonNull(name, phone, email, tuitionClass, tags);
         this.name = name;
         this.phone = phone;

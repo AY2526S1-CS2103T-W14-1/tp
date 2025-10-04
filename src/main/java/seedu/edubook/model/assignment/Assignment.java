@@ -5,6 +5,9 @@ import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
 import seedu.edubook.model.person.Name;
 
+/**
+ * Represents an assignment in EduBook
+ */
 public class Assignment {
     
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
@@ -12,6 +15,10 @@ public class Assignment {
     
     public final Name assignmentName;
     
+    /**
+     * Constructs a {@code Assignment}
+     * @param assignmentName Name of assignment being assigned.
+     */
     public Assignment(Name assignmentName) {
         requireNonNull(assignmentName);
         checkArgument(isValidAssignmentInput(assignmentName.fullName), MESSAGE_CONSTRAINTS);
