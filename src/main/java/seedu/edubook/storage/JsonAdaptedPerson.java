@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String tuitionClass;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
-    
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
