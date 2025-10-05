@@ -40,7 +40,7 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Assignment toModelType() throws IllegalValueException {
-        if (!Assignment.isValidAssignmentInput(assignmentName)) {
+        if (!Assignment.isValidAssignment(assignmentName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Assignment(new Name(assignmentName));

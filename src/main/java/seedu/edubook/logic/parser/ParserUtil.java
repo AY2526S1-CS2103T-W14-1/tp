@@ -10,6 +10,7 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Phone;
@@ -26,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -54,6 +56,27 @@ public class ParserUtil {
         }
 
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String assignment} into an {@code assignment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code assignment} is invalid.
+     */
+    public static Assignment parseAssignment(String assignment) throws ParseException {
+        requireNonNull(assignment);
+        if (!Assignment.isValidLength(assignment)) {
+            throw new ExceedLengthException(Assignment.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        String trimmedAssignment = assignment.trim();
+        if (!Assignment.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+
+        Name assignmentName = parseName(assignment);
+        return new Assignment(assignmentName);
     }
 
     /**
