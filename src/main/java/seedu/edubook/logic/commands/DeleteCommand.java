@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    private final Name name;
+    private final Name targetName;
 
     /**
      * Creates a {@code DeleteCommand} to remove student at specified {@code targetIndex}
@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
-        this.name = null;
+        this.targetName = null;
     }
 
     /**
@@ -49,13 +49,13 @@ public class DeleteCommand extends Command {
      * @param name
      */
     public DeleteCommand(Name name) {
-        this.name = name;
+        this.targetName = name;
         this.targetIndex = null;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (this.name == null) {
+        if (this.targetName == null) {
             return deleteByIndex(model);
         } else {
             return deleteByName(model);
@@ -94,7 +94,7 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         for (Person p : lastShownList) {
-            if (p.getName().equals(this.name)) {
+            if (p.getName().equals(this.targetName)) {
                 model.deletePerson(p);
                 return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(p)));
             }
@@ -122,8 +122,8 @@ public class DeleteCommand extends Command {
         }
 
         // Handle case where both use name
-        if (name != null && otherDeleteCommand.name != null) {
-            return name.equals(otherDeleteCommand.name);
+        if (targetName != null && otherDeleteCommand.targetName != null) {
+            return targetName.equals(otherDeleteCommand.targetName);
         }
 
         // If one uses index and the other uses name, they're not equal
@@ -132,8 +132,14 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("targetIndex", targetIndex)
-                .toString();
+        if (targetName == null) {
+            return new ToStringBuilder(this)
+                    .add("targetIndex", targetIndex)
+                    .toString();
+        } else {
+            return new ToStringBuilder(this)
+                    .add("targetName", targetName)
+                    .toString();
+        }
     }
 }

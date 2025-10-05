@@ -11,6 +11,7 @@ import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.edubook.testutil.TypicalNames.NAME_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalNames.NAME_SECOND_PERSON;
+import static seedu.edubook.testutil.TypicalNames.NAME_THIRD_PERSON;
 import static seedu.edubook.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -179,10 +180,20 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethodIndex() {
+        // When DeleteCommand using Index
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        assertEquals(expected, deleteCommand.toString());
+    }
+
+    @Test
+    public void toStringMethodName() {
+        // When DeleteCommand using Name
+        Name targetName = NAME_THIRD_PERSON;
+        DeleteCommand deleteCommand = new DeleteCommand(targetName);
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 
