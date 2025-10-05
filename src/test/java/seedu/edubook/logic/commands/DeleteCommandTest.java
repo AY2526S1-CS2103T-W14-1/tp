@@ -8,6 +8,7 @@ import static seedu.edubook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.edubook.testutil.TypicalNames.NAME_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,26 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validNameUnfilteredList_success() {
+        //Initialise to first person
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        for (Person p : model.getFilteredPersonList()) {
+            if (p.getName().equals(NAME_FIRST_PERSON)) {
+                personToDelete = p;
+            }
+        }
+        DeleteCommand deleteCommand = new DeleteCommand(NAME_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                Messages.format(personToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
