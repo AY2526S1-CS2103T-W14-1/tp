@@ -40,4 +40,10 @@ public class DeleteCommandParserTest {
     public void parse_invalidArgsName_returnDeleteCommand() {
         assertParseFailure(parser, "n/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_nameWithPreamble_throwsParseException() {
+        assertParseFailure(parser, "some text n/Alice",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
 }

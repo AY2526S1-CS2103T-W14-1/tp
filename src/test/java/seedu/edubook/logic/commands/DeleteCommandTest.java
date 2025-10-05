@@ -180,6 +180,20 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void equals_bothHaveTargetNameSameName_returnsTrue() {
+        DeleteCommand command1 = new DeleteCommand(NAME_FIRST_PERSON);
+        DeleteCommand command2 = new DeleteCommand(NAME_FIRST_PERSON);
+        assertTrue(command1.equals(command2));
+    }
+
+    @Test
+    public void equals_bothHaveTargetNameDifferentName_returnsFalse() {
+        DeleteCommand command1 = new DeleteCommand(NAME_FIRST_PERSON);
+        DeleteCommand command2 = new DeleteCommand(NAME_SECOND_PERSON);
+        assertFalse(command1.equals(command2));
+    }
+
+    @Test
     public void toStringMethodIndex() {
         // When DeleteCommand using Index
         Index targetIndex = Index.fromOneBased(1);
