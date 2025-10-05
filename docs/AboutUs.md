@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ronniefun1.png" width="200px">
 
-[[github](http://github.com/ronniefun1)] 
+[[github](http://github.com/ronniefun1)]
 [[portfolio](https://www.linkedin.com/in/ronnie-fun-35319a2b6/)]
 
 * Role: Developer
