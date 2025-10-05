@@ -1,6 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
 
 /**
@@ -19,20 +21,38 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the person identified by their name or their index number used in the displayed person list.\n"
+            + "Parameters when deleting using index: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1\n"
+            + "Parameters when deleting using name: " + PREFIX_NAME + "NAME \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe\n";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
 
+    private final Name name;
+
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.name = null;
+    }
+
+    public DeleteCommand(Name name) {
+        this.name = name;
+        this.targetIndex = null;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (this.name == null) {
+            return deleteByIndex(model);
+        } else {
+            return deleteByName(model);
+        }
+    }
+
+    public CommandResult deleteByIndex(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -43,6 +63,20 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    public CommandResult deleteByName(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        for (Person p : lastShownList) {
+            if (p.getName().equals(this.name)) {
+                model.deletePerson(p);
+                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(p)));
+            }
+        }
+
+        throw new CommandException(Messages.MESSAGE_INVALID_NAME);
     }
 
     @Override
