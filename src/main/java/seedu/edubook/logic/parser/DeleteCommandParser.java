@@ -1,15 +1,14 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.parser.CliSyntax.*;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.stream.Stream;
 
 import seedu.edubook.commons.core.index.Index;
-import seedu.edubook.logic.commands.AddCommand;
 import seedu.edubook.logic.commands.DeleteCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.person.Name;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

@@ -33,11 +33,21 @@ public class DeleteCommand extends Command {
 
     private final Name name;
 
+    /**
+     * Creates a {@code DeleteCommand} to remove student at specified {@code targetIndex}
+     *
+     * @param targetIndex
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.name = null;
     }
 
+    /**
+     * Creates a {@code DeleteCommand} to remove student at specified {@code name}
+     *
+     * @param name
+     */
     public DeleteCommand(Name name) {
         this.name = name;
         this.targetIndex = null;
@@ -52,6 +62,13 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Removes a person identified by their index in the displayed person list.
+     *
+     * @param model
+     * @return
+     * @throws CommandException
+     */
     public CommandResult deleteByIndex(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -65,6 +82,13 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
+    /**
+     * Removes a person identified by their name in the displayed person list.
+     *
+     * @param model
+     * @return
+     * @throws CommandException
+     */
     public CommandResult deleteByName(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
