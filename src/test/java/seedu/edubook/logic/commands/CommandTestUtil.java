@@ -17,6 +17,7 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.NameContainsKeywordsPredicate;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.testutil.EditPersonDescriptorBuilder;
@@ -132,6 +133,24 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person with the given {@code targetName} in the
+     *
+     * @param model
+     * @param targetName
+     */
+    public static void showPersonAtName(Model model, Name targetName) {
+        // Filter to show only persons with the exact name
+        model.updateFilteredPersonList(person -> person.getName().equals(targetName));
+
+        // Verify that exactly one person with that name exists
+        assertEquals(1, model.getFilteredPersonList().size());
+
+        // Optional: Verify it's the right person
+        Person foundPerson = model.getFilteredPersonList().get(0);
+        assertEquals(targetName, foundPerson.getName());
     }
 
 }
