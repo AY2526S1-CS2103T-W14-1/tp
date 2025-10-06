@@ -4,7 +4,6 @@ import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.edubook.logic.commands.FindCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.person.NameContainsKeywordsPredicate;
@@ -23,7 +22,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
