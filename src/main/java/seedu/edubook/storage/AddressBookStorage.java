@@ -29,6 +29,7 @@ public interface AddressBookStorage {
      * @see #getAddressBookFilePath()
      */
     Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException;
+
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
      * @param addressBook cannot be null.
