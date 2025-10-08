@@ -22,6 +22,7 @@ import seedu.edubook.logic.commands.ExitCommand;
 import seedu.edubook.logic.commands.FindCommand;
 import seedu.edubook.logic.commands.HelpCommand;
 import seedu.edubook.logic.commands.ListCommand;
+import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.person.NameContainsKeywordsPredicate;
 import seedu.edubook.model.person.Person;
@@ -97,5 +98,13 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new ViewCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 }
