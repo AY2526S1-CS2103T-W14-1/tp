@@ -33,14 +33,12 @@ public class AssignCommandParser implements Parser<AssignCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_NAME);
 
-        Name assignmentName = ParserUtil.parseName(argMultimap
+        Assignment assignment = ParserUtil.parseAssignment(argMultimap
                 .getValue(PREFIX_ASSIGNMENT_NAME)
                 .get());
         Name personName = ParserUtil.parseName(argMultimap
                 .getValue(PREFIX_NAME)
                 .get());
-
-        Assignment assignment = new Assignment(assignmentName);
 
         return new AssignCommand(personName, assignment);
     }

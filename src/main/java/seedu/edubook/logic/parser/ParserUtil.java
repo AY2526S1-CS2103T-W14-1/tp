@@ -59,7 +59,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String assignment} into an {@code assignment}.
+     * Parses a {@code String assignment} into an {@code Assignment}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code assignment} is invalid.
