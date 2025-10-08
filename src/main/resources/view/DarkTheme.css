@@ -100,25 +100,35 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 12px 16px;
+    -fx-padding: 12px 12px;
 }
 
 .list-cell:filled:even {
     -fx-background-color: #ffffff;
+    -fx-background-radius: 8px;
     -fx-border-color: #f1f5f9;
-    -fx-border-width: 0 0 1px 0;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 12px 12px;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #f8fafc;
+    -fx-background-radius: 8px;
     -fx-border-color: #f1f5f9;
-    -fx-border-width: 0 0 1px 0;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 12px 12px;
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #e0f2fe;
+    -fx-background-radius: 8px;
     -fx-border-color: #38bdf8;
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
 }
+
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
