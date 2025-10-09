@@ -43,6 +43,9 @@ class JsonAdaptedAssignment {
         if (!Assignment.isValidAssignment(assignmentName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
+        if (!Assignment.isValidLength(assignmentName)) {
+            throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);
+        }
         return new Assignment(new Name(assignmentName));
     }
 

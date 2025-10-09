@@ -40,6 +40,8 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private String startupErrorMessage = null;
+
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -87,6 +89,9 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
+            this.startupErrorMessage = "Error loading saved file, the file is possibly corrupted."
+                    + "\nPlease revert (if any) manual changes to the file and reload the app."
+                    + "\nMaking any changes to EduBook now will erase the saved file.";
             initialData = new AddressBook();
         }
 
@@ -172,6 +177,9 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        if (startupErrorMessage != null) {
+            ui.showErrorAlert(startupErrorMessage);
+        }
     }
 
     @Override

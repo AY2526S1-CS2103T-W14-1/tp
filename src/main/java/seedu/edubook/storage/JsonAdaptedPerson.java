@@ -95,6 +95,9 @@ class JsonAdaptedPerson {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+        if (!Name.isValidLength(name)) {
+            throw new IllegalValueException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         final Name modelName = new Name(name);
 
         if (phone == null) {
@@ -102,6 +105,9 @@ class JsonAdaptedPerson {
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        if (!Phone.isValidLength(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
 
@@ -111,6 +117,9 @@ class JsonAdaptedPerson {
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
+        if (!Email.isValidLength(email)) {
+            throw new IllegalValueException(Email.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         final Email modelEmail = new Email(email);
 
         if (tuitionClass == null) {
@@ -119,6 +128,9 @@ class JsonAdaptedPerson {
         }
         if (!TuitionClass.isValidClass(tuitionClass)) {
             throw new IllegalValueException(TuitionClass.MESSAGE_CONSTRAINTS);
+        }
+        if (!TuitionClass.isValidLength(tuitionClass)) {
+            throw new IllegalValueException(TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final TuitionClass modelClass = new TuitionClass(tuitionClass);
 
