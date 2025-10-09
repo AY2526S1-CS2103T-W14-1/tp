@@ -40,13 +40,13 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    private String startupErrorMessage = null;
-
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+    private String startupErrorMessage = null;
 
     @Override
     public void init() throws Exception {
