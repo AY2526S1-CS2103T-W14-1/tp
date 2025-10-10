@@ -89,9 +89,9 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            this.startupErrorMessage = "Error loading saved file, the file is possibly corrupted."
-                    + "\nPlease revert (if any) manual changes to the file and reload the app."
-                    + "\nMaking any changes to EduBook now will erase the saved file.";
+            this.startupErrorMessage = "It seems like your saved file is corrupted."
+                    + "\nIf you have made any manual changes, please revert them and reload the app."
+                    + "\nOtherwise, a new file will be created.";
             initialData = new AddressBook();
         }
 
