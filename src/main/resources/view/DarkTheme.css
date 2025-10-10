@@ -411,7 +411,6 @@
 }
 
 #alertDialogPane {
-    -fx-background-color: white;
     -fx-text-fill: #333333;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 14px;
