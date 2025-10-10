@@ -46,6 +46,8 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+    private String startupErrorMessage = null;
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
@@ -87,6 +89,9 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
+            this.startupErrorMessage = "It seems like your saved file is corrupted."
+                    + "\nIf you have made any manual changes, please revert them and reload the app."
+                    + "\nOtherwise, a new file will be created.";
             initialData = new AddressBook();
         }
 
@@ -172,6 +177,9 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        if (startupErrorMessage != null) {
+            ui.showErrorAlert(startupErrorMessage);
+        }
     }
 
     @Override
