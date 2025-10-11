@@ -13,7 +13,7 @@ public class Name {
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Names should only contain a maximum of 100 characters (including spaces)";
+            "Names should only contain a maximum of 100 characters";
 
     public static final int MAX_NAME_LENGTH = 100;
 
