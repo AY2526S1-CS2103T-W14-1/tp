@@ -9,9 +9,9 @@ import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtName;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_FIRST_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_SECOND_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_THIRD_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_FIRST_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_SECOND_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_THIRD_PERSON;
 import static seedu.edubook.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 
 /**

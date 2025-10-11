@@ -3,7 +3,7 @@ package seedu.edubook.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edubook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -22,8 +22,8 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PERSON_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLASS + "CLASS] "
@@ -96,7 +96,7 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        PersonName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         TuitionClass updatedClass = editPersonDescriptor.getTuitionClass().orElse(personToEdit.getTuitionClass());
@@ -134,7 +134,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private PersonName name;
         private Phone phone;
         private Email email;
         private TuitionClass tuitionClass;
@@ -161,11 +161,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, tuitionClass, tags);
         }
 
-        public void setName(Name name) {
+        public void setName(PersonName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<PersonName> getName() {
             return Optional.ofNullable(name);
         }
 

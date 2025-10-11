@@ -2,14 +2,15 @@ package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * Parses input arguments and creates a new UnassignCommand object.
@@ -24,23 +25,25 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
      */
     public UnassignCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT_NAME, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT_NAME, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_NAME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
 
-        Assignment assignment = ParserUtil.parseAssignment(argMultimap
+        PersonName personName = ParserUtil.parsePersonName(argMultimap
+                .getValue(PREFIX_PERSON_NAME)
+                .get());
+
+        AssignmentName assignmentName = ParserUtil.parseAssignmentName(argMultimap
                 .getValue(PREFIX_ASSIGNMENT_NAME)
                 .get());
-        Name personName = ParserUtil.parseName(argMultimap
-                .getValue(PREFIX_NAME)
-                .get());
+        Assignment assignment = new Assignment(assignmentName);
 
-        return new UnassignCommand(personName, assignment);
+        return new UnassignCommand(assignment, personName);
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

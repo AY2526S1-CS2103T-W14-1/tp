@@ -1,7 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
@@ -18,7 +18,7 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View a student's details to see their information. "
             + "Parameters: NAME\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe";
 
     public static final String MESSAGE_SUCCESS =
             "Here are %1$s's details. ";

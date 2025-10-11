@@ -22,6 +22,7 @@ import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ReadOnlyAddressBook;
 import seedu.edubook.model.ReadOnlyUserPrefs;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.testutil.PersonBuilder;
 
@@ -145,6 +146,11 @@ public class AddCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person findPersonByName(Name target, String errorMessage) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 
