@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.exceptions.AssignmentException;
 import seedu.edubook.model.tag.Tag;
 
@@ -21,7 +20,7 @@ import seedu.edubook.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final PersonName name;
     private final Phone phone;
     private final Email email;
 
@@ -41,7 +40,7 @@ public class Person {
      * @param tuitionClass Class the person belongs to.
      * @param tags Tags belonging to the person.
      */
-    public Person(Name name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
+    public Person(PersonName name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tuitionClass, tags);
         this.name = name;
         this.phone = phone;
@@ -53,7 +52,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name,
+    public Person(PersonName name,
                   Phone phone,
                   Email email,
                   TuitionClass tuitionClass,
@@ -68,7 +67,7 @@ public class Person {
         this.assignments.addAll(assignments);
     }
 
-    public Name getName() {
+    public PersonName getName() {
         return name;
     }
 
@@ -92,6 +91,14 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Adds an assignment to the person, and creates a new person with the new assignment set.
+     * This ensures immutability of Person objects.
+     *
+     * @param assignment Assignment to be added.
+     * @param errorMessage Error message to be thrown should the assignment be already assigned to this person.
+     * @return The new person object.
+     */
     public Person withAddedAssignment(Assignment assignment, String errorMessage) {
         requireNonNull(assignment);
 
@@ -112,7 +119,15 @@ public class Person {
         );
     }
 
-    public Person withDeletedAssignment(Assignment assignment, String errorMessage) {
+    /**
+     * Removes an assignment from the person, and creates a new person with the new assignment set.
+     * This ensures immutability of Person objects.
+     *
+     * @param assignment Assignment to be removed.
+     * @param errorMessage Error message to be thrown should the assignment be not found.
+     * @return The new person object.
+     */
+    public Person withRemovedAssignment(Assignment assignment, String errorMessage) throws AssignmentException {
         requireNonNull(assignment);
 
         if (!this.hasAssignment(assignment)) {
@@ -136,6 +151,12 @@ public class Person {
         return new HashSet<>(this.assignments);
     }
 
+    /**
+     * Checks whether an assignment is already assigned to this person.
+     *
+     * @param assignment Assignment to be checked.
+     * @return a boolean representing whether the assignment is already assigned.
+     */
     public boolean hasAssignment(Assignment assignment) {
         return this.assignments.contains(assignment);
     }

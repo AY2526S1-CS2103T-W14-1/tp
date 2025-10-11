@@ -2,13 +2,7 @@ package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
 
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
@@ -32,7 +26,7 @@ public class AssignCommand extends Command {
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_PERSON_NAME + "John Doe ";
 
-    public static final String MESSAGE_SUCCESS = "New assignment assigned to: %1$s";
+    public static final String MESSAGE_SUCCESS = "New assignment %1$s assigned to: %2$s";
 
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
 
@@ -60,7 +54,9 @@ public class AssignCommand extends Command {
             Person assignee = model.findPersonByName(this.assigneeName, MESSAGE_STUDENT_NOT_FOUND);
             Person updatedPerson = assignee.withAddedAssignment(this.toAssign, MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED);
             model.setPerson(assignee, updatedPerson);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPerson.getName()));
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS, toAssign.getAssignmentName(), updatedPerson.getName())
+            );
         } catch (AssignmentException e) {
             throw new CommandException(e.getMessage());
         }

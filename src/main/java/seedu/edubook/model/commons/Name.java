@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a name in the address book. Is inherited by other classes to represent a specific object's name.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public abstract class Name {
+public class Name {
 
     public static final int MAX_NAME_LENGTH = 100;
 
@@ -30,7 +30,9 @@ public abstract class Name {
         fullName = name;
     }
 
-    public abstract String getMessageConstraints();
+    public String getMessageConstraints() {
+        return "";
+    };
 
     /**
      * Returns true if a given string is a valid name.

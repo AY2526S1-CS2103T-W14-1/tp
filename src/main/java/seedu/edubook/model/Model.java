@@ -5,9 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.edubook.commons.core.GuiSettings;
-import seedu.edubook.logic.commands.Command;
 import seedu.edubook.logic.commands.exceptions.CommandException;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 

@@ -12,8 +12,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
-import seedu.edubook.model.person.Email;
 import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.person.Email;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 
@@ -51,7 +52,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_CLASS, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -59,7 +60,7 @@ public class JsonAdaptedPersonTest {
     public void toModalType_invalidNameLength_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(INVALID_NAME_LENGTH, VALID_PHONE, VALID_EMAIL, VALID_CLASS, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_LENGTH_CONSTRAINTS;
+        String expectedMessage = PersonName.MESSAGE_LENGTH_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

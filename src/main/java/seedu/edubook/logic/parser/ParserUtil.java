@@ -10,10 +10,9 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.person.Email;
 import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
@@ -41,7 +40,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code PersonName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -61,6 +60,12 @@ public class ParserUtil {
         return new PersonName(trimmedName);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code AssignmentName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static AssignmentName parseAssignmentName(String name) throws ParseException {
         requireNonNull(name);
 

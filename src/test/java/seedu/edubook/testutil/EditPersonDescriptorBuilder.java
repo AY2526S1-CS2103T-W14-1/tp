@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new PersonName(name));
         return this;
     }
 

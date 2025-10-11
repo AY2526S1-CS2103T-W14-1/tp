@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
@@ -53,11 +50,11 @@ public class UnassignCommand extends Command {
 
         try {
             Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
-            Person updatedPerson = target.withDeletedAssignment(toUnassign, MESSAGE_ASSIGNMENT_NOT_FOUND);
+            Person updatedPerson = target.withRemovedAssignment(toUnassign, MESSAGE_ASSIGNMENT_NOT_FOUND);
             model.setPerson(target, updatedPerson);
 
             return new CommandResult(
-                    String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
+                    String.format(MESSAGE_SUCCESS, toUnassign.getAssignmentName(), updatedPerson.getName())
             );
         } catch (AssignmentException e) {
             throw new CommandException(e.getMessage());

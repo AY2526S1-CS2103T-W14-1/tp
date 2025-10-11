@@ -1,8 +1,10 @@
 package seedu.edubook.model.assignment;
 
 import seedu.edubook.model.commons.Name;
-import seedu.edubook.model.person.PersonName;
 
+/**
+ * Represents the name of an assignment.
+ */
 public class AssignmentName extends Name {
 
     public static final String MESSAGE_CONSTRAINTS =

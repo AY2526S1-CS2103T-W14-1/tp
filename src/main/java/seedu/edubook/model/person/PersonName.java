@@ -2,6 +2,9 @@ package seedu.edubook.model.person;
 
 import seedu.edubook.model.commons.Name;
 
+/**
+ * Represents the name of a person.
+ */
 public class PersonName extends Name {
 
     public static final String MESSAGE_CONSTRAINTS =

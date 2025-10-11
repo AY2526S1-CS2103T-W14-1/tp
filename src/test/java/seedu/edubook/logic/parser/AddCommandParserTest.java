@@ -42,8 +42,8 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.AddCommand;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -94,7 +94,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + CLASS_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PERSON_NAME, PREFIX_CLASS, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(
+                        PREFIX_PERSON_NAME,
+                        PREFIX_CLASS,
+                        PREFIX_EMAIL,
+                        PREFIX_PHONE
+                )
+        );
 
         // invalid value followed by valid value
 
@@ -170,7 +176,7 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PersonName.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + CLASS_DESC_BOB
@@ -190,7 +196,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_CLASS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+                PersonName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -202,7 +208,7 @@ public class AddCommandParserTest {
     public void parse_invalidLength_failure() {
         // Name length exceeds
         assertParseFailure(parser, INVALID_NAME_LENGTH + PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_LENGTH_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PersonName.MESSAGE_LENGTH_CONSTRAINTS);
 
         // Email length exceeds
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_LENGTH + CLASS_DESC_BOB
@@ -218,6 +224,6 @@ public class AddCommandParserTest {
 
         // Multiple input lengths exceed should show error message for 1st failed input
         assertParseFailure(parser, INVALID_NAME_LENGTH + INVALID_PHONE_LENGTH + INVALID_EMAIL_LENGTH
-                + INVALID_CLASS_LENGTH + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_LENGTH_CONSTRAINTS);
+                + INVALID_CLASS_LENGTH + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PersonName.MESSAGE_LENGTH_CONSTRAINTS);
     }
 }

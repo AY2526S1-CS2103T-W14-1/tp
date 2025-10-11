@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.logic.commands.exceptions.CommandException;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 
