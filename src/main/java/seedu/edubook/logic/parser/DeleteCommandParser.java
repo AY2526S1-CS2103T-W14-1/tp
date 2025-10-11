@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.commands.DeleteCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -31,7 +31,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 return new DeleteCommand(index);
             }
 
-            Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
+            PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
             return new DeleteCommand(name);
         } catch (ParseException pe) {
             throw new ParseException(

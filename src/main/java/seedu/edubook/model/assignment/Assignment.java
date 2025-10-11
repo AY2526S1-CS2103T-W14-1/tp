@@ -51,10 +51,6 @@ public class Assignment {
         return test.length() <= MAX_ASSIGNMENT_LENGTH;
     }
 
-    public AssignmentName getAssignmentName() {
-        return this.assignmentName;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

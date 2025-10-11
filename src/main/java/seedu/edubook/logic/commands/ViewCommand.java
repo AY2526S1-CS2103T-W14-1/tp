@@ -6,7 +6,7 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.person.NameContainsKeywordsPredicate;
+import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -23,9 +23,9 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_SUCCESS =
             "Here are %1$s's details. ";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonNameContainsKeywordsPredicate predicate;
 
-    public ViewCommand(NameContainsKeywordsPredicate predicate) {
+    public ViewCommand(PersonNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

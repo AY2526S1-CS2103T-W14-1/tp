@@ -10,8 +10,8 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    private final Name targetName;
+    private final PersonName targetName;
 
     /**
      * Creates a {@code DeleteCommand} to remove student at specified {@code targetIndex}
@@ -48,7 +48,7 @@ public class DeleteCommand extends Command {
      *
      * @param name
      */
-    public DeleteCommand(Name name) {
+    public DeleteCommand(PersonName name) {
         this.targetName = name;
         this.targetIndex = null;
     }

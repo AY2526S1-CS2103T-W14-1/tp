@@ -11,7 +11,6 @@ import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
@@ -50,11 +49,11 @@ public class ParserUtil {
 
         String trimmedName = name.trim();
 
-        if (!Name.isValidLength(trimmedName)) {
+        if (!PersonName.isValidLength(trimmedName)) {
             throw new ExceedLengthException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
-        if (!Name.isValidName(trimmedName)) {
+        if (!PersonName.isValidName(trimmedName)) {
             throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
         return new PersonName(trimmedName);
@@ -71,11 +70,11 @@ public class ParserUtil {
 
         String trimmedName = name.trim();
 
-        if (!Name.isValidLength(trimmedName)) {
+        if (!AssignmentName.isValidLength(trimmedName)) {
             throw new ExceedLengthException(AssignmentName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
-        if (!Name.isValidName(trimmedName)) {
+        if (!AssignmentName.isValidName(trimmedName)) {
             throw new ParseException(AssignmentName.MESSAGE_CONSTRAINTS);
         }
 

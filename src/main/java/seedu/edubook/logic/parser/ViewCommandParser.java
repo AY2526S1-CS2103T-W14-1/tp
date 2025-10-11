@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.person.NameContainsKeywordsPredicate;
+import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -27,6 +27,6 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ViewCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 }

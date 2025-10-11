@@ -7,9 +7,10 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.AssignmentException;
+import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Assigns an assignment to a student.
@@ -33,13 +34,13 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED = "This assignment "
             + "is already assigned to this student.";
 
-    private final Name assigneeName;
+    private final PersonName assigneeName;
     private final Assignment toAssign;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AssignCommand(Assignment assignment, Name assignee) {
+    public AssignCommand(Assignment assignment, PersonName assignee) {
         requireNonNull(assignee);
         requireNonNull(assignment);
         this.assigneeName = assignee;
@@ -55,10 +56,12 @@ public class AssignCommand extends Command {
             Person updatedPerson = assignee.withAddedAssignment(this.toAssign, MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED);
             model.setPerson(assignee, updatedPerson);
             return new CommandResult(
-                    String.format(MESSAGE_SUCCESS, toAssign.getAssignmentName(), updatedPerson.getName())
+                    String.format(MESSAGE_SUCCESS, toAssign.assignmentName, updatedPerson.getName())
             );
         } catch (AssignmentException e) {
             throw new CommandException(e.getMessage());
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
     }
 }

@@ -18,7 +18,8 @@ import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.commons.Name;
-import seedu.edubook.model.person.NameContainsKeywordsPredicate;
+import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.testutil.EditPersonDescriptorBuilder;
 
@@ -131,7 +132,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -142,7 +143,7 @@ public class CommandTestUtil {
      * @param model
      * @param targetName
      */
-    public static void showPersonAtName(Model model, Name targetName) {
+    public static void showPersonAtName(Model model, PersonName targetName) {
         // Filter to show only persons with the exact name
         model.updateFilteredPersonList(person -> person.getName().equals(targetName));
 

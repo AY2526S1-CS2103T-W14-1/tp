@@ -43,8 +43,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("class") String tuitionClass,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags
-    // @JsonProperty("assignments") List<JsonAdaptedAssignments> assignments
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments
     ) {
         this.name = name;
         this.phone = phone;
@@ -53,9 +53,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        // if (assignments != null) {
-        // this.assignments.addAll(assignments);
-        // }
+        if (assignments != null) {
+            this.assignments.addAll(assignments);
+        }
     }
 
     /**
@@ -93,10 +93,10 @@ class JsonAdaptedPerson {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidLength(name)) {
+        if (!PersonName.isValidLength(name)) {
             throw new IllegalValueException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
-        if (!Name.isValidName(name)) {
+        if (!PersonName.isValidName(name)) {
             throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
         final PersonName modelName = new PersonName(name);

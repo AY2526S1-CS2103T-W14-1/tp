@@ -24,6 +24,8 @@ import seedu.edubook.model.ReadOnlyAddressBook;
 import seedu.edubook.model.ReadOnlyUserPrefs;
 import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -150,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Person findPersonByName(Name target, String errorMessage) throws CommandException {
+        public Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException {
             throw new AssertionError("This method should not be called.");
         }
 

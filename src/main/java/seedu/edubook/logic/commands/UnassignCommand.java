@@ -7,9 +7,10 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.AssignmentException;
+import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Unassigns an assignment from a student.
@@ -31,13 +32,13 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
             + "this assignment currently";
 
-    private final Name currentAssignee;
+    private final PersonName currentAssignee;
     private final Assignment toUnassign;
 
     /**
      * Creates an UnassignCommand to unassign the specified {@code Assignment}.
      */
-    public UnassignCommand(Assignment assignment, Name currentAssignee) {
+    public UnassignCommand(Assignment assignment, PersonName currentAssignee) {
         requireNonNull(currentAssignee);
         requireNonNull(assignment);
         this.currentAssignee = currentAssignee;
@@ -54,10 +55,12 @@ public class UnassignCommand extends Command {
             model.setPerson(target, updatedPerson);
 
             return new CommandResult(
-                    String.format(MESSAGE_SUCCESS, toUnassign.getAssignmentName(), updatedPerson.getName())
+                    String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
             );
         } catch (AssignmentException e) {
             throw new CommandException(e.getMessage());
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
     }
 }

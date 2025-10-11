@@ -3,6 +3,7 @@ package seedu.edubook.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -26,6 +27,7 @@ public class PersonBuilder {
     private Email email;
     private TuitionClass tuitionClass;
     private Set<Tag> tags;
+    private Set<Assignment> assignments;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +38,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         tuitionClass = new TuitionClass(DEFAULT_CLASS);
         tags = new HashSet<>();
+        assignments = new HashSet<>();
     }
 
     /**
@@ -47,6 +50,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         tuitionClass = personToCopy.getTuitionClass();
         tags = new HashSet<>(personToCopy.getTags());
+        assignments = new HashSet<>(personToCopy.getAssignments());
     }
 
     /**
@@ -57,6 +61,10 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withAssignments(String ... assignments) {
+        this.assignments = SampleDataUtil.getAssignmentSet(assignments);
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
