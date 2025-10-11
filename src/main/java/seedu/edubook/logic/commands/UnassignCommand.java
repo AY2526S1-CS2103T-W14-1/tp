@@ -12,6 +12,7 @@ import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.exceptions.AssignmentException;
 
 /**
  * Unassigns an assignment from a student.
@@ -30,10 +31,8 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
-    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "Seems like the student does not have "
+    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
             + "this assignment currently";
-    // public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    // todo add more error messages after settling logic
 
     private final Name currentAssignee;
     private final Assignment toUnassign;
@@ -52,11 +51,17 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
-        Person updatedPerson = target.withDeletedAssignment(toUnassign, MESSAGE_ASSIGNMENT_NOT_FOUND);
-        model.setPerson(target, updatedPerson);
+        try {
+            Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
+            Person updatedPerson = target.withDeletedAssignment(toUnassign, MESSAGE_ASSIGNMENT_NOT_FOUND);
+            model.setPerson(target, updatedPerson);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName()));
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
+            );
+        } catch (AssignmentException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 }
 
