@@ -48,12 +48,13 @@ public class ParserUtil {
         requireNonNull(name);
 
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
 
         if (!Name.isValidLength(trimmedName)) {
             throw new ExceedLengthException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
 
         return new Name(trimmedName);
@@ -69,12 +70,13 @@ public class ParserUtil {
         requireNonNull(assignment);
 
         String trimmedAssignment = assignment.trim();
-        if (!Assignment.isValidAssignment(trimmedAssignment)) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
-        }
 
         if (!Assignment.isValidLength(trimmedAssignment)) {
             throw new ExceedLengthException(Assignment.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        if (!Assignment.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
         }
 
         Name assignmentName = parseName(assignment);
@@ -91,12 +93,13 @@ public class ParserUtil {
         requireNonNull(phone);
 
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
 
         if (!Phone.isValidLength(trimmedPhone)) {
             throw new ExceedLengthException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
 
         return new Phone(trimmedPhone);
@@ -112,12 +115,13 @@ public class ParserUtil {
         requireNonNull(tuitionClass);
 
         String trimmedClass = tuitionClass.trim();
-        if (!TuitionClass.isValidClass(trimmedClass)) {
-            throw new ParseException(TuitionClass.MESSAGE_CONSTRAINTS);
-        }
 
         if (!TuitionClass.isValidLength(trimmedClass)) {
             throw new ExceedLengthException(TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        if (!TuitionClass.isValidClass(trimmedClass)) {
+            throw new ParseException(TuitionClass.MESSAGE_CONSTRAINTS);
         }
 
         return new TuitionClass(trimmedClass);
@@ -133,12 +137,13 @@ public class ParserUtil {
         requireNonNull(email);
 
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
 
         if (!Email.isValidLength(trimmedEmail)) {
             throw new ExceedLengthException(Email.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
 
         return new Email(trimmedEmail);

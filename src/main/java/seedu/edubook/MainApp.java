@@ -41,7 +41,7 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    private static final String FILE_CORRUPTED_MESSAGE = "It seems like your saved file is corrupted."
+    private static final String MESSAGE_FILE_CORRUPTED = "It seems like your saved file is corrupted."
             + "\nIf you have made any manual changes, please revert them and reload the app."
             + "\nOtherwise, a new file will be created.";
 
@@ -52,7 +52,7 @@ public class MainApp extends Application {
     protected Config config;
     protected ErrorDisplayable errorDisplayable;
 
-    private boolean haveErrorMessage = false;
+    private boolean hasErrorMessage = false;
 
     @Override
     public void init() throws Exception {
@@ -100,7 +100,7 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            this.haveErrorMessage = true;
+            this.hasErrorMessage = true;
             initialData = new AddressBook();
         }
 
@@ -186,8 +186,8 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
-        if (this.haveErrorMessage) {
-            errorDisplayable.showErrorAlert(FILE_CORRUPTED_MESSAGE);
+        if (this.hasErrorMessage) {
+            errorDisplayable.showErrorAlert(MESSAGE_FILE_CORRUPTED);
         }
     }
 
