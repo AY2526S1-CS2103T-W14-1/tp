@@ -1,6 +1,5 @@
 package seedu.edubook.testutil;
 
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.PersonName;
 
 /**

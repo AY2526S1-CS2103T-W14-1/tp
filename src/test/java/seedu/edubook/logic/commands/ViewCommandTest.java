@@ -75,7 +75,8 @@ public class ViewCommandTest {
 
     @Test
     public void toStringMethod() {
-        PersonNameContainsKeywordsPredicate predicate = new PersonNameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        PersonNameContainsKeywordsPredicate predicate =
+                new PersonNameContainsKeywordsPredicate(Arrays.asList("keyword"));
         ViewCommand findCommand = new ViewCommand(predicate);
         String expected = ViewCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());

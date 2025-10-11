@@ -22,7 +22,6 @@ import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ReadOnlyAddressBook;
 import seedu.edubook.model.ReadOnlyUserPrefs;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;

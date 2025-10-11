@@ -21,7 +21,6 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
-import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 

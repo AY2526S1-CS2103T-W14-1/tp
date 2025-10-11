@@ -61,6 +61,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code assignments} into a {@code Set<Assignment>} and set it to the
+     * {@code Person} that we are building.
+     */
     public PersonBuilder withAssignments(String ... assignments) {
         this.assignments = SampleDataUtil.getAssignmentSet(assignments);
         return this;
