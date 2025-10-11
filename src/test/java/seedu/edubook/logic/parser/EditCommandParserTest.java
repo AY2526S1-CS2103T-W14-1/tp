@@ -39,7 +39,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.EditCommand;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;

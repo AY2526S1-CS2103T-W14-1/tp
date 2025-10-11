@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.ReadOnlyAddressBook;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;

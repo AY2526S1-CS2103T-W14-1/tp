@@ -2,9 +2,9 @@ package seedu.edubook.model.assignment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
-import static seedu.edubook.model.person.Name.MAX_NAME_LENGTH;
+import static seedu.edubook.model.commons.Name.MAX_NAME_LENGTH;
 
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 
 /**
  * Represents an assignment in EduBook

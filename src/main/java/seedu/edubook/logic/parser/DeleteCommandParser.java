@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.commands.DeleteCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

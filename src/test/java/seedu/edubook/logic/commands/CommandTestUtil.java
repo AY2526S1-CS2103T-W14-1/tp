@@ -17,7 +17,7 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.NameContainsKeywordsPredicate;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.testutil.EditPersonDescriptorBuilder;

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import seedu.edubook.logic.commands.AddCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;

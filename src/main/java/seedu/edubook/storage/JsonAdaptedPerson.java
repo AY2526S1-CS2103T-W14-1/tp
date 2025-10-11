@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;

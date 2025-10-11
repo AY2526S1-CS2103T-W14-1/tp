@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 

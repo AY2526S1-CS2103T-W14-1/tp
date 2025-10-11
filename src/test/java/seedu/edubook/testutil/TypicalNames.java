@@ -1,6 +1,6 @@
 package seedu.edubook.testutil;
 
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.commons.Name;
 
 /**
  * A utility class containing a list of {@code Name} objects to be used in tests.

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.tag.Tag;
 
 /**

@@ -1,4 +1,4 @@
-package seedu.edubook.model.person;
+package seedu.edubook.model.commons;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
@@ -10,10 +10,10 @@ import static seedu.edubook.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "A Name should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Names should only contain a maximum of 100 characters (including spaces)";
+            "A Name should only contain a maximum of 100 characters (including spaces)";
 
     public static final int MAX_NAME_LENGTH = 100;
 
