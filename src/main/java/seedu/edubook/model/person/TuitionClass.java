@@ -12,7 +12,7 @@ public class TuitionClass {
     public static final String MESSAGE_CONSTRAINTS = "Classes can take any values, and it should not be blank";
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Class names should only contain a maximum of 20 characters (including spaces)";
+            "Class names should only contain a maximum of 20 characters";
 
     public static final int MAX_CLASS_LENGTH = 20;
 

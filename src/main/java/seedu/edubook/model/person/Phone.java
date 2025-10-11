@@ -16,7 +16,7 @@ public class Phone {
     public static final String VALIDATION_REGEX = "\\d{3,}";
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Phone numbers should only contain a maximum of 20 characters (including spaces)";
+            "Phone numbers should only contain a maximum of 20 characters";
 
     public static final int MAX_PHONE_LENGTH = 20;
 
