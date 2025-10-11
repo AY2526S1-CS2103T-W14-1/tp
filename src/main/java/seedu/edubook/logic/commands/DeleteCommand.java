@@ -1,7 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ public class DeleteCommand extends Command {
             + ": Deletes the person identified by their name or their index number used in the displayed person list.\n"
             + "Parameters when deleting using index: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1\n"
-            + "Parameters when deleting using name: " + PREFIX_NAME + "NAME \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe\n";
+            + "Parameters when deleting using name: " + PREFIX_PERSON_NAME + "NAME \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe\n";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 

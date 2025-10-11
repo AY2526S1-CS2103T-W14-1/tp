@@ -5,6 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.edubook.commons.core.GuiSettings;
+import seedu.edubook.logic.commands.Command;
+import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 
 /**
@@ -75,6 +79,8 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    Person findPersonByName(Name target, String errorMessage) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

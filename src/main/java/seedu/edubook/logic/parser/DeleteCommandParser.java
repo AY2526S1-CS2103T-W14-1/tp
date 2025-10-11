@@ -1,7 +1,7 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.stream.Stream;
 
@@ -23,15 +23,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                    ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+            if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_NAME)
                     || !argMultimap.getPreamble().isEmpty()) {
                 Index index = ParserUtil.parseIndex(args);
                 return new DeleteCommand(index);
             }
 
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
             return new DeleteCommand(name);
         } catch (ParseException pe) {
             throw new ParseException(

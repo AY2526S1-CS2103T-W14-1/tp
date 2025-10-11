@@ -1,5 +1,6 @@
 package seedu.edubook.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.Set;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.person.exceptions.AssignmentException;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -90,12 +92,52 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public void addAssignment(Assignment assignment) {
-        this.assignments.add(assignment);
+    public Person withAddedAssignment(Assignment assignment, String errorMessage) {
+        requireNonNull(assignment);
+
+        if (this.hasAssignment(assignment)) {
+            throw new AssignmentException(errorMessage);
+        }
+
+        Set<Assignment> newAssignments = this.getAssignments();
+        newAssignments.add(assignment);
+
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                newAssignments
+        );
+    }
+
+    public Person withDeletedAssignment(Assignment assignment, String errorMessage) {
+        requireNonNull(assignment);
+
+        if (!this.hasAssignment(assignment)) {
+            throw new AssignmentException(errorMessage);
+        }
+
+        Set<Assignment> newAssignments = this.getAssignments();
+        newAssignments.remove(assignment);
+
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                newAssignments
+        );
     }
 
     public Set<Assignment> getAssignments() {
-        return this.assignments;
+        return new HashSet<>(this.assignments);
+    }
+
+    public boolean hasAssignment(Assignment assignment) {
+        return this.assignments.contains(assignment);
     }
 
     /**

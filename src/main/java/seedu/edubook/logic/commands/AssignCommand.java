@@ -1,6 +1,12 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
@@ -17,22 +23,31 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "lmao";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns an assignment to an existing person. "
+            + "Parameters: "
+            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT"
+            + PREFIX_PERSON_NAME + "NAME OF ASSIGNEE \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
+            + PREFIX_PERSON_NAME + "John Doe ";
 
     public static final String MESSAGE_SUCCESS = "New assignment assigned to: %1$s";
-    // public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    // todo add more error messages after settling logic
 
-    private final Name assignee;
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
+
+    public static final String MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED = "This assignment "
+            + "is already assigned to this student.";
+
+    private final Name assigneeName;
     private final Assignment toAssign;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AssignCommand(Name assignee, Assignment assignment) {
+    public AssignCommand(Assignment assignment, Name assignee) {
         requireNonNull(assignee);
         requireNonNull(assignment);
-        this.assignee = assignee;
+        this.assigneeName = assignee;
         this.toAssign = assignment;
     }
 
@@ -40,24 +55,9 @@ public class AssignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person target = model.getFilteredPersonList().stream()
-                .filter(p -> p.getName().equals(assignee))
-                .findFirst()
-                .orElseThrow(() -> new CommandException("hehehehehehehaw"));
-
-        Set<Assignment> updatedAssignments = target.getAssignments();
-        updatedAssignments.add(toAssign);
-
-        Person updatedPerson = new Person(
-                target.getName(),
-                target.getPhone(),
-                target.getEmail(),
-                target.getTuitionClass(),
-                target.getTags(),
-                updatedAssignments
-        );
-
-        model.setPerson(target, updatedPerson);
+        Person assignee = model.findPersonByName(this.assigneeName, MESSAGE_STUDENT_NOT_FOUND);
+        Person updatedPerson = assignee.withAddedAssignment(this.toAssign, MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED);
+        model.setPerson(assignee, updatedPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPerson.getName()));
     }

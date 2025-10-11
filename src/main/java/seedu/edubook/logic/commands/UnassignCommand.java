@@ -2,7 +2,7 @@ package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,10 +23,10 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an assignment from a student. "
             + "Parameters: "
             + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT "
-            + PREFIX_NAME + "NAME \n"
+            + PREFIX_PERSON_NAME + "NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
-            + PREFIX_NAME + "John Doe";
+            + PREFIX_PERSON_NAME + "John Doe";
 
     public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
@@ -35,16 +35,16 @@ public class UnassignCommand extends Command {
     // public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     // todo add more error messages after settling logic
 
-    private final Name unassignee;
+    private final Name currentAssignee;
     private final Assignment toUnassign;
 
     /**
      * Creates an UnassignCommand to unassign the specified {@code Assignment}.
      */
-    public UnassignCommand(Name unassignee, Assignment assignment) {
-        requireNonNull(unassignee);
+    public UnassignCommand(Assignment assignment, Name currentAssignee) {
+        requireNonNull(currentAssignee);
         requireNonNull(assignment);
-        this.unassignee = unassignee;
+        this.currentAssignee = currentAssignee;
         this.toUnassign = assignment;
     }
 
@@ -52,28 +52,8 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person target = model.getFilteredPersonList().stream()
-                .filter(p -> p.getName().equals(unassignee))
-                .findFirst()
-                .orElseThrow(() -> new CommandException(MESSAGE_STUDENT_NOT_FOUND));
-
-        // Defensive copy of assignments (avoid mutating internal Set)
-        Set<Assignment> currentAssignments = new HashSet<>(target.getAssignments());
-
-        boolean hasAssignment = currentAssignments.remove(toUnassign);
-        if (!hasAssignment) {
-            throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
-        }
-
-        Person updatedPerson = new Person(
-                target.getName(),
-                target.getPhone(),
-                target.getEmail(),
-                target.getTuitionClass(),
-                target.getTags(),
-                currentAssignments
-        );
-
+        Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
+        Person updatedPerson = target.withDeletedAssignment(toUnassign, MESSAGE_ASSIGNMENT_NOT_FOUND);
         model.setPerson(target, updatedPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName()));

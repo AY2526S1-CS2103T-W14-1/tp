@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.commons.core.LogsCenter;
+import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Person;
 
 /**
@@ -109,6 +112,17 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Person findPersonByName(Name target, String errorMessage) throws CommandException {
+        requireAllNonNull(target, errorMessage);
+
+        return this.getFilteredPersonList()
+                .stream()
+                .filter(p -> p.getName().equals(target))
+                .findFirst()
+                .orElseThrow(() -> new CommandException(errorMessage));
     }
 
     //=========== Filtered Person List Accessors =============================================================

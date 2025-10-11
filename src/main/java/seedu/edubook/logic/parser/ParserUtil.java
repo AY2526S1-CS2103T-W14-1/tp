@@ -11,8 +11,10 @@ import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -44,43 +46,35 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parsePersonName(String name) throws ParseException {
         requireNonNull(name);
 
         String trimmedName = name.trim();
 
         if (!Name.isValidLength(trimmedName)) {
-            throw new ExceedLengthException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+            throw new ExceedLengthException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
-    /**
-     * Parses a {@code String assignment} into an {@code Assignment}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code assignment} is invalid.
-     */
-    public static Assignment parseAssignment(String assignment) throws ParseException {
-        requireNonNull(assignment);
+    public static AssignmentName parseAssignmentName(String name) throws ParseException {
+        requireNonNull(name);
 
-        String trimmedAssignment = assignment.trim();
+        String trimmedName = name.trim();
 
-        if (!Assignment.isValidLength(trimmedAssignment)) {
-            throw new ExceedLengthException(Assignment.MESSAGE_LENGTH_CONSTRAINTS);
+        if (!Name.isValidLength(trimmedName)) {
+            throw new ExceedLengthException(AssignmentName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
-        if (!Assignment.isValidAssignment(trimmedAssignment)) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(AssignmentName.MESSAGE_CONSTRAINTS);
         }
 
-        Name assignmentName = parseName(assignment);
-        return new Assignment(assignmentName);
+        return new AssignmentName(trimmedName);
     }
 
     /**
