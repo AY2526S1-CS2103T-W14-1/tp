@@ -28,6 +28,7 @@ import seedu.edubook.storage.JsonUserPrefsStorage;
 import seedu.edubook.storage.Storage;
 import seedu.edubook.storage.StorageManager;
 import seedu.edubook.storage.UserPrefsStorage;
+import seedu.edubook.ui.ErrorDisplayable;
 import seedu.edubook.ui.Ui;
 import seedu.edubook.ui.UiManager;
 
@@ -40,13 +41,18 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static final String MESSAGE_FILE_CORRUPTED = "It seems like your saved file is corrupted."
+            + "\nIf you have made any manual changes, please revert them and reload the app."
+            + "\nOtherwise, a new file will be created.";
+
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+    protected ErrorDisplayable errorDisplayable;
 
-    private String startupErrorMessage = null;
+    private boolean hasErrorMessage = false;
 
     @Override
     public void init() throws Exception {
@@ -66,7 +72,12 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        UiManager temp = new UiManager(logic);
+
+        ui = temp;
+
+        errorDisplayable = temp;
+
     }
 
     /**
@@ -89,9 +100,7 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
-            this.startupErrorMessage = "It seems like your saved file is corrupted."
-                    + "\nIf you have made any manual changes, please revert them and reload the app."
-                    + "\nOtherwise, a new file will be created.";
+            this.hasErrorMessage = true;
             initialData = new AddressBook();
         }
 
@@ -177,8 +186,8 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
-        if (startupErrorMessage != null) {
-            ui.showErrorAlert(startupErrorMessage);
+        if (this.hasErrorMessage) {
+            errorDisplayable.showErrorAlert(MESSAGE_FILE_CORRUPTED);
         }
     }
 
