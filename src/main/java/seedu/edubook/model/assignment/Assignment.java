@@ -43,14 +43,6 @@ public class Assignment {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given string is of valid length.
-     */
-    public static boolean isValidLength(String test) {
-        assert test != null;
-        return test.length() <= MAX_ASSIGNMENT_LENGTH;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -65,4 +65,16 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if a given string is of valid length.
+     *
+     * @param test cannot be null
+     * @param maxLength must be greater than or equals to 0
+     */
+    public static boolean isValidLength(String test, int maxLength) {
+        requireNonNull(test);
+        assert maxLength >= 0;
+        return test.length() <= maxLength;
+    }
 }

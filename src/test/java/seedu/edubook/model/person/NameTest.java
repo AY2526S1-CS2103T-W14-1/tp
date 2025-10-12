@@ -41,22 +41,6 @@ public class NameTest {
     }
 
     @Test
-    public void isValidLength_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> Name.isValidLength(null));
-    }
-
-    @Test
-    public void isValidLength_invalidInput_returnsFalse() {
-        String invalidLength = String.join("", java.util.Collections.nCopies(50, "test"));
-        assertFalse(Name.isValidLength(invalidLength));
-    }
-
-    @Test
-    public void isValidLength_validInput_returnsTrue() {
-        assertTrue(Name.isValidLength("peter jack"));
-    }
-
-    @Test
     public void equals() {
         Name name = new Name("Valid Name");
 

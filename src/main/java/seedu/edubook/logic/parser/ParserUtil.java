@@ -49,13 +49,14 @@ public class ParserUtil {
 
         String trimmedName = name.trim();
 
-        if (!PersonName.isValidLength(trimmedName)) {
+        if (!StringUtil.isValidLength(trimmedName, PersonName.MAX_NAME_LENGTH)) {
             throw new ExceedLengthException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
         if (!PersonName.isValidName(trimmedName)) {
             throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
+
         return new PersonName(trimmedName);
     }
 
@@ -70,7 +71,7 @@ public class ParserUtil {
 
         String trimmedName = name.trim();
 
-        if (!AssignmentName.isValidLength(trimmedName)) {
+        if (StringUtil.isValidLength(trimmedName, AssignmentName.MAX_NAME_LENGTH)) {
             throw new ExceedLengthException(AssignmentName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
@@ -92,7 +93,7 @@ public class ParserUtil {
 
         String trimmedPhone = phone.trim();
 
-        if (!Phone.isValidLength(trimmedPhone)) {
+        if (!StringUtil.isValidLength(trimmedPhone, Phone.MAX_PHONE_LENGTH)) {
             throw new ExceedLengthException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
@@ -114,7 +115,7 @@ public class ParserUtil {
 
         String trimmedClass = tuitionClass.trim();
 
-        if (!TuitionClass.isValidLength(trimmedClass)) {
+        if (!StringUtil.isValidLength(trimmedClass, TuitionClass.MAX_CLASS_LENGTH)) {
             throw new ExceedLengthException(TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
@@ -136,7 +137,7 @@ public class ParserUtil {
 
         String trimmedEmail = email.trim();
 
-        if (!Email.isValidLength(trimmedEmail)) {
+        if (!StringUtil.isValidLength(trimmedEmail, Email.MAX_EMAIL_LENGTH)) {
             throw new ExceedLengthException(Email.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
