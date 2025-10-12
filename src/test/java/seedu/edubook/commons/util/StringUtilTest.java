@@ -140,4 +140,33 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    @Test
+    public void isValidLength_nullString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.isValidLength(null, 10));
+    }
+
+    @Test
+    public void isValidLength_negativeLength_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> StringUtil.isValidLength("abc", -1));
+    }
+
+    @Test
+    public void isValidLength() {
+
+        // Length of String <= maxLength
+        assertTrue(StringUtil.isValidLength("abc", 10));
+        assertTrue(StringUtil.isValidLength("abc", 3));
+
+        // Empty String
+        assertTrue(StringUtil.isValidLength("", 5));
+
+        // 0 maxLength
+        assertFalse(StringUtil.isValidLength("abc", 0));
+
+        // Length of String > maxLength
+        assertFalse(StringUtil.isValidLength("abc", 2));
+
+        // Space character
+        assertFalse(StringUtil.isValidLength("  ", 1));
+    }
 }

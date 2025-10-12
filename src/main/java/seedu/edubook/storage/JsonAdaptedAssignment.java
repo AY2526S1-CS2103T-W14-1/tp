@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
+import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.tag.Tag;
@@ -40,10 +41,13 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Assignment toModelType() throws IllegalValueException {
-        try {
-            return new Assignment(new AssignmentName(assignmentName));
-        } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(e.getMessage());
+        if (!StringUtil.isValidLength(assignmentName, Assignment.MAX_ASSIGNMENT_LENGTH)) {
+            throw new IllegalValueException(Assignment.MESSAGE_LENGTH_CONSTRAINTS);
         }
+        if (!Assignment.isValidAssignment(assignmentName)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Assignment(new AssignmentName(assignmentName));
     }
+
 }
