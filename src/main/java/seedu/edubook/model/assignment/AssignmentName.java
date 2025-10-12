@@ -22,11 +22,4 @@ public class AssignmentName extends Name {
         return AssignmentName.MESSAGE_CONSTRAINTS;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof AssignmentName
-                && fullName.equals(((AssignmentName) other).fullName));
-    }
-
 }
