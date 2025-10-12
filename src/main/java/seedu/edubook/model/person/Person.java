@@ -10,7 +10,8 @@ import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.person.exceptions.AssignmentException;
+import seedu.edubook.model.person.exceptions.AssignmentNotFoundException;
+import seedu.edubook.model.person.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -96,14 +97,14 @@ public class Person {
      * This ensures immutability of Person objects.
      *
      * @param assignment Assignment to be added.
-     * @param errorMessage Error message to be thrown should the assignment be already assigned to this person.
      * @return The new person object.
+     * @throws DuplicateAssignmentException if the assignment is already assigned to the student.
      */
-    public Person withAddedAssignment(Assignment assignment, String errorMessage) {
+    public Person withAddedAssignment(Assignment assignment) throws DuplicateAssignmentException {
         requireNonNull(assignment);
 
         if (this.hasAssignment(assignment)) {
-            throw new AssignmentException(errorMessage);
+            throw new DuplicateAssignmentException();
         }
 
         Set<Assignment> newAssignments = this.getAssignments();
@@ -124,14 +125,14 @@ public class Person {
      * This ensures immutability of Person objects.
      *
      * @param assignment Assignment to be removed.
-     * @param errorMessage Error message to be thrown should the assignment be not found.
      * @return The new person object.
+     * @throws AssignmentNotFoundException if the target assignment cannot be found.
      */
-    public Person withRemovedAssignment(Assignment assignment, String errorMessage) throws AssignmentException {
+    public Person withRemovedAssignment(Assignment assignment) throws AssignmentNotFoundException {
         requireNonNull(assignment);
 
         if (!this.hasAssignment(assignment)) {
-            throw new AssignmentException(errorMessage);
+            throw new AssignmentNotFoundException();
         }
 
         Set<Assignment> newAssignments = this.getAssignments();

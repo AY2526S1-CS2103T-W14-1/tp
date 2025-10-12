@@ -10,7 +10,7 @@ import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.exceptions.AssignmentException;
+import seedu.edubook.model.person.exceptions.AssignmentNotFoundException;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -52,14 +52,14 @@ public class UnassignCommand extends Command {
 
         try {
             Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
-            Person updatedPerson = target.withRemovedAssignment(toUnassign, MESSAGE_ASSIGNMENT_NOT_FOUND);
+            Person updatedPerson = target.withRemovedAssignment(toUnassign);
             model.setPerson(target, updatedPerson);
 
             return new CommandResult(
                     String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
             );
-        } catch (AssignmentException e) {
-            throw new CommandException(e.getMessage());
+        } catch (AssignmentNotFoundException e) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }

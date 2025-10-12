@@ -10,7 +10,7 @@ import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.exceptions.AssignmentException;
+import seedu.edubook.model.person.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -54,13 +54,13 @@ public class AssignCommand extends Command {
 
         try {
             Person assignee = model.findPersonByName(this.assigneeName, MESSAGE_STUDENT_NOT_FOUND);
-            Person updatedPerson = assignee.withAddedAssignment(this.toAssign, MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED);
+            Person updatedPerson = assignee.withAddedAssignment(this.toAssign);
             model.setPerson(assignee, updatedPerson);
             return new CommandResult(
                     String.format(MESSAGE_SUCCESS, toAssign.assignmentName, updatedPerson.getName())
             );
-        } catch (AssignmentException e) {
-            throw new CommandException(e.getMessage());
+        } catch (DuplicateAssignmentException e) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
