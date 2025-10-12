@@ -10,8 +10,8 @@ import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.person.exceptions.AssignmentNotFoundException;
-import seedu.edubook.model.person.exceptions.DuplicateAssignmentException;
+import seedu.edubook.model.assignment.exceptions.AssignmentNotFoundException;
+import seedu.edubook.model.assignment.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -107,7 +107,7 @@ public class Person {
             throw new DuplicateAssignmentException();
         }
 
-        Set<Assignment> newAssignments = this.getAssignments();
+        Set<Assignment> newAssignments = new HashSet<>(this.assignments);
         newAssignments.add(assignment);
 
         return new Person(
@@ -135,7 +135,7 @@ public class Person {
             throw new AssignmentNotFoundException();
         }
 
-        Set<Assignment> newAssignments = this.getAssignments();
+        Set<Assignment> newAssignments = new HashSet<>(this.assignments);
         newAssignments.remove(assignment);
 
         return new Person(

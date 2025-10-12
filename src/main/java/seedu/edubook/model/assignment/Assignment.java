@@ -54,8 +54,8 @@ public class Assignment {
             return false;
         }
 
-        Assignment otherTag = (Assignment) other;
-        return assignmentName.equals(otherTag.assignmentName);
+        Assignment otherAssignment = (Assignment) other;
+        return assignmentName.equals(otherAssignment.assignmentName);
     }
 
     @Override
