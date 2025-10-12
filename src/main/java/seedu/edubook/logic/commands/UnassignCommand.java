@@ -2,16 +2,16 @@ package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.exceptions.AssignmentNotFoundException;
+import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Unassigns an assignment from a student.
@@ -22,29 +22,27 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an assignment from a student. "
             + "Parameters: "
-            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT "
-            + PREFIX_NAME + "NAME \n"
+            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT "
+            + PREFIX_PERSON_NAME + "NAME OF ASSIGNEE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
-            + PREFIX_NAME + "John Doe";
+            + PREFIX_PERSON_NAME + "John Doe";
 
-    public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s";
-    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
-    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "Seems like the student does not have "
-            + "this assignment currently";
-    // public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    // todo add more error messages after settling logic
+    public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s. ";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
+    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
+            + "this assignment currently. ";
 
-    private final Name unassignee;
+    private final PersonName currentAssignee;
     private final Assignment toUnassign;
 
     /**
      * Creates an UnassignCommand to unassign the specified {@code Assignment}.
      */
-    public UnassignCommand(Name unassignee, Assignment assignment) {
-        requireNonNull(unassignee);
+    public UnassignCommand(Assignment assignment, PersonName currentAssignee) {
+        requireNonNull(currentAssignee);
         requireNonNull(assignment);
-        this.unassignee = unassignee;
+        this.currentAssignee = currentAssignee;
         this.toUnassign = assignment;
     }
 
@@ -52,35 +50,21 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person target = model.getFilteredPersonList().stream()
-                .filter(p -> p.getName().equals(unassignee))
-                .findFirst()
-                .orElseThrow(() -> new CommandException(MESSAGE_STUDENT_NOT_FOUND));
+        try {
+            Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
+            Person updatedPerson = target.withRemovedAssignment(toUnassign);
+            model.setPerson(target, updatedPerson);
 
-        // Defensive copy of assignments (avoid mutating internal Set)
-        Set<Assignment> currentAssignments = new HashSet<>(target.getAssignments());
-
-        boolean hasAssignment = currentAssignments.remove(toUnassign);
-        if (!hasAssignment) {
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
+            );
+        } catch (AssignmentNotFoundException e) {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
-
-        Person updatedPerson = new Person(
-                target.getName(),
-                target.getPhone(),
-                target.getEmail(),
-                target.getTuitionClass(),
-                target.getTags(),
-                currentAssignments
-        );
-
-        model.setPerson(target, updatedPerson);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName()));
     }
-}
 
-    /*
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -88,20 +72,20 @@ public class UnassignCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof UnassignCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        UnassignCommand otherUnassignCommand = (UnassignCommand) other;
+        return toUnassign.equals(otherUnassignCommand.toUnassign)
+                && currentAssignee.equals(otherUnassignCommand.currentAssignee);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
+                .add("toUnassign", toUnassign)
+                .add("currentAssignee", currentAssignee)
                 .toString();
     }
 }
-}
-*/

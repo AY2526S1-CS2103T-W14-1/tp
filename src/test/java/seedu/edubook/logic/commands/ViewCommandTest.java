@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
-import seedu.edubook.model.person.NameContainsKeywordsPredicate;
+import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
 
 
 public class ViewCommandTest {
@@ -27,10 +27,10 @@ public class ViewCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PersonNameContainsKeywordsPredicate firstPredicate =
+                new PersonNameContainsKeywordsPredicate(Collections.singletonList("first"));
+        PersonNameContainsKeywordsPredicate secondPredicate =
+                new PersonNameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         ViewCommand viewFirstCommand = new ViewCommand(firstPredicate);
         ViewCommand viewSecondCommand = new ViewCommand(secondPredicate);
@@ -56,7 +56,7 @@ public class ViewCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PersonNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,7 +66,7 @@ public class ViewCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PersonNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,7 +75,8 @@ public class ViewCommandTest {
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
+        PersonNameContainsKeywordsPredicate predicate =
+                new PersonNameContainsKeywordsPredicate(Arrays.asList("keyword"));
         ViewCommand findCommand = new ViewCommand(predicate);
         String expected = ViewCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
@@ -84,7 +85,7 @@ public class ViewCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PersonNameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PersonNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

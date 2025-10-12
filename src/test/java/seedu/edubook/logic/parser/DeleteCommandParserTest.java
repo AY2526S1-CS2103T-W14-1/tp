@@ -4,7 +4,7 @@ import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_FIRST_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 

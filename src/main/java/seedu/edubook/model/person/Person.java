@@ -1,5 +1,6 @@
 package seedu.edubook.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -9,6 +10,8 @@ import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.person.exceptions.AssignmentNotFoundException;
+import seedu.edubook.model.person.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -18,7 +21,7 @@ import seedu.edubook.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final PersonName name;
     private final Phone phone;
     private final Email email;
 
@@ -38,7 +41,7 @@ public class Person {
      * @param tuitionClass Class the person belongs to.
      * @param tags Tags belonging to the person.
      */
-    public Person(Name name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
+    public Person(PersonName name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tuitionClass, tags);
         this.name = name;
         this.phone = phone;
@@ -50,7 +53,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name,
+    public Person(PersonName name,
                   Phone phone,
                   Email email,
                   TuitionClass tuitionClass,
@@ -65,7 +68,7 @@ public class Person {
         this.assignments.addAll(assignments);
     }
 
-    public Name getName() {
+    public PersonName getName() {
         return name;
     }
 
@@ -89,12 +92,74 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public void addAssignment(Assignment assignment) {
-        this.assignments.add(assignment);
+    /**
+     * Adds an assignment to the person, and creates a new person with the new assignment set.
+     * This ensures immutability of Person objects.
+     *
+     * @param assignment Assignment to be added.
+     * @return The new person object.
+     * @throws DuplicateAssignmentException if the assignment is already assigned to the student.
+     */
+    public Person withAddedAssignment(Assignment assignment) throws DuplicateAssignmentException {
+        requireNonNull(assignment);
+
+        if (this.hasAssignment(assignment)) {
+            throw new DuplicateAssignmentException();
+        }
+
+        Set<Assignment> newAssignments = this.getAssignments();
+        newAssignments.add(assignment);
+
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                newAssignments
+        );
+    }
+
+    /**
+     * Removes an assignment from the person, and creates a new person with the new assignment set.
+     * This ensures immutability of Person objects.
+     *
+     * @param assignment Assignment to be removed.
+     * @return The new person object.
+     * @throws AssignmentNotFoundException if the target assignment cannot be found.
+     */
+    public Person withRemovedAssignment(Assignment assignment) throws AssignmentNotFoundException {
+        requireNonNull(assignment);
+
+        if (!this.hasAssignment(assignment)) {
+            throw new AssignmentNotFoundException();
+        }
+
+        Set<Assignment> newAssignments = this.getAssignments();
+        newAssignments.remove(assignment);
+
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                newAssignments
+        );
     }
 
     public Set<Assignment> getAssignments() {
-        return this.assignments;
+        return new HashSet<>(this.assignments);
+    }
+
+    /**
+     * Checks whether an assignment is already assigned to this person.
+     *
+     * @param assignment Assignment to be checked.
+     * @return a boolean representing whether the assignment is already assigned.
+     */
+    public boolean hasAssignment(Assignment assignment) {
+        return this.assignments.contains(assignment);
     }
 
     /**
