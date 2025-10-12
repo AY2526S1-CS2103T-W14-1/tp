@@ -13,7 +13,7 @@ public class Name {
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Names should only contain a maximum of 100 characters (including spaces)";
+            "Names should only contain a maximum of 100 characters";
 
     public static final int MAX_NAME_LENGTH = 100;
 
@@ -41,14 +41,6 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is of valid length.
-     */
-    public static boolean isValidLength(String test) {
-        assert test != null;
-        return test.length() <= MAX_NAME_LENGTH;
     }
 
     @Override

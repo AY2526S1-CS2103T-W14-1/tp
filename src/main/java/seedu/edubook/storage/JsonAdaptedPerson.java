@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
+import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Name;
@@ -92,6 +93,9 @@ class JsonAdaptedPerson {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+        if (!StringUtil.isValidLength(name, Name.MAX_NAME_LENGTH)) {
+            throw new IllegalValueException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -99,6 +103,9 @@ class JsonAdaptedPerson {
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!StringUtil.isValidLength(phone, Phone.MAX_PHONE_LENGTH)) {
+            throw new IllegalValueException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -108,6 +115,9 @@ class JsonAdaptedPerson {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
+        if (!StringUtil.isValidLength(email, Email.MAX_EMAIL_LENGTH)) {
+            throw new IllegalValueException(Email.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -116,6 +126,9 @@ class JsonAdaptedPerson {
         if (tuitionClass == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TuitionClass.class.getSimpleName()));
+        }
+        if (!StringUtil.isValidLength(tuitionClass, TuitionClass.MAX_CLASS_LENGTH)) {
+            throw new IllegalValueException(TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!TuitionClass.isValidClass(tuitionClass)) {
             throw new IllegalValueException(TuitionClass.MESSAGE_CONSTRAINTS);

@@ -17,7 +17,7 @@ public class Assignment {
     public static final int MAX_ASSIGNMENT_LENGTH = MAX_NAME_LENGTH;
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS = "Assignment names should only contain a maximum of "
-            + MAX_ASSIGNMENT_LENGTH + " characters (including spaces)";
+            + MAX_ASSIGNMENT_LENGTH + " characters";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -43,14 +43,6 @@ public class Assignment {
      */
     public static boolean isValidAssignment(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is of valid length.
-     */
-    public static boolean isValidLength(String test) {
-        assert test != null;
-        return test.length() <= MAX_ASSIGNMENT_LENGTH;
     }
 
     @Override

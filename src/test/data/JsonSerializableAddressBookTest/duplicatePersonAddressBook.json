@@ -3,12 +3,12 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "class": "123, Jurong West Ave 6, #08-111",
+    "class": "123",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "class": "4th street"
+    "class": "4th"
   } ]
 }

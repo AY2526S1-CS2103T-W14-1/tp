@@ -409,3 +409,39 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#alertDialogPane {
+    -fx-text-fill: #333333;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-padding: 15px;
+}
+
+#alertDialogPane .header-panel {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#alertDialogPane .content {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 0 10px 0;
+}
+
+#alertDialogPane .button-bar .button {
+    -fx-background-color: #444444;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 15px;
+    -fx-background-radius: 5;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+#alertDialogPane .button-bar .button:hover {
+    -fx-background-color: #555555;
+}

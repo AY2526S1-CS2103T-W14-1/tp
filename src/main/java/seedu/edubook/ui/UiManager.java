@@ -15,7 +15,7 @@ import seedu.edubook.logic.Logic;
 /**
  * The manager of the UI component.
  */
-public class UiManager implements Ui {
+public class UiManager implements ErrorDisplayable, Ui {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
@@ -65,6 +65,7 @@ public class UiManager implements Ui {
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
+
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         alert.initOwner(owner);
         alert.setTitle(title);
@@ -72,6 +73,10 @@ public class UiManager implements Ui {
         alert.setContentText(contentText);
         alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
         alert.showAndWait();
+    }
+
+    public void showErrorAlert(String message) {
+        showAlertDialogAndWait(Alert.AlertType.ERROR, "Error", null, message);
     }
 
     /**

@@ -16,7 +16,7 @@ public class Phone {
     public static final String VALIDATION_REGEX = "\\d{3,}";
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Phone numbers should only contain a maximum of 20 characters (including spaces)";
+            "Phone numbers should only contain a maximum of 20 characters";
 
     public static final int MAX_PHONE_LENGTH = 20;
 
@@ -38,14 +38,6 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is of valid length.
-     */
-    public static boolean isValidLength(String test) {
-        assert test != null;
-        return test.length() <= MAX_PHONE_LENGTH;
     }
 
     @Override
