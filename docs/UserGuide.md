@@ -140,17 +140,23 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from Edubook.
 
-Format: `delete INDEX`
+Format 1 (by index): `delete INDEX` 
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Format 2 (by name): `delete n/NAME`
+
+* Deletes the person with the exact name `NAME`
+* The name is **case-sensitive** and must match exactly.
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete n/John Doe` deletes the person with the exact name "John Doe"
 
 ### Clearing all entries : `clear`
 
@@ -213,7 +219,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX`, `delete n/NAME`<br> e.g., `delete 3`, `delete n/John Doe`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
