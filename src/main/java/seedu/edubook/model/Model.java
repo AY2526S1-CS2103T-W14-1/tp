@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
  * The API of the Model component.
@@ -75,6 +77,17 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Finds the Person corresponding to the given name {@code target}.
+     * {@code target} must exist in the address book.
+     *
+     * @param target Name of person to be found.
+     * @param errorMessage Error message to be thrown if {@code target} cannot be found.
+     * @return Person object corresponding to {@code target}
+     * @throws PersonNotFoundException if {@code target} cannot be found.
+     */
+    Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

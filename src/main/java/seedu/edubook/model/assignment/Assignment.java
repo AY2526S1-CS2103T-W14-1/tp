@@ -2,9 +2,7 @@ package seedu.edubook.model.assignment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
-import static seedu.edubook.model.person.Name.MAX_NAME_LENGTH;
-
-import seedu.edubook.model.person.Name;
+import static seedu.edubook.model.commons.Name.MAX_NAME_LENGTH;
 
 /**
  * Represents an assignment in EduBook
@@ -25,14 +23,14 @@ public class Assignment {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final Name assignmentName;
+    public final AssignmentName assignmentName;
 
     /**
      * Constructs an {@code Assignment}.
      *
      * @param assignmentName Name of assignment being assigned.
      */
-    public Assignment(Name assignmentName) {
+    public Assignment(AssignmentName assignmentName) {
         requireNonNull(assignmentName);
         checkArgument(isValidAssignment(assignmentName.fullName), MESSAGE_CONSTRAINTS);
         this.assignmentName = assignmentName;

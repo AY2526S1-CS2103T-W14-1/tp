@@ -12,9 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -43,8 +44,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("class") String tuitionClass,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags
-    // @JsonProperty("assignments") List<JsonAdaptedAssignments> assignments
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments
     ) {
         this.name = name;
         this.phone = phone;
@@ -53,9 +54,9 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        // if (assignments != null) {
-        // this.assignments.addAll(assignments);
-        // }
+        if (assignments != null) {
+            this.assignments.addAll(assignments);
+        }
     }
 
     /**
@@ -93,13 +94,13 @@ class JsonAdaptedPerson {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!StringUtil.isValidLength(name, Name.MAX_NAME_LENGTH)) {
-            throw new IllegalValueException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+        if (!StringUtil.isValidLength(name, PersonName.MAX_NAME_LENGTH)) {
+            throw new IllegalValueException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(name)) {
+            throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final PersonName modelName = new PersonName(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));

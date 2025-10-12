@@ -9,9 +9,9 @@ import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtName;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_FIRST_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_SECOND_PERSON;
-import static seedu.edubook.testutil.TypicalNames.NAME_THIRD_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_FIRST_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_SECOND_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_THIRD_PERSON;
 import static seedu.edubook.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,8 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
-import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -75,8 +75,8 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNameUnfilteredList_throwsCommandException() {
-        Name invalidName = new Name("John Doe");
+    public void execute_invalidPersonNameUnfilteredList_throwsCommandException() {
+        PersonName invalidName = new PersonName("John Doe");
         DeleteCommand deleteCommand = new DeleteCommand(invalidName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
@@ -136,10 +136,10 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNameFilteredList_throwsCommandException() {
+    public void execute_invalidPersonNameFilteredList_throwsCommandException() {
         showPersonAtName(model, NAME_FIRST_PERSON);
 
-        Name invalidName = NAME_SECOND_PERSON;
+        PersonName invalidName = NAME_SECOND_PERSON;
         DeleteCommand deleteCommand = new DeleteCommand(invalidName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
@@ -205,7 +205,7 @@ public class DeleteCommandTest {
     @Test
     public void toStringMethodName() {
         // When DeleteCommand using Name
-        Name targetName = NAME_THIRD_PERSON;
+        PersonName targetName = NAME_THIRD_PERSON;
         DeleteCommand deleteCommand = new DeleteCommand(targetName);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());

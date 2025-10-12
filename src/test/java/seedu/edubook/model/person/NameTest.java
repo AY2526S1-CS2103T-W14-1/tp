@@ -6,6 +6,8 @@ import static seedu.edubook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.model.commons.Name;
+
 public class NameTest {
 
     @Test

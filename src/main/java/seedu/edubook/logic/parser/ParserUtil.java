@@ -10,9 +10,9 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -39,48 +39,47 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code PersonName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parsePersonName(String name) throws ParseException {
         requireNonNull(name);
 
         String trimmedName = name.trim();
 
-        if (!StringUtil.isValidLength(trimmedName, Name.MAX_NAME_LENGTH)) {
-            throw new ExceedLengthException(Name.MESSAGE_LENGTH_CONSTRAINTS);
+        if (!StringUtil.isValidLength(trimmedName, PersonName.MAX_NAME_LENGTH)) {
+            throw new ExceedLengthException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
 
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
     /**
-     * Parses a {@code String assignment} into an {@code Assignment}.
+     * Parses a {@code String name} into a {@code AssignmentName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code assignment} is invalid.
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Assignment parseAssignment(String assignment) throws ParseException {
-        requireNonNull(assignment);
+    public static AssignmentName parseAssignmentName(String name) throws ParseException {
+        requireNonNull(name);
 
-        String trimmedAssignment = assignment.trim();
+        String trimmedName = name.trim();
 
-        if (!StringUtil.isValidLength(trimmedAssignment, Assignment.MAX_ASSIGNMENT_LENGTH)) {
-            throw new ExceedLengthException(Assignment.MESSAGE_LENGTH_CONSTRAINTS);
+        if (!AssignmentName.isValidLength(trimmedName)) {
+            throw new ExceedLengthException(AssignmentName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
-        if (!Assignment.isValidAssignment(trimmedAssignment)) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        if (!AssignmentName.isValidName(trimmedName)) {
+            throw new ParseException(AssignmentName.MESSAGE_CONSTRAINTS);
         }
 
-        Name assignmentName = parseName(assignment);
-        return new Assignment(assignmentName);
+        return new AssignmentName(trimmedName);
     }
 
     /**

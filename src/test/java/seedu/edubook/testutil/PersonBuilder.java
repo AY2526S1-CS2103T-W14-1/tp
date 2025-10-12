@@ -3,9 +3,10 @@ package seedu.edubook.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -21,21 +22,23 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_CLASS = "123";
 
-    private Name name;
+    private PersonName name;
     private Phone phone;
     private Email email;
     private TuitionClass tuitionClass;
     private Set<Tag> tags;
+    private Set<Assignment> assignments;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
+        name = new PersonName(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tuitionClass = new TuitionClass(DEFAULT_CLASS);
         tags = new HashSet<>();
+        assignments = new HashSet<>();
     }
 
     /**
@@ -47,16 +50,25 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         tuitionClass = personToCopy.getTuitionClass();
         tags = new HashSet<>(personToCopy.getTags());
+        assignments = new HashSet<>(personToCopy.getAssignments());
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new PersonName(name);
         return this;
     }
 
+    /**
+     * Parses the {@code assignments} into a {@code Set<Assignment>} and set it to the
+     * {@code Person} that we are building.
+     */
+    public PersonBuilder withAssignments(String ... assignments) {
+        this.assignments = SampleDataUtil.getAssignmentSet(assignments);
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
