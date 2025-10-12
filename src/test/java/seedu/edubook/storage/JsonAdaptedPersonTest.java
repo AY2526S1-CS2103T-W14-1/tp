@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.edubook.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.edubook.testutil.Assert.assertThrows;
 import static seedu.edubook.testutil.TypicalPersons.BENSON;
+import static seedu.edubook.testutil.TypicalPersons.DANIEL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_CLASS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ASSIGNMENT = "$Homework 1";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -49,6 +51,18 @@ public class JsonAdaptedPersonTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_nullTags_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DANIEL);
+        assertEquals(DANIEL, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_nullAssignments_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DANIEL);
+        assertEquals(DANIEL, person.toModelType());
     }
 
     @Test
@@ -162,6 +176,16 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_CLASS, invalidTags, VALID_ASSIGNMENTS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidAssignments_throwsIllegalValueException() {
+        List<JsonAdaptedAssignment> invalidAssignments = new ArrayList<>(VALID_ASSIGNMENTS);
+        invalidAssignments.add(new JsonAdaptedAssignment(INVALID_ASSIGNMENT));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        VALID_CLASS, VALID_TAGS, invalidAssignments);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

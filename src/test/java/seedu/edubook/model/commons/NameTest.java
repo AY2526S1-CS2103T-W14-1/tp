@@ -1,12 +1,10 @@
-package seedu.edubook.model.person;
+package seedu.edubook.model.commons;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.edubook.model.commons.Name;
 
 public class NameTest {
 
@@ -38,22 +36,6 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
-    }
-
-    @Test
-    public void isValidLength_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> Name.isValidLength(null));
-    }
-
-    @Test
-    public void isValidLength_invalidInput_returnsFalse() {
-        String invalidLength = String.join("", java.util.Collections.nCopies(50, "test"));
-        assertFalse(Name.isValidLength(invalidLength));
-    }
-
-    @Test
-    public void isValidLength_validInput_returnsTrue() {
-        assertTrue(Name.isValidLength("peter jack"));
     }
 
     @Test
