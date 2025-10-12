@@ -7,7 +7,6 @@ import static seedu.edubook.testutil.Assert.assertThrows;
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
-import seedu.edubook.model.person.Name;
 
 public class StringUtilTest {
 
@@ -163,7 +162,7 @@ public class StringUtilTest {
 
         // 0 maxLength
         assertFalse(StringUtil.isValidLength("abc", 0));
-        
+
         // Length of String > maxLength
         assertFalse(StringUtil.isValidLength("abc", 2));
 

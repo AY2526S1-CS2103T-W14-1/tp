@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.edubook.commons.util.StringUtil;
 
 public class EmailTest {
 

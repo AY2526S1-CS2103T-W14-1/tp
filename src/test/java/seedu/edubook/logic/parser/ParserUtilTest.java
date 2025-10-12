@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;

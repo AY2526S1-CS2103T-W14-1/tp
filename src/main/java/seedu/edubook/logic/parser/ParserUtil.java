@@ -71,7 +71,7 @@ public class ParserUtil {
 
         String trimmedName = name.trim();
 
-        if (!AssignmentName.isValidLength(trimmedName)) {
+        if (StringUtil.isValidLength(trimmedName, AssignmentName.MAX_NAME_LENGTH)) {
             throw new ExceedLengthException(AssignmentName.MESSAGE_LENGTH_CONSTRAINTS);
         }
 
