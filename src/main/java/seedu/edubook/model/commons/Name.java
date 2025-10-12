@@ -1,19 +1,13 @@
-package seedu.edubook.model.person;
+package seedu.edubook.model.commons;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a name in the address book. Is inherited by other classes to represent a specific object's name.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Names should only contain a maximum of 100 characters";
 
     public static final int MAX_NAME_LENGTH = 100;
 
@@ -32,9 +26,13 @@ public class Name {
      */
     public Name(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(name), getMessageConstraints());
         fullName = name;
     }
+
+    public String getMessageConstraints() {
+        return "";
+    };
 
     /**
      * Returns true if a given string is a valid name.

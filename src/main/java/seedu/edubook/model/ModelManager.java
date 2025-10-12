@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -109,6 +111,17 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException {
+        requireAllNonNull(target, errorMessage);
+
+        return this.getFilteredPersonList()
+                .stream()
+                .filter(p -> p.getName().equals(target))
+                .findFirst()
+                .orElseThrow(PersonNotFoundException::new);
     }
 
     //=========== Filtered Person List Accessors =============================================================

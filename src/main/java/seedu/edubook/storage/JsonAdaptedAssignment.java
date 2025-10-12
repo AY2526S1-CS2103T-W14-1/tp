@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -46,7 +46,7 @@ class JsonAdaptedAssignment {
         if (!Assignment.isValidAssignment(assignmentName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Assignment(new Name(assignmentName));
+        return new Assignment(new AssignmentName(assignmentName));
     }
 
 }

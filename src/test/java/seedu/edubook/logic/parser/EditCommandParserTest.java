@@ -39,7 +39,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.EditCommand;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edubook.model.person.Email;
-import seedu.edubook.model.person.Name;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
@@ -83,7 +83,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, PersonName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_CLASS_DESC, TuitionClass.MESSAGE_CONSTRAINTS); // invalid class
@@ -100,7 +100,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_CLASS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+                PersonName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
