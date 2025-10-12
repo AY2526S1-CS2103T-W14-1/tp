@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
@@ -21,7 +22,7 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns an assignment to an existing person. "
             + "Parameters: "
-            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT"
+            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT "
             + PREFIX_PERSON_NAME + "NAME OF ASSIGNEE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
@@ -64,9 +65,7 @@ public class AssignCommand extends Command {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
     }
-}
 
-    /*
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -74,20 +73,20 @@ public class AssignCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AssignCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AssignCommand otherAssignCommand = (AssignCommand) other;
+        return toAssign.equals(otherAssignCommand.toAssign)
+                && assigneeName.equals(otherAssignCommand.assigneeName);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
+                .add("toAssign", toAssign)
+                .add("assigneeName", assigneeName)
                 .toString();
     }
 }
-}
-*/

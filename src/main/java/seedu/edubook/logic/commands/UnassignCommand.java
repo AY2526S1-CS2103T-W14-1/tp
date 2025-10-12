@@ -21,8 +21,8 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an assignment from a student. "
             + "Parameters: "
-            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT "
-            + PREFIX_PERSON_NAME + "NAME \n"
+            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT "
+            + PREFIX_PERSON_NAME + "NAME OF ASSIGNEE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
             + PREFIX_PERSON_NAME + "John Doe";
