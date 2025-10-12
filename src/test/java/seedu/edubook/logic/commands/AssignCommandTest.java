@@ -11,7 +11,6 @@ import static seedu.edubook.testutil.TypicalPersons.HOON;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.exceptions.CommandException;

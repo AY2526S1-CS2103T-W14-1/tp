@@ -1,6 +1,5 @@
 package seedu.edubook.testutil;
 
-import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 
