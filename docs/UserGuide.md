@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+EduBook is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduBook can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -68,7 +68,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 | Field | Max Length | Format / Constraints                                                                                                                                                                                                                            | Notes    |
 |-------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| Name  | 100        | Alphanumeric letters and spaces only, should not be blank                                                                                                                                                                                       | Required |
+| Name  | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
 | Email | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars | Required |
 | Phone | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             | Required |
 | Class | 20         | Any value, should not be blank                                                                                                                                                                                                                  | Required |
@@ -188,7 +188,7 @@ If your changes to the data file make its format invalid, EduBook will display a
 To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. Otherwise, a new empty file will be used.  
 ![Error Message](images/FileCorruptedExample.png "Error Message for File Corruption")
 
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
+Furthermore, certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
 Only edit the data file if you are confident that you can update it correctly.
 </div>
 
@@ -202,7 +202,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
