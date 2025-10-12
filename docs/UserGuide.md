@@ -158,6 +158,30 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete n/John Doe` deletes the person with the exact name "John Doe"
 
+### Assign a person an assignment : `assign`
+
+Assign the specified person a particular assignment.
+
+Format: `assign a/ASSIGNMENT_NAME n/NAME`
+
+* Assigns assignment, `ASSIGNMENT_NAME`, to person with name, `NAME`.
+* Assignment and person name is limited to **100 characters**.
+
+Examples:
+* `assign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
+
+### Unassign an assignment from a person : `uassign`
+
+Unassign a particular assignment from the specified person.
+
+Format: `uassign a/ASSIGNMENT_NAME n/NAME`
+
+* Unassigns assignment, `ASSIGNMENT_NAME`, from person with name, `NAME`.
+* Assignment and person name is limited to **100 characters**.
+
+Examples:
+* `unassign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
