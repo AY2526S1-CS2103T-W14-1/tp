@@ -4,14 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import java.util.Set;
+
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.exceptions.DuplicateAssignmentException;
+import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.Phone;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
+import seedu.edubook.model.tag.Tag;
 
 /**
  * Assigns an assignment to a student.
@@ -89,4 +96,5 @@ public class AssignCommand extends Command {
                 .add("assigneeName", assigneeName)
                 .toString();
     }
+
 }
