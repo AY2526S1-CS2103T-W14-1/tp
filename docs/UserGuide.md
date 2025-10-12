@@ -170,11 +170,11 @@ Format: `assign a/ASSIGNMENT_NAME n/NAME`
 Examples:
 * `assign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
 
-### Unassign an assignment from a person : `uassign`
+### Unassign an assignment from a person : `unassign`
 
 Unassign a particular assignment from the specified person.
 
-Format: `uassign a/ASSIGNMENT_NAME n/NAME`
+Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 
 * Unassigns assignment, `ASSIGNMENT_NAME`, from person with name, `NAME`.
 * Assignment and person name is limited to **100 characters**.
@@ -242,9 +242,11 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague`
+**Assign** | `assign a/ASSIGNMENT_NAME n/NAME` <br> e.g., `assign a/Assignment1 n/Bob`
 **Clear** | `clear`
 **Delete** | `delete INDEX`, `delete n/NAME`<br> e.g., `delete 3`, `delete n/John Doe`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME` <br> e.g., `unassign a/Assignment1 n/Bob`
