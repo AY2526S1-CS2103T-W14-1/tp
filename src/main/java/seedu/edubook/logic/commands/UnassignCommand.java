@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
@@ -63,9 +64,7 @@ public class UnassignCommand extends Command {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
     }
-}
 
-    /*
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -73,20 +72,20 @@ public class UnassignCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof UnassignCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        UnassignCommand otherUnassignCommand = (UnassignCommand) other;
+        return toUnassign.equals(otherUnassignCommand.toUnassign)
+                && currentAssignee.equals(otherUnassignCommand.currentAssignee);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
+                .add("toUnassign", toUnassign)
+                .add("currentAssignee", currentAssignee)
                 .toString();
     }
 }
-}
-*/
