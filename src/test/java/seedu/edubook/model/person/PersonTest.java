@@ -9,19 +9,71 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.edubook.testutil.Assert.assertThrows;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalPersons.ALICE;
 import static seedu.edubook.testutil.TypicalPersons.BOB;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.assignment.exceptions.AssignmentNotFoundException;
+import seedu.edubook.model.assignment.exceptions.DuplicateAssignmentException;
 import seedu.edubook.testutil.PersonBuilder;
 
 public class PersonTest {
 
-    @Test
+    private Assignment test;
+
+    @BeforeEach
+    public void setUp() {
+        test = new Assignment(new AssignmentName("CA1"));
+    }
+
+        @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+    }
+
+    @Test
+    public void withAddedAssignment_newAssignment_success() throws DuplicateAssignmentException {
+        Person person = new PersonBuilder().build();
+        Person updatedPerson = person.withAddedAssignment(test).withAddedAssignment(ASSIGNMENT_HOMEWORK);
+
+        // should contain both assignments
+        assertTrue(updatedPerson.getAssignments().contains(test));
+        assertTrue(updatedPerson.getAssignments().contains(ASSIGNMENT_HOMEWORK));
+
+        // check for immutability - original person should not be changed.
+        assertFalse(person.getAssignments().contains(ASSIGNMENT_HOMEWORK));
+    }
+
+    @Test
+    public void withAddedAssignment_duplicateAssignment_throwsException() {
+        Person person = new PersonBuilder().build();
+        Person updatedPerson = person.withAddedAssignment(test);
+        assertThrows(DuplicateAssignmentException.class, () -> updatedPerson.withAddedAssignment(test));
+    }
+
+    @Test
+    public void withRemovedAssignment_existingAssignment_success() throws Exception {
+        Person person = new PersonBuilder().build().withAddedAssignment(test);
+        Person updatedPerson = person.withRemovedAssignment(test);
+
+        // updated person should no longer contain it
+        assertFalse(updatedPerson.getAssignments().contains(test));
+
+        // check for immutability - original person should not be changed.
+        assertTrue(person.getAssignments().contains(test));
+    }
+
+    @Test
+    public void withRemovedAssignment_nonExistingAssignment_throwsException() {
+        Person person = new PersonBuilder().build();
+        Assignment notAdded = new Assignment(new AssignmentName("CA2"));
+        assertThrows(AssignmentNotFoundException.class, () -> person.withRemovedAssignment(notAdded));
     }
 
     @Test

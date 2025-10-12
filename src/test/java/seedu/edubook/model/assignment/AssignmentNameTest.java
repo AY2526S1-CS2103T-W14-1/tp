@@ -7,6 +7,8 @@ import static seedu.edubook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.commons.util.StringUtil;
+
 public class AssignmentNameTest {
 
     @Test
@@ -18,18 +20,18 @@ public class AssignmentNameTest {
 
     @Test
     public void isValidLength_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> AssignmentName.isValidLength(null));
+        assertThrows(NullPointerException.class, () -> StringUtil.isValidLength(null, 100));
     }
 
     @Test
     public void isValidLength_invalidInput_returnsFalse() {
         String invalidLength = String.join("", java.util.Collections.nCopies(50, "test"));
-        assertFalse(AssignmentName.isValidLength(invalidLength));
+        assertFalse(StringUtil.isValidLength(invalidLength, 100));
     }
 
     @Test
     public void isValidLength_validInput_returnsTrue() {
-        assertTrue(AssignmentName.isValidLength("peter jack"));
+        assertTrue(StringUtil.isValidLength("peter jack", 100));
     }
 
     @Test

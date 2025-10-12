@@ -27,7 +27,7 @@ public class AssignCommandParserTest {
     @Test
     public void parse_validArgs_returnsAssignCommand() throws Exception {
         assertParseSuccess(parser,
-                PREAMBLE_WHITESPACE + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
+                ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
                 new AssignCommand(ASSIGNMENT_HOMEWORK, AMY.getName()));
     }
 

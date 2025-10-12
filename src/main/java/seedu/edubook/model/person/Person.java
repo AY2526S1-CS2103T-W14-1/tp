@@ -107,7 +107,7 @@ public class Person {
             throw new DuplicateAssignmentException();
         }
 
-        Set<Assignment> newAssignments = this.getAssignments();
+        Set<Assignment> newAssignments = new HashSet<>(this.assignments);
         newAssignments.add(assignment);
 
         return new Person(
@@ -135,7 +135,7 @@ public class Person {
             throw new AssignmentNotFoundException();
         }
 
-        Set<Assignment> newAssignments = this.getAssignments();
+        Set<Assignment> newAssignments = new HashSet<>(this.assignments);
         newAssignments.remove(assignment);
 
         return new Person(
