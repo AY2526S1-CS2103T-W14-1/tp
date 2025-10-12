@@ -31,7 +31,7 @@ public class PersonTest {
         test = new Assignment(new AssignmentName("CA1"));
     }
 
-        @Test
+    @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
