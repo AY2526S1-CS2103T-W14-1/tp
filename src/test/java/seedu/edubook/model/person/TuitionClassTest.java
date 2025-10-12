@@ -31,23 +31,7 @@ public class TuitionClassTest {
         // valid classes
         assertTrue(TuitionClass.isValidClass("W-14"));
         assertTrue(TuitionClass.isValidClass("-")); // one character
-        assertTrue(TuitionClass.isValidClass("Singapore tution centre T-01 9am class")); // long class name
-    }
-
-    @Test
-    public void isValidLength_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> TuitionClass.isValidLength(null));
-    }
-
-    @Test
-    public void isValidLength_invalidInput_returnsFalse() {
-        String invalidLength = String.join("", java.util.Collections.nCopies(10, "test"));
-        assertFalse(TuitionClass.isValidLength(invalidLength));
-    }
-
-    @Test
-    public void isValidLength_validInput_returnsTrue() {
-        assertTrue(TuitionClass.isValidLength("W-14"));
+        assertTrue(TuitionClass.isValidClass("Singapore tuition centre T-01 9am class")); // long class name
     }
 
     @Test

@@ -39,23 +39,6 @@ public class PhoneTest {
     }
 
     @Test
-    public void isValidLength_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> Phone.isValidLength(null));
-    }
-
-    @Test
-    public void isValidLength_invalidInput_returnsFalse() {
-        String invalidLength = String.join("", java.util.Collections.nCopies(10, "test"));
-        assertFalse(Phone.isValidLength(invalidLength));
-    }
-
-    @Test
-    public void isValidLength_validInput_returnsTrue() {
-        assertTrue(Phone.isValidLength("88889999"));
-    }
-
-
-    @Test
     public void equals() {
         Phone phone = new Phone("999");
 

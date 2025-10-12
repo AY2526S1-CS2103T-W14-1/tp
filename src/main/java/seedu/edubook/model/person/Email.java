@@ -55,14 +55,6 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given string is of valid length.
-     */
-    public static boolean isValidLength(String test) {
-        assert test != null;
-        return test.length() <= MAX_EMAIL_LENGTH;
-    }
-
     @Override
     public String toString() {
         return value;

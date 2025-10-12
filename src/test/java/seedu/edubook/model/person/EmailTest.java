@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.edubook.commons.util.StringUtil;
 
 public class EmailTest {
 
@@ -64,22 +65,6 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
-    }
-
-    @Test
-    public void isValidLength_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> Email.isValidLength(null));
-    }
-
-    @Test
-    public void isValidLength_invalidInput_returnsFalse() {
-        String invalidLength = String.join("", java.util.Collections.nCopies(80, "test"));
-        assertFalse(Email.isValidLength(invalidLength));
-    }
-
-    @Test
-    public void isValidLength_validInput_returnsTrue() {
-        assertTrue(Email.isValidLength("peter@gmail.com"));
     }
 
     @Test
