@@ -27,10 +27,10 @@ public class UnassignCommand extends Command {
             + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
             + PREFIX_PERSON_NAME + "John Doe";
 
-    public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s";
-    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
+    public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s. ";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
-            + "this assignment currently";
+            + "this assignment currently. ";
 
     private final PersonName currentAssignee;
     private final Assignment toUnassign;

@@ -27,12 +27,12 @@ public class AssignCommand extends Command {
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_PERSON_NAME + "John Doe ";
 
-    public static final String MESSAGE_SUCCESS = "New assignment %1$s assigned to: %2$s";
+    public static final String MESSAGE_SUCCESS = "New assignment %1$s assigned to: %2$s. ";
 
-    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
 
     public static final String MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED = "This assignment "
-            + "is already assigned to this student.";
+            + "is already assigned to this student. ";
 
     private final PersonName assigneeName;
     private final Assignment toAssign;
