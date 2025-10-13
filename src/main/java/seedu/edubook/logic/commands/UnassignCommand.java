@@ -5,7 +5,6 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
@@ -31,8 +30,6 @@ public class UnassignCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s. ";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
-    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
-            + "this assignment currently. ";
 
     private final PersonName unassignee;
     private final Assignment toUnassign;
@@ -59,8 +56,6 @@ public class UnassignCommand extends Command {
             return new CommandResult(
                     String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
             );
-        } catch (AssignmentNotFoundException e) {
-            throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }

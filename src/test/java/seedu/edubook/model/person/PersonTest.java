@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
+import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
@@ -58,7 +59,7 @@ public class PersonTest {
     }
 
     @Test
-    public void withRemovedAssignment_existingAssignment_success() throws Exception {
+    public void withRemovedAssignment_existingAssignment_success() throws CommandException {
         Person person = new PersonBuilder().build().withAddedAssignment(test);
         Person updatedPerson = person.withRemovedAssignment(test);
 
