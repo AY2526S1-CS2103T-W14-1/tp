@@ -59,7 +59,7 @@ public class AssignCommandTest {
         AssignCommand command = new AssignCommand(duplicateAssignment, ALICE.getName());
 
         CommandException thrown = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(AssignCommand.MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED, thrown.getMessage());
+        assertEquals(DuplicateAssignmentException.MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED, thrown.getMessage());
     }
 
     @Test

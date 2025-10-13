@@ -1,5 +1,7 @@
 package seedu.edubook.logic.commands.exceptions;
 
+import seedu.edubook.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */

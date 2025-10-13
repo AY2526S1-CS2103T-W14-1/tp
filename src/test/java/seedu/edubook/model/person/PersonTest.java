@@ -51,7 +51,7 @@ public class PersonTest {
     }
 
     @Test
-    public void withAddedAssignment_duplicateAssignment_throwsException() {
+    public void withAddedAssignment_duplicateAssignment_throwsException() throws DuplicateAssignmentException {
         Person person = new PersonBuilder().build();
         Person updatedPerson = person.withAddedAssignment(test);
         assertThrows(DuplicateAssignmentException.class, () -> updatedPerson.withAddedAssignment(test));
