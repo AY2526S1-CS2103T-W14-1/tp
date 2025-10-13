@@ -81,7 +81,7 @@ public class UnassignCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toUnassign", toUnassign)
-                .add("currentAssignee", unassignee)
+                .add("unassignee", unassignee)
                 .toString();
     }
 }
