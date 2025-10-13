@@ -16,10 +16,10 @@ import static seedu.edubook.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
+import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.assignment.exceptions.AssignmentNotFoundException;
-import seedu.edubook.model.assignment.exceptions.DuplicateAssignmentException;
 import seedu.edubook.testutil.PersonBuilder;
 
 public class PersonTest {
