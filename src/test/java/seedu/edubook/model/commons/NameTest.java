@@ -1,12 +1,10 @@
-package seedu.edubook.model.person;
+package seedu.edubook.model.commons;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.edubook.model.commons.Name;
 
 public class NameTest {
 

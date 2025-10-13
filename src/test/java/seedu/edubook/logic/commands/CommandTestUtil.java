@@ -2,6 +2,7 @@ package seedu.edubook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
@@ -37,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_CLASS_BOB = "Class B";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ASSIGNMENT_HOMEWORK = "Homework 2";
+    public static final String VALID_ASSIGNMENT_TUTORIAL = "Tutorial 2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_PERSON_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_PERSON_NAME + VALID_NAME_BOB;
@@ -48,12 +51,16 @@ public class CommandTestUtil {
     public static final String CLASS_DESC_BOB = " " + PREFIX_CLASS + VALID_CLASS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String ASSIGNMENT_DESC_HOMEWORK = " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_HOMEWORK;
+    public static final String ASSIGNMENT_DESC_TUTORIAL = " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_TUTORIAL;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_PERSON_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_CLASS_DESC = " " + PREFIX_CLASS; // empty string not allowed for classes
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_ASSIGNMENT_DESC =
+            " " + PREFIX_ASSIGNMENT_NAME + "Homework!1"; // '!' not allowed in assignment names
 
     public static final String INVALID_CLASS_LENGTH =
             " " + PREFIX_CLASS + String.join("", java.util.Collections.nCopies(10, "test"));

@@ -34,14 +34,14 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
 
-        PersonName personName = ParserUtil.parsePersonName(argMultimap
-                .getValue(PREFIX_PERSON_NAME)
-                .get());
-
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(argMultimap
                 .getValue(PREFIX_ASSIGNMENT_NAME)
                 .get());
         Assignment assignment = new Assignment(assignmentName);
+
+        PersonName personName = ParserUtil.parsePersonName(argMultimap
+                .getValue(PREFIX_PERSON_NAME)
+                .get());
 
         return new UnassignCommand(assignment, personName);
     }

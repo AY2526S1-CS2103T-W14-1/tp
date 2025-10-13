@@ -8,10 +8,11 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.exceptions.AssignmentNotFoundException;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.exceptions.AssignmentNotFoundException;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
+
 
 /**
  * Unassigns an assignment from a student.
@@ -33,7 +34,7 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
             + "this assignment currently. ";
 
-    private final PersonName currentAssignee;
+    private final PersonName unassignee;
     private final Assignment toUnassign;
 
     /**
@@ -42,7 +43,7 @@ public class UnassignCommand extends Command {
     public UnassignCommand(Assignment assignment, PersonName currentAssignee) {
         requireNonNull(currentAssignee);
         requireNonNull(assignment);
-        this.currentAssignee = currentAssignee;
+        this.unassignee = currentAssignee;
         this.toUnassign = assignment;
     }
 
@@ -51,7 +52,7 @@ public class UnassignCommand extends Command {
         requireNonNull(model);
 
         try {
-            Person target = model.findPersonByName(currentAssignee, MESSAGE_STUDENT_NOT_FOUND);
+            Person target = model.findPersonByName(unassignee, MESSAGE_STUDENT_NOT_FOUND);
             Person updatedPerson = target.withRemovedAssignment(toUnassign);
             model.setPerson(target, updatedPerson);
 
@@ -78,14 +79,14 @@ public class UnassignCommand extends Command {
 
         UnassignCommand otherUnassignCommand = (UnassignCommand) other;
         return toUnassign.equals(otherUnassignCommand.toUnassign)
-                && currentAssignee.equals(otherUnassignCommand.currentAssignee);
+                && unassignee.equals(otherUnassignCommand.unassignee);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toUnassign", toUnassign)
-                .add("currentAssignee", currentAssignee)
+                .add("currentAssignee", unassignee)
                 .toString();
     }
 }
