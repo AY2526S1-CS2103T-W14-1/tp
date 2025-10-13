@@ -8,7 +8,6 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
@@ -31,9 +30,6 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New assignment %1$s assigned to: %2$s. ";
 
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
-
-    public static final String MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED = "This assignment "
-            + "is already assigned to this student. ";
 
     private final PersonName assigneeName;
     private final Assignment toAssign;
@@ -59,8 +55,6 @@ public class AssignCommand extends Command {
             return new CommandResult(
                     String.format(MESSAGE_SUCCESS, toAssign.assignmentName, updatedPerson.getName())
             );
-        } catch (DuplicateAssignmentException e) {
-            throw new CommandException(MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }

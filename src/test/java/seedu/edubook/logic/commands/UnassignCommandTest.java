@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_LAB;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL;
 import static seedu.edubook.testutil.TypicalPersons.ALICE;
 import static seedu.edubook.testutil.TypicalPersons.HOON;
 
@@ -14,8 +14,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
-import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
@@ -28,88 +28,89 @@ import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
 import seedu.edubook.testutil.PersonBuilder;
 
-public class AssignCommandTest {
+public class UnassignCommandTest {
 
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AssignCommand(null, HOON.getName()));
+        assertThrows(NullPointerException.class, () -> new UnassignCommand(null, HOON.getName()));
     }
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AssignCommand(ASSIGNMENT_HOMEWORK, null));
+    public void constructor_nullPersonName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new UnassignCommand(ASSIGNMENT_HOMEWORK, null));
     }
 
     @Test
     public void execute_success() throws CommandException {
         ModelStub model = new ModelStub();
-        AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, ALICE.getName());
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, ALICE.getName());
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(AssignCommand.MESSAGE_SUCCESS,
+        assertEquals(String.format(UnassignCommand.MESSAGE_SUCCESS,
                         ASSIGNMENT_HOMEWORK.assignmentName, ALICE.getName()),
                 result.getFeedbackToUser()
         );
     }
 
     @Test
-    public void execute_duplicateAssignment_throwsDuplicateAssignmentException() {
+    public void execute_missingAssignment_throwsAssignmentNotFoundException() {
         ModelStub model = new ModelStub();
-        Assignment duplicateAssignment = new Assignment(new AssignmentName("Duplicate"));
-        AssignCommand command = new AssignCommand(duplicateAssignment, ALICE.getName());
+        Assignment missingAssignment = new Assignment(new AssignmentName("Missing"));
+        UnassignCommand command = new UnassignCommand(missingAssignment, ALICE.getName());
 
-        DuplicateAssignmentException e = assertThrows(DuplicateAssignmentException.class, () -> command.execute(model));
-        assertEquals(DuplicateAssignmentException.MESSAGE_ASSIGNMENT_ALREADY_ASSIGNED, e.getMessage());
+        AssignmentNotFoundException e = assertThrows(AssignmentNotFoundException.class, () -> command.execute(model));
+        assertEquals(AssignmentNotFoundException.MESSAGE_ASSIGNMENT_NOT_FOUND, e.getMessage());
     }
 
     @Test
     public void execute_nonExistentPerson_throwsCommandException() {
         ModelStub model = new ModelStub();
-        PersonName assignee = new PersonName("Nonexistent");
-        AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, assignee);
+        PersonName unassignee = new PersonName("Nonexistent");
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, unassignee);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(AssignCommand.MESSAGE_STUDENT_NOT_FOUND, e.getMessage());
+        assertEquals(UnassignCommand.MESSAGE_STUDENT_NOT_FOUND, e.getMessage());
     }
 
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AssignCommand assignHomeworkToAliceCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, alice.getName());
-        AssignCommand assignHomeworkToBobCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, bob.getName());
-        AssignCommand assignLabToAliceCommand = new AssignCommand(ASSIGNMENT_LAB, alice.getName());
+        UnassignCommand unassignHomeworkFromAliceCommand = new UnassignCommand(ASSIGNMENT_HOMEWORK, alice.getName());
+        UnassignCommand unassignHomeworkFromBobCommand = new UnassignCommand(ASSIGNMENT_HOMEWORK, bob.getName());
+        UnassignCommand unassignTutorialFromAliceCommand = new UnassignCommand(ASSIGNMENT_TUTORIAL, alice.getName());
 
         // same object -> true
-        assertEquals(assignHomeworkToAliceCommand, assignHomeworkToAliceCommand);
+        assertEquals(unassignHomeworkFromAliceCommand, unassignHomeworkFromAliceCommand);
 
         // same assignment and same person name -> true
-        AssignCommand assignHomeworkToAliceCommandCopy = new AssignCommand(ASSIGNMENT_HOMEWORK, alice.getName());
-        assertEquals(assignHomeworkToAliceCommand, assignHomeworkToAliceCommandCopy);
+        UnassignCommand unassignHomeworkFromAliceCommandCopy = new UnassignCommand(ASSIGNMENT_HOMEWORK,
+                alice.getName());
+        assertEquals(unassignHomeworkFromAliceCommand, unassignHomeworkFromAliceCommandCopy);
 
         // different types -> false
-        assertNotEquals(1, assignHomeworkToAliceCommand);
+        assertNotEquals(1, unassignHomeworkFromAliceCommand);
 
         // null -> false
-        assertNotEquals(null, assignHomeworkToAliceCommand);
+        assertNotEquals(null, unassignHomeworkFromAliceCommand);
 
         // same assignment but different person name -> false
-        assertNotEquals(assignHomeworkToAliceCommand, assignHomeworkToBobCommand);
+        assertNotEquals(unassignHomeworkFromAliceCommand, unassignHomeworkFromBobCommand);
 
         // different assignment but same person name -> false
-        assertNotEquals(assignHomeworkToAliceCommand, assignLabToAliceCommand);
+        assertNotEquals(unassignHomeworkFromAliceCommand, unassignTutorialFromAliceCommand);
     }
 
     @Test
     public void toStringMethod() {
-        AssignCommand assignCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, HOON.getName());
+        UnassignCommand unassignCommand = new UnassignCommand(ASSIGNMENT_HOMEWORK, HOON.getName());
 
-        String str = assignCommand.toString();
+        String str = unassignCommand.toString();
 
-        assertTrue(str.contains("toAssign"));
+        assertTrue(str.contains("toUnassign"));
         assertTrue(str.contains("Homework 2"));
-        assertTrue(str.contains("assigneeName"));
+        assertTrue(str.contains("unassignee"));
         assertTrue(str.contains("Hoon"));
     }
 
@@ -121,7 +122,7 @@ public class AssignCommandTest {
             }
 
             Phone dummyPhone = new Phone("98765432");
-            Email dummyEmail = new Email("dumb@gmail.com");
+            Email dummyEmail = new Email("dummy@gmail.com");
             TuitionClass dummyTuitionClass = new TuitionClass("W14");
             return new PersonStub(name, dummyPhone, dummyEmail, dummyTuitionClass, new HashSet<>());
         }
@@ -145,9 +146,9 @@ public class AssignCommandTest {
         }
 
         @Override
-        public PersonStub withAddedAssignment(Assignment assignment) throws DuplicateAssignmentException {
-            if (assignment.assignmentName.fullName.equals("Duplicate")) {
-                throw new DuplicateAssignmentException();
+        public PersonStub withRemovedAssignment(Assignment assignment) throws AssignmentNotFoundException {
+            if (assignment.assignmentName.fullName.equals("Missing")) {
+                throw new AssignmentNotFoundException();
             }
             return this;
         }
