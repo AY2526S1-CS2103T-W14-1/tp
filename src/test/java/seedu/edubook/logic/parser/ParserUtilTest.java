@@ -93,6 +93,8 @@ public class ParserUtilTest {
     public void parseName_maxLength_success() throws Exception {
         PersonName expectedName = new PersonName(VALID_NAME_MAXLENGTH);
         PersonName actualName = ParserUtil.parsePersonName(VALID_NAME_MAXLENGTH);
+        assertEquals(expectedName, actualName);
+
     }
 
     @Test
@@ -127,6 +129,7 @@ public class ParserUtilTest {
     public void parsePhone_maxLength_success() throws Exception {
         Phone expectedPhone = new Phone(VALID_PHONE_MAXLENGTH);
         Phone actualPhone = ParserUtil.parsePhone(VALID_PHONE_MAXLENGTH);
+        assertEquals(expectedPhone, actualPhone);
     }
 
     @Test
