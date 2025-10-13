@@ -83,26 +83,25 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
+    public void parsePersonName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePersonName((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
+    public void parsePersonName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePersonName(INVALID_NAME));
     }
 
     @Test
-    public void parseName_invalidLength_throwsParseException() {
+    public void parsePersonName_invalidLength_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_LENGTH));
     }
 
     @Test
-    public void parseName_maxLength_success() throws Exception {
+    public void parsePersonName_maxLength_success() throws Exception {
         PersonName expectedName = new PersonName(VALID_NAME_MAXLENGTH);
         PersonName actualName = ParserUtil.parsePersonName(VALID_NAME_MAXLENGTH);
         assertEquals(expectedName, actualName);
-
     }
 
     @Test
