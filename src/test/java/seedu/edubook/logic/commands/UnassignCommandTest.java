@@ -77,28 +77,29 @@ public class UnassignCommandTest {
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        UnassignCommand unassignHomeworkFromAlice = new UnassignCommand(ASSIGNMENT_HOMEWORK, alice.getName());
-        UnassignCommand unassignHomeworkFromBob = new UnassignCommand(ASSIGNMENT_HOMEWORK, bob.getName());
-        UnassignCommand unassignTutorialFromAlice = new UnassignCommand(ASSIGNMENT_TUTORIAL, alice.getName());
+        UnassignCommand unassignHomeworkFromAliceCommand = new UnassignCommand(ASSIGNMENT_HOMEWORK, alice.getName());
+        UnassignCommand unassignHomeworkFromBobCommand = new UnassignCommand(ASSIGNMENT_HOMEWORK, bob.getName());
+        UnassignCommand unassignTutorialFromAliceCommand = new UnassignCommand(ASSIGNMENT_TUTORIAL, alice.getName());
 
         // same object -> true
-        assertEquals(unassignHomeworkFromAlice, unassignHomeworkFromAlice);
+        assertEquals(unassignHomeworkFromAliceCommand, unassignHomeworkFromAliceCommand);
 
         // same assignment and same person name -> true
-        UnassignCommand unassignHomeworkFromAliceCopy = new UnassignCommand(ASSIGNMENT_HOMEWORK, alice.getName());
-        assertEquals(unassignHomeworkFromAlice, unassignHomeworkFromAliceCopy);
+        UnassignCommand unassignHomeworkFromAliceCommandCopy = new UnassignCommand(ASSIGNMENT_HOMEWORK,
+                alice.getName());
+        assertEquals(unassignHomeworkFromAliceCommand, unassignHomeworkFromAliceCommandCopy);
 
         // different types -> false
-        assertNotEquals(1, unassignHomeworkFromAlice);
+        assertNotEquals(1, unassignHomeworkFromAliceCommand);
 
         // null -> false
-        assertNotEquals(null, unassignHomeworkFromAlice);
+        assertNotEquals(null, unassignHomeworkFromAliceCommand);
 
         // same assignment but different person name -> false
-        assertNotEquals(unassignHomeworkFromAlice, unassignHomeworkFromBob);
+        assertNotEquals(unassignHomeworkFromAliceCommand, unassignHomeworkFromBobCommand);
 
         // different assignment but same person name -> false
-        assertNotEquals(unassignHomeworkFromAlice, unassignTutorialFromAlice);
+        assertNotEquals(unassignHomeworkFromAliceCommand, unassignTutorialFromAliceCommand);
     }
 
     @Test
@@ -122,8 +123,8 @@ public class UnassignCommandTest {
 
             Phone dummyPhone = new Phone("98765432");
             Email dummyEmail = new Email("dummy@gmail.com");
-            TuitionClass dummyClass = new TuitionClass("W14");
-            return new PersonStub(name, dummyPhone, dummyEmail, dummyClass, new HashSet<>());
+            TuitionClass dummyTuitionClass = new TuitionClass("W14");
+            return new PersonStub(name, dummyPhone, dummyEmail, dummyTuitionClass, new HashSet<>());
         }
 
         @Override
