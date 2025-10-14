@@ -9,9 +9,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
+import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
+import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.exceptions.AssignmentNotFoundException;
-import seedu.edubook.model.assignment.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.tag.Tag;
 
 /**

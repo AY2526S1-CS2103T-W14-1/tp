@@ -4,6 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
+import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_TUTORIAL;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.edubook.testutil.Assert.assertThrows;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,6 +22,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.AddCommand;
+import seedu.edubook.logic.commands.AssignCommand;
 import seedu.edubook.logic.commands.ClearCommand;
 import seedu.edubook.logic.commands.DeleteCommand;
 import seedu.edubook.logic.commands.EditCommand;
@@ -22,9 +31,13 @@ import seedu.edubook.logic.commands.ExitCommand;
 import seedu.edubook.logic.commands.FindCommand;
 import seedu.edubook.logic.commands.HelpCommand;
 import seedu.edubook.logic.commands.ListCommand;
+import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
 import seedu.edubook.testutil.EditPersonDescriptorBuilder;
 import seedu.edubook.testutil.PersonBuilder;
@@ -39,6 +52,30 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_assign() throws Exception {
+        AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_HOMEWORK);
+        Assignment assignment = new Assignment(assignmentName);
+        PersonName personName = ParserUtil.parsePersonName(VALID_NAME_AMY);
+
+        AssignCommand command = (AssignCommand) parser.parseCommand(
+                AssignCommand.COMMAND_WORD + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY);
+
+        assertEquals(new AssignCommand(assignment, personName), command);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws Exception {
+        AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_TUTORIAL);
+        Assignment assignment = new Assignment(assignmentName);
+        PersonName personName = ParserUtil.parsePersonName(VALID_NAME_BOB);
+
+        UnassignCommand command = (UnassignCommand) parser.parseCommand(
+                UnassignCommand.COMMAND_WORD + ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_BOB);
+
+        assertEquals(new UnassignCommand(assignment, personName), command);
     }
 
     @Test

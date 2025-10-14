@@ -20,12 +20,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
-import seedu.edubook.logic.commands.AssignCommand;
+import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 
-
-public class AssignCommandParserTest {
+class UnassignCommandParserTest {
 
     // Messages for different duplicate prefix scenarios
     private static final String DUPLICATE_ASSIGNMENT_PREFIX_MESSAGE =
@@ -37,32 +36,32 @@ public class AssignCommandParserTest {
     private static final String DUPLICATE_BOTH_PREFIXES_MESSAGE =
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
 
-    private AssignCommandParser parser;
+    private UnassignCommandParser parser;
 
     @BeforeEach
     public void setUp() {
-        parser = new AssignCommandParser();
+        parser = new UnassignCommandParser();
     }
 
     @Test
     public void parse_validArgs_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new AssignCommand(ASSIGNMENT_HOMEWORK, AMY.getName()));
+                new UnassignCommand(ASSIGNMENT_HOMEWORK, AMY.getName()));
     }
 
     @Test
     public void parse_missingAssignmentPrefix_failure() {
         // Missing assignment prefix
         assertParseFailure(parser, NAME_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_missingPersonPrefix_failure() {
         // Missing person prefix
         assertParseFailure(parser, ASSIGNMENT_DESC_HOMEWORK,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -100,8 +99,8 @@ public class AssignCommandParserTest {
 
     @Test
     public void parse_nonEmptyPreamble_failure() {
-        String userInput = PREAMBLE_NON_EMPTY + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY;
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, userInput, expectedMessage);
+        String input = PREAMBLE_NON_EMPTY + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY;
+        assertParseFailure(parser, input,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE));
     }
 }
