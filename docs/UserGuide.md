@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+EduBook is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduBook can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -68,7 +68,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 | Field | Max Length | Format / Constraints                                                                                                                                                                                                                            | Notes    |
 |-------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| Name  | 100        | Alphanumeric letters and spaces only, should not be blank                                                                                                                                                                                       | Required |
+| Name  | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
 | Email | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars | Required |
 | Phone | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             | Required |
 | Class | 20         | Any value, should not be blank                                                                                                                                                                                                                  | Required |
@@ -140,17 +140,47 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from Edubook.
 
-Format: `delete INDEX`
+Format 1 (by index): `delete INDEX` 
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Format 2 (by name): `delete n/NAME`
+
+* Deletes the person with the exact name `NAME`
+* The name is **case-sensitive** and must match exactly.
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete n/John Doe` deletes the person with the exact name "John Doe"
+
+### Assign a person an assignment : `assign`
+
+Assign the specified person a particular assignment.
+
+Format: `assign a/ASSIGNMENT_NAME n/NAME`
+
+* Assigns assignment, `ASSIGNMENT_NAME`, to person with name, `NAME`.
+* Assignment and person name is limited to **100 characters**.
+
+Examples:
+* `assign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
+
+### Unassign an assignment from a person : `unassign`
+
+Unassign a particular assignment from the specified person.
+
+Format: `unassign a/ASSIGNMENT_NAME n/NAME`
+
+* Unassigns assignment, `ASSIGNMENT_NAME`, from person with name, `NAME`.
+* Assignment and person name is limited to **100 characters**.
+
+Examples:
+* `unassign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
 
 ### Clearing all entries : `clear`
 
@@ -182,7 +212,7 @@ If your changes to the data file make its format invalid, EduBook will display a
 To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. Otherwise, a new empty file will be used.  
 ![Error Message](images/FileCorruptedExample.png "Error Message for File Corruption")
 
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
+Furthermore, certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
 Only edit the data file if you are confident that you can update it correctly.
 </div>
 
@@ -196,7 +226,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,9 +242,11 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague`
+**Assign** | `assign a/ASSIGNMENT_NAME n/NAME` <br> e.g., `assign a/Assignment1 n/Bob`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX`, `delete n/NAME`<br> e.g., `delete 3`, `delete n/John Doe`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME` <br> e.g., `unassign a/Assignment1 n/Bob`
