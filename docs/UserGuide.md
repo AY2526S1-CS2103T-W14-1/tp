@@ -158,9 +158,9 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete n/John Doe` deletes the person with the exact name "John Doe"
 
-### Assign a person an assignment : `assign`
+### Assign an assignment to a person : `assign`
 
-Assign the specified person a particular assignment.
+Assigns a particular assignment to the specified person.
 
 Format: `assign a/ASSIGNMENT_NAME n/NAME`
 
@@ -168,11 +168,11 @@ Format: `assign a/ASSIGNMENT_NAME n/NAME`
 * Assignment and person name is limited to **100 characters**.
 
 Examples:
-* `assign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
+* `assign a/Assignment 1 n/Bob` assigns `Assignment 1` to `Bob`
 
 ### Unassign an assignment from a person : `unassign`
 
-Unassign a particular assignment from the specified person.
+Unassigns a particular assignment from the specified person.
 
 Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 
@@ -180,7 +180,7 @@ Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 * Assignment and person name is limited to **100 characters**.
 
 Examples:
-* `unassign a/Assignment1 n/Bob` assigns `Assignment1` to `Bob`
+* `unassign a/Assignment 1 n/Bob` unassigns `Assignment 1` from `Bob`
 
 ### Clearing all entries : `clear`
 
@@ -203,7 +203,7 @@ EduBook data are saved in the hard disk automatically after any command that cha
 EduBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
-See [Formatting rules for parameters](#formatting-rules-for-parameters) below.
+See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**  
