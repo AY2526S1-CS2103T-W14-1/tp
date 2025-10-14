@@ -22,14 +22,14 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
-        ViewCommand expectedFindCommand =
+        ViewCommand expectedViewCommand =
                 new ViewCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "Alice Bob", expectedViewCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " n/Alice Bob  ", expectedViewCommand);
     }
 
 }
