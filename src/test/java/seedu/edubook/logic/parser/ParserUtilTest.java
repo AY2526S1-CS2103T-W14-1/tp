@@ -13,7 +13,9 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
@@ -22,12 +24,14 @@ import seedu.edubook.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_ASSIGNMENT = "Tutorial@3";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_CLASS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_ASSIGNMENT = "Homework 1";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_CLASS = "W-14";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -42,6 +46,8 @@ public class ParserUtilTest {
             String.join("", java.util.Collections.nCopies(100, "t"));
     private static final String VALID_PHONE_MAXLENGTH =
             String.join("", java.util.Collections.nCopies(20, "1"));
+    private static final String VALID_ASSIGNMENT_MAXLENGTH =
+            String.join("", java.util.Collections.nCopies(100, "A"));
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -53,6 +59,8 @@ public class ParserUtilTest {
             String.join("", java.util.Collections.nCopies(50, "test"));
     private static final String INVALID_PHONE_LENGTH =
             String.join("", java.util.Collections.nCopies(10, "1234"));
+    private static final String INVALID_ASSIGNMENT_LENGTH =
+            String.join("", java.util.Collections.nCopies(200, "A"));
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -75,24 +83,25 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
+    public void parsePersonName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePersonName((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
+    public void parsePersonName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePersonName(INVALID_NAME));
     }
 
     @Test
-    public void parseName_invalidLength_throwsParseException() {
+    public void parsePersonName_invalidLength_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_LENGTH));
     }
 
     @Test
-    public void parseName_maxLength_success() throws Exception {
+    public void parsePersonName_maxLength_success() throws Exception {
         PersonName expectedName = new PersonName(VALID_NAME_MAXLENGTH);
         PersonName actualName = ParserUtil.parsePersonName(VALID_NAME_MAXLENGTH);
+        assertEquals(expectedName, actualName);
     }
 
     @Test
@@ -106,6 +115,41 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         PersonName expectedName = new PersonName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parsePersonName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseAssignmentName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAssignmentName(null));
+    }
+
+    @Test
+    public void parseAssignmentName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignmentName(INVALID_ASSIGNMENT));
+    }
+
+    @Test
+    public void parseAssignmentName_invalidLength_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parseAssignmentName(INVALID_ASSIGNMENT_LENGTH));
+    }
+
+    @Test
+    public void parseAssignmentName_maxLength_success() throws Exception {
+        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT_MAXLENGTH);
+        AssignmentName actualAssignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_MAXLENGTH);
+        assertEquals(expectedAssignmentName, actualAssignmentName);
+    }
+
+    @Test
+    public void parseAssignmentName_validValueWithoutWhitespace_returnsAssignmentName() throws Exception {
+        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT);
+        assertEquals(expectedAssignmentName, ParserUtil.parseAssignmentName(VALID_ASSIGNMENT));
+    }
+
+    @Test
+    public void parseAssignmentName_validValueWithWhitespace_returnsTrimmedAssignmentName() throws Exception {
+        String assignmentWithWhitespace = WHITESPACE + VALID_ASSIGNMENT + WHITESPACE;
+        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT);
+        assertEquals(expectedAssignmentName, ParserUtil.parseAssignmentName(assignmentWithWhitespace));
     }
 
     @Test
@@ -127,6 +171,7 @@ public class ParserUtilTest {
     public void parsePhone_maxLength_success() throws Exception {
         Phone expectedPhone = new Phone(VALID_PHONE_MAXLENGTH);
         Phone actualPhone = ParserUtil.parsePhone(VALID_PHONE_MAXLENGTH);
+        assertEquals(expectedPhone, actualPhone);
     }
 
     @Test
