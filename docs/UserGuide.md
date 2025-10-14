@@ -66,12 +66,13 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 #### Formatting rules for parameters:
 
-| Field | Max Length | Format / Constraints                                                                                                                                                                                                                            | Notes    |
-|-------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| Name  | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
-| Email | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars | Required |
-| Phone | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             | Required |
-| Class | 20         | Any value, should not be blank                                                                                                                                                                                                                  | Required |
+| Field      | Max Length | Format / Constraints                                                                                                                                                                                                                            | Notes    |
+|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| Name       | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
+| Email      | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars | Required |
+| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             | Required |
+| Class      | 20         | Any value, should not be blank                                                                                                                                                                                                                  | Required |
+| Assignment | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
 
 
 ### Viewing help : `help`
@@ -165,10 +166,10 @@ Assigns a particular assignment to the specified student.
 Format: `assign a/ASSIGNMENT_NAME n/NAME`
 
 * Assigns assignment, `ASSIGNMENT_NAME`, to student with name, `NAME`.
-* Assignment and student name is limited to **100 characters**.
 
 Examples:
-* `assign a/Assignment 1 n/Bob` assigns `Assignment 1` to `Bob`
+* `assign a/Homework n/Bob` assigns `Homework` to `Bob`
+* `assign a/Tutorial 1 n/John Doe` assigns `Tutorial 1` to `John Doe`
 
 ### Unassigning an assignment from a student : `unassign`
 
@@ -177,10 +178,10 @@ Unassigns a particular assignment from the specified student.
 Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 
 * Unassigns assignment, `ASSIGNMENT_NAME`, from student with name, `NAME`.
-* Assignment and student name is limited to **100 characters**.
 
 Examples:
-* `unassign a/Assignment 1 n/Bob` unassigns `Assignment 1` from `Bob`
+* `unassign a/Homework n/Bob` unassigns `Homework` from `Bob`
+* `unassign a/Tutorial 1 n/John Doe` unassigns `Tutorial 1` from `John Doe`
 
 ### Clearing all entries : `clear`
 
@@ -247,8 +248,8 @@ _Details coming soon ..._
 | **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
 | **Find**     | `find KEYWORD [MORE_KEYWORDS]`                                         | `find James Jake`                                                                  |
 | **Delete**   | `delete INDEX`, `delete n/NAME`                                        | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`                                      | `assign a/Assignment 1 n/Bob`                                                      |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                    | `unassign a/Assignment 1 n/Bob`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`                                      | `assign a/Tutorial 1 n/John Doe`                                                   |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                    | `unassign a/Tutorial 1 n/John Doe`                                                 |
 | **Clear**    | `clear`                                                                | `clear`                                                                            |
 | **Exit**     | `exit`                                                                 | `exit`                                                                             |
 
