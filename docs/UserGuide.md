@@ -239,14 +239,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague`
-**Assign** | `assign a/ASSIGNMENT_NAME n/NAME` <br> e.g., `assign a/Assignment1 n/Bob`
-**Clear** | `clear`
-**Delete** | `delete INDEX`, `delete n/NAME`<br> e.g., `delete 3`, `delete n/John Doe`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME` <br> e.g., `unassign a/Assignment1 n/Bob`
+| Action       | Format                                                                 | Example                                                                            |
+|--------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                 | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                  | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                 | `list`                                                                             |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`                                         | `find James Jake`                                                                  |
+| **Delete**   | `delete INDEX`, `delete n/NAME`                                        | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`                                      | `assign a/Assignment 1 n/Bob`                                                      |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                    | `unassign a/Assignment 1 n/Bob`                                                    |
+| **Clear**    | `clear`                                                                | `clear`                                                                            |
+| **Exit**     | `exit`                                                                 | `exit`                                                                             |
+
