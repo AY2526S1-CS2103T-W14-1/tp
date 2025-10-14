@@ -90,7 +90,7 @@ Adds a student to EduBook.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -103,26 +103,26 @@ Shows a list of all students in EduBook.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating students by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -130,7 +130,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -138,46 +138,46 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified person from Edubook.
+Deletes the specified student from Edubook.
 
 Format 1 (by index): `delete INDEX` 
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format 2 (by name): `delete n/NAME`
 
-* Deletes the person with the exact name `NAME`
+* Deletes the student with the exact name `NAME`
 * The name is **case-sensitive** and must match exactly.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `delete n/John Doe` deletes the person with the exact name "John Doe"
+* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `delete n/John Doe` deletes the student with the exact name "John Doe"
 
-### Assign an assignment to a person : `assign`
+### Assigning an assignment to a student : `assign`
 
-Assigns a particular assignment to the specified person.
+Assigns a particular assignment to the specified student.
 
 Format: `assign a/ASSIGNMENT_NAME n/NAME`
 
-* Assigns assignment, `ASSIGNMENT_NAME`, to person with name, `NAME`.
-* Assignment and person name is limited to **100 characters**.
+* Assigns assignment, `ASSIGNMENT_NAME`, to student with name, `NAME`.
+* Assignment and student name is limited to **100 characters**.
 
 Examples:
 * `assign a/Assignment 1 n/Bob` assigns `Assignment 1` to `Bob`
 
-### Unassign an assignment from a person : `unassign`
+### Unassigning an assignment from a student : `unassign`
 
-Unassigns a particular assignment from the specified person.
+Unassigns a particular assignment from the specified student.
 
 Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 
-* Unassigns assignment, `ASSIGNMENT_NAME`, from person with name, `NAME`.
-* Assignment and person name is limited to **100 characters**.
+* Unassigns assignment, `ASSIGNMENT_NAME`, from student with name, `NAME`.
+* Assignment and student name is limited to **100 characters**.
 
 Examples:
 * `unassign a/Assignment 1 n/Bob` unassigns `Assignment 1` from `Bob`
