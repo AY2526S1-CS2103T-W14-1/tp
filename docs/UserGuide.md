@@ -66,14 +66,14 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 #### Formatting rules for parameters:
 
-| Field      | Max Length | Format / Constraints                                                                                                                                                                                                                            | Notes    |
-|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| Name       | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
-| Email      | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars | Required |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             | Required |
-| Class      | 20         | Any value, should not be blank                                                                                                                                                                                                                  | Required |
-| Assignment | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                                                                       | Required |
-
+| Field      | Max Length | Format / Constraints                                                                                                                                                                                 |
+|------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name       | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                            |
+| Email      | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
+| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                  |
+| Class      | 20         | Any value, should not be blank                                                                                                                                                                       |
+| Assignment | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                            |
+| Tag        | none       | Alphanumeric letters                                                                                                                                                                                 | 
 
 ### Viewing help : `help`
 
