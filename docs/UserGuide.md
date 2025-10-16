@@ -125,20 +125,17 @@ Examples:
 
 Views the information of students whose names contain any of the given keywords.
 
-Format: `view n/NAME [MORE_KEYWORDS]`
+Format: `view n/NAME`
 
 * Views the student with the specified `NAME`.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-sensitive. e.g. `hans` will not match `Hans`.
+* The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
+* The full name is required for search to be successful. e.g. `Hans` will not return `Hans Bo`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Students matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `view n/John` returns `john` and `John Doe`
-* `view n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png) 
+* `view n/John` returns `John`
+* `view n/alex david` returns `alex david`
 
 ### Deleting a student : `delete`
 
@@ -247,7 +244,7 @@ _Details coming soon ..._
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                 | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
 | **List**     | `list`                                                                | `list`                                                                             |
 | **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view n/NAME`                                                         | `find n/James Jake`                                                                |
+| **View**     | `view n/NAME`                                                         | `view n/James Lee`                                                                 |
 | **Delete**   | `delete INDEX`, `delete n/NAME`                                       | `delete 3`, `delete n/John Doe`                                                    |
 | **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`                                     | `assign a/Tutorial 1 n/John Doe`                                                   |
 | **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                   | `unassign a/Tutorial 1 n/John Doe`                                                 |
