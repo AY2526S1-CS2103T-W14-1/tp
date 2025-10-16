@@ -1,12 +1,13 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -19,15 +20,24 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim().replaceFirst("n/", "");
-        System.out.println(trimmedArgs);
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("[\\n/\\s+]");
+        PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
 
-        return new ViewCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ViewCommand(name);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

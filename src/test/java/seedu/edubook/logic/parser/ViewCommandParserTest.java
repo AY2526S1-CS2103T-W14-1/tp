@@ -1,15 +1,14 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.ViewCommand;
-import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
+import seedu.edubook.model.person.PersonName;
 
 public class ViewCommandParserTest {
 
@@ -24,12 +23,9 @@ public class ViewCommandParserTest {
     @Test
     public void parse_validArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
+        String name = "Alice";
         ViewCommand expectedViewCommand =
-                new ViewCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedViewCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " n/Alice Bob  ", expectedViewCommand);
+                new ViewCommand(new PersonName(name));
+        assertParseSuccess(parser, " " + PREFIX_PERSON_NAME + name, expectedViewCommand);
     }
-
 }
