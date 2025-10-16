@@ -3,10 +3,13 @@ package seedu.edubook.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import java.util.function.Predicate;
+
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.person.PersonNameContainsKeywordsPredicate;
+import seedu.edubook.model.person.Person;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -23,15 +26,16 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_SUCCESS =
             "Here are %1$s's details. ";
 
-    private final PersonNameContainsKeywordsPredicate predicate;
+    private final PersonName name;
 
-    public ViewCommand(PersonNameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public ViewCommand(PersonName name) {
+        this.name = name;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        Predicate<Person> predicate = preparePredicate(name);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
@@ -49,13 +53,17 @@ public class ViewCommand extends Command {
         }
 
         ViewCommand otherViewCommand = (ViewCommand) other;
-        return predicate.equals(otherViewCommand.predicate);
+        return name.equals(otherViewCommand.name);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("predicate", name)
                 .toString();
+    }
+
+    private Predicate<Person> preparePredicate(PersonName name) {
+        return person -> person.getName().equals(name);
     }
 }
