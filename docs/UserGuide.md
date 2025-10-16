@@ -121,12 +121,13 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name: `find`
+### Viewing a student's information: `view`
 
-Finds students whose names contain any of the given keywords.
+Views the information of students whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `view n/NAME [MORE_KEYWORDS]`
 
+* Views the student with the specified `NAME`.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -135,9 +136,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `view n/John` returns `john` and `John Doe`
+* `view n/alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png) 
 
 ### Deleting a student : `delete`
 
@@ -240,16 +241,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format                                                                 | Example                                                                            |
-|--------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                 | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                  | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                 | `list`                                                                             |
+| Action       | Format                                                                | Example                                                                            |
+|--------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                 | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                | `list`                                                                             |
 | **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]`                                         | `find James Jake`                                                                  |
-| **Delete**   | `delete INDEX`, `delete n/NAME`                                        | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`                                      | `assign a/Tutorial 1 n/John Doe`                                                   |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                    | `unassign a/Tutorial 1 n/John Doe`                                                 |
-| **Clear**    | `clear`                                                                | `clear`                                                                            |
-| **Exit**     | `exit`                                                                 | `exit`                                                                             |
+| **View**     | `view n/NAME`                                                         | `find n/James Jake`                                                                |
+| **Delete**   | `delete INDEX`, `delete n/NAME`                                       | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`                                     | `assign a/Tutorial 1 n/John Doe`                                                   |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                   | `unassign a/Tutorial 1 n/John Doe`                                                 |
+| **Clear**    | `clear`                                                               | `clear`                                                                            |
+| **Exit**     | `exit`                                                                | `exit`                                                                             |
 
