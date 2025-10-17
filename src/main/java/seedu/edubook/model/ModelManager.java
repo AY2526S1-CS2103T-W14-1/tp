@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -122,6 +124,15 @@ public class ModelManager implements Model {
                 .filter(p -> p.getName().equals(target))
                 .findFirst()
                 .orElseThrow(PersonNotFoundException::new);
+    }
+
+    @Override
+    public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+        requireNonNull(tuitionClass);
+        return this.addressBook.getPersonList()
+                .stream()
+                .filter(p -> p.getTuitionClass().equals(tuitionClass))
+                .toList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
