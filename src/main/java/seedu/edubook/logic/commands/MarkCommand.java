@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
@@ -61,5 +62,29 @@ public class MarkCommand extends Command {
         } catch (AssignmentNotFoundException e) {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+
+        MarkCommand otherMarkCommand = (MarkCommand) other;
+        return student.equals(otherMarkCommand.student)
+                && assignmentName.equals(otherMarkCommand.assignmentName);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("student", student)
+                .add("assignmentName", assignmentName)
+                .toString();
     }
 }
