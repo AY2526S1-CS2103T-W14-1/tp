@@ -40,6 +40,19 @@ public class Assignment {
     }
 
     /**
+     * Constructs an {@code Assignment}.
+     *
+     * @param assignmentName Name of assignment being assigned.
+     * @param isDone Current status of completion.
+     */
+    public Assignment(AssignmentName assignmentName, boolean isDone) {
+        requireNonNull(assignmentName);
+        checkArgument(isValidAssignment(assignmentName.fullName), MESSAGE_CONSTRAINTS);
+        this.assignmentName = assignmentName;
+        this.isDone = isDone;
+    }
+
+    /**
      * Returns true if a given string is a valid assignment name.
      */
     public static boolean isValidAssignment(String test) {
@@ -62,6 +75,13 @@ public class Assignment {
     public boolean hasName(AssignmentName assignmentName) {
         requireNonNull(assignmentName);
         return this.assignmentName.equals(assignmentName);
+    }
+
+    /**
+     * Returns the boolean denoted by isDone.
+     */
+    public boolean isDone() {
+        return isDone;
     }
 
     @Override
@@ -88,7 +108,7 @@ public class Assignment {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + assignmentName.fullName + (isDone ? "[X]" : "[]") + ']';
+        return '[' + assignmentName.fullName + ']';
     }
 
 }

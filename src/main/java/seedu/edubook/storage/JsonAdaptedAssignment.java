@@ -1,7 +1,7 @@
 package seedu.edubook.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.commons.util.StringUtil;
@@ -14,25 +14,32 @@ import seedu.edubook.model.tag.Tag;
  */
 class JsonAdaptedAssignment {
     private final String assignmentName;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedAssignment(String assignmentName) {
+    public JsonAdaptedAssignment(@JsonProperty("assignmentName") String assignmentName,
+                                 @JsonProperty("isDone") boolean isDone) {
         this.assignmentName = assignmentName;
+        this.isDone = isDone;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
-        assignmentName = source.assignmentName.fullName;
+        this.assignmentName = source.assignmentName.fullName;
+        this.isDone = source.isDone();
     }
 
-    @JsonValue
     public String getAssignmentName() {
         return assignmentName;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 
     /**
@@ -47,7 +54,7 @@ class JsonAdaptedAssignment {
         if (!Assignment.isValidAssignment(assignmentName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Assignment(new AssignmentName(assignmentName));
+        return new Assignment(new AssignmentName(assignmentName), isDone);
     }
 
 }

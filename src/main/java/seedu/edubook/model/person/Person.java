@@ -176,7 +176,7 @@ public class Person {
         for (Assignment assignment : assignments) {
             if (assignment.hasName(assignmentName)) {
                 assignment.mark();
-                break;
+                return;
             }
         }
         throw new AssignmentNotFoundException();
