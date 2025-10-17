@@ -25,6 +25,8 @@ public class Assignment {
 
     public final AssignmentName assignmentName;
 
+    private boolean isDone;
+
     /**
      * Constructs an {@code Assignment}.
      *
@@ -34,6 +36,7 @@ public class Assignment {
         requireNonNull(assignmentName);
         checkArgument(isValidAssignment(assignmentName.fullName), MESSAGE_CONSTRAINTS);
         this.assignmentName = assignmentName;
+        this.isDone = false;
     }
 
     /**
@@ -41,6 +44,24 @@ public class Assignment {
      */
     public static boolean isValidAssignment(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Marks the assignment as done.
+     */
+    public void mark() {
+        this.isDone = true;
+    }
+
+    /**
+     * Checks if input name matches assignment name of this instance.
+     *
+     * @param assignmentName input name to be checked.
+     * @return boolean if name matches.
+     */
+    public boolean hasName(AssignmentName assignmentName) {
+        requireNonNull(assignmentName);
+        return this.assignmentName.equals(assignmentName);
     }
 
     @Override
@@ -67,7 +88,7 @@ public class Assignment {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + assignmentName.fullName + ']';
+        return '[' + assignmentName.fullName + (isDone ? "[X]" : "[]") + ']';
     }
 
 }
