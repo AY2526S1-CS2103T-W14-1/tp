@@ -1,17 +1,17 @@
 package seedu.edubook.logic.parser;
 
-import seedu.edubook.logic.commands.AssignCommand;
-import seedu.edubook.logic.commands.MarkCommand;
-import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.person.PersonName;
-
-import java.util.stream.Stream;
-
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+
+import java.util.stream.Stream;
+
+import seedu.edubook.logic.commands.MarkCommand;
+import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.person.PersonName;
+
+
 
 /**
  * Parses input arguments and creates a new MarkCommand object.

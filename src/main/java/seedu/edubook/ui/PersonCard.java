@@ -58,9 +58,14 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAssignments().stream()
-                .sorted(Comparator.comparing(assignment -> assignment.assignmentName.fullName))
-                .forEach(assignment -> assignments
-                        .getChildren()
-                        .add(new Label(assignment.assignmentName.fullName)));
+                .sorted(Comparator.comparing(a -> a.assignmentName.fullName))
+                .forEach(assignment -> {
+                    Label assignmentLabel = new Label(assignment.assignmentName.fullName);
+
+                    if (assignment.isDone()) {
+                        assignmentLabel.setStyle("-fx-background-color: #90EE90;");
+                    }
+                    assignments.getChildren().add(assignmentLabel);
+                });
     }
 }

@@ -1,6 +1,8 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
@@ -9,9 +11,6 @@ import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
-
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 /**
  * Marks the assignment of a student as completed.
@@ -35,6 +34,9 @@ public class MarkCommand extends Command {
     private final AssignmentName assignmentName;
     private final PersonName student;
 
+    /**
+     * Creates a MarkCommand with the specified {@code AssignmentName} and {@code PersonName}.
+     */
     public MarkCommand(AssignmentName assignmentName, PersonName student) {
         requireNonNull(assignmentName);
         requireNonNull(student);
