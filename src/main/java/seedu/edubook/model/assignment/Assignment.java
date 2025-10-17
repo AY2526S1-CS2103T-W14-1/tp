@@ -96,7 +96,7 @@ public class Assignment {
         }
 
         Assignment otherAssignment = (Assignment) other;
-        return assignmentName.equals(otherAssignment.assignmentName);
+        return assignmentName.equals(otherAssignment.assignmentName) && isDone == otherAssignment.isDone;
     }
 
     @Override
