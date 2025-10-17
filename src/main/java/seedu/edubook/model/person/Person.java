@@ -12,6 +12,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -160,6 +161,25 @@ public class Person {
      */
     public boolean hasAssignment(Assignment assignment) {
         return this.assignments.contains(assignment);
+    }
+
+    /**
+     * Checks whether the student has an assignment matching given assignment name.
+     * Marks the assignment if present, throws exception otherwise.
+     *
+     * @param assignmentName Assignment name to be checked
+     * @throws AssignmentNotFoundException if target assignment is not found.
+     */
+    public void markAssignment(AssignmentName assignmentName) throws AssignmentNotFoundException {
+        requireNonNull(assignmentName);
+
+        for (Assignment assignment : assignments) {
+            if (assignment.hasName(assignmentName)) {
+                assignment.mark();
+                return;
+            }
+        }
+        throw new AssignmentNotFoundException();
     }
 
     /**
