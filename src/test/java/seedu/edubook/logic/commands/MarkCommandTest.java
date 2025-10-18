@@ -13,8 +13,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
-import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
@@ -133,9 +133,9 @@ public class MarkCommandTest {
 
         @Override
         public MarkCommandTest.PersonStub withAddedAssignment(Assignment assignment)
-                throws DuplicateAssignmentException {
+                throws AssignmentAlreadyExistsException {
             if (assignment.assignmentName.fullName.equals("Duplicate")) {
-                throw new DuplicateAssignmentException();
+                throw AssignmentAlreadyExistsException.forStudent();
             }
             return this;
         }

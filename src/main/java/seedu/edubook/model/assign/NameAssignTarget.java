@@ -12,6 +12,13 @@ import seedu.edubook.model.person.exceptions.PersonNotFoundException;
  * Represents a target that assigns an assignment to a single student by name.
  */
 public class NameAssignTarget implements AssignTarget {
+
+    /** Error message when the student cannot be found in the model. */
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Student not found.";
+
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_ASSIGNMENT_SUCCESS = "New assignment %s assigned to student: %s";
+
     private final PersonName name;
 
     /**
@@ -29,7 +36,7 @@ public class NameAssignTarget implements AssignTarget {
             Person person = model.findPersonByName(name);
             return List.of(person);
         } catch (PersonNotFoundException e) {
-            throw new CommandException("Student not found.");
+            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
     }
 
@@ -45,7 +52,29 @@ public class NameAssignTarget implements AssignTarget {
 
     @Override
     public String getAssignmentSuccessMessage(String assignmentName, int successCount, int skippedCount) {
-        return String.format("New assignment %s assigned to student: %s", assignmentName, getDisplayName());
+        return String.format(MESSAGE_ASSIGNMENT_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof NameAssignTarget)) {
+            return false;
+        }
+        NameAssignTarget otherTarget = (NameAssignTarget) other;
+        return name.equals(otherTarget.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "NameAssignTarget{name=" + name.fullName + "}";
     }
 }
 

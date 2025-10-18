@@ -6,6 +6,12 @@ package seedu.edubook.logic.commands.exceptions;
  */
 public class AssignmentAlreadyExistsException extends CommandException {
 
+    /** Message for a student who already has the assignment */
+    public static final String MESSAGE_STUDENT_ALREADY_ASSIGNED = "This student already has this assignment.";
+
+    /** Format string for a class where all students already have the assignment */
+    public static final String MESSAGE_CLASS_ALREADY_ASSIGNED = "All students in %s already have assignment %s.";
+
     /**
      * Constructs an {@code AssignmentAlreadyExistsException} with the specified detail message.
      *
@@ -22,7 +28,7 @@ public class AssignmentAlreadyExistsException extends CommandException {
      * @return An {@code AssignmentAlreadyExistsException} with a predefined message.
      */
     public static AssignmentAlreadyExistsException forStudent() {
-        return new AssignmentAlreadyExistsException("This student already has this assignment.");
+        return new AssignmentAlreadyExistsException(MESSAGE_STUDENT_ALREADY_ASSIGNED);
     }
 
     /**
@@ -35,7 +41,7 @@ public class AssignmentAlreadyExistsException extends CommandException {
      */
     public static AssignmentAlreadyExistsException forClass(String className, String assignmentName) {
         return new AssignmentAlreadyExistsException(
-                String.format("All students in %s already have assignment %s.", className, assignmentName)
+                String.format(MESSAGE_CLASS_ALREADY_ASSIGNED, className, assignmentName)
         );
     }
 }
