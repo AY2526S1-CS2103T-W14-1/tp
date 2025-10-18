@@ -98,7 +98,7 @@ public class MarkCommandTest {
 
     class ModelStub extends ModelManager {
         @Override
-        public MarkCommandTest.PersonStub findPersonByName(PersonName name, String errorMessage)
+        public MarkCommandTest.PersonStub findPersonByName(PersonName name)
                 throws PersonNotFoundException {
             if (name.fullName.equals("Nonexistent")) {
                 throw new PersonNotFoundException();

@@ -28,5 +28,22 @@ public interface AssignTarget {
      * @return The target’s display name.
      */
     String getDisplayName();
+
+    /**
+     * Returns whether this target represents exactly one person.
+     *
+     * @return {@code true} if the target represents a single person, {@code false} otherwise.
+     */
+    boolean isSinglePersonTarget();
+
+    /**
+     * Returns the formatted success message after assigning an assignment to this target.
+     *
+     * @param assignmentName Name of the assignment.
+     * @param successCount Number of successful assignments.
+     * @param skippedCount Number of skipped assignments.
+     * @return Formatted success message.
+     */
+    String getAssignmentSuccessMessage(String assignmentName, int successCount, int skippedCount);
 }
 

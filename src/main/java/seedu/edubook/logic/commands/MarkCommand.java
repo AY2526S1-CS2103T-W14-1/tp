@@ -50,7 +50,7 @@ public class MarkCommand extends Command {
         requireNonNull(model);
 
         try {
-            Person student = model.findPersonByName(this.student, MESSAGE_STUDENT_NOT_FOUND);
+            Person student = model.findPersonByName(this.student);
             student.markAssignment(this.assignmentName);
 
             model.setPerson(student, student); //triggers rendering of UI

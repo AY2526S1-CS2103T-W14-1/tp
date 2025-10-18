@@ -26,7 +26,7 @@ public class ClassAssignTarget implements AssignTarget {
     public List<Person> getPersons(Model model) throws CommandException {
         List<Person> persons = model.findPersonsByClass(tuitionClass);
         if (persons.isEmpty()) {
-            throw new CommandException(String.format("No students found in class %s.", tuitionClass));
+            throw new CommandException(String.format("No students found in class: %s.", tuitionClass));
         }
         return persons;
     }
@@ -34,6 +34,17 @@ public class ClassAssignTarget implements AssignTarget {
     @Override
     public String getDisplayName() {
         return tuitionClass.toString();
+    }
+
+    @Override
+    public boolean isSinglePersonTarget() {
+        return false;
+    }
+
+    @Override
+    public String getAssignmentSuccessMessage(String assignmentName, int successCount, int skippedCount) {
+        return String.format("New assignment %s assigned to class: %s (%d assigned, %d skipped)",
+                assignmentName, getDisplayName(), successCount, skippedCount);
     }
 }
 

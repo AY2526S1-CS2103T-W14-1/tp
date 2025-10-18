@@ -116,8 +116,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException {
-        requireAllNonNull(target, errorMessage);
+    public Person findPersonByName(PersonName target) throws PersonNotFoundException {
+        requireAllNonNull(target);
 
         return this.getFilteredPersonList()
                 .stream()

@@ -153,7 +153,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException {
+        public Person findPersonByName(PersonName target) throws PersonNotFoundException {
             throw new AssertionError("This method should not be called.");
         }
 

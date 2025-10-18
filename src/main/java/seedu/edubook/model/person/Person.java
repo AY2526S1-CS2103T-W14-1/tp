@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
+import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
-import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.tag.Tag;
@@ -99,13 +99,13 @@ public class Person {
      *
      * @param assignment Assignment to be added.
      * @return The new person object.
-     * @throws DuplicateAssignmentException if the assignment is already assigned to the student.
+     * @throws AssignmentAlreadyExistsException if the assignment is already assigned to the student.
      */
-    public Person withAddedAssignment(Assignment assignment) throws DuplicateAssignmentException {
+    public Person withAddedAssignment(Assignment assignment) throws AssignmentAlreadyExistsException {
         requireNonNull(assignment);
 
         if (this.hasAssignment(assignment)) {
-            throw new DuplicateAssignmentException();
+            throw AssignmentAlreadyExistsException.forStudent();
         }
 
         Set<Assignment> newAssignments = new HashSet<>(this.assignments);

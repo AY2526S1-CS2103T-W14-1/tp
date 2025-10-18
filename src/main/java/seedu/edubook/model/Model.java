@@ -85,11 +85,10 @@ public interface Model {
      * {@code target} must exist in the address book.
      *
      * @param target Name of person to be found.
-     * @param errorMessage Error message to be thrown if {@code target} cannot be found.
      * @return Person object corresponding to {@code target}
      * @throws PersonNotFoundException if {@code target} cannot be found.
      */
-    Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException;
+    Person findPersonByName(PersonName target) throws PersonNotFoundException;
 
     /**
      * Finds all persons belonging to the specified class.
