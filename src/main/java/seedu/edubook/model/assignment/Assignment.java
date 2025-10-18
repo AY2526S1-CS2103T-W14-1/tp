@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 import static seedu.edubook.model.commons.Name.MAX_NAME_LENGTH;
 
+import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
+
 /**
  * Represents an assignment in EduBook
  */
@@ -61,8 +63,13 @@ public class Assignment {
 
     /**
      * Marks the assignment as done.
+     *
+     * @throws AssignmentMarkedException if assignment is marked.
      */
-    public void mark() {
+    public void mark() throws AssignmentMarkedException {
+        if (this.isDone) {
+            throw new AssignmentMarkedException();
+        }
         this.isDone = true;
     }
 
@@ -96,7 +103,7 @@ public class Assignment {
         }
 
         Assignment otherAssignment = (Assignment) other;
-        return assignmentName.equals(otherAssignment.assignmentName) && isDone == otherAssignment.isDone;
+        return assignmentName.equals(otherAssignment.assignmentName);
     }
 
     @Override
