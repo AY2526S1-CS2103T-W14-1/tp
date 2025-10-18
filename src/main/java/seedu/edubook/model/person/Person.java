@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
+import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
@@ -169,8 +170,10 @@ public class Person {
      *
      * @param assignmentName Assignment name to be checked
      * @throws AssignmentNotFoundException if target assignment is not found.
+     * @throws AssignmentMarkedException if target assignment is marked.
      */
-    public void markAssignment(AssignmentName assignmentName) throws AssignmentNotFoundException {
+    public void markAssignment(AssignmentName assignmentName)
+            throws AssignmentNotFoundException, AssignmentMarkedException {
         requireNonNull(assignmentName);
 
         for (Assignment assignment : assignments) {

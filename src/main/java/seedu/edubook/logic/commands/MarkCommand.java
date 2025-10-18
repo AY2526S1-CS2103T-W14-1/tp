@@ -4,14 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import java.util.logging.Logger;
+
+import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
+
+
 
 /**
  * Marks the assignment of a student as completed.
@@ -32,6 +36,8 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "Assignment does not exist for this student ";
 
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
+
     private final AssignmentName assignmentName;
     private final PersonName student;
 
@@ -50,17 +56,19 @@ public class MarkCommand extends Command {
         requireNonNull(model);
 
         try {
+            logger.info("Attempting to mark assignment: " + assignmentName);
             Person student = model.findPersonByName(this.student);
             student.markAssignment(this.assignmentName);
 
             model.setPerson(student, student); //triggers rendering of UI
+            logger.info(String.format(MESSAGE_SUCCESS, student, assignmentName));
             return new CommandResult(
                     String.format(MESSAGE_SUCCESS, this.assignmentName, student.getName())
             );
         } catch (PersonNotFoundException e) {
+            logger.info("Marking failed, exception thrown:" + MESSAGE_STUDENT_NOT_FOUND);
+
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        } catch (AssignmentNotFoundException e) {
-            throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         }
     }
 
