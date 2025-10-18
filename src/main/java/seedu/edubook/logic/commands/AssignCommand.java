@@ -65,6 +65,7 @@ public class AssignCommand extends Command {
 
         // Process all assignments and count successes and skips
         int[] counts = processAssignments(model, assignees);
+        assert counts.length == 2 : "processAssignments must return an array of length 2";
         int successCount = counts[0];
         int skippedCount = counts[1];
 
