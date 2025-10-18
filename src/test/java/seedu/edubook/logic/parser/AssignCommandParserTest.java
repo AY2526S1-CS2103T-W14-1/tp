@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.AssignCommand;
+import seedu.edubook.model.assign.NameAssignTarget;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 
@@ -48,7 +49,7 @@ public class AssignCommandParserTest {
     public void parse_validArgs_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new AssignCommand(ASSIGNMENT_HOMEWORK, AMY.getName()));
+                new AssignCommand(ASSIGNMENT_HOMEWORK, new NameAssignTarget(AMY.getName())));
     }
 
     @Test

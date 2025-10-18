@@ -116,7 +116,7 @@ public class UnassignCommandTest {
 
     class ModelStub extends ModelManager {
         @Override
-        public PersonStub findPersonByName(PersonName name, String errorMessage) throws PersonNotFoundException {
+        public PersonStub findPersonByName(PersonName name) throws PersonNotFoundException {
             if (name.fullName.equals("Nonexistent")) {
                 throw new PersonNotFoundException();
             }

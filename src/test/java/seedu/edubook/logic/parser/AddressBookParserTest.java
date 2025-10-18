@@ -34,6 +34,8 @@ import seedu.edubook.logic.commands.ListCommand;
 import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assign.AssignTarget;
+import seedu.edubook.model.assign.NameAssignTarget;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
@@ -59,11 +61,12 @@ public class AddressBookParserTest {
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_HOMEWORK);
         Assignment assignment = new Assignment(assignmentName);
         PersonName personName = ParserUtil.parsePersonName(VALID_NAME_AMY);
+        AssignTarget nameAssignTarget = new NameAssignTarget(personName);
 
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY);
 
-        assertEquals(new AssignCommand(assignment, personName), command);
+        assertEquals(new AssignCommand(assignment, nameAssignTarget), command);
     }
 
     @Test
