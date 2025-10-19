@@ -68,8 +68,8 @@ public class AssignCommand extends Command {
 
         assert counts.length == 2 : "processAssignments must return an array of length 2";
         assert counts[0] >= 0 && counts[1] >= 0 : "success and skip counts must not be negative";
-        assert counts[0] + counts[1] == studentsToAssign.size() :
-                "sum of success and skipped counts must match total students processed";
+        assert counts[0] + counts[1] == studentsToAssign.size()
+                : "sum of success and skipped counts must match total students processed";
 
         int successCount = counts[0];
         int skippedCount = counts[1];

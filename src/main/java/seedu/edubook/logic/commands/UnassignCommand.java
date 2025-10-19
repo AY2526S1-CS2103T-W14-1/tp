@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
@@ -60,8 +59,8 @@ public class UnassignCommand extends Command {
 
         assert counts.length == 2 : "processAssignments must return an array of length 2";
         assert counts[0] >= 0 && counts[1] >= 0 : "success and skip counts must not be negative";
-        assert counts[0] + counts[1] == studentsToUnassign.size() :
-                "sum of success and skipped counts must match total students processed";
+        assert counts[0] + counts[1] == studentsToUnassign.size()
+                : "sum of success and skipped counts must match total students processed";
 
         int successCount = counts[0];
         int skippedCount = counts[1];

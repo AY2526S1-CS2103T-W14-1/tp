@@ -31,6 +31,8 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public UnassignCommand parse(String args) throws ParseException {
+        assert args != null : "args should never be null when parsing UnassignCommand.";
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME, PREFIX_CLASS);
 
