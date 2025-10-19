@@ -37,12 +37,22 @@ public interface AssignTarget {
     boolean isSinglePersonTarget();
 
     /**
-     * Returns the formatted success message after assigning an assignment to this target.
+     * Returns the formatted success message after successfully assigning an assignment to this target.
      *
      * @param assignmentName Name of the assignment.
      * @param successCount Number of successful assignments.
-     * @param skippedCount Number of skipped assignments.
+     * @param skippedCount Number of skipped assignment additions.
      * @return Formatted success message.
      */
     String getAssignSuccessMessage(String assignmentName, int successCount, int skippedCount);
+
+    /**
+     * Returns the formatted success message after successfully unassigning an assignment to this target.
+     *
+     * @param assignmentName Name of the assignment.
+     * @param successCount Number of successful unassignments.
+     * @param skippedCount Number of skipped assignment removals.
+     * @return Formatted success message.
+     */
+    String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount);
 }

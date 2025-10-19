@@ -14,10 +14,13 @@ import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 public class NameAssignTarget implements AssignTarget {
 
     /** Error message when the student cannot be found in the model. */
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Student not found.";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Student '%s' not found.";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_ASSIGNMENT_SUCCESS = "New assignment %s assigned to student: %s";
+    public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'";
+
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'";
 
     private final PersonName name;
 
@@ -32,11 +35,12 @@ public class NameAssignTarget implements AssignTarget {
 
     @Override
     public List<Person> getPersons(Model model) throws CommandException {
+        Person person = null;
         try {
-            Person person = model.findPersonByName(name);
+            person = model.findPersonByName(name);
             return List.of(person);
         } catch (PersonNotFoundException e) {
-            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, person));
         }
     }
 
@@ -52,7 +56,12 @@ public class NameAssignTarget implements AssignTarget {
 
     @Override
     public String getAssignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
-        return String.format(MESSAGE_ASSIGNMENT_SUCCESS, assignmentName, getDisplayName());
+        return String.format(MESSAGE_ASSIGN_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
+        return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName());
     }
 
     @Override

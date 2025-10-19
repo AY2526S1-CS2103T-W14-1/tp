@@ -33,9 +33,6 @@ public class UnassignCommand extends Command {
             + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
             + PREFIX_PERSON_NAME + "John Doe";
 
-    public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s. ";
-    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
-
     private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     private final Assignment assignment;
@@ -56,19 +53,26 @@ public class UnassignCommand extends Command {
         requireNonNull(model);
         logger.info("Executing UnassignCommand for target: " + target.getDisplayName());
 
-        List<Person> assignees = target.getPersons(model);
+        List<Person> studentsToUnassign = target.getPersons(model);
 
         // Process all assignments and count successes and skips
-        int[] counts = processAssignments(model, assignees);
+        int[] counts = processAssignments(model, studentsToUnassign);
+
         assert counts.length == 2 : "processAssignments must return an array of length 2";
+        assert counts[0] >= 0 && counts[1] >= 0 : "success and skip counts must not be negative";
+        assert counts[0] + counts[1] == studentsToUnassign.size() :
+                "sum of success and skipped counts must match total students processed";
+
         int successCount = counts[0];
         int skippedCount = counts[1];
 
         handleNoAssignments(successCount);
 
         // Generate success message
-        String message = target.getAssignSuccessMessage(assignment.assignmentName.toString(),
+        String message = target.getUnassignSuccessMessage(assignment.assignmentName.toString(),
                 successCount, skippedCount);
+
+        assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
         logger.info("AssignCommand completed: " + message);
         return new CommandResult(message);
@@ -101,7 +105,7 @@ public class UnassignCommand extends Command {
     }
 
     /**
-     * Throws AssignmentNotFoundException if no new assignments were added.
+     * Throws AssignmentNotFoundException if no new assignments were removed.
      *
      * @param successCount Number of successful assignments unassigned.
      * @throws AssignmentNotFoundException if no new assignments were unassigned.

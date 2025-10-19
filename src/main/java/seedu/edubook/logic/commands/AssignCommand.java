@@ -61,11 +61,16 @@ public class AssignCommand extends Command {
         requireNonNull(model);
         logger.info("Executing AssignCommand for target: " + target.getDisplayName());
 
-        List<Person> assignees = target.getPersons(model);
+        List<Person> studentsToAssign = target.getPersons(model);
 
         // Process all assignments and count successes and skips
-        int[] counts = processAssignments(model, assignees);
+        int[] counts = processAssignments(model, studentsToAssign);
+
         assert counts.length == 2 : "processAssignments must return an array of length 2";
+        assert counts[0] >= 0 && counts[1] >= 0 : "success and skip counts must not be negative";
+        assert counts[0] + counts[1] == studentsToAssign.size() :
+                "sum of success and skipped counts must match total students processed";
+
         int successCount = counts[0];
         int skippedCount = counts[1];
 
@@ -74,6 +79,8 @@ public class AssignCommand extends Command {
         // Generate success message
         String message = target.getAssignSuccessMessage(assignment.assignmentName.toString(),
                 successCount, skippedCount);
+
+        assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
         logger.info("AssignCommand completed: " + message);
         return new CommandResult(message);
