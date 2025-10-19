@@ -16,9 +16,9 @@ import static seedu.edubook.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
-import seedu.edubook.logic.commands.exceptions.DuplicateAssignmentException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.testutil.PersonBuilder;
@@ -39,7 +39,7 @@ public class PersonTest {
     }
 
     @Test
-    public void withAddedAssignment_newAssignment_success() throws DuplicateAssignmentException {
+    public void withAddedAssignment_newAssignment_success() throws AssignmentAlreadyExistsException {
         Person person = new PersonBuilder().build();
         Person updatedPerson = person.withAddedAssignment(test).withAddedAssignment(ASSIGNMENT_HOMEWORK);
 
@@ -52,10 +52,10 @@ public class PersonTest {
     }
 
     @Test
-    public void withAddedAssignment_duplicateAssignment_throwsException() throws DuplicateAssignmentException {
+    public void withAddedAssignment_duplicateAssignment_throwsException() throws AssignmentAlreadyExistsException {
         Person person = new PersonBuilder().build();
         Person updatedPerson = person.withAddedAssignment(test);
-        assertThrows(DuplicateAssignmentException.class, () -> updatedPerson.withAddedAssignment(test));
+        assertThrows(AssignmentAlreadyExistsException.class, () -> updatedPerson.withAddedAssignment(test));
     }
 
     @Test

@@ -49,7 +49,7 @@ public class UnassignCommand extends Command {
         requireNonNull(model);
 
         try {
-            Person target = model.findPersonByName(unassignee, MESSAGE_STUDENT_NOT_FOUND);
+            Person target = model.findPersonByName(unassignee);
             Person updatedPerson = target.withRemovedAssignment(toUnassign);
             model.setPerson(target, updatedPerson);
 
