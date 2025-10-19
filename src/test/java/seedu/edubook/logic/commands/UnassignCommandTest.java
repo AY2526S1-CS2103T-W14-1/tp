@@ -148,7 +148,7 @@ public class UnassignCommandTest {
         @Override
         public PersonStub withRemovedAssignment(Assignment assignment) throws AssignmentNotFoundException {
             if (assignment.assignmentName.fullName.equals("Missing")) {
-                throw new AssignmentNotFoundException();
+                throw AssignmentNotFoundException.forStudent();
             }
             return this;
         }

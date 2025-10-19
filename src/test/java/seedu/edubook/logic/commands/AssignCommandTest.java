@@ -55,7 +55,7 @@ public class AssignCommandTest {
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = target.getAssignmentSuccessMessage(
+        String expectedMessage = target.getAssignSuccessMessage(
                 ASSIGNMENT_HOMEWORK.assignmentName.toString(), 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
@@ -70,7 +70,7 @@ public class AssignCommandTest {
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = target.getAssignmentSuccessMessage(
+        String expectedMessage = target.getAssignSuccessMessage(
                 ASSIGNMENT_HOMEWORK.assignmentName.toString(), 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
@@ -86,7 +86,7 @@ public class AssignCommandTest {
         CommandResult result = command.execute(model);
 
         // 3 students: 2 skipped (already have assignment), 1 success
-        String expectedMessage = target.getAssignmentSuccessMessage(VALID_ASSIGNMENT_HOMEWORK, 1, 2);
+        String expectedMessage = target.getAssignSuccessMessage(VALID_ASSIGNMENT_HOMEWORK, 1, 2);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }

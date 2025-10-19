@@ -44,6 +44,5 @@ public interface AssignTarget {
      * @param skippedCount Number of skipped assignments.
      * @return Formatted success message.
      */
-    String getAssignmentSuccessMessage(String assignmentName, int successCount, int skippedCount);
+    String getAssignSuccessMessage(String assignmentName, int successCount, int skippedCount);
 }
-

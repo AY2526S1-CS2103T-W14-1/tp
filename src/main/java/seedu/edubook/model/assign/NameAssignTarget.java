@@ -51,7 +51,7 @@ public class NameAssignTarget implements AssignTarget {
     }
 
     @Override
-    public String getAssignmentSuccessMessage(String assignmentName, int successCount, int skippedCount) {
+    public String getAssignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_ASSIGNMENT_SUCCESS, assignmentName, getDisplayName());
     }
 
@@ -77,4 +77,3 @@ public class NameAssignTarget implements AssignTarget {
         return "NameAssignTarget{name=" + name.fullName + "}";
     }
 }
-

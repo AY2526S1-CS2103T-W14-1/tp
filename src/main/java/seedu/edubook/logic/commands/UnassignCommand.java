@@ -4,13 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import java.util.List;
+import java.util.logging.Logger;
+
+import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
+import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
+import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.assign.AssignTarget;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
-import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 
 /**
@@ -31,33 +36,85 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_SUCCESS = "You have successfully unassigned %1$s from student %2$s. ";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
 
-    private final PersonName unassignee;
-    private final Assignment toUnassign;
+    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
+
+    private final Assignment assignment;
+    private final AssignTarget target;
 
     /**
      * Creates an UnassignCommand to unassign the specified {@code Assignment}.
      */
-    public UnassignCommand(Assignment assignment, PersonName currentAssignee) {
-        requireNonNull(currentAssignee);
+    public UnassignCommand(Assignment assignment, AssignTarget target) {
+        requireNonNull(target);
         requireNonNull(assignment);
-        this.unassignee = currentAssignee;
-        this.toUnassign = assignment;
+        this.target = target;
+        this.assignment = assignment;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.info("Executing UnassignCommand for target: " + target.getDisplayName());
 
-        try {
-            Person target = model.findPersonByName(unassignee);
-            Person updatedPerson = target.withRemovedAssignment(toUnassign);
-            model.setPerson(target, updatedPerson);
+        List<Person> assignees = target.getPersons(model);
 
-            return new CommandResult(
-                    String.format(MESSAGE_SUCCESS, toUnassign.assignmentName, updatedPerson.getName())
-            );
-        } catch (PersonNotFoundException e) {
-            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
+        // Process all assignments and count successes and skips
+        int[] counts = processAssignments(model, assignees);
+        assert counts.length == 2 : "processAssignments must return an array of length 2";
+        int successCount = counts[0];
+        int skippedCount = counts[1];
+
+        handleNoAssignments(successCount);
+
+        // Generate success message
+        String message = target.getAssignSuccessMessage(assignment.assignmentName.toString(),
+                successCount, skippedCount);
+
+        logger.info("AssignCommand completed: " + message);
+        return new CommandResult(message);
+    }
+
+    /**
+     * Processes assignment removal for each person in the list.
+     * <p>
+     * Skips students who already do not have the assignment and counts successes and skips.
+     *
+     * @param model The model to update.
+     * @param assignees The list of students to unassign the assignment from.
+     * @return An array where index 0 is the number of successful assignment removals,
+     *         and index 1 is the number of skipped students.
+     */
+    private int[] processAssignments(Model model, List<Person> assignees) {
+        int successCount = 0;
+        int skippedCount = 0;
+
+        for (Person person : assignees) {
+            try {
+                model.setPerson(person, person.withRemovedAssignment(assignment));
+                successCount++;
+            } catch (AssignmentNotFoundException e) {
+                skippedCount++;
+                logger.fine(() -> "Skipped " + person.getName() + " (already does not have this assignment)");
+            }
+        }
+        return new int[]{successCount, skippedCount};
+    }
+
+    /**
+     * Throws AssignmentNotFoundException if no new assignments were added.
+     *
+     * @param successCount Number of successful assignments unassigned.
+     * @throws AssignmentNotFoundException if no new assignments were unassigned.
+     */
+    private void handleNoAssignments(int successCount) throws AssignmentNotFoundException {
+        if (successCount == 0) {
+            if (target.isSinglePersonTarget()) {
+                throw AssignmentNotFoundException.forStudent();
+            } else {
+                throw AssignmentNotFoundException.forClass(target.getDisplayName(),
+                        assignment.assignmentName.toString()
+                );
+            }
         }
     }
 
@@ -73,15 +130,15 @@ public class UnassignCommand extends Command {
         }
 
         UnassignCommand otherUnassignCommand = (UnassignCommand) other;
-        return toUnassign.equals(otherUnassignCommand.toUnassign)
-                && unassignee.equals(otherUnassignCommand.unassignee);
+        return assignment.equals(otherUnassignCommand.assignment)
+                && target.equals(otherUnassignCommand.target);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toUnassign", toUnassign)
-                .add("unassignee", unassignee)
+                .add("assignment", assignment)
+                .add("target", target)
                 .toString();
     }
 }

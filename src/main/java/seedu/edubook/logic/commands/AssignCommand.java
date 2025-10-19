@@ -72,7 +72,7 @@ public class AssignCommand extends Command {
         handleNoAssignments(successCount);
 
         // Generate success message
-        String message = target.getAssignmentSuccessMessage(assignment.assignmentName.toString(),
+        String message = target.getAssignSuccessMessage(assignment.assignmentName.toString(),
                 successCount, skippedCount);
 
         logger.info("AssignCommand completed: " + message);
@@ -102,7 +102,6 @@ public class AssignCommand extends Command {
                 logger.fine(() -> "Skipped " + person.getName() + " (already has assignment)");
             }
         }
-
         return new int[]{successCount, skippedCount};
     }
 
@@ -123,7 +122,6 @@ public class AssignCommand extends Command {
             }
         }
     }
-
 
     @Override
     public boolean equals(Object other) {
