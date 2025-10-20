@@ -194,6 +194,19 @@ Examples:
 * `unassign a/Homework n/Bob` unassigns `Homework` from `Bob`
 * `unassign a/Tutorial 1 n/John Doe` unassigns `Tutorial 1` from `John Doe`
 
+### Unassigning an assignment from a class : `assign`
+
+Unassigns a particular assignment from all students in the specified class.
+
+Format: `unassign a/ASSIGNMENT_NAME c/CLASS`
+
+* Unassigns assignment, `ASSIGNMENT_NAME`, from every student in class, `CLASS`.
+* Students who already do not have the assignment are skipped.
+
+Examples:
+* `unassign a/Homework c/Class 1-A` unassigns `Homework` from all students in `Class 1-A`, skipping any student who already does not have it.
+* `unassign a/Tutorial 1 c/Tutorial Group 2` unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping any student who already does not have it.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
