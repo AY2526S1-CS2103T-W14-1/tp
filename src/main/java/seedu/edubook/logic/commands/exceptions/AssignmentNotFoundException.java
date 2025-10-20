@@ -10,7 +10,7 @@ package seedu.edubook.logic.commands.exceptions;
 public class AssignmentNotFoundException extends CommandException {
 
     /** Message indicating the assignment is not found for the student. */
-    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This student does not have "
+    public static final String MESSAGE_STUDENT_ALREADY_UNASSIGNED = "This student does not have "
             + "this assignment currently. ";
 
     /** Message indicating the assignment is not found for the whole class. */
@@ -27,21 +27,21 @@ public class AssignmentNotFoundException extends CommandException {
 
     /**
      * Creates an {@code AssignmentNotFoundException} instance for the case where
-     * the target is a single student who already has the specified assignment.
+     * the target is a single student who currently does not have the specified assignment.
      *
-     * @return An {@code AssignmentAlreadyExistsException} with a predefined message.
+     * @return An {@code AssignmentNotFoundException} with a predefined message.
      */
     public static AssignmentNotFoundException forStudent() {
-        return new AssignmentNotFoundException(MESSAGE_ASSIGNMENT_NOT_FOUND);
+        return new AssignmentNotFoundException(MESSAGE_STUDENT_ALREADY_UNASSIGNED);
     }
 
     /**
-     * Creates an {@code AssignmentAlreadyExistsException} instance for the case where
+     * Creates an {@code AssignmentNotFoundException} instance for the case where
      * all students in a specified class already have the assignment.
      *
      * @param className The name of the class where all students have the assignment.
      * @param assignmentName The name of the assignment that is already assigned.
-     * @return An {@code AssignmentAlreadyExistsException} with a formatted message.
+     * @return An {@code AssignmentNotFoundException} with a formatted message.
      */
     public static AssignmentNotFoundException forClass(String className, String assignmentName) {
         return new AssignmentNotFoundException(
