@@ -32,7 +32,7 @@ public class UnassignCommand extends Command {
             + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
             + PREFIX_PERSON_NAME + "John Doe";
 
-    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(UnassignCommand.class);
 
     private final Assignment assignment;
     private final Target target;
