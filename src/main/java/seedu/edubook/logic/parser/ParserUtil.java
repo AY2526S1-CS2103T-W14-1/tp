@@ -10,6 +10,7 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
@@ -80,6 +81,21 @@ public class ParserUtil {
         }
 
         return new AssignmentName(trimmedName);
+    }
+
+    /**
+     * Parses {@code Collection<String> assignments} into a {@code Set<Assignment>}.
+     * @param assignments
+     * @return
+     * @throws ParseException
+     */
+    public static Set<Assignment> parseAssignments(Collection<String> assignments) throws ParseException {
+        requireNonNull(assignments);
+        final Set<Assignment> assignmentSet = new HashSet<>();
+        for (String assignmentName : assignments) {
+            assignmentSet.add(new Assignment(parseAssignmentName(assignmentName)));
+        }
+        return assignmentSet;
     }
 
     /**

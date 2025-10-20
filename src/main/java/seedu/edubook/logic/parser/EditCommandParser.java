@@ -7,6 +7,7 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,6 +18,7 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.commands.EditCommand;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -33,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_CLASS, PREFIX_TAG);
+                        PREFIX_EMAIL, PREFIX_CLASS, PREFIX_TAG, PREFIX_ASSIGNMENT_NAME);
 
         Index index;
 
@@ -60,6 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setTuitionClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseAssignmentsForEdit(argMultimap.getAllValues(PREFIX_ASSIGNMENT_NAME)).ifPresent(editPersonDescriptor::setAssignments);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -81,6 +84,25 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> assignments} into a {@code Set<Assignment>} if {@code assignments} is non-empty.
+     * If {@code assignments} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Assignment>} containing zero assignments.
+     * @param assignments
+     * @return
+     * @throws ParseException
+     */
+    private Optional<Set<Assignment>> parseAssignmentsForEdit(Collection<String> assignments) throws ParseException {
+        assert assignments != null;
+
+        if (assignments.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> assignmentSet = assignments.size() == 1 && assignments.contains("")
+                ? Collections.emptySet() : assignments;
+        return Optional.of(ParserUtil.parseAssignments(assignmentSet));
     }
 
 }

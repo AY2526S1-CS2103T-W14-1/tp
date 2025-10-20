@@ -1,11 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.edubook.logic.parser.CliSyntax.*;
 import static seedu.edubook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,6 +17,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -44,7 +41,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLASS + "CLASS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -101,8 +99,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         TuitionClass updatedClass = editPersonDescriptor.getTuitionClass().orElse(personToEdit.getTuitionClass());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Assignment> updatedAssignments = editPersonDescriptor.getAssignments().orElse(personToEdit.getAssignments());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedClass, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedClass, updatedTags, updatedAssignments);
     }
 
     @Override
@@ -139,6 +138,7 @@ public class EditCommand extends Command {
         private Email email;
         private TuitionClass tuitionClass;
         private Set<Tag> tags;
+        private Set<Assignment> assignments;
 
         public EditPersonDescriptor() {}
 
@@ -152,13 +152,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setTuitionClass(toCopy.tuitionClass);
             setTags(toCopy.tags);
+            setAssignments(toCopy.assignments);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tuitionClass, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tuitionClass, tags, assignments);
         }
 
         public void setName(PersonName name) {
@@ -210,6 +211,24 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code assignments} to this object's {@code assignments}.
+         * A defensive copy of {@code assignments} is used internally.
+         * @param assignments
+         */
+        public void setAssignments(Set<Assignment> assignments) {
+            this.assignments = (assignments != null) ? new HashSet<>(assignments) : null;
+        }
+
+        /**
+         * Returns an unmodifiable assignment set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.         *
+         * @return
+         */
+        public Optional<Set<Assignment>> getAssignments() {
+            return (assignments != null) ? Optional.of(Collections.unmodifiableSet(assignments)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -226,7 +245,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(tuitionClass, otherEditPersonDescriptor.tuitionClass)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(assignments, otherEditPersonDescriptor.assignments);
         }
 
         @Override
@@ -237,6 +257,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("class", tuitionClass)
                     .add("tags", tags)
+                    .add("assignments", assignments)
                     .toString();
         }
     }

@@ -1,7 +1,8 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.*;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import java.util.stream.Stream;
 
@@ -31,6 +32,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 return new DeleteCommand(index);
             }
 
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PERSON_NAME);
             PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
             return new DeleteCommand(name);
         } catch (ParseException pe) {
