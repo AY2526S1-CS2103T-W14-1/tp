@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TASK;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_TWO_TO_MARK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_ONE_TO_MARK;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_TWO_TO_MARK;
 
 import org.junit.jupiter.api.Test;
 
