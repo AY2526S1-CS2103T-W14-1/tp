@@ -2,12 +2,12 @@ package seedu.edubook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -62,7 +62,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setTuitionClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseAssignmentsForEdit(argMultimap.getAllValues(PREFIX_ASSIGNMENT_NAME)).ifPresent(editPersonDescriptor::setAssignments);
+        parseAssignmentsForEdit(argMultimap.getAllValues(PREFIX_ASSIGNMENT_NAME))
+                .ifPresent(editPersonDescriptor::setAssignments);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

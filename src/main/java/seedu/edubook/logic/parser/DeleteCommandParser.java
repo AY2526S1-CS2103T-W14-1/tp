@@ -1,8 +1,8 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.parser.CliSyntax.*;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+
 
 import java.util.stream.Stream;
 
