@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.ModelManager;
-import seedu.edubook.model.assign.AssignTarget;
-import seedu.edubook.model.assign.NameAssignTarget;
+import seedu.edubook.model.assign.NameTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
@@ -51,7 +51,7 @@ public class UnassignCommandTest {
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(NameAssignTarget.MESSAGE_UNASSIGN_SUCCESS,
+        assertEquals(String.format(NameTarget.MESSAGE_UNASSIGN_SUCCESS,
                         ASSIGNMENT_HOMEWORK.assignmentName, BENSON.getName()),
                 result.getFeedbackToUser()
         );
@@ -64,18 +64,18 @@ public class UnassignCommandTest {
         UnassignCommand command = new UnassignCommand(missingAssignment, NAME_TARGET_AMY);
 
         AssignmentNotFoundException e = assertThrows(AssignmentNotFoundException.class, () -> command.execute(model));
-        assertEquals(AssignmentNotFoundException.MESSAGE_ASSIGNMENT_NOT_FOUND, e.getMessage());
+        assertEquals(AssignmentNotFoundException.MESSAGE_STUDENT_ALREADY_UNASSIGNED, e.getMessage());
     }
 
     @Test
     public void execute_nonExistentPerson_throwsCommandException() {
         ModelStub model = new ModelStub();
         PersonName unassignee = new PersonName("Nonexistent");
-        AssignTarget target = new NameAssignTarget(unassignee);
+        Target target = new NameTarget(unassignee);
         UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(String.format(NameAssignTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
+        assertEquals(String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }
 
     @Test

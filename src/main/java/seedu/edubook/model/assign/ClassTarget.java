@@ -10,7 +10,7 @@ import seedu.edubook.model.person.TuitionClass;
 /**
  * Represents a target that assigns an assignment to all students in a class.
  */
-public class ClassAssignTarget implements AssignTarget {
+public class ClassTarget implements Target {
 
     /** Error message when no students are found in the class. */
     public static final String MESSAGE_NO_STUDENTS_FOUND = "No students found in class: '%s'.";
@@ -29,7 +29,7 @@ public class ClassAssignTarget implements AssignTarget {
      *
      * @param tuitionClass The class whose students will be assigned.
      */
-    public ClassAssignTarget(TuitionClass tuitionClass) {
+    public ClassTarget(TuitionClass tuitionClass) {
         this.tuitionClass = tuitionClass;
     }
 
@@ -67,10 +67,10 @@ public class ClassAssignTarget implements AssignTarget {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof ClassAssignTarget)) {
+        if (!(other instanceof ClassTarget)) {
             return false;
         }
-        ClassAssignTarget otherTarget = (ClassAssignTarget) other;
+        ClassTarget otherTarget = (ClassTarget) other;
         return tuitionClass.equals(otherTarget.tuitionClass);
     }
 

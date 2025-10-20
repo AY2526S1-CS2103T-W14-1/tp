@@ -8,9 +8,9 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import seedu.edubook.logic.commands.AssignCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assign.AssignTarget;
-import seedu.edubook.model.assign.ClassAssignTarget;
-import seedu.edubook.model.assign.NameAssignTarget;
+import seedu.edubook.model.assign.ClassTarget;
+import seedu.edubook.model.assign.NameTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
@@ -40,7 +40,7 @@ public class AssignCommandParser implements Parser<AssignCommand> {
                 .parseAssignmentName(argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
         Assignment assignment = new Assignment(assignmentName);
 
-        AssignTarget target = parseAssignTarget(argMultimap);
+        Target target = parseAssignTarget(argMultimap);
 
         return new AssignCommand(assignment, target);
     }
@@ -83,7 +83,7 @@ public class AssignCommandParser implements Parser<AssignCommand> {
      * @return An {@code AssignTarget} representing the assignment target.
      * @throws ParseException If parsing of the target fails.
      */
-    private static AssignTarget parseAssignTarget(ArgumentMultimap argMultimap) throws ParseException {
+    private static Target parseAssignTarget(ArgumentMultimap argMultimap) throws ParseException {
         boolean hasNamePrefix = argMultimap.getValue(PREFIX_PERSON_NAME).isPresent();
         boolean hasClassPrefix = argMultimap.getValue(PREFIX_CLASS).isPresent();
 
@@ -92,10 +92,10 @@ public class AssignCommandParser implements Parser<AssignCommand> {
 
         if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
             PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
-            return new NameAssignTarget(personName);
+            return new NameTarget(personName);
         } else {
             TuitionClass tuitionClass = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
-            return new ClassAssignTarget(tuitionClass);
+            return new ClassTarget(tuitionClass);
         }
     }
 

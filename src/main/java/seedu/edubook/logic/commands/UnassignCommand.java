@@ -12,7 +12,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.assign.AssignTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 
@@ -35,12 +35,12 @@ public class UnassignCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     private final Assignment assignment;
-    private final AssignTarget target;
+    private final Target target;
 
     /**
      * Creates an UnassignCommand to unassign the specified {@code Assignment}.
      */
-    public UnassignCommand(Assignment assignment, AssignTarget target) {
+    public UnassignCommand(Assignment assignment, Target target) {
         requireNonNull(target);
         requireNonNull(assignment);
         this.target = target;

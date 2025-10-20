@@ -13,7 +13,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.assign.AssignTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 
@@ -41,7 +41,7 @@ public class AssignCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     private final Assignment assignment;
-    private final AssignTarget target;
+    private final Target target;
 
     /**
      * Creates an AssignCommand for a given assignment and target.
@@ -49,7 +49,7 @@ public class AssignCommand extends Command {
      * @param assignment The assignment to assign.
      * @param target The target to assign to (single student or class).
      */
-    public AssignCommand(Assignment assignment, AssignTarget target) {
+    public AssignCommand(Assignment assignment, Target target) {
         requireNonNull(assignment);
         requireNonNull(target);
         this.assignment = assignment;

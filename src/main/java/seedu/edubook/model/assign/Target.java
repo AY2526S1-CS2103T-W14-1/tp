@@ -11,7 +11,7 @@ import seedu.edubook.model.person.Person;
  * <p>
  * Implementations define how the target is resolved (e.g., by name, by class, by tag).
  */
-public interface AssignTarget {
+public interface Target {
 
     /**
      * Returns a list of persons that this target represents.

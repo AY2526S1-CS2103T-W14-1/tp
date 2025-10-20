@@ -34,8 +34,8 @@ import seedu.edubook.logic.commands.ListCommand;
 import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assign.AssignTarget;
-import seedu.edubook.model.assign.NameAssignTarget;
+import seedu.edubook.model.assign.NameTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
@@ -61,12 +61,12 @@ public class AddressBookParserTest {
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_HOMEWORK);
         Assignment assignment = new Assignment(assignmentName);
         PersonName personName = ParserUtil.parsePersonName(VALID_NAME_AMY);
-        AssignTarget nameAssignTarget = new NameAssignTarget(personName);
+        Target nameTarget = new NameTarget(personName);
 
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY);
 
-        assertEquals(new AssignCommand(assignment, nameAssignTarget), command);
+        assertEquals(new AssignCommand(assignment, nameTarget), command);
     }
 
     @Test
@@ -74,12 +74,12 @@ public class AddressBookParserTest {
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_TUTORIAL);
         Assignment assignment = new Assignment(assignmentName);
         PersonName personName = ParserUtil.parsePersonName(VALID_NAME_BOB);
-        AssignTarget nameAssignTarget = new NameAssignTarget(personName);
+        Target nameTarget = new NameTarget(personName);
 
         UnassignCommand command = (UnassignCommand) parser.parseCommand(
                 UnassignCommand.COMMAND_WORD + ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_BOB);
 
-        assertEquals(new UnassignCommand(assignment, nameAssignTarget), command);
+        assertEquals(new UnassignCommand(assignment, nameTarget), command);
     }
 
     @Test

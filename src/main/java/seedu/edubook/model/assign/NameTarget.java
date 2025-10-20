@@ -11,7 +11,7 @@ import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 /**
  * Represents a target that assigns an assignment to a single student by name.
  */
-public class NameAssignTarget implements AssignTarget {
+public class NameTarget implements Target {
 
     /** Error message when the student cannot be found in the model. */
     public static final String MESSAGE_PERSON_NOT_FOUND = "Student '%s' not found.";
@@ -29,7 +29,7 @@ public class NameAssignTarget implements AssignTarget {
      *
      * @param name The name of the student to assign to.
      */
-    public NameAssignTarget(PersonName name) {
+    public NameTarget(PersonName name) {
         this.name = name;
     }
 
@@ -68,10 +68,10 @@ public class NameAssignTarget implements AssignTarget {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof NameAssignTarget)) {
+        if (!(other instanceof NameTarget)) {
             return false;
         }
-        NameAssignTarget otherTarget = (NameAssignTarget) other;
+        NameTarget otherTarget = (NameTarget) other;
         return name.equals(otherTarget.name);
     }
 
