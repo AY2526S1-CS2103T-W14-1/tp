@@ -1,12 +1,14 @@
 package seedu.edubook.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -83,11 +85,18 @@ public interface Model {
      * {@code target} must exist in the address book.
      *
      * @param target Name of person to be found.
-     * @param errorMessage Error message to be thrown if {@code target} cannot be found.
      * @return Person object corresponding to {@code target}
      * @throws PersonNotFoundException if {@code target} cannot be found.
      */
-    Person findPersonByName(PersonName target, String errorMessage) throws PersonNotFoundException;
+    Person findPersonByName(PersonName target) throws PersonNotFoundException;
+
+    /**
+     * Finds all persons belonging to the specified class.
+     *
+     * @param tuitionClass the class to filter by.
+     * @return a list of persons in the specified class.
+     */
+    List<Person> findPersonsByClass(TuitionClass tuitionClass);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
