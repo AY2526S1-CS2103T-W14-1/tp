@@ -17,8 +17,6 @@ import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
-
-
 /**
  * Marks the assignment of a student as completed.
  */

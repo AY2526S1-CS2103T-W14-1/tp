@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TASK;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIALTWO_TO_MARK;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_TO_MARK;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_TWO_TO_MARK;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_ONE_TO_MARK;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,14 +35,14 @@ public class AssignmentTest {
 
     @Test
     public void unmarkedAssignment_markedSuccessfully() throws AssignmentMarkedException {
-        ASSIGNMENT_TUTORIAL_TO_MARK.mark();
-        assertTrue(ASSIGNMENT_TUTORIAL_TO_MARK.isDone());
+        ASSIGNMENT_TUTORIAL_ONE_TO_MARK.mark();
+        assertTrue(ASSIGNMENT_TUTORIAL_ONE_TO_MARK.isDone());
     }
 
     @Test
     public void markedAssignment_throwsExceptionWhenMarked() throws AssignmentMarkedException {
-        ASSIGNMENT_TUTORIALTWO_TO_MARK.mark();
-        assertThrows(AssignmentMarkedException.class, ASSIGNMENT_TUTORIALTWO_TO_MARK::mark);
+        ASSIGNMENT_TUTORIAL_TWO_TO_MARK.mark();
+        assertThrows(AssignmentMarkedException.class, ASSIGNMENT_TUTORIAL_TWO_TO_MARK::mark);
     }
 
     @Test

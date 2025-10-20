@@ -15,6 +15,6 @@ public class TypicalAssignments {
 
     public static final Assignment ASSIGNMENT_HOMEWORK_TO_MARK = new Assignment(new AssignmentName("Homework 2"));
     public static final Assignment ASSIGNMENT_LAB_TO_MARK = new Assignment(new AssignmentName("Lab 2"));
-    public static final Assignment ASSIGNMENT_TUTORIAL_TO_MARK = new Assignment(new AssignmentName("Tutorial 1"));
-    public static final Assignment ASSIGNMENT_TUTORIALTWO_TO_MARK = new Assignment(new AssignmentName("Tutorial 2"));
+    public static final Assignment ASSIGNMENT_TUTORIAL_ONE_TO_MARK = new Assignment(new AssignmentName("Tutorial 1"));
+    public static final Assignment ASSIGNMENT_TUTORIAL_TWO_TO_MARK = new Assignment(new AssignmentName("Tutorial 2"));
 }
