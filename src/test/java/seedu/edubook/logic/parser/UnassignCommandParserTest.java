@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.UnassignCommand;
+import seedu.edubook.model.assign.NameAssignTarget;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 
@@ -47,7 +48,7 @@ class UnassignCommandParserTest {
     public void parse_validArgs_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new UnassignCommand(ASSIGNMENT_HOMEWORK, AMY.getName()));
+                new UnassignCommand(ASSIGNMENT_HOMEWORK, new NameAssignTarget(AMY.getName())));
     }
 
     @Test
