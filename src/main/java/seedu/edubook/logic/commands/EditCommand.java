@@ -1,7 +1,12 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.*;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edubook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
