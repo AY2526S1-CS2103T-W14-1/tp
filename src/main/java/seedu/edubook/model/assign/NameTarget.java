@@ -82,6 +82,6 @@ public class NameTarget implements Target {
 
     @Override
     public String toString() {
-        return "NameAssignTarget{name=" + name.fullName + "}";
+        return "NameTarget{name=" + name.fullName + "}";
     }
 }

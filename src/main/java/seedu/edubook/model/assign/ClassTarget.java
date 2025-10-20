@@ -81,6 +81,6 @@ public class ClassTarget implements Target {
 
     @Override
     public String toString() {
-        return "ClassAssignTarget{tuitionClass=" + tuitionClass + "}";
+        return "ClassTarget{tuitionClass=" + tuitionClass + "}";
     }
 }
