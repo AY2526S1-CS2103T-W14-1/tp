@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
+import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
+import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.AssignmentName;
@@ -34,7 +36,6 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Assignment: %1$s has been marked for: %2$s. ";
 
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
-    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "Assignment does not exist for this student ";
 
     private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 
@@ -58,6 +59,8 @@ public class MarkCommand extends Command {
         try {
             logger.info("Attempting to mark assignment: " + assignmentName);
             Person student = model.findPersonByName(this.student, MESSAGE_STUDENT_NOT_FOUND);
+
+            // throws AssignmentNotFoundException and AssignmentMarkedException, both are subtype of CommandException
             student.markAssignment(this.assignmentName);
 
             model.setPerson(student, student); //triggers rendering of UI
@@ -69,6 +72,10 @@ public class MarkCommand extends Command {
             logger.info("Marking failed, exception thrown:" + MESSAGE_STUDENT_NOT_FOUND);
 
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
+        } catch (AssignmentMarkedException | AssignmentNotFoundException e) {
+            logger.info("Marking failed, exception thrown:" + e.getMessage());
+
+            throw new CommandException(e.getMessage());
         }
     }
 

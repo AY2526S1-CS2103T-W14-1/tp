@@ -2,12 +2,16 @@ package seedu.edubook.model.assignment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.testutil.Assert.assertThrows;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TASK;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIALTWO_TO_MARK;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_TO_MARK;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
 import seedu.edubook.model.tag.Tag;
 
 public class AssignmentTest {
@@ -27,6 +31,18 @@ public class AssignmentTest {
     public void constructor_validAssignmentName_storesName() {
         AssignmentName name = new AssignmentName("Task 1");
         assertEquals(name, ASSIGNMENT_TASK.assignmentName);
+    }
+
+    @Test
+    public void unmarkedAssignment_markedSuccessfully() throws AssignmentMarkedException {
+        ASSIGNMENT_TUTORIAL_TO_MARK.mark();
+        assertTrue(ASSIGNMENT_TUTORIAL_TO_MARK.isDone());
+    }
+
+    @Test
+    public void markedAssignment_throwsExceptionWhenMarked() throws AssignmentMarkedException {
+        ASSIGNMENT_TUTORIALTWO_TO_MARK.mark();
+        assertThrows(AssignmentMarkedException.class, ASSIGNMENT_TUTORIALTWO_TO_MARK::mark);
     }
 
     @Test
