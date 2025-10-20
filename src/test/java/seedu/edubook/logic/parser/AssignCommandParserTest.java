@@ -21,8 +21,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.AssignCommand;
+import seedu.edubook.model.assign.ClassAssignTarget;
+import seedu.edubook.model.assign.NameAssignTarget;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.TuitionClass;
 
 
 public class AssignCommandParserTest {
@@ -33,6 +37,9 @@ public class AssignCommandParserTest {
 
     private static final String DUPLICATE_PERSON_PREFIX_MESSAGE =
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PERSON_NAME);
+
+    private static final String DUPLICATE_CLASS_PREFIX_MESSAGE =
+            Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_CLASS);
 
     private static final String DUPLICATE_BOTH_PREFIXES_MESSAGE =
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
@@ -45,10 +52,21 @@ public class AssignCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_success() {
+    public void parse_personPrefix_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new AssignCommand(ASSIGNMENT_HOMEWORK, AMY.getName()));
+                new AssignCommand(ASSIGNMENT_HOMEWORK, new NameAssignTarget(AMY.getName())));
+    }
+
+    @Test
+    public void parse_classPrefix_success() {
+        String input = " a/Homework 2 c/A";
+        TuitionClass tuitionClass = new TuitionClass("A");
+        AssignCommand expectedCommand = new AssignCommand(
+                new Assignment(new AssignmentName("Homework 2")),
+                new ClassAssignTarget(tuitionClass)
+        );
+        assertParseSuccess(parser, input, expectedCommand);
     }
 
     @Test
@@ -59,10 +77,17 @@ public class AssignCommandParserTest {
     }
 
     @Test
-    public void parse_missingPersonPrefix_failure() {
-        // Missing person prefix
+    public void parse_missingTargetPrefix_failure() {
+        // Missing both person and class prefixes
         assertParseFailure(parser, ASSIGNMENT_DESC_HOMEWORK,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_allPrefixesPresent_failure() {
+        String input = " a/Homework 2 n/Amy c/A";
+        assertParseFailure(parser, input,
+                "Specify only n/NAME or c/CLASS, not both.");
     }
 
     @Test
@@ -75,6 +100,12 @@ public class AssignCommandParserTest {
     public void parse_duplicatePersonPrefix_failure() {
         String input = PREAMBLE_WHITESPACE + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY + NAME_DESC_BOB;
         assertParseFailure(parser, input, DUPLICATE_PERSON_PREFIX_MESSAGE);
+    }
+
+    @Test
+    public void parse_duplicateClassPrefix_failure() {
+        String input = " a/Homework 2 c/A c/B";
+        assertParseFailure(parser, input, DUPLICATE_CLASS_PREFIX_MESSAGE);
     }
 
     @Test
@@ -96,6 +127,12 @@ public class AssignCommandParserTest {
         // Invalid person name
         assertParseFailure(parser, ASSIGNMENT_DESC_HOMEWORK + INVALID_NAME_DESC,
                 PersonName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidClass_failure() {
+        String input = " a/Homework 2 c/";
+        assertParseFailure(parser, input, TuitionClass.MESSAGE_CONSTRAINTS);
     }
 
     @Test

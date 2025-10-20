@@ -36,6 +36,7 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Assignment: %1$s has been marked for: %2$s. ";
 
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
+    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "Assignment does not exist for this student ";
 
     private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 
