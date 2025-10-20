@@ -37,8 +37,8 @@ public class MarkingCommandParserUtil {
 
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(
                 argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
-        PersonName student = ParserUtil.parsePersonName(
 
+        PersonName student = ParserUtil.parsePersonName(
                 argMultimap.getValue(PREFIX_PERSON_NAME).get());
 
         return new ParsedPacket(assignmentName, student);
