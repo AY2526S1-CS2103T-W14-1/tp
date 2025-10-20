@@ -17,16 +17,12 @@ import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
-import static seedu.edubook.testutil.TypicalPersons.AMY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.AssignCommand;
-import seedu.edubook.model.assign.ClassAssignTarget;
-import seedu.edubook.model.assign.NameAssignTarget;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;

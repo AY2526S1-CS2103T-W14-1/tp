@@ -5,9 +5,6 @@ import static seedu.edubook.testutil.TypicalPersons.BENSON;
 
 import seedu.edubook.model.assign.AssignTarget;
 import seedu.edubook.model.assign.ClassAssignTarget;
-import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.person.TuitionClass;
 
 /**
  * A utility class containing a list of ClassAssignTarget objects to be used in tests.

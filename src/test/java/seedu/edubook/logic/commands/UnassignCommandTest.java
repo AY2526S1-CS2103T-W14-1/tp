@@ -9,9 +9,7 @@ import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_BENSON;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_CARL;
-import static seedu.edubook.testutil.TypicalPersons.ALICE;
 import static seedu.edubook.testutil.TypicalPersons.BENSON;
-import static seedu.edubook.testutil.TypicalPersons.HOON;
 
 import java.util.HashSet;
 import java.util.Set;
