@@ -176,11 +176,11 @@ Assigns a particular assignment to all students in the specified class.
 Format: `assign a/ASSIGNMENT_NAME c/CLASS`
 
 * Assigns assignment, `ASSIGNMENT_NAME`, to every student in class, `CLASS`.
-* Students who already have the assignment are skipped.
+* Students who currently have the assignment are skipped.
 
 Examples:
-* `assign a/Homework c/Class 1-A` assigns `Homework` to all students in `Class 1-A`, skipping any student who already has it.
-* `assign a/Tutorial 1 c/Tutorial Group 2` assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping any student who already has it.
+* `assign a/Homework c/Class 1-A` assigns `Homework` to all students in `Class 1-A`, skipping any student who currently has it.
+* `assign a/Tutorial 1 c/Tutorial Group 2` assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping any student who currently has it.
 
 ### Unassigning an assignment from a student : `unassign`
 
@@ -193,6 +193,20 @@ Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 Examples:
 * `unassign a/Homework n/Bob` unassigns `Homework` from `Bob`
 * `unassign a/Tutorial 1 n/John Doe` unassigns `Tutorial 1` from `John Doe`
+
+### Unassigning an assignment from a class : `unassign`
+
+Unassigns a particular assignment from all students in the specified class.
+
+Format: `unassign a/ASSIGNMENT_NAME c/CLASS`
+
+* Unassigns assignment, `ASSIGNMENT_NAME`, from every student in class, `CLASS`.
+* Students who currently do not have the assignment are skipped.
+
+Examples:
+* `unassign a/Homework c/Class 1-A` unassigns `Homework` from all students in `Class 1-A`, skipping any student who currently does not have it.
+* `unassign a/Tutorial 1 c/Tutorial Group 2` unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping any student who currently does not have it.
+
 
 ### Clearing all entries : `clear`
 
@@ -263,4 +277,3 @@ _Details coming soon ..._
 | **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                    | `unassign a/Tutorial 1 n/John Doe`                                                 |
 | **Clear**    | `clear`                                                                | `clear`                                                                            |
 | **Exit**     | `exit`                                                                 | `exit`                                                                             |
-
