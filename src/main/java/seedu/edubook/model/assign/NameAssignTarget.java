@@ -35,12 +35,11 @@ public class NameAssignTarget implements AssignTarget {
 
     @Override
     public List<Person> getPersons(Model model) throws CommandException {
-        Person person = null;
         try {
-            person = model.findPersonByName(name);
+            Person person = model.findPersonByName(name);
             return List.of(person);
         } catch (PersonNotFoundException e) {
-            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, person));
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
         }
     }
 

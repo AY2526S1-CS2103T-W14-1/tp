@@ -74,11 +74,12 @@ public class AddressBookParserTest {
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_TUTORIAL);
         Assignment assignment = new Assignment(assignmentName);
         PersonName personName = ParserUtil.parsePersonName(VALID_NAME_BOB);
+        AssignTarget nameAssignTarget = new NameAssignTarget(personName);
 
         UnassignCommand command = (UnassignCommand) parser.parseCommand(
                 UnassignCommand.COMMAND_WORD + ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_BOB);
 
-        assertEquals(new UnassignCommand(assignment, personName), command);
+        assertEquals(new UnassignCommand(assignment, nameAssignTarget), command);
     }
 
     @Test

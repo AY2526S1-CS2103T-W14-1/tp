@@ -128,7 +128,7 @@ public class AssignCommandTest {
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(NameAssignTarget.MESSAGE_PERSON_NOT_FOUND, e.getMessage());
+        assertEquals(String.format(NameAssignTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }
 
     @Test
