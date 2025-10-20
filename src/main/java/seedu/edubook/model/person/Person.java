@@ -134,7 +134,7 @@ public class Person {
         requireNonNull(assignment);
 
         if (!this.hasAssignment(assignment)) {
-            throw new AssignmentNotFoundException();
+            throw AssignmentNotFoundException.forStudent();
         }
 
         Set<Assignment> newAssignments = new HashSet<>(this.assignments);
@@ -182,7 +182,7 @@ public class Person {
                 return;
             }
         }
-        throw new AssignmentNotFoundException();
+        throw AssignmentNotFoundException.forStudent();
     }
 
     /**

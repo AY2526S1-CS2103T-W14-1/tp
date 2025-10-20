@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.ModelManager;
-import seedu.edubook.model.assign.AssignTarget;
-import seedu.edubook.model.assign.ClassAssignTarget;
-import seedu.edubook.model.assign.NameAssignTarget;
+import seedu.edubook.model.assign.ClassTarget;
+import seedu.edubook.model.assign.NameTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
@@ -39,7 +39,7 @@ public class AssignCommandTest {
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignCommand(null,
-                new NameAssignTarget(HOON.getName())));
+                new NameTarget(HOON.getName())));
     }
 
     @Test
@@ -50,12 +50,12 @@ public class AssignCommandTest {
     @Test
     public void execute_nameTarget_success() throws CommandException {
         ModelStub model = new ModelStub();
-        AssignTarget target = new NameAssignTarget(ALICE.getName());
+        Target target = new NameTarget(ALICE.getName());
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = target.getAssignmentSuccessMessage(
+        String expectedMessage = target.getAssignSuccessMessage(
                 ASSIGNMENT_HOMEWORK.assignmentName.toString(), 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
@@ -65,12 +65,12 @@ public class AssignCommandTest {
     public void execute_classTargetSingleStudent_success() throws CommandException {
         ModelStub model = new ModelStub();
         TuitionClass tuitionClass = new TuitionClass(VALID_CLASS_AMY);
-        AssignTarget target = new ClassAssignTarget(tuitionClass);
+        Target target = new ClassTarget(tuitionClass);
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = target.getAssignmentSuccessMessage(
+        String expectedMessage = target.getAssignSuccessMessage(
                 ASSIGNMENT_HOMEWORK.assignmentName.toString(), 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
@@ -80,13 +80,13 @@ public class AssignCommandTest {
     public void execute_classTargetMultipleStudents_successAndSkip() throws CommandException {
         ModelStubMultipleStudents model = new ModelStubMultipleStudents();
         TuitionClass tuitionClass = new TuitionClass("W14");
-        AssignTarget target = new ClassAssignTarget(tuitionClass);
+        Target target = new ClassTarget(tuitionClass);
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandResult result = command.execute(model);
 
         // 3 students: 2 skipped (already have assignment), 1 success
-        String expectedMessage = target.getAssignmentSuccessMessage(VALID_ASSIGNMENT_HOMEWORK, 1, 2);
+        String expectedMessage = target.getAssignSuccessMessage(VALID_ASSIGNMENT_HOMEWORK, 1, 2);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
@@ -95,7 +95,7 @@ public class AssignCommandTest {
     public void execute_classTargetAllStudentsSkipped_throwsAssignmentAlreadyExistsException() {
         ModelStubAllStudentsSkipped model = new ModelStubAllStudentsSkipped();
         TuitionClass tuitionClass = new TuitionClass("FullClass");
-        AssignTarget target = new ClassAssignTarget(tuitionClass);
+        Target target = new ClassTarget(tuitionClass);
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         AssignmentAlreadyExistsException e = assertThrows(
@@ -112,7 +112,7 @@ public class AssignCommandTest {
     public void execute_duplicateAssignment_throwsAssignmentAlreadyExistsException() {
         ModelStub model = new ModelStub();
         Assignment duplicateAssignment = new Assignment(new AssignmentName("Duplicate"));
-        AssignTarget target = new NameAssignTarget(ALICE.getName());
+        Target target = new NameTarget(ALICE.getName());
         AssignCommand command = new AssignCommand(duplicateAssignment, target);
 
         AssignmentAlreadyExistsException e = assertThrows(
@@ -124,22 +124,22 @@ public class AssignCommandTest {
     public void execute_nonExistentPerson_throwsCommandException() {
         ModelStub model = new ModelStub();
         PersonName assignee = new PersonName("Nonexistent");
-        AssignTarget target = new NameAssignTarget(assignee);
+        Target target = new NameTarget(assignee);
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(NameAssignTarget.MESSAGE_PERSON_NOT_FOUND, e.getMessage());
+        assertEquals(String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }
 
     @Test
     public void execute_emptyClass_throwsCommandException() {
         ModelStub model = new ModelStubEmptyClass();
         TuitionClass emptyClass = new TuitionClass("EmptyClass");
-        AssignTarget target = new ClassAssignTarget(emptyClass);
+        Target target = new ClassTarget(emptyClass);
         AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, target);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(String.format(ClassAssignTarget.MESSAGE_NO_STUDENTS_FOUND, emptyClass), e.getMessage());
+        assertEquals(String.format(ClassTarget.MESSAGE_NO_STUDENTS_FOUND, emptyClass), e.getMessage());
     }
 
     @Test
@@ -147,18 +147,18 @@ public class AssignCommandTest {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
         AssignCommand assignHomeworkToAliceCommand = new AssignCommand(ASSIGNMENT_HOMEWORK,
-                new NameAssignTarget(alice.getName()));
+                new NameTarget(alice.getName()));
         AssignCommand assignHomeworkToBobCommand = new AssignCommand(ASSIGNMENT_HOMEWORK,
-                new NameAssignTarget(bob.getName()));
+                new NameTarget(bob.getName()));
         AssignCommand assignLabToAliceCommand = new AssignCommand(ASSIGNMENT_LAB,
-                new NameAssignTarget(alice.getName()));
+                new NameTarget(alice.getName()));
 
         // same object -> true
         assertEquals(assignHomeworkToAliceCommand, assignHomeworkToAliceCommand);
 
         // same assignment and same person name -> true
         AssignCommand assignHomeworkToAliceCommandCopy = new AssignCommand(ASSIGNMENT_HOMEWORK,
-                new NameAssignTarget(alice.getName()));
+                new NameTarget(alice.getName()));
         assertEquals(assignHomeworkToAliceCommand, assignHomeworkToAliceCommandCopy);
 
         // different types -> false
@@ -180,13 +180,13 @@ public class AssignCommandTest {
         TuitionClass classB = new TuitionClass("B");
 
         AssignCommand assignHomeworkToClassA = new AssignCommand(ASSIGNMENT_HOMEWORK,
-                new ClassAssignTarget(classA));
+                new ClassTarget(classA));
         AssignCommand assignHomeworkToClassACopy = new AssignCommand(ASSIGNMENT_HOMEWORK,
-                new ClassAssignTarget(classA));
+                new ClassTarget(classA));
         AssignCommand assignHomeworkToClassB = new AssignCommand(ASSIGNMENT_HOMEWORK,
-                new ClassAssignTarget(classB));
+                new ClassTarget(classB));
         AssignCommand assignLabToClassA = new AssignCommand(ASSIGNMENT_LAB,
-                new ClassAssignTarget(classA));
+                new ClassTarget(classA));
 
         // same object -> true
         assertEquals(assignHomeworkToClassA, assignHomeworkToClassA);
@@ -209,7 +209,7 @@ public class AssignCommandTest {
 
     @Test
     public void toString_nameAssignTarget() {
-        AssignCommand assignCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, new NameAssignTarget(HOON.getName()));
+        AssignCommand assignCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, new NameTarget(HOON.getName()));
 
         String str = assignCommand.toString();
 
@@ -222,7 +222,7 @@ public class AssignCommandTest {
     @Test
     public void toString_classAssignTarget() {
         TuitionClass tuitionClass = new TuitionClass("Class A");
-        AssignCommand assignCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, new ClassAssignTarget(tuitionClass));
+        AssignCommand assignCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, new ClassTarget(tuitionClass));
 
         String str = assignCommand.toString();
 
