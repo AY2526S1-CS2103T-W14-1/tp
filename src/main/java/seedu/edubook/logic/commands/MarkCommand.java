@@ -58,7 +58,7 @@ public class MarkCommand extends Command {
 
         try {
             logger.info("Attempting to mark assignment: " + assignmentName);
-            Person student = model.findPersonByName(this.student, MESSAGE_STUDENT_NOT_FOUND);
+            Person student = model.findPersonByName(this.student);
 
             // throws AssignmentNotFoundException and AssignmentMarkedException, both are subtype of CommandException
             student.markAssignment(this.assignmentName);
