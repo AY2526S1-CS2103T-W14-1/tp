@@ -1,6 +1,8 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
 import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -11,8 +13,6 @@ import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
-import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
 import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -44,7 +44,6 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.EditCommand;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
@@ -97,7 +96,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_CLASS_DESC, TuitionClass.MESSAGE_CONSTRAINTS); // invalid class
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, "1" + INVALID_ASSIGNMENT_DESC, AssignmentName.MESSAGE_CONSTRAINTS); // invalid assignment
+        assertParseFailure(parser,
+                "1" + INVALID_ASSIGNMENT_DESC, AssignmentName.MESSAGE_CONSTRAINTS); // invalid assignment
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);

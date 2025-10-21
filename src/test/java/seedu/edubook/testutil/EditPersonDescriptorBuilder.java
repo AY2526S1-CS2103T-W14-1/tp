@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
@@ -12,7 +13,7 @@ import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
-import seedu.edubook.model.assignment.Assignment;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
