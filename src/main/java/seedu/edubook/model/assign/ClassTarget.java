@@ -10,14 +10,17 @@ import seedu.edubook.model.person.TuitionClass;
 /**
  * Represents a target that assigns an assignment to all students in a class.
  */
-public class ClassAssignTarget implements AssignTarget {
+public class ClassTarget implements Target {
 
     /** Error message when no students are found in the class. */
-    public static final String MESSAGE_NO_STUDENTS_FOUND = "No students found in class: %s.";
+    public static final String MESSAGE_NO_STUDENTS_FOUND = "No students found in class: '%s'.";
 
     /** Template for success message when assignment is assigned to a class. */
-    public static final String MESSAGE_ASSIGNMENT_SUCCESS =
-            "New assignment %s assigned to class: %s (%d assigned, %d skipped)";
+    public static final String MESSAGE_ASSIGN_SUCCESS =
+            "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped)";
+
+    public static final String MESSAGE_UNASSIGN_SUCCESS =
+            "New assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped)";
 
     private final TuitionClass tuitionClass;
 
@@ -26,7 +29,7 @@ public class ClassAssignTarget implements AssignTarget {
      *
      * @param tuitionClass The class whose students will be assigned.
      */
-    public ClassAssignTarget(TuitionClass tuitionClass) {
+    public ClassTarget(TuitionClass tuitionClass) {
         this.tuitionClass = tuitionClass;
     }
 
@@ -50,8 +53,13 @@ public class ClassAssignTarget implements AssignTarget {
     }
 
     @Override
-    public String getAssignmentSuccessMessage(String assignmentName, int successCount, int skippedCount) {
-        return String.format(MESSAGE_ASSIGNMENT_SUCCESS, assignmentName, getDisplayName(), successCount, skippedCount);
+    public String getAssignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
+        return String.format(MESSAGE_ASSIGN_SUCCESS, assignmentName, getDisplayName(), successCount, skippedCount);
+    }
+
+    @Override
+    public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
+        return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName(), successCount, skippedCount);
     }
 
     @Override
@@ -59,10 +67,10 @@ public class ClassAssignTarget implements AssignTarget {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof ClassAssignTarget)) {
+        if (!(other instanceof ClassTarget)) {
             return false;
         }
-        ClassAssignTarget otherTarget = (ClassAssignTarget) other;
+        ClassTarget otherTarget = (ClassTarget) other;
         return tuitionClass.equals(otherTarget.tuitionClass);
     }
 
@@ -76,4 +84,3 @@ public class ClassAssignTarget implements AssignTarget {
         return "ClassAssignTarget{tuitionClass=" + tuitionClass + "}";
     }
 }
-

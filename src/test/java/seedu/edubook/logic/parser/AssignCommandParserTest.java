@@ -3,6 +3,7 @@ package seedu.edubook.logic.parser;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
+import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -14,16 +15,14 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
-import static seedu.edubook.testutil.TypicalPersons.AMY;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.AssignCommand;
-import seedu.edubook.model.assign.ClassAssignTarget;
-import seedu.edubook.model.assign.NameAssignTarget;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
@@ -55,18 +54,14 @@ public class AssignCommandParserTest {
     public void parse_personPrefix_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new AssignCommand(ASSIGNMENT_HOMEWORK, new NameAssignTarget(AMY.getName())));
+                new AssignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_AMY));
     }
 
     @Test
     public void parse_classPrefix_success() {
-        String input = " a/Homework 2 c/A";
-        TuitionClass tuitionClass = new TuitionClass("A");
-        AssignCommand expectedCommand = new AssignCommand(
-                new Assignment(new AssignmentName("Homework 2")),
-                new ClassAssignTarget(tuitionClass)
-        );
-        assertParseSuccess(parser, input, expectedCommand);
+        assertParseSuccess(parser,
+                ASSIGNMENT_DESC_HOMEWORK + CLASS_DESC_AMY,
+                new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY));
     }
 
     @Test
