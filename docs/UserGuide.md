@@ -263,4 +263,3 @@ _Details coming soon ..._
 | **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                    | `unassign a/Tutorial 1 n/John Doe`                                                 |
 | **Clear**    | `clear`                                                                | `clear`                                                                            |
 | **Exit**     | `exit`                                                                 | `exit`                                                                             |
-
