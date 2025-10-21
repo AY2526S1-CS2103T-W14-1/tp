@@ -228,8 +228,8 @@ public class EditCommand extends Command {
 
         /**
          * Returns an unmodifiable assignment set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.         *
-         * @return
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code assignments} is null.
          */
         public Optional<Set<Assignment>> getAssignments() {
             return (assignments != null) ? Optional.of(Collections.unmodifiableSet(assignments)) : Optional.empty();

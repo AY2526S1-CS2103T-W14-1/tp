@@ -85,9 +85,6 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> assignments} into a {@code Set<Assignment>}.
-     * @param assignments
-     * @return
-     * @throws ParseException
      */
     public static Set<Assignment> parseAssignments(Collection<String> assignments) throws ParseException {
         requireNonNull(assignments);

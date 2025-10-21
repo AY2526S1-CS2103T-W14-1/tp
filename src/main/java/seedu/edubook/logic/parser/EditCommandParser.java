@@ -91,9 +91,6 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Parses {@code Collection<String> assignments} into a {@code Set<Assignment>} if {@code assignments} is non-empty.
      * If {@code assignments} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Assignment>} containing zero assignments.
-     * @param assignments
-     * @return
-     * @throws ParseException
      */
     private Optional<Set<Assignment>> parseAssignmentsForEdit(Collection<String> assignments) throws ParseException {
         assert assignments != null;
