@@ -12,7 +12,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed on your Computer.<br>
+1. Ensure you have Java `17` or above installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
@@ -66,14 +66,14 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 #### Formatting rules for parameters:
 
-| Field      | Max Length | Format / Constraints                                                                                                                                                                                 |
-|------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name       | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                            |
+| Field      | Max Length | Format / Constraints                                                                                                                                                                                                                            |
+|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
 | Email      | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                  |
-| Class      | 20         | Any value, should not be blank                                                                                                                                                                       |
-| Assignment | 100        | Alphanumeric letters and spaces only; should not be blank                                                                                                                                            |
-| Tag        | none       | Alphanumeric letters                                                                                                                                                                                 | 
+| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             |
+| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                    |
+| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
+| Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            | 
 
 ### Viewing help : `help`
 
@@ -162,11 +162,13 @@ Examples:
 
 ### Assigning an assignment to a student : `assign`
 
-Assigns a particular assignment to the specified student.
+Assigns an assignment to the specified student.
 
 Format: `assign a/ASSIGNMENT_NAME n/NAME`
 
-* Assigns assignment, `ASSIGNMENT_NAME`, to student with name, `NAME`.
+* Assigns assignment, `ASSIGNMENT_NAME`, to the student named `NAME`.
+* The student must exist in EduBook.
+* The specified student must not already have the assignment.
 
 Examples:
 * `assign a/Homework n/Bob` assigns `Homework` to `Bob`
@@ -174,12 +176,14 @@ Examples:
 
 ### Assigning an assignment to a class : `assign`
 
-Assigns a particular assignment to all students in the specified class.
+Assigns an assignment to all students in the specified class.
 
 Format: `assign a/ASSIGNMENT_NAME c/CLASS`
 
 * Assigns assignment, `ASSIGNMENT_NAME`, to every student in class, `CLASS`.
 * Students who already have the assignment are skipped.
+* The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
+* At least one student in the specified class must not currently have the assignment.
 
 Examples:
 * `assign a/Homework c/Class 1-A` assigns `Homework` to all students in `Class 1-A`, skipping any student who already has it.
@@ -187,11 +191,13 @@ Examples:
 
 ### Unassigning an assignment from a student : `unassign`
 
-Unassigns a particular assignment from the specified student.
+Unassigns an assignment from the specified student.
 
 Format: `unassign a/ASSIGNMENT_NAME n/NAME`
 
-* Unassigns assignment, `ASSIGNMENT_NAME`, from student with name, `NAME`.
+* Unassigns assignment, `ASSIGNMENT_NAME`, from the student named `NAME`.
+* The student must exist in EduBook.
+* The specified assignment must exist for the specified student.
 
 Examples:
 * `unassign a/Homework n/Bob` unassigns `Homework` from `Bob`
@@ -199,12 +205,14 @@ Examples:
 
 ### Unassigning an assignment from a class : `unassign`
 
-Unassigns a particular assignment from all students in the specified class.
+Unassigns an assignment from all students in the specified class.
 
 Format: `unassign a/ASSIGNMENT_NAME c/CLASS`
 
 * Unassigns assignment, `ASSIGNMENT_NAME`, from every student in class, `CLASS`.
-* Students who already do not have the assignment are skipped.
+* Students who do not have the assignment are skipped.
+* The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
+* At least one student in the specified class must currently have the assignment.
 
 Examples:
 * `unassign a/Homework c/Class 1-A` unassigns `Homework` from all students in `Class 1-A`, skipping any student who already does not have it.
@@ -212,13 +220,14 @@ Examples:
 
 ### Marking a student's assignment: `mark`
 
-Marks a particular assignment of a specified student as completed.
+Marks an assignment of a specified student as completed.
 
 Format: `mark a/ASSIGNMENT_NAME n/NAME`
 
+* Marks assignment, `ASSIGNMENT_NAME`, of student named, `NAME`, as completed.
 * The student must exist in EduBook.
 * The specified assignment must exist for the specified student.
-* The specified assignment should not already be marked.
+* The specified assignment must not already be marked.
 
 Examples:
 * `mark a/Tutorial 1 n/John Doe` marks `Tutorial 1` of `John Doe` as completed.
