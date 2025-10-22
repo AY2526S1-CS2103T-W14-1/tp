@@ -78,6 +78,10 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 | Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
 | Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            | 
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+For identification purposes, all names (student or assignment) and classes are case-sensitive.
+</div>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -167,7 +171,6 @@ Format: `delete {INDEX | n/NAME}`
 
 * The index refers to the index number shown in the **current view**.
 * The index must be a **positive integer** 1, 2, 3, …​
-* The name is **case-sensitive** and must match exactly.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
