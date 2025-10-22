@@ -75,6 +75,10 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 | Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
 | Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            | 
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+For identification purposes, all names (student or assignment) and classes are case-sensitive.
+</div>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
