@@ -305,16 +305,16 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| Action       | Format                                                                              | Example                                                                            |
-|--------------|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                              | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                               | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                              | `list`                                                                             |
+| Action       | Format                                                                          | Example                                                                            |
+|--------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                          | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                           | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                          | `list`                                                                             |
 | **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view {n/NAME \| c/CLASS}`                                                          | `view n/James Lee`, `view c/Class-B`                                               |
-| **Delete**   | `delete {INDEX \| n/NAME}`                                                          | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                      | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                    | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
-| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                     | `mark a/Tutorial 1 n/John Doe`                                                     |
-| **Clear**    | `clear`                                                                             | `clear`                                                                            |
-| **Exit**     | `exit`                                                                              | `exit`                                                                             |
+| **View**     | `view {n/NAME | c/CLASS}`                                                          | `view n/James Lee`, `view c/Class-B`                                               |
+| **Delete**   | `delete {INDEX | n/NAME}`                                                         | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
+| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                 | `mark a/Tutorial 1 n/John Doe`                                                     |
+| **Clear**    | `clear`                                                                         | `clear`                                                                            |
+| **Exit**     | `exit`                                                                          | `exit`                                                                             |
