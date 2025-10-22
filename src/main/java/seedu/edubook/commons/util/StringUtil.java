@@ -74,7 +74,7 @@ public class StringUtil {
      */
     public static boolean isValidLength(String test, int maxLength) {
         requireNonNull(test);
-        assert maxLength >= 0;
+        assert maxLength >= 0 : "max length can't be negative";
         return test.length() <= maxLength;
     }
 }

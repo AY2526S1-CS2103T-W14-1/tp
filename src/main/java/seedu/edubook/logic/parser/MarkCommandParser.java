@@ -20,9 +20,9 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         MarkingCommandParserUtil.ParsedPacket data =
                 MarkingCommandParserUtil.parseAssignmentAndPerson(args, MarkCommand.MESSAGE_USAGE);
 
-        assert data != null;
-        assert data.assignmentName != null;
-        assert data.student != null;
+        assert data != null : "data should not be null";
+        assert data.assignmentName != null : "data should contain assignmentName";
+        assert data.student != null : "data should contain student";
 
         return new MarkCommand(data.assignmentName, data.student);
     }
