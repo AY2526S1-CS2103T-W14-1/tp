@@ -1,5 +1,7 @@
 package seedu.edubook.model.assign;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import seedu.edubook.logic.commands.exceptions.CommandException;
@@ -17,10 +19,10 @@ public class ClassTarget implements Target {
 
     /** Template for success message when assignment is assigned to a class. */
     public static final String MESSAGE_ASSIGN_SUCCESS =
-            "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped)";
+            "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped).";
 
     public static final String MESSAGE_UNASSIGN_SUCCESS =
-            "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped)";
+            "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped).";
 
     private final TuitionClass tuitionClass;
 
@@ -30,12 +32,16 @@ public class ClassTarget implements Target {
      * @param tuitionClass The class whose students will be assigned.
      */
     public ClassTarget(TuitionClass tuitionClass) {
+        requireNonNull(tuitionClass);
         this.tuitionClass = tuitionClass;
     }
 
     @Override
     public List<Person> getPersons(Model model) throws CommandException {
+        assert model != null : "Model cannot be null.";
+
         List<Person> persons = model.findPersonsByClass(tuitionClass);
+        assert persons != null : "Returned list of persons should not be null.";
         if (persons.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_NO_STUDENTS_FOUND, tuitionClass));
         }

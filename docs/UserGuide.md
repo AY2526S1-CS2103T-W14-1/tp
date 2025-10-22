@@ -12,27 +12,27 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure you have Java `17` or above installed on your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EduBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all students.
 
    * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A` : Adds a student named `John Doe` to EduBook.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd student shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all students.
 
    * `exit` : Exits the app.
 
@@ -108,9 +108,9 @@ Format: `list`
 
 ### Editing a student : `edit`
 
-Edits an existing student in the address book.
+Edits an existing student in EduBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS [t/TAG] [a/ASSIGNMENT]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -143,7 +143,7 @@ Examples:
 
 ### Deleting a student : `delete`
 
-Deletes the specified student from Edubook.
+Deletes the specified student from EduBook.
 
 Format 1 (by index): `delete INDEX` 
 
@@ -157,7 +157,7 @@ Format 2 (by name): `delete n/NAME`
 * The name is **case-sensitive** and must match exactly.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `list` followed by `delete 2` deletes the 2nd student in EduBook.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 
@@ -219,14 +219,14 @@ Format: `mark a/ASSIGNMENT_NAME n/NAME`
 
 * The student must exist in EduBook.
 * The specified assignment must exist for the specified student.
-* The specified assignment should not be already marked.
+* The specified assignment should not already be marked.
 
 Examples:
 * `mark a/Tutorial 1 n/John Doe` marks `Tutorial 1` of `John Doe` as completed.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from EduBook.
 
 Format: `clear`
 
@@ -238,11 +238,11 @@ Format: `exit`
 
 ### Saving the data
 
-EduBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EduBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-EduBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EduBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
 See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
@@ -282,18 +282,16 @@ _Details coming soon ..._
 ## Command summary
 
 
-| Action       | Format                                                                   | Example                                                                            |
-|--------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                   | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                    | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                   | `list`                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [a/ASSIGNMENT]…​`   | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view n/NAME`                                                            | `view n/James Lee`                                                                 |
-| **Delete**   | `delete INDEX`, `delete n/NAME`                                          | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS` | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
-| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                       | `mark a/Tutorial 1 n/John Doe`                                                     |
-| **Clear**    | `clear`                                                                  | `clear`                                                                            |
-| **Exit**     | `exit`                                                                   | `exit`                                                                             |
-
-
+| Action       | Format                                                                                    | Example                                                                            |
+|--------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                                    | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                                  | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                                    | `list`                                                                             |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`    | `edit 2 n/James Lee e/jameslee@example.com`                                        |
+| **View**     | `view n/NAME`                                                                             | `view n/James Lee`                                                                 |
+| **Delete**   | `delete INDEX`, `delete n/NAME`                                                           | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`                     | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS`                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
+| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                           | `mark a/Tutorial 1 n/John Doe`                                                     |
+| **Clear**    | `clear`                                                                                   | `clear`                                                                            |
+| **Exit**     | `exit`                                                                                    | `exit`                                                                             |
