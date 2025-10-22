@@ -6,6 +6,7 @@ import static seedu.edubook.testutil.TypicalPersons.CARL;
 
 import seedu.edubook.model.assign.NameTarget;
 import seedu.edubook.model.assign.Target;
+import seedu.edubook.model.person.PersonName;
 
 /**
  * A utility class containing a list of NameAssignTarget objects to be used in tests.
@@ -14,4 +15,5 @@ public class TypicalNameTargets {
     public static final Target NAME_TARGET_AMY = new NameTarget(AMY.getName());
     public static final Target NAME_TARGET_BENSON = new NameTarget(BENSON.getName());
     public static final Target NAME_TARGET_CARL = new NameTarget(CARL.getName());
+    public static final Target NAME_TARGET_NONEXISTENT = new NameTarget(new PersonName("Nonexistent"));
 }

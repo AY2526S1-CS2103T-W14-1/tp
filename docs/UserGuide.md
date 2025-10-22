@@ -196,6 +196,19 @@ Examples:
 * `unassign a/Homework n/Bob` unassigns `Homework` from `Bob`
 * `unassign a/Tutorial 1 n/John Doe` unassigns `Tutorial 1` from `John Doe`
 
+### Unassigning an assignment from a class : `unassign`
+
+Unassigns a particular assignment from all students in the specified class.
+
+Format: `unassign a/ASSIGNMENT_NAME c/CLASS`
+
+* Unassigns assignment, `ASSIGNMENT_NAME`, from every student in class, `CLASS`.
+* Students who already do not have the assignment are skipped.
+
+Examples:
+* `unassign a/Homework c/Class 1-A` unassigns `Homework` from all students in `Class 1-A`, skipping any student who already does not have it.
+* `unassign a/Tutorial 1 c/Tutorial Group 2` unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping any student who already does not have it.
+
 ### Marking a student's assignment: `mark`
 
 Marks a particular assignment of a specified student as completed.
@@ -266,17 +279,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format                                                                | Example                                                                            |
-|--------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                 | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                | `list`                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​`  | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view n/NAME`                                                         | `view n/James Lee`                                                                 |
-| **Delete**   | `delete INDEX`, `delete n/NAME`                                       | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS` | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`                                   | `unassign a/Tutorial 1 n/John Doe`                                                 |
+| Action       | Format                                                                   | Example                                                                            |
+|--------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                   | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                    | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                   | `list`                                                                             |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`   | `edit 2 n/James Lee e/jameslee@example.com`                                        |
+| **View**     | `view n/NAME`                                                            | `view n/James Lee`                                                                 |
+| **Delete**   | `delete INDEX`, `delete n/NAME`                                          | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS` | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
 | **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                       | `mark a/Tutorial 1 n/John Doe`                                                     |
-| **Clear**    | `clear`                                                               | `clear`                                                                            |
-| **Exit**     | `exit`                                                                | `exit`                                                                             |
+| **Clear**    | `clear`                                                                  | `clear`                                                                            |
+| **Exit**     | `exit`                                                                   | `exit`                                                                             |
 
