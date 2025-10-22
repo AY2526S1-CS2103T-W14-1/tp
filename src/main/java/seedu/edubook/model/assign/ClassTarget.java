@@ -20,7 +20,7 @@ public class ClassTarget implements Target {
             "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped)";
 
     public static final String MESSAGE_UNASSIGN_SUCCESS =
-            "New assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped)";
+            "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped)";
 
     private final TuitionClass tuitionClass;
 
@@ -81,6 +81,6 @@ public class ClassTarget implements Target {
 
     @Override
     public String toString() {
-        return "ClassAssignTarget{tuitionClass=" + tuitionClass + "}";
+        return "ClassTarget{tuitionClass=" + tuitionClass + "}";
     }
 }
