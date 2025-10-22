@@ -157,7 +157,6 @@ Format: `delete {INDEX | n/NAME}`
 
 * The index refers to the index number shown in the **current view**.
 * The index must be a **positive integer** 1, 2, 3, …​
-* The name is **case-sensitive** and must match exactly.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
