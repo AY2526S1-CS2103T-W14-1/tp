@@ -90,7 +90,9 @@ Adds a student to EduBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+* All inputs must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
 A student can have any number of tags (including 0)
 </div>
 
@@ -108,7 +110,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -207,6 +209,19 @@ Examples:
 * `unassign a/Homework c/Class 1-A` unassigns `Homework` from all students in `Class 1-A`, skipping any student who already does not have it.
 * `unassign a/Tutorial 1 c/Tutorial Group 2` unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping any student who already does not have it.
 
+### Marking a student's assignment: `mark`
+
+Marks a particular assignment of a specified student as completed.
+
+Format: `mark a/ASSIGNMENT_NAME n/NAME`
+
+* The student must exist in EduBook.
+* The specified assignment must exist for the specified student.
+* The specified assignment should not be already marked.
+
+Examples:
+* `mark a/Tutorial 1 n/John Doe` marks `Tutorial 1` of `John Doe` as completed.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -274,5 +289,7 @@ _Details coming soon ..._
 | **Delete**   | `delete INDEX`, `delete n/NAME`                                          | `delete 3`, `delete n/John Doe`                                                    |
 | **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
 | **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS` | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
+| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                       | `mark a/Tutorial 1 n/John Doe`                                                     |
 | **Clear**    | `clear`                                                                  | `clear`                                                                            |
 | **Exit**     | `exit`                                                                   | `exit`                                                                             |
+
