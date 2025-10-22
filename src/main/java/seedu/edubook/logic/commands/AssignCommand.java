@@ -13,7 +13,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.assign.AssignTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Person;
 
@@ -33,7 +33,8 @@ public class AssignCommand extends Command {
             + PREFIX_CLASS + "CLASS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
-            + PREFIX_PERSON_NAME + "John Doe OR "
+            + PREFIX_PERSON_NAME + "John Doe"
+            + " OR "
             + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_CLASS + "Class 1-B";
@@ -41,7 +42,7 @@ public class AssignCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     private final Assignment assignment;
-    private final AssignTarget target;
+    private final Target target;
 
     /**
      * Creates an AssignCommand for a given assignment and target.
@@ -49,7 +50,7 @@ public class AssignCommand extends Command {
      * @param assignment The assignment to assign.
      * @param target The target to assign to (single student or class).
      */
-    public AssignCommand(Assignment assignment, AssignTarget target) {
+    public AssignCommand(Assignment assignment, Target target) {
         requireNonNull(assignment);
         requireNonNull(target);
         this.assignment = assignment;
@@ -61,19 +62,26 @@ public class AssignCommand extends Command {
         requireNonNull(model);
         logger.info("Executing AssignCommand for target: " + target.getDisplayName());
 
-        List<Person> assignees = target.getPersons(model);
+        List<Person> studentsToAssign = target.getPersons(model);
 
         // Process all assignments and count successes and skips
-        int[] counts = processAssignments(model, assignees);
+        int[] counts = processAssignments(model, studentsToAssign);
+
         assert counts.length == 2 : "processAssignments must return an array of length 2";
+        assert counts[0] >= 0 && counts[1] >= 0 : "success and skip counts must not be negative";
+        assert counts[0] + counts[1] == studentsToAssign.size()
+                : "sum of success and skipped counts must match total students processed";
+
         int successCount = counts[0];
         int skippedCount = counts[1];
 
         handleNoAssignments(successCount);
 
         // Generate success message
-        String message = target.getAssignmentSuccessMessage(assignment.assignmentName.toString(),
+        String message = target.getAssignSuccessMessage(assignment.assignmentName.toString(),
                 successCount, skippedCount);
+
+        assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
         logger.info("AssignCommand completed: " + message);
         return new CommandResult(message);
@@ -102,7 +110,6 @@ public class AssignCommand extends Command {
                 logger.fine(() -> "Skipped " + person.getName() + " (already has assignment)");
             }
         }
-
         return new int[]{successCount, skippedCount};
     }
 
@@ -123,7 +130,6 @@ public class AssignCommand extends Command {
             }
         }
     }
-
 
     @Override
     public boolean equals(Object other) {
