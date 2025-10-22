@@ -53,6 +53,10 @@ public class ClassTarget implements Target {
         return tuitionClass.toString();
     }
 
+    public TuitionClass getTuitionClass() {
+        return this.tuitionClass;
+    }
+
     @Override
     public boolean isSinglePersonTarget() {
         return false;

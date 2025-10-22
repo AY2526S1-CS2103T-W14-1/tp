@@ -51,6 +51,10 @@ public class NameTarget implements Target {
         return name.fullName;
     }
 
+    public PersonName getName() {
+        return this.name;
+    }
+
     @Override
     public boolean isSinglePersonTarget() {
         return true;

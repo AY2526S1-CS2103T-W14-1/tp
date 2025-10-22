@@ -8,6 +8,7 @@ import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.ViewCommand;
+import seedu.edubook.model.assign.NameTarget;
 import seedu.edubook.model.person.PersonName;
 
 public class ViewCommandParserTest {
@@ -23,9 +24,10 @@ public class ViewCommandParserTest {
     @Test
     public void parse_validArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
-        String name = "Alice";
+        PersonName name = new PersonName("Alice");
+        NameTarget target = new NameTarget(name);
         ViewCommand expectedViewCommand =
-                new ViewCommand(new PersonName(name));
+                new ViewCommand(target);
         assertParseSuccess(parser, " " + PREFIX_PERSON_NAME + name, expectedViewCommand);
     }
 }

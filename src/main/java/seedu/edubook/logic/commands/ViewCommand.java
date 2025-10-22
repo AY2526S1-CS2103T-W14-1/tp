@@ -9,6 +9,9 @@ import java.util.function.Predicate;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.assign.ClassTarget;
+import seedu.edubook.model.assign.NameTarget;
+import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
@@ -34,37 +37,30 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_VIEW_CLASS_SUCCESS =
             "Here are the details of all the students in %1$s.";
 
-    private final PersonName name;
-    private final TuitionClass tuitionClass;
+    private final Target target;
 
     /**
-     * Creates a {@code ViewCommand} to view student with specified {@code name}
+     * Creates a {@code ViewCommand} to view student with specified {@code target}
      *
-     * @param name {@code name} of the student to view.
+     * @param target The target to assign to (single student or class).
      */
-    public ViewCommand(PersonName name) {
-        this.name = name;
-        tuitionClass = null;
+    public ViewCommand(Target target) {
+        requireNonNull(target);
+        this.target = target;
     }
 
-    /**
-     * Creates a {@code ViewCommand} to view class with specified {@code tuitionClass}
-     *
-     * @param tuitionClass {@code tuitionClass} of the students to view.
-     */
-    public ViewCommand(TuitionClass tuitionClass) {
-        this.tuitionClass = tuitionClass;
-        this.name = null;
-    }
 
     @Override
     public CommandResult execute(Model model) {
-        if (this.tuitionClass == null) {
-            return viewByName(model);
-        } else {
-            return viewByClass(model);
-        }
+        requireNonNull(model);
 
+        if (target instanceof NameTarget) {
+            NameTarget nameTarget = (NameTarget) target;
+            return viewByName(model, nameTarget);
+        } else {
+            ClassTarget classTarget = (ClassTarget) target;
+            return viewByClass(model, classTarget);
+        }
     }
 
     /**
@@ -73,8 +69,8 @@ public class ViewCommand extends Command {
      * @param model {@code Model} which the ViewCommand should operate on.
      * @return {@code CommandResult} which will output the result of Command.
      */
-    public CommandResult viewByName(Model model) {
-        requireNonNull(model);
+    private CommandResult viewByName(Model model, NameTarget nameTarget) {
+        PersonName name = nameTarget.getName();
         Predicate<Person> predicate = person -> person.getName().equals(name);
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().isEmpty()) {
@@ -91,8 +87,8 @@ public class ViewCommand extends Command {
      * @param model {@code Model} which the ViewCommand should operate on.
      * @return {@code CommandResult} which will output the result of Command.
      */
-    public CommandResult viewByClass(Model model) {
-        requireNonNull(model);
+    private CommandResult viewByClass(Model model, ClassTarget classTarget) {
+        TuitionClass tuitionClass = classTarget.getTuitionClass();
         Predicate<Person> predicate = person -> person.getTuitionClass().equals(tuitionClass);
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().isEmpty()) {
@@ -116,24 +112,13 @@ public class ViewCommand extends Command {
 
         ViewCommand otherViewCommand = (ViewCommand) other;
 
-        // Handle case where both use name
-        if (name != null && otherViewCommand.name != null) {
-            return name.equals(otherViewCommand.name);
-        }
-
-        // Handle case where both use class
-        if (tuitionClass != null && otherViewCommand.tuitionClass != null) {
-            return tuitionClass.equals(otherViewCommand.tuitionClass);
-        }
-
-        // Return false if one uses tuitionClass and one uses name.
-        return false;
+        return target.equals(otherViewCommand.target);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", name)
+                .add("target", target)
                 .toString();
     }
 }
