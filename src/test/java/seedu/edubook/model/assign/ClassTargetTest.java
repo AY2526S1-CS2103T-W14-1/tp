@@ -64,7 +64,7 @@ public class ClassTargetTest {
     public void getUnassignSuccessMessage_formatsCorrectly() {
         String result = CLASS_TARGET_AMY.getUnassignSuccessMessage("Tutorial 1", 2, 0);
 
-        assertEquals("New assignment 'Tutorial 1' unassigned from class: 'Class A' (2 unassigned, 0 skipped)", result);
+        assertEquals("Assignment 'Tutorial 1' unassigned from class: 'Class A' (2 unassigned, 0 skipped)", result);
     }
 
     @Test
