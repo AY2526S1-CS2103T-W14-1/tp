@@ -73,7 +73,11 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 | Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             |
 | Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                    |
 | Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
-| Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            | 
+| Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+For identification purposes, all names (student or assignment) and classes are case-sensitive.
+</div>
 
 ### Viewing help : `help`
 
@@ -82,7 +86,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a student: `add`
 
@@ -132,7 +135,6 @@ Views the information of students whose names contain any of the given keywords.
 Format: `view n/NAME`
 
 * Views the student with the specified `NAME`.
-* The search is case-sensitive. e.g. `hans` will not match `Hans`.
 * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
 * The full name is required for search to be successful. e.g. `Hans` will not return `Hans Bo`.
 * Only the name is searched.
@@ -154,7 +156,6 @@ Format 1 (by index): `delete INDEX`
 Format 2 (by name): `delete n/NAME`
 
 * Deletes the student with the exact name `NAME`
-* The name is **case-sensitive** and must match exactly.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in EduBook.
