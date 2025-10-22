@@ -127,19 +127,33 @@ Examples:
 
 ### Viewing a student's information: `view`
 
-Views the information of students whose names contain any of the given keywords.
+Displays the information of a student with the specified name.
 
 Format: `view n/NAME`
 
-* Views the student with the specified `NAME`.
+* Displays the student with the specified `NAME`.
 * The search is case-sensitive. e.g. `hans` will not match `Hans`.
 * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
 * The full name is required for search to be successful. e.g. `Hans` will not return `Hans Bo`.
-* Only the name is searched.
 
 Examples:
 * `view n/John` returns `John`
 * `view n/alex david` returns `alex david`
+
+### Viewing the information of students in a class: `view`
+
+Displays the information of all students with the specified class.
+
+Format: `view c/CLASS`
+
+* Displays all students with the specified `CLASS`.
+* The search is case-sensitive. e.g. `w14` will not match `W14`.
+* The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
+* The full name is required for search to be successful. e.g. `W14` will not return `Class W14`.
+
+Examples:
+* `view c/Class B` displays all the students in `Class B`
+* `view c/W14` displays all the students in `W14`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To restore full view, use the `list` command.
@@ -298,17 +312,17 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 ## Command summary
 
 
-| Action       | Format                                                                                    | Example                                                                            |
-|--------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                                    | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                                  | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                                    | `list`                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`    | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view n/NAME`                                                                             | `view n/James Lee`                                                                 |
-| **Delete**   | `delete INDEX`, `delete n/NAME`                                                           | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`                     | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS`                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
-| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                           | `mark a/Tutorial 1 n/John Doe`                                                     |
-| **Clear**    | `clear`                                                                                   | `clear`                                                                            |
-| **Exit**     | `exit`                                                                                    | `exit`                                                                             |
+| Action       | Format                                                                              | Example                                                                            |
+|--------------|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                              | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                               | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                              | `list`                                                                             |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
+| **View**     | `view n/NAME`, `view c/CLASS`                                                        | `view n/James Lee`, `view c/Class-B`                                                 |
+| **Delete**   | `delete INDEX`, `delete n/NAME`                                                     | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`               | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS`           | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
+| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                     | `mark a/Tutorial 1 n/John Doe`                                                     |
+| **Clear**    | `clear`                                                                             | `clear`                                                                            |
+| **Exit**     | `exit`                                                                              | `exit`                                                                             |
 
