@@ -110,7 +110,7 @@ Format: `list`
 
 Edits an existing student in EduBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE NUMBER] [e/EMAIL] [c/CLASS [t/TAG] [a/ASSIGNMENT]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -219,7 +219,7 @@ Format: `mark a/ASSIGNMENT_NAME n/NAME`
 
 * The student must exist in EduBook.
 * The specified assignment must exist for the specified student.
-* The specified assignment should not be already marked.
+* The specified assignment should not already be marked.
 
 Examples:
 * `mark a/Tutorial 1 n/John Doe` marks `Tutorial 1` of `John Doe` as completed.
@@ -264,7 +264,7 @@ Only edit the data file if you are confident that you can update it correctly.
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-x
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -295,5 +295,3 @@ x
 | **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                       | `mark a/Tutorial 1 n/John Doe`                                                     |
 | **Clear**    | `clear`                                                                  | `clear`                                                                            |
 | **Exit**     | `exit`                                                                   | `exit`                                                                             |
-
-
