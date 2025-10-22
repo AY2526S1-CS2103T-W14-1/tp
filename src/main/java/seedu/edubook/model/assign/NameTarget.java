@@ -1,5 +1,7 @@
 package seedu.edubook.model.assign;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import seedu.edubook.logic.commands.exceptions.CommandException;
@@ -17,10 +19,10 @@ public class NameTarget implements Target {
     public static final String MESSAGE_PERSON_NOT_FOUND = "Student '%s' not found.";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'";
+    public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'.";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'";
+    public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'.";
 
     private final PersonName name;
 
@@ -30,6 +32,7 @@ public class NameTarget implements Target {
      * @param name The name of the student to assign to.
      */
     public NameTarget(PersonName name) {
+        requireNonNull(name);
         this.name = name;
     }
 
