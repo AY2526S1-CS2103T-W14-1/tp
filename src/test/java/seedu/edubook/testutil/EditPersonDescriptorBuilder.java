@@ -5,12 +5,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.tag.Tag;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -78,6 +81,17 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code assignments} into a {@code Set<Assignment>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAssignments(String... assignments) {
+        Set<Assignment> assignmentSet = Stream.of(assignments).map(
+                name -> new Assignment(new AssignmentName(name))).collect(Collectors.toSet());
+        descriptor.setAssignments(assignmentSet);
         return this;
     }
 

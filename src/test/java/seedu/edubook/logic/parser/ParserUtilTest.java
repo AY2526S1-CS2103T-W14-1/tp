@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
@@ -31,7 +32,8 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_ASSIGNMENT = "Homework 1";
+    private static final String VALID_ASSIGNMENT_1 = "Homework 1";
+    private static final String VALID_ASSIGNMENT_2 = "Quiz 1";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_CLASS = "W-14";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -141,15 +143,42 @@ public class ParserUtilTest {
 
     @Test
     public void parseAssignmentName_validValueWithoutWhitespace_returnsAssignmentName() throws Exception {
-        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT);
-        assertEquals(expectedAssignmentName, ParserUtil.parseAssignmentName(VALID_ASSIGNMENT));
+        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT_1);
+        assertEquals(expectedAssignmentName, ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_1));
     }
 
     @Test
     public void parseAssignmentName_validValueWithWhitespace_returnsTrimmedAssignmentName() throws Exception {
-        String assignmentWithWhitespace = WHITESPACE + VALID_ASSIGNMENT + WHITESPACE;
-        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT);
+        String assignmentWithWhitespace = WHITESPACE + VALID_ASSIGNMENT_1 + WHITESPACE;
+        AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT_1);
         assertEquals(expectedAssignmentName, ParserUtil.parseAssignmentName(assignmentWithWhitespace));
+    }
+
+    @Test
+    public void parseAssignments_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAssignments(null));
+    }
+
+    @Test
+    public void parseAssignments_collectionWithInvalidAssignments_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignments(
+                Arrays.asList(VALID_ASSIGNMENT_1, INVALID_ASSIGNMENT)));
+    }
+
+    @Test
+    public void parseAssignments_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAssignments(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseAssignments_collectionWithValidAssignments_returnsTagSet() throws Exception {
+        Set<Assignment> actualAssignmentSet = ParserUtil.parseAssignments(
+                Arrays.asList(VALID_ASSIGNMENT_1, VALID_ASSIGNMENT_2));
+        Set<Assignment> expectedAssignmentSet = new HashSet<Assignment>(
+                Arrays.asList(new Assignment(new AssignmentName(VALID_ASSIGNMENT_1)),
+                              new Assignment(new AssignmentName(VALID_ASSIGNMENT_2))));
+
+        assertEquals(expectedAssignmentSet, actualAssignmentSet);
     }
 
     @Test
