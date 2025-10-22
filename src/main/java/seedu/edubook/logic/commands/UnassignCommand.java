@@ -2,6 +2,7 @@ package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.List;
@@ -24,13 +25,18 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an assignment from a student. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an assignment from a student or class. \n"
             + "Parameters: "
-            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT "
-            + PREFIX_PERSON_NAME + "NAME OF ASSIGNEE\n"
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT ["
+            + PREFIX_PERSON_NAME + "NAME | "
+            + PREFIX_CLASS + "CLASS]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ASSIGNMENT_NAME + "Assignment 1 "
-            + PREFIX_PERSON_NAME + "John Doe";
+            + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
+            + PREFIX_PERSON_NAME + "John Doe"
+            + " OR "
+            + COMMAND_WORD + " "
+            + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
+            + PREFIX_CLASS + "Class 1-B";
 
     private static final Logger logger = LogsCenter.getLogger(UnassignCommand.class);
 

@@ -33,7 +33,8 @@ public class AssignCommand extends Command {
             + PREFIX_CLASS + "CLASS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
-            + PREFIX_PERSON_NAME + "John Doe OR "
+            + PREFIX_PERSON_NAME + "John Doe"
+            + " OR "
             + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_CLASS + "Class 1-B";
