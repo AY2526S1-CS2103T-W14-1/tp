@@ -1,10 +1,13 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
 import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -15,6 +18,8 @@ import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.edubook.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_TUTORIAL;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -22,6 +27,7 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -38,6 +44,7 @@ import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.EditCommand;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
@@ -48,6 +55,7 @@ import seedu.edubook.testutil.EditPersonDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String ASSIGNMENT_EMPTY = " " + PREFIX_ASSIGNMENT_NAME;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -88,6 +96,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_CLASS_DESC, TuitionClass.MESSAGE_CONSTRAINTS); // invalid class
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser,
+                "1" + INVALID_ASSIGNMENT_DESC, AssignmentName.MESSAGE_CONSTRAINTS); // invalid assignment
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -98,6 +108,18 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
+        // while parsing {@code PREFIX_ASSIGNMENT} alone will reset the assignments of the {@code Person} being edited,
+        // parsing it together with a valid assignment results in error
+        assertParseFailure(parser,
+                "1" + ASSIGNMENT_DESC_HOMEWORK + ASSIGNMENT_DESC_TUTORIAL + ASSIGNMENT_EMPTY,
+                AssignmentName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                "1" + ASSIGNMENT_DESC_HOMEWORK + ASSIGNMENT_EMPTY + ASSIGNMENT_DESC_TUTORIAL,
+                AssignmentName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                "1" + ASSIGNMENT_EMPTY + ASSIGNMENT_DESC_HOMEWORK + ASSIGNMENT_DESC_TUTORIAL,
+                AssignmentName.MESSAGE_CONSTRAINTS);
+
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_CLASS_AMY + VALID_PHONE_AMY,
                 PersonName.MESSAGE_CONSTRAINTS);
@@ -106,12 +128,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + CLASS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + ASSIGNMENT_DESC_HOMEWORK
+                + EMAIL_DESC_AMY + CLASS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + ASSIGNMENT_DESC_TUTORIAL;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withClass(VALID_CLASS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withAssignments(VALID_ASSIGNMENT_HOMEWORK,
+                        VALID_ASSIGNMENT_TUTORIAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -161,6 +184,12 @@ public class EditCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // assignments
+        userInput = targetIndex.getOneBased() + ASSIGNMENT_DESC_HOMEWORK;
+        descriptor = new EditPersonDescriptorBuilder().withAssignments(VALID_ASSIGNMENT_HOMEWORK).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -179,10 +208,11 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + CLASS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + CLASS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + CLASS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + TAG_DESC_FRIEND + ASSIGNMENT_DESC_HOMEWORK + PHONE_DESC_AMY + CLASS_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + ASSIGNMENT_DESC_HOMEWORK + PHONE_DESC_BOB + CLASS_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_HUSBAND + ASSIGNMENT_DESC_TUTORIAL;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS));
@@ -201,6 +231,17 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetAssignments_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+        String userInput = targetIndex.getOneBased() + ASSIGNMENT_EMPTY;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAssignments().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
