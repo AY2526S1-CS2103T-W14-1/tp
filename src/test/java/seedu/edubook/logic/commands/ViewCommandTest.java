@@ -3,8 +3,9 @@ package seedu.edubook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.edubook.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.edubook.logic.Messages.MESSAGE_INVALID_NAME;
 import static seedu.edubook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.edubook.logic.commands.ViewCommand.MESSAGE_VIEW_STUDENT_SUCCESS;
 import static seedu.edubook.testutil.TypicalPersons.ALICE;
 import static seedu.edubook.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -52,7 +53,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_noMatchingName_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_INVALID_NAME);
         PersonName name = new PersonName("Jake");
         ViewCommand command = new ViewCommand(name);
         expectedModel.updateFilteredPersonList(preparePredicate(name));
@@ -62,7 +63,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_matchingName_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_VIEW_STUDENT_SUCCESS, "Alice Pauline");
         PersonName name = new PersonName("Alice Pauline");
         ViewCommand command = new ViewCommand(name);
         expectedModel.updateFilteredPersonList(preparePredicate(name));
