@@ -110,7 +110,7 @@ Format: `list`
 
 Edits an existing student in EduBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -242,7 +242,7 @@ EduBook data is saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-EduBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EduBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
 See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
@@ -282,16 +282,16 @@ _Details coming soon ..._
 ## Command summary
 
 
-| Action       | Format                                                                   | Example                                                                            |
-|--------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                   | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                    | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                   | `list`                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`   | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view n/NAME`                                                            | `view n/James Lee`                                                                 |
-| **Delete**   | `delete INDEX`, `delete n/NAME`                                          | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS` | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
-| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                       | `mark a/Tutorial 1 n/John Doe`                                                     |
-| **Clear**    | `clear`                                                                  | `clear`                                                                            |
-| **Exit**     | `exit`                                                                   | `exit`                                                                             |
+| Action       | Format                                                                                    | Example                                                                            |
+|--------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                                    | `help`                                                                             |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                                  | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
+| **List**     | `list`                                                                                    | `list`                                                                             |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`    | `edit 2 n/James Lee e/jameslee@example.com`                                        |
+| **View**     | `view n/NAME`                                                                             | `view n/James Lee`                                                                 |
+| **Delete**   | `delete INDEX`, `delete n/NAME`                                                           | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME n/NAME`, `assign a/ASSIGNMENT_NAME c/CLASS`                     | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME n/NAME`, `unassign a/ASSIGNMENT_NAME c/CLASS`                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
+| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                           | `mark a/Tutorial 1 n/John Doe`                                                     |
+| **Clear**    | `clear`                                                                                   | `clear`                                                                            |
+| **Exit**     | `exit`                                                                                    | `exit`                                                                             |
