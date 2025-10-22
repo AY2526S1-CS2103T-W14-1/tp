@@ -12,7 +12,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure you have Java `17` or above installed on your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
@@ -20,19 +20,19 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 1. Copy the file to the folder you want to use as the _home folder_ for your EduBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all students.
 
    * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A` : Adds a student named `John Doe` to EduBook.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd student shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all students.
 
    * `exit` : Exits the app.
 
@@ -108,7 +108,7 @@ Format: `list`
 
 ### Editing a student : `edit`
 
-Edits an existing student in the address book.
+Edits an existing student in EduBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​`
 
@@ -155,7 +155,7 @@ Format 2 (by name): `delete n/NAME`
 * The name is **case-sensitive** and must match exactly.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `list` followed by `delete 2` deletes the 2nd student in EduBook.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 
@@ -224,7 +224,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from EduBook.
 
 Format: `clear`
 
@@ -262,7 +262,7 @@ Only edit the data file if you are confident that you can update it correctly.
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-
+x
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
