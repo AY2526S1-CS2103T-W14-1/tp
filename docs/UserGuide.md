@@ -139,24 +139,23 @@ Examples:
 * `view n/John` returns `John`
 * `view n/alex david` returns `alex david`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To restore full view, use the `list` command.
+</div>
+
 ### Deleting a student : `delete`
 
-Deletes the specified student from Edubook.
+Deletes the specified student (identified by name or index) from Edubook.
 
-Format 1 (by index): `delete INDEX` 
+Format: `delete {INDEX | n/NAME}` 
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Format 2 (by name): `delete n/NAME`
-
-* Deletes the student with the exact name `NAME`
+* The index refers to the index number shown in the **current view**.
+* The index must be a **positive integer** 1, 2, 3, …​
 * The name is **case-sensitive** and must match exactly.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `view n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `view` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 
 ### Assigning an assignment to a student : `assign`
@@ -253,7 +252,15 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduBook home folder. <br>
+
+**Q**: How do I restore to full view after doing `view`? <br>
+**A**: Use the `list` command to restore full view. <br>
+
+**Q**: How do I restore my data if I accidentally used `clear`? <br>
+**A**: Unfortunately, there is no command to undo the `clear` command. 
+We recommend saving a backup file as a precaution to prevent future incidents.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
