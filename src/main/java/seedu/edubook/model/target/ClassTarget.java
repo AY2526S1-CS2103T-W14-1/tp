@@ -1,4 +1,4 @@
-package seedu.edubook.model.assign;
+package seedu.edubook.model.target;
 
 import static java.util.Objects.requireNonNull;
 
