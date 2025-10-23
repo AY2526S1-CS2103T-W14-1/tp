@@ -4,9 +4,9 @@ import static seedu.edubook.testutil.TypicalPersons.AMY;
 import static seedu.edubook.testutil.TypicalPersons.BENSON;
 import static seedu.edubook.testutil.TypicalPersons.CARL;
 
-import seedu.edubook.model.assign.NameTarget;
-import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.target.NameTarget;
+import seedu.edubook.model.target.Target;
 
 /**
  * A utility class containing a list of NameAssignTarget objects to be used in tests.

@@ -8,13 +8,13 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import seedu.edubook.logic.commands.AssignCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assign.ClassTarget;
-import seedu.edubook.model.assign.NameTarget;
-import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
+import seedu.edubook.model.target.ClassTarget;
+import seedu.edubook.model.target.NameTarget;
+import seedu.edubook.model.target.Target;
 
 /**
  * Parses input arguments and creates a new {@link AssignCommand} object.
