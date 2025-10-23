@@ -16,10 +16,11 @@ Class UniquePersonList
 Class Person
 Class TuitionClass
 Class Email
-Class Name
+Class PersonName
 Class Phone
 Class Tag
 Class Assignment
+Class AssignmentName
 
 Class I #FFFFFF
 }
@@ -38,17 +39,18 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> TuitionClass
+Person *--> "1" PersonName
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" TuitionClass
 Person *--> "*" Tag
 Person *--> "*" Assignment
+Assignment *--> "1" AssignmentName
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
+PersonName -[hidden]right-> Phone
 Phone -[hidden]right-> TuitionClass
 TuitionClass -[hidden]right-> Email
 
