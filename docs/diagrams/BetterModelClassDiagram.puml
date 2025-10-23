@@ -12,13 +12,15 @@ UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueAssignmentList -right-> "*" Assignment
 UniqueTagList -right-> "*" Tag
-UniquePersonList -right-> Person
+UniquePersonList -right-> "*" Person
 
-Person -up-> "*" Tag
-Person -right-> "*" Assignment
+Person *-up-> "*" Tag
+Person *-right-> "*" Assignment
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> TuitionClass
+Person *--> "1" PersonName
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" TuitionClass
+
+Assignment *-right-> "1" AssignmentName
 @enduml
