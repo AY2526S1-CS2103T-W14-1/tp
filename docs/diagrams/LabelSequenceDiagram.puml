@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LabelCommandParser" as LabelCommandParser LOGIC_COLOR
+participant "d:LabelCommand" as LabelCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("label ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("label ...")
+activate AddressBookParser
+
+create LabelCommandParser
+AddressBookParser -> LabelCommandParser
+activate LabelCommandParser
+
+LabelCommandParser --> AddressBookParser
+deactivate LabelCommandParser
+
+AddressBookParser -> LabelCommandParser : parse("[NAME]")
+activate LabelCommandParser
+
+create LabelCommand
+LabelCommandParser -> LabelCommand
+activate LabelCommand
+
+LabelCommand --> LabelCommandParser :
+deactivate LabelCommand
+
+LabelCommandParser --> AddressBookParser : d
+deactivate LabelCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LabelCommandParser -[hidden]-> AddressBookParser
+destroy LabelCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> LabelCommand : execute(m)
+activate LabelCommand
+
+LabelCommand -> Model : labelPerson([NAME])
+activate Model
+
+Model --> LabelCommand
+deactivate Model
+
+create CommandResult
+LabelCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LabelCommand
+deactivate CommandResult
+
+LabelCommand --> LogicManager : r
+deactivate LabelCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

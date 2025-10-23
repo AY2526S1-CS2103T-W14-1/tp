@@ -243,6 +243,38 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Label/Unlabel feature
+
+#### Proposed Implementation
+
+The proposed label/unlabel mechanism is facilitated by `EduBook`. Additionally, it implements the following operations:
+
+* `EduBook#label()` — Adds a label for a person.
+* `Edubook#unlabel()` — Removes a label for a person.
+* `Edubook#edit()` — Edit the contents of a label of a person.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the label/unlabel mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `EduBook` will be initialized with the initial EduBook state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `label n/John Doe l/Late for class` command to label John Doe in the EduBook. 
+
+Step 3. The user executes `unlabel n/John Doe` to remove the label.
+
+The following sequence diagram shows how an label operation goes through the `Logic` component:
+
+![UndoSequenceDiagram](images/LabelSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How label & unlabel executes:**
+
+{TBC}
+
 
 --------------------------------------------------------------------------------------------------------------------
 
