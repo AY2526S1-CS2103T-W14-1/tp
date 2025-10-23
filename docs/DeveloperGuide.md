@@ -265,7 +265,7 @@ Step 2. The user executes `label n/John Doe l/Late for class` command to label J
 
 Step 3. The user executes `unlabel n/John Doe` to remove the label.
 
-The following sequence diagram shows how an label operation goes through the `Logic` component:
+The following sequence diagram shows how a label operation goes through the `Logic` component:
 
 ![UndoSequenceDiagram](images/LabelSequenceDiagram.png)
 
