@@ -25,7 +25,11 @@ class JsonAdaptedLabel {
      * Converts a given {@code Label} into this class for Jackson use.
      */
     public JsonAdaptedLabel(Label source) {
-        this.labelContent = source.labelContent;
+        if (source.isEmpty()) {
+            this.labelContent = "";
+        } else {
+            this.labelContent = source.labelContent;
+        }
     }
 
     public String getLabelContent() {
@@ -38,6 +42,9 @@ class JsonAdaptedLabel {
      * @throws IllegalValueException if there were any data constraints violated in the adapted label.
      */
     public Label toModelType() throws IllegalValueException {
+        if (labelContent == null || labelContent.isBlank()) {
+            return Label.EMPTY;
+        }
         if (!StringUtil.isValidLength(labelContent, Label.MAX_LABEL_LENGTH)) {
             throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
         }

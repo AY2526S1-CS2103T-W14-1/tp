@@ -77,7 +77,7 @@ class JsonAdaptedPerson {
         assignments.addAll(source.getAssignments().stream()
                 .map(JsonAdaptedAssignment::new)
                 .collect(Collectors.toList()));
-        label = source.getLabel().labelContent;
+        label = (source.getLabel().isEmpty()) ? "" : source.getLabel().labelContent;
     }
 
     /**
@@ -140,18 +140,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(TuitionClass.MESSAGE_CONSTRAINTS);
         }
 
-        if (label == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Label.class.getSimpleName()));
-        }
-        if (!StringUtil.isValidLength(label, Label.MAX_LABEL_LENGTH)) {
-            throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
-        }
-        if (!TuitionClass.isValidClass(label)) {
-            throw new IllegalValueException(Label.MESSAGE_CONSTRAINTS);
-        }
-
-        final Label modelLabel = new Label(label);
+        final Label modelLabel = convertLabel(label);
 
         final TuitionClass modelClass = new TuitionClass(tuitionClass);
 
@@ -160,6 +149,24 @@ class JsonAdaptedPerson {
         final Set<Assignment> modelAssignments = new HashSet<>(personAssignments);
 
         return new Person(modelName, modelPhone, modelEmail, modelClass, modelTags, modelAssignments, modelLabel);
+    }
+
+    private Label convertLabel(String label) throws IllegalValueException {
+        if (label.isBlank()) {
+            return Label.EMPTY;
+        }
+        if (label == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Label.class.getSimpleName()));
+        }
+        if (!StringUtil.isValidLength(label, Label.MAX_LABEL_LENGTH)) {
+            throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+        if (!Label.isValidLabel(label)) {
+            throw new IllegalValueException(Label.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Label(label);
     }
 
 }
