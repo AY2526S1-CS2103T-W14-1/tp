@@ -51,6 +51,17 @@ public class ParserUtilTest {
     private static final String VALID_ASSIGNMENT_MAXLENGTH =
             String.join("", java.util.Collections.nCopies(100, "A"));
 
+    private static final String INVALID_CLASS_MAXLENGTH_PLUSONE =
+            String.join("", java.util.Collections.nCopies(20, "t")) + "1";
+    private static final String INVALID_EMAIL_MAXLENGTH_PLUSONE =
+            String.join("", java.util.Collections.nCopies(238, "t")) + "@example.com" + "1";
+    private static final String INVALID_NAME_MAXLENGTH_PLUSONE =
+            String.join("", java.util.Collections.nCopies(100, "t")) + "1";
+    private static final String INVALID_PHONE_MAXLENGTH_PLUSONE =
+            String.join("", java.util.Collections.nCopies(20, "1")) + "1";
+    private static final String INVALID_ASSIGNMENT_MAXLENGTH_PLUSONE =
+            String.join("", java.util.Collections.nCopies(100, "A")) + "1";
+
     private static final String WHITESPACE = " \t\r\n";
 
     private static final String INVALID_CLASS_LENGTH =
@@ -95,8 +106,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePersonName_invalidLength_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_LENGTH));
+    public void parsePersonName_invalidLength_ExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_LENGTH));
     }
 
     @Test
@@ -104,6 +115,11 @@ public class ParserUtilTest {
         PersonName expectedName = new PersonName(VALID_NAME_MAXLENGTH);
         PersonName actualName = ParserUtil.parsePersonName(VALID_NAME_MAXLENGTH);
         assertEquals(expectedName, actualName);
+    }
+
+    @Test
+    public void parsePersonName_maxLengthPlusOne_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_MAXLENGTH_PLUSONE));
     }
 
     @Test
@@ -139,6 +155,12 @@ public class ParserUtilTest {
         AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT_MAXLENGTH);
         AssignmentName actualAssignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_MAXLENGTH);
         assertEquals(expectedAssignmentName, actualAssignmentName);
+    }
+
+    @Test
+    public void parseAssignmentName_maxLengthPlusOne_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class,
+                () -> ParserUtil.parseAssignmentName(INVALID_ASSIGNMENT_MAXLENGTH_PLUSONE));
     }
 
     @Test
@@ -192,8 +214,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_invalidLength_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_LENGTH));
+    public void parsePhone_invalidLength_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_LENGTH));
     }
 
     @Test
@@ -203,6 +225,10 @@ public class ParserUtilTest {
         assertEquals(expectedPhone, actualPhone);
     }
 
+    @Test
+    public void parsePhone_maxLengthPlusOne_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_MAXLENGTH_PLUSONE));
+    }
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
         Phone expectedPhone = new Phone(VALID_PHONE);
@@ -227,8 +253,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseClass_invalidLength_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_LENGTH));
+    public void parseClass_invalidLength_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parseClass(INVALID_CLASS_LENGTH));
     }
 
     @Test
@@ -236,6 +262,11 @@ public class ParserUtilTest {
         TuitionClass expectedClass = new TuitionClass(VALID_CLASS_MAXLENGTH);
         TuitionClass actualClass = ParserUtil.parseClass(VALID_CLASS_MAXLENGTH);
         assertEquals(expectedClass, actualClass);
+    }
+
+    @Test
+    public void parseClass_maxLengthPlusOne_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parseClass(INVALID_CLASS_MAXLENGTH_PLUSONE));
     }
 
     @Test
@@ -262,8 +293,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_invalidLength_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL_LENGTH));
+    public void parseEmail_invalidLength_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL_LENGTH));
     }
 
     @Test
@@ -271,6 +302,11 @@ public class ParserUtilTest {
         Email expectedEmail = new Email(VALID_EMAIL_MAXLENGTH);
         Email actualEmail = ParserUtil.parseEmail(VALID_EMAIL_MAXLENGTH);
         assertEquals(expectedEmail, actualEmail);
+    }
+
+    @Test
+    public void parseEmail_maxLengthPlusOne_throwsExceedLengthException() {
+        assertThrows(ExceedLengthException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL_MAXLENGTH_PLUSONE));
     }
 
     @Test
