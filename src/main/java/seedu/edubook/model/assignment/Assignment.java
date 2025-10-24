@@ -5,6 +5,7 @@ import static seedu.edubook.commons.util.AppUtil.checkArgument;
 import static seedu.edubook.model.commons.Name.MAX_NAME_LENGTH;
 
 import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
+import seedu.edubook.logic.commands.exceptions.AssignmentUnmarkedException;
 
 /**
  * Represents an assignment in EduBook
@@ -64,13 +65,25 @@ public class Assignment {
     /**
      * Marks the assignment as done.
      *
-     * @throws AssignmentMarkedException if assignment is marked.
+     * @throws AssignmentMarkedException if assignment is already marked.
      */
     public void mark() throws AssignmentMarkedException {
         if (this.isDone) {
             throw new AssignmentMarkedException();
         }
         this.isDone = true;
+    }
+
+    /**
+     * Unmarks the assignment as not done.
+     *
+     * @throws AssignmentUnmarkedException if assignment is already unmarked.
+     */
+    public void unmark() throws AssignmentUnmarkedException {
+        if (!this.isDone) {
+            throw new AssignmentUnmarkedException();
+        }
+        this.isDone = false;
     }
 
     /**
