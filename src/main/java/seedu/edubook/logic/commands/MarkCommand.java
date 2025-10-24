@@ -25,8 +25,8 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an assignment of an existing person. "
             + "Parameters: "
-            + PREFIX_ASSIGNMENT_NAME + "NAME OF ASSIGNMENT "
-            + PREFIX_PERSON_NAME + "NAME OF ASSIGNEE \n"
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT "
+            + PREFIX_PERSON_NAME + "NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_PERSON_NAME + "John Doe ";
