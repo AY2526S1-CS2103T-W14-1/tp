@@ -22,4 +22,8 @@ public class TypicalAssignments {
             new Assignment(new AssignmentName("Homework 2"), true);
     public static final Assignment ASSIGNMENT_LAB_TO_UNMARK =
             new Assignment(new AssignmentName("Lab 2"), true);
+    public static final Assignment ASSIGNMENT_TUTORIAL_ONE_TO_UNMARK =
+            new Assignment(new AssignmentName("Tutorial 1"), true);
+    public static final Assignment UNMARKED_ASSIGNMENT_TEST_TO_UNMARK =
+            new Assignment(new AssignmentName("Test"), false);
 }

@@ -106,7 +106,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePersonName_invalidLength_ExceedLengthException() {
+    public void parsePersonName_invalidLength_throwsExceedLengthException() {
         assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_LENGTH));
     }
 
@@ -159,8 +159,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseAssignmentName_maxLengthPlusOne_throwsExceedLengthException() {
-        assertThrows(ExceedLengthException.class,
-                () -> ParserUtil.parseAssignmentName(INVALID_ASSIGNMENT_MAXLENGTH_PLUSONE));
+        assertThrows(ExceedLengthException.class, ()
+                -> ParserUtil.parseAssignmentName(INVALID_ASSIGNMENT_MAXLENGTH_PLUSONE));
     }
 
     @Test
