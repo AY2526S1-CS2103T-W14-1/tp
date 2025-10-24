@@ -69,6 +69,13 @@ public class PersonCard extends UiPart<Region> {
                     }
                     assignments.getChildren().add(assignmentLabel);
                 });
-        label.setText(person.getLabel().labelContent);
+        if (person.getLabel().isEmpty()) {
+            label.setVisible(false);
+            label.setManaged(false);
+        } else {
+            label.setText(person.getLabel().labelContent);
+            label.setVisible(true);
+            label.setManaged(true);
+        }
     }
 }

@@ -17,7 +17,7 @@ public class Label {
     public static final String MESSAGE_LENGTH_CONSTRAINTS = "Label names should only contain a maximum of "
             + MAX_LABEL_LENGTH + " characters";
 
-    public static final Label EMPTY = new Label("no label");
+    public static final Label EMPTY = new Label("EMPTY", true);
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -25,6 +25,18 @@ public class Label {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String labelContent;
+    public final boolean isEmpty;
+
+    /**
+     * Private constructor for empty label.
+     *
+     * @param labelContent
+     * @param isEmpty
+     */
+    private Label(String labelContent, boolean isEmpty) {
+        this.labelContent = labelContent;
+        this.isEmpty = isEmpty;
+    }
 
     /**
      * Constructs an {@code Label}.
@@ -35,6 +47,7 @@ public class Label {
         requireNonNull(labelContent);
         checkArgument(isValidLabel(labelContent), MESSAGE_CONSTRAINTS);
         this.labelContent = labelContent;
+        this.isEmpty = false;
     }
 
     /**
@@ -42,6 +55,13 @@ public class Label {
      */
     public static boolean isValidLabel(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Return whether label is empty.
+     */
+    public boolean isEmpty() {
+        return isEmpty;
     }
 
     @Override
@@ -56,7 +76,7 @@ public class Label {
         }
 
         Label otherLabel = (Label) other;
-        return labelContent.equals(otherLabel.labelContent);
+        return labelContent.equals(otherLabel.labelContent) && this.isEmpty == otherLabel.isEmpty();
     }
 
     @Override
