@@ -52,6 +52,26 @@ public class Person {
         this.email = email;
         this.tuitionClass = tuitionClass;
         this.tags.addAll(tags);
+        this.label = Label.EMPTY;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(PersonName name,
+                  Phone phone,
+                  Email email,
+                  TuitionClass tuitionClass,
+                  Set<Tag> tags,
+                  Set<Assignment> assignments) {
+        requireAllNonNull(name, phone, email, tuitionClass, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.tuitionClass = tuitionClass;
+        this.tags.addAll(tags);
+        this.assignments.addAll(assignments);
+        this.label = Label.EMPTY;
     }
 
     /**
@@ -247,13 +267,15 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && tuitionClass.equals(otherPerson.tuitionClass)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && assignments.equals(otherPerson.assignments)
+                && label.equals(otherPerson.label);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tuitionClass, tags);
+        return Objects.hash(name, phone, email, tuitionClass, tags, assignments, label);
     }
 
     @Override
@@ -264,6 +286,8 @@ public class Person {
                 .add("email", email)
                 .add("class", tuitionClass)
                 .add("tags", tags)
+                .add("assignments", assignments)
+                .add("label", label)
                 .toString();
     }
 

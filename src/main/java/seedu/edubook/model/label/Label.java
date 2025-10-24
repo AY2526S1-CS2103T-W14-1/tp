@@ -17,6 +17,7 @@ public class Label {
     public static final String MESSAGE_LENGTH_CONSTRAINTS = "Label names should only contain a maximum of "
             + MAX_LABEL_LENGTH + " characters";
 
+    public static final Label EMPTY = new Label("no label");
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

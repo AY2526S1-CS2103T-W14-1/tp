@@ -63,16 +63,12 @@ public class LabelCommandParser implements Parser<LabelCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LabelCommand.MESSAGE_USAGE));
         }
 
-        if (hasName) {
-            throw new ParseException(MESSAGE_CONFLICTING_PREFIXES);
-        }
-
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LabelCommand.MESSAGE_USAGE));
         }
 
         // Ensure no duplicate prefixes
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LABEL, PREFIX_PERSON_NAME);
     }
 
     /**
