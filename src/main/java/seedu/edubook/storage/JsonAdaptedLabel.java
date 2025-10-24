@@ -35,16 +35,16 @@ class JsonAdaptedLabel {
     /**
      * Converts this Jackson-friendly adapted Label object into the model's {@code Label} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted label.
      */
     public Label toModelType() throws IllegalValueException {
         if (!StringUtil.isValidLength(labelContent, Label.MAX_LABEL_LENGTH)) {
             throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!Label.isValidLabel(labelContent)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Label.MESSAGE_CONSTRAINTS);
         }
-        return new Assignment(new AssignmentName(assignmentName), isDone);
+        return new Label(labelContent);
     }
 
 }

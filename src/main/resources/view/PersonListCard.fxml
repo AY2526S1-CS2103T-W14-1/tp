@@ -32,6 +32,7 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="tuitionClass" styleClass="cell_small_label" text="\$class" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="label" styleClass="cell_small_label" text="\$label" />
     </VBox>
 
     <VBox alignment="TOP_LEFT" minHeight="105" GridPane.columnIndex="1">

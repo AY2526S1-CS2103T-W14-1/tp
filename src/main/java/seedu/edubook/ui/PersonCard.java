@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane assignments;
+    @FXML
+    private Label label;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,5 +69,6 @@ public class PersonCard extends UiPart<Region> {
                     }
                     assignments.getChildren().add(assignmentLabel);
                 });
+        label.setText(person.getLabel().labelContent);
     }
 }

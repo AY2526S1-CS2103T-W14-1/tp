@@ -90,6 +90,8 @@ public class Person {
         return tuitionClass;
     }
 
+    public Label getLabel() { return label; }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -172,7 +174,8 @@ public class Person {
                 this.email,
                 this.tuitionClass,
                 this.tags,
-                newAssignments
+                newAssignments,
+                this.label
         );
     }
 
