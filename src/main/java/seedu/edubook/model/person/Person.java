@@ -14,6 +14,7 @@ import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ public class Person {
     private final TuitionClass tuitionClass;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
+    private final Label label;
 
     /**
      * Constructs a {@code Person}
@@ -60,7 +62,8 @@ public class Person {
                   Email email,
                   TuitionClass tuitionClass,
                   Set<Tag> tags,
-                  Set<Assignment> assignments) {
+                  Set<Assignment> assignments,
+                  Label label) {
         requireAllNonNull(name, phone, email, tuitionClass, tags);
         this.name = name;
         this.phone = phone;
@@ -68,6 +71,7 @@ public class Person {
         this.tuitionClass = tuitionClass;
         this.tags.addAll(tags);
         this.assignments.addAll(assignments);
+        this.label = label;
     }
 
     public PersonName getName() {
@@ -118,7 +122,29 @@ public class Person {
                 this.email,
                 this.tuitionClass,
                 this.tags,
-                newAssignments
+                newAssignments,
+                this.label
+        );
+    }
+
+    /**
+     * Adds the label to the person, and creates a new person with the label.
+     * This ensures immutability of Person objects.
+     *
+     * @param label Label to be added.
+     * @return The new person object.
+     */
+    public Person withAddedLabel(Label label) {
+        requireNonNull(label);
+
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                this.assignments,
+                label
         );
     }
 

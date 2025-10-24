@@ -18,7 +18,7 @@ import static seedu.edubook.logic.parser.CliSyntax.*;
 /**
  * Creates a label for a student
  */
-public class LabelCommand {
+public class LabelCommand extends Command {
 
     public static final String COMMAND_WORD = "label";
 
@@ -53,7 +53,12 @@ public class LabelCommand {
             model.setPerson(person, person.withAddedLabel(label));
         }
 
-        String message = target.getLabelSuccessMessage(label.toString());
+        String message = target.getAssignSuccessMessage(label.toString(), 0, 0);
+        assert message != null && !message.isBlank() : "generated message must not be null or empty";
+
+
+        logger.info("LabelCommand completed: " + message);
+        return new CommandResult(message);
     }
 
     @Override
