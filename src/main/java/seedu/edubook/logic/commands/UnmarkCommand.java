@@ -64,7 +64,7 @@ public class UnmarkCommand extends Command {
             student.unmarkAssignment(this.assignmentName);
 
             model.setPerson(student, student); //triggers rendering of UI
-            logger.info(String.format(MESSAGE_SUCCESS, student, assignmentName));
+            logger.info(String.format(MESSAGE_SUCCESS, this.assignmentName, student.getName()));
             return new CommandResult(
                     String.format(MESSAGE_SUCCESS, this.assignmentName, student.getName())
             );
