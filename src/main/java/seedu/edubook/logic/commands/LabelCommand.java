@@ -1,8 +1,15 @@
 package seedu.edubook.logic.commands;
 
 import seedu.edubook.commons.core.LogsCenter;
+import seedu.edubook.commons.util.ToStringBuilder;
+import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
+import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.model.Model;
+import seedu.edubook.model.label.Label;
+import seedu.edubook.model.person.Person;
 import seedu.edubook.model.target.Target;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import static java.util.Objects.requireNonNull;
@@ -34,4 +41,35 @@ public class LabelCommand {
         this.label = label;
         this.target = target;
     }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        logger.info("Executing LabelCommand for target: " + target.getDisplayName());
+
+        List<Person> studentToLabel = target.getPersons(model);
+
+        for (Person person : studentToLabel) {
+            model.setPerson(person, person.withAddedLabel(label));
+        }
+
+        String message = target.getLabelSuccessMessage(label.toString());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof LabelCommand
+                && label.equals(((LabelCommand) other).label)
+                && target.equals(((LabelCommand) other).target));
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("label", label)
+                .add("target", target)
+                .toString();
+    }
+
 }

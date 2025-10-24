@@ -4,10 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 import static seedu.edubook.model.commons.Name.MAX_NAME_LENGTH;
 
-import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
-
 /**
- * Represents an assignment in EduBook
+ * Represents a Label in EduBook
  */
 public class Label {
 
