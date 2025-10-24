@@ -18,7 +18,7 @@ import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Marks the assignment of a student as completed.
+ * Unmarks the assignment of a student as not completed.
  */
 public class UnmarkCommand extends Command {
 
@@ -56,9 +56,11 @@ public class UnmarkCommand extends Command {
 
         try {
             logger.info("Attempting to unmark assignment: " + assignmentName);
+
+            // throws PersonNotFoundException
             Person student = model.findPersonByName(this.student);
 
-            // throws AssignmentNotFoundException and AssignmentMarkedException, both are subtype of CommandException
+            // throws AssignmentNotFoundException and AssignmentUnmarkedException, both are subtype of CommandException
             student.unmarkAssignment(this.assignmentName);
 
             model.setPerson(student, student); //triggers rendering of UI

@@ -192,7 +192,7 @@ public class Person {
      *
      * @param assignmentName Assignment name to be checked
      * @throws AssignmentNotFoundException if target assignment is not found.
-     * @throws AssignmentMarkedException if target assignment is already unmarked.
+     * @throws AssignmentUnmarkedException if target assignment is already unmarked.
      */
     public void unmarkAssignment(AssignmentName assignmentName)
             throws AssignmentNotFoundException, AssignmentUnmarkedException {
