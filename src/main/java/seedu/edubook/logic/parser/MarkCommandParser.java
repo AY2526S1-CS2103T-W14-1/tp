@@ -16,15 +16,14 @@ public class MarkCommandParser implements Parser<MarkCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public MarkCommand parse(String args) throws ParseException {
-
+        // Parse the assignment name and target (student or class)
         MarkingCommandParserUtil.ParsedPacket data =
-                MarkingCommandParserUtil.parseAssignmentAndPerson(args, MarkCommand.MESSAGE_USAGE);
+                MarkingCommandParserUtil.parseAssignmentAndTarget(args, MarkCommand.MESSAGE_USAGE);
 
-        assert data != null : "data should not be null";
-        assert data.assignmentName != null : "data should contain assignmentName";
-        assert data.student != null : "data should contain student";
+        assert data != null : "Parsed data should not be null";
+        assert data.assignmentName != null : "Parsed data should contain assignmentName";
+        assert data.target != null : "Parsed data should contain a non-null target";
 
-        return new MarkCommand(data.assignmentName, data.student);
+        return new MarkCommand(data.assignmentName, data.target);
     }
-
 }

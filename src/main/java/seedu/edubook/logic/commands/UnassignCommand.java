@@ -14,6 +14,7 @@ import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.target.Target;
 
@@ -39,17 +40,20 @@ public class UnassignCommand extends Command {
 
     private static final Logger logger = LogsCenter.getLogger(UnassignCommand.class);
 
-    private final Assignment assignment;
+    private final AssignmentName assignmentName;
     private final Target target;
 
     /**
-     * Creates an UnassignCommand to unassign the specified {@code Assignment}.
+     * Creates an UnassignCommand for the given assignment name and target.
+     *
+     * @param assignmentName The name of the assignment to unassign.
+     * @param target The target to unassign from (single student or class).
      */
-    public UnassignCommand(Assignment assignment, Target target) {
+    public UnassignCommand(AssignmentName assignmentName, Target target) {
         requireNonNull(target);
-        requireNonNull(assignment);
+        requireNonNull(assignmentName);
         this.target = target;
-        this.assignment = assignment;
+        this.assignmentName = assignmentName;
     }
 
     @Override
@@ -73,12 +77,12 @@ public class UnassignCommand extends Command {
         handleNoAssignments(successCount);
 
         // Generate success message
-        String message = target.getUnassignSuccessMessage(assignment.assignmentName.toString(),
+        String message = target.getUnassignSuccessMessage(assignmentName.toString(),
                 successCount, skippedCount);
 
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
-        logger.info("AssignCommand completed: " + message);
+        logger.info("UnassignCommand completed: " + message);
         return new CommandResult(message);
     }
 
@@ -98,7 +102,8 @@ public class UnassignCommand extends Command {
 
         for (Person person : assignees) {
             try {
-                model.setPerson(person, person.withRemovedAssignment(assignment));
+                Assignment newAssignment = new Assignment(assignmentName);
+                model.setPerson(person, person.withRemovedAssignment(newAssignment));
                 successCount++;
             } catch (AssignmentNotFoundException e) {
                 skippedCount++;
@@ -119,9 +124,7 @@ public class UnassignCommand extends Command {
             if (target.isSinglePersonTarget()) {
                 throw AssignmentNotFoundException.forStudent();
             } else {
-                throw AssignmentNotFoundException.forClass(target.getDisplayName(),
-                        assignment.assignmentName.toString()
-                );
+                throw AssignmentNotFoundException.forClass(target.getDisplayName(), assignmentName.toString());
             }
         }
     }
@@ -138,14 +141,14 @@ public class UnassignCommand extends Command {
         }
 
         UnassignCommand otherUnassignCommand = (UnassignCommand) other;
-        return assignment.equals(otherUnassignCommand.assignment)
+        return assignmentName.equals(otherUnassignCommand.assignmentName)
                 && target.equals(otherUnassignCommand.target);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("assignment", assignment)
+                .add("assignmentName", assignmentName)
                 .add("target", target)
                 .toString();
     }

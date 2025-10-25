@@ -53,14 +53,14 @@ class UnassignCommandParserTest {
     public void parse_personPrefix_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_AMY));
+                new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY));
     }
 
     @Test
     public void parse_classPrefix_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + CLASS_DESC_AMY,
-                new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY));
+                new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY));
     }
 
     @Test

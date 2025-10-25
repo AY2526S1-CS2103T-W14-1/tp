@@ -55,4 +55,15 @@ public interface Target {
      * @return Formatted success message.
      */
     String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount);
+
+    /**
+     * Returns the formatted success message after successfully marking an assignment for this target.
+     *
+     * @param assignmentName Name of the assignment.
+     * @param markedCount Number of successfully marked assignments.
+     * @param alreadyMarkedCount Number of assignments already marked.
+     * @param notExistCount Number of assignments that do not exist for the target(s).
+     * @return Formatted success message.
+     */
+    String getMarkSuccessMessage(String assignmentName, int markedCount, int alreadyMarkedCount, int notExistCount);
 }

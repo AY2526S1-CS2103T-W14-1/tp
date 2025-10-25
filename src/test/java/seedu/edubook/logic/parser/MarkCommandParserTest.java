@@ -14,7 +14,7 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
-import static seedu.edubook.testutil.TypicalPersons.AMY;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ public class MarkCommandParserTest {
     public void parse_validArgs_success() {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
-                new MarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, AMY.getName()));
+                new MarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY));
     }
 
     @Test
