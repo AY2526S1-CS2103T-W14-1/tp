@@ -15,6 +15,7 @@ import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.AssignmentUnmarkedException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -32,6 +33,7 @@ public class Person {
     private final TuitionClass tuitionClass;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
+    private final Label label;
 
     /**
      * Constructs a {@code Person}
@@ -51,6 +53,7 @@ public class Person {
         this.email = email;
         this.tuitionClass = tuitionClass;
         this.tags.addAll(tags);
+        this.label = Label.EMPTY;
     }
 
     /**
@@ -69,6 +72,27 @@ public class Person {
         this.tuitionClass = tuitionClass;
         this.tags.addAll(tags);
         this.assignments.addAll(assignments);
+        this.label = Label.EMPTY;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(PersonName name,
+                  Phone phone,
+                  Email email,
+                  TuitionClass tuitionClass,
+                  Set<Tag> tags,
+                  Set<Assignment> assignments,
+                  Label label) {
+        requireAllNonNull(name, phone, email, tuitionClass, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.tuitionClass = tuitionClass;
+        this.tags.addAll(tags);
+        this.assignments.addAll(assignments);
+        this.label = label;
     }
 
     public PersonName getName() {
@@ -85,6 +109,10 @@ public class Person {
 
     public TuitionClass getTuitionClass() {
         return tuitionClass;
+    }
+
+    public Label getLabel() {
+        return label;
     }
 
     /**
@@ -119,7 +147,29 @@ public class Person {
                 this.email,
                 this.tuitionClass,
                 this.tags,
-                newAssignments
+                newAssignments,
+                this.label
+        );
+    }
+
+    /**
+     * Adds the label to the person, and creates a new person with the label.
+     * This ensures immutability of Person objects.
+     *
+     * @param label Label to be added.
+     * @return The new person object.
+     */
+    public Person withAddedLabel(Label label) {
+        requireNonNull(label);
+
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                this.assignments,
+                label
         );
     }
 
@@ -147,7 +197,8 @@ public class Person {
                 this.email,
                 this.tuitionClass,
                 this.tags,
-                newAssignments
+                newAssignments,
+                this.label
         );
     }
 
@@ -240,13 +291,15 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && tuitionClass.equals(otherPerson.tuitionClass)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && assignments.equals(otherPerson.assignments)
+                && label.equals(otherPerson.label);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tuitionClass, tags);
+        return Objects.hash(name, phone, email, tuitionClass, tags, assignments, label);
     }
 
     @Override
@@ -257,6 +310,8 @@ public class Person {
                 .add("email", email)
                 .add("class", tuitionClass)
                 .add("tags", tags)
+                .add("assignments", assignments)
+                .add("label", label)
                 .toString();
     }
 
