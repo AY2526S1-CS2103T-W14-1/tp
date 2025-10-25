@@ -2,7 +2,6 @@ package seedu.edubook.logic.commands;
 
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.label.Label;
