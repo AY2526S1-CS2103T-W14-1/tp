@@ -1,6 +1,7 @@
 package seedu.edubook.model.target;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.model.target.NameTarget.MESSAGE_MARK_SUCCESS;
 
 import java.util.List;
 
@@ -64,6 +65,12 @@ public class NameTargetForLabel implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNLABEL_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getMarkSuccessMessage(String assignmentName, int markedCount,
+                                        int alreadyMarkedCount, int notExistCount) {
+        return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName());
     }
 
     @Override

@@ -22,7 +22,9 @@ public class NameTarget implements Target {
     public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'.";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'.";
+    public static final String MESSAGE_UNASSIGN_SUCCESS = "Assignment '%s' unassigned from student: '%s'.";
+
+    public static final String MESSAGE_MARK_SUCCESS = "Assignment '%s' marked for student: '%s'.";
 
     private final PersonName name;
 
@@ -64,6 +66,12 @@ public class NameTarget implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getMarkSuccessMessage(String assignmentName, int markedCount,
+                                        int alreadyMarkedCount, int notExistCount) {
+        return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName());
     }
 
     @Override
