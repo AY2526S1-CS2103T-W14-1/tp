@@ -19,14 +19,14 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
      */
     public UnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         MarkingCommandParserUtil.ParsedPacket data =
-                MarkingCommandParserUtil.parseAssignmentAndPerson(args, UnmarkCommand.MESSAGE_USAGE);
+                MarkingCommandParserUtil.parseAssignmentAndTarget(args, UnmarkCommand.MESSAGE_USAGE);
 
-        assert data != null : "data should not be null";
         assert data.assignmentName != null : "data should contain assignmentName";
-        assert data.person != null : "data should contain student";
+        assert data.target != null : "data should contain student";
 
-        return new UnmarkCommand(data.assignmentName, data.person);
+        return new UnmarkCommand(data.assignmentName, data.target);
     }
 
 }

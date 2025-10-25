@@ -91,4 +91,15 @@ public interface Target {
      * @return Formatted success message.
      */
     String getMarkSuccessMessage(String assignmentName, int markedCount, int alreadyMarkedCount, int notExistCount);
+
+    /**
+     * Returns the formatted success message after successfully unmarking an assignment for this target.
+     *
+     * @param assignmentName Name of the assignment.
+     * @param unmarkedCount Number of successfully unmarked assignments.
+     * @param alreadyUnmarkedCount Number of assignments already unmarked.
+     * @param notExistCount Number of assignments that do not exist for the target(s).
+     * @return Formatted success message.
+     */
+    String getUnmarkSuccessMessage(String assignmentName, int unmarkedCount, int alreadyUnmarkedCount, int notExistCount);
 }
