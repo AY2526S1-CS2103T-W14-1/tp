@@ -1,26 +1,28 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.commands.CommandTestUtil.*;
-import static seedu.edubook.logic.parser.CliSyntax.*;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_LABEL_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.LABEL_DESC_BAD;
+import static seedu.edubook.logic.commands.CommandTestUtil.LABEL_DESC_GOOD;
+import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.edubook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
-import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
-import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_AMY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.Messages;
-import seedu.edubook.logic.commands.AssignCommand;
 import seedu.edubook.logic.commands.LabelCommand;
-import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.TuitionClass;
 
 
 public class LabelCommandParserTest {

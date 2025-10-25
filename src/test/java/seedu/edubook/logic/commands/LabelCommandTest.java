@@ -8,7 +8,9 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_BAD;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
-import static seedu.edubook.testutil.TypicalNameTargetsForLabel.*;
+import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_AMY;
+import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_BENSON;
+import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_NONEXISTENT;
 import static seedu.edubook.testutil.TypicalPersons.ALICE;
 
 import java.util.HashSet;
@@ -21,7 +23,6 @@ import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -29,10 +30,7 @@ import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
-import seedu.edubook.model.target.ClassTarget;
-import seedu.edubook.model.target.NameTarget;
 import seedu.edubook.model.target.NameTargetForLabel;
-import seedu.edubook.model.target.Target;
 
 public class LabelCommandTest {
 

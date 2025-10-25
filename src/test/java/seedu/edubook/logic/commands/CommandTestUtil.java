@@ -2,7 +2,13 @@ package seedu.edubook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.edubook.logic.parser.CliSyntax.*;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -59,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_CLASS_DESC = " " + PREFIX_CLASS; // empty string not allowed for classes
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_ASSIGNMENT_DESC =
-            " " + PREFIX_ASSIGNMENT_NAME + "Homework!1";// '!' not allowed in assignment names
+            " " + PREFIX_ASSIGNMENT_NAME + "Homework!1"; // '!' not allowed in assignment names
     public static final String INVALID_LABEL_DESC = " " + PREFIX_LABEL + "Allegic to peanut$";
 
     public static final String INVALID_CLASS_LENGTH =
