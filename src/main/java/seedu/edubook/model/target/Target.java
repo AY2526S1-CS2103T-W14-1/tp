@@ -74,6 +74,13 @@ public interface Target {
     String getUnlabelSuccessMessage();
 
     /**
+     * If student does not have any label, label command is not executed.
+     *
+     * @return Formatted failure message
+     */
+    String getUnlabelFailureMessage();
+
+    /**
      * Returns the formatted success message after successfully viewing the target.
      *
      * @return Formatted success message.

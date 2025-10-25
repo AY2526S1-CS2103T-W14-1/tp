@@ -32,6 +32,9 @@ public class NameTarget implements Target {
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from student: '%s'.";
 
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_UNLABEL_FAILURE = "Student '%s' does not have an existing label";
+
     /** Template for message when view class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
 
@@ -91,6 +94,11 @@ public class NameTarget implements Target {
     @Override
     public String getUnlabelSuccessMessage() {
         return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
+    }
+
+    @Override
+    public String getUnlabelFailureMessage() {
+        return String.format(MESSAGE_UNLABEL_FAILURE, getDisplayName());
     }
 
     @Override

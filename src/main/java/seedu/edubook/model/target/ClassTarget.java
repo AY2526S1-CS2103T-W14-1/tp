@@ -100,6 +100,11 @@ public class ClassTarget implements Target {
     }
 
     @Override
+    public String getUnlabelFailureMessage() {
+        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
+    }
+
+    @Override
     public String getViewSuccessMessage() {
         return String.format(MESSAGE_VIEW_SUCCESS, tuitionClass);
     }

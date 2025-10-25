@@ -10,6 +10,7 @@ import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.target.Target;
 
@@ -48,6 +49,10 @@ public class UnlabelCommand extends Command {
         List<Person> studentsToUnlabel = target.getPersons(model);
 
         for (Person person : studentsToUnlabel) {
+            if (person.getLabel().equals(Label.EMPTY)) {
+                String message = target.getUnlabelFailureMessage();
+                return new CommandResult(message);
+            }
             model.setPerson(person, person.withRemovedLabel());
         }
 
