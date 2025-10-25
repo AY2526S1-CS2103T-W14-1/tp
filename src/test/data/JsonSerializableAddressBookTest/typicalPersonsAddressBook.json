@@ -5,43 +5,56 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "class" : "123",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "label": ""
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
-
     "email" : "johnd@example.com",
     "class" : "Class 1-A",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "assignments" : [ {
+      "assignmentName" : "Tutorial 1",
+      "isDone" : false
+    }, {
+      "assignmentName" : "Homework 1",
+      "isDone" : false
+    } ],
+    "label": ""
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "class": "T-01",
-    "tags" : [ ]
+    "tags" : [ ],
+    "label": ""
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "class": "T-01",
-    "tags" : [ "friends" ]
+    "tags" : [ "friends" ],
+    "label": ""
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "class": "W-14",
-    "tags" : [ ]
+    "tags" : [ ],
+    "label": ""
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "class": "Class 1-B",
-    "tags" : [ ]
+    "tags" : [ ],
+    "label": ""
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "class": "Class A",
-    "tags" : [ ]
+    "tags" : [ ],
+    "label": ""
   } ]
 }

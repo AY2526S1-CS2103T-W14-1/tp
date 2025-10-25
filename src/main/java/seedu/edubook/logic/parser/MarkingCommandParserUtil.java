@@ -25,6 +25,8 @@ public class MarkingCommandParserUtil {
      */
     public static ParsedPacket parseAssignmentAndPerson(String args, String messageUsage)
             throws ParseException {
+        assert args != null : "args should not be null";
+        assert messageUsage != null : "messageUsage should not be null";
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
 
