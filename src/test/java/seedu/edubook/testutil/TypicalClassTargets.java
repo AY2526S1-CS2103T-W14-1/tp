@@ -3,9 +3,9 @@ package seedu.edubook.testutil;
 import static seedu.edubook.testutil.TypicalPersons.AMY;
 import static seedu.edubook.testutil.TypicalPersons.BENSON;
 
-import seedu.edubook.model.assign.ClassTarget;
-import seedu.edubook.model.assign.Target;
 import seedu.edubook.model.person.TuitionClass;
+import seedu.edubook.model.target.ClassTarget;
+import seedu.edubook.model.target.Target;
 
 /**
  * A utility class containing a list of ClassAssignTarget objects to be used in tests.

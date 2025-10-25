@@ -20,6 +20,7 @@ import seedu.edubook.logic.commands.HelpCommand;
 import seedu.edubook.logic.commands.ListCommand;
 import seedu.edubook.logic.commands.MarkCommand;
 import seedu.edubook.logic.commands.UnassignCommand;
+import seedu.edubook.logic.commands.UnmarkCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 
@@ -92,6 +93,9 @@ public class AddressBookParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

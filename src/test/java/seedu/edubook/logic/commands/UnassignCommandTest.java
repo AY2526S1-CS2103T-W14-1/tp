@@ -25,8 +25,6 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.ModelManager;
-import seedu.edubook.model.assign.ClassTarget;
-import seedu.edubook.model.assign.NameTarget;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
@@ -35,6 +33,8 @@ import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
+import seedu.edubook.model.target.ClassTarget;
+import seedu.edubook.model.target.NameTarget;
 
 public class UnassignCommandTest {
 

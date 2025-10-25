@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
+import seedu.edubook.logic.commands.exceptions.AssignmentUnmarkedException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.AssignmentName;
@@ -18,12 +18,12 @@ import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Marks the assignment of a student as completed.
+ * Unmarks the assignment of a student as not completed.
  */
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an assignment of an existing person. "
+    public static final String COMMAND_WORD = "unmark";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks an assignment of an existing person. "
             + "Parameters: "
             + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT "
             + PREFIX_PERSON_NAME + "NAME \n"
@@ -31,19 +31,19 @@ public class MarkCommand extends Command {
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_PERSON_NAME + "John Doe ";
 
-    public static final String MESSAGE_SUCCESS = "Assignment: %1$s has been marked for: %2$s. ";
+    public static final String MESSAGE_SUCCESS = "Assignment: %1$s has been unmarked for: %2$s. ";
 
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student does not exist in EduBook. ";
 
-    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(UnmarkCommand.class);
 
     private final AssignmentName assignmentName;
     private final PersonName student;
 
     /**
-     * Creates a MarkCommand with the specified {@code AssignmentName} and {@code PersonName}.
+     * Creates a UnmarkCommand with the specified {@code AssignmentName} and {@code PersonName}.
      */
-    public MarkCommand(AssignmentName assignmentName, PersonName student) {
+    public UnmarkCommand(AssignmentName assignmentName, PersonName student) {
         requireNonNull(assignmentName);
         requireNonNull(student);
         this.assignmentName = assignmentName;
@@ -55,13 +55,13 @@ public class MarkCommand extends Command {
         requireNonNull(model);
 
         try {
-            logger.info("Attempting to mark assignment: " + assignmentName);
+            logger.info("Attempting to unmark assignment: " + assignmentName);
 
             // throws PersonNotFoundException
             Person student = model.findPersonByName(this.student);
 
-            // throws AssignmentNotFoundException and AssignmentMarkedException, both are subtype of CommandException
-            student.markAssignment(this.assignmentName);
+            // throws AssignmentNotFoundException and AssignmentUnmarkedException, both are subtype of CommandException
+            student.unmarkAssignment(this.assignmentName);
 
             model.setPerson(student, student); //triggers rendering of UI
             logger.info(String.format(MESSAGE_SUCCESS, this.assignmentName, student.getName()));
@@ -69,11 +69,11 @@ public class MarkCommand extends Command {
                     String.format(MESSAGE_SUCCESS, this.assignmentName, student.getName())
             );
         } catch (PersonNotFoundException e) {
-            logger.info("Marking failed, exception thrown:" + MESSAGE_STUDENT_NOT_FOUND);
+            logger.info("Unmarking failed, exception thrown:" + MESSAGE_STUDENT_NOT_FOUND);
 
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        } catch (AssignmentMarkedException | AssignmentNotFoundException e) {
-            logger.info("Marking failed, exception thrown:" + e.getMessage());
+        } catch (AssignmentUnmarkedException | AssignmentNotFoundException e) {
+            logger.info("Unmarking failed, exception thrown:" + e.getMessage());
 
             throw new CommandException(e.getMessage());
         }
@@ -86,13 +86,13 @@ public class MarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkCommand)) {
+        if (!(other instanceof UnmarkCommand)) {
             return false;
         }
 
-        MarkCommand otherMarkCommand = (MarkCommand) other;
-        return student.equals(otherMarkCommand.student)
-                && assignmentName.equals(otherMarkCommand.assignmentName);
+        UnmarkCommand otherUnmarkCommand = (UnmarkCommand) other;
+        return student.equals(otherUnmarkCommand.student)
+                && assignmentName.equals(otherUnmarkCommand.assignmentName);
     }
 
     @Override

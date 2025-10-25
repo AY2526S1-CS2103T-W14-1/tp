@@ -4,30 +4,29 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
-Class UserPrefs
-
-Class UniquePersonList
-Class Person
-Class TuitionClass
-Class Email
-Class Name
-Class Phone
-Class Tag
-
-Class I #FFFFFF
+Package Model as ModelPackage <<Rectangle>> {
+  Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+  Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+  Class "<<interface>>\nModel" as Model
+  Class AddressBook
+  Class ModelManager
+  Class UserPrefs
+  Class UniquePersonList
+  Class Person
+  Class TuitionClass
+  Class Email
+  Class PersonName
+  Class Phone
+  Class Tag
+  Class Assignment
+  Class AssignmentName
+  Class I #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
-
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
@@ -35,20 +34,21 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> TuitionClass
-Person *--> "*" Tag
+AddressBook *-- "1" UniquePersonList : all
+UniquePersonList --> "*" Person
+Person *-- "1" PersonName
+Person *-- "1" Phone
+Person *-- "1" Email
+Person *-- "1" TuitionClass
+Person *-- "*" Tag
+Person *-- "*" Assignment
+Assignment *-- "1" AssignmentName
+
+ModelManager --> "*" Person : filtered
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
-
-Name -[hidden]right-> Phone
+PersonName -[hidden]right-> Phone
 Phone -[hidden]right-> TuitionClass
 TuitionClass -[hidden]right-> Email
-
-ModelManager --> "~* filtered" Person
 @enduml
