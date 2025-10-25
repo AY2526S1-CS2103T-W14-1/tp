@@ -12,6 +12,7 @@ import seedu.edubook.logic.parser.exceptions.ExceedLengthException;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
@@ -93,6 +94,28 @@ public class ParserUtil {
             assignmentSet.add(new Assignment(parseAssignmentName(assignmentName)));
         }
         return assignmentSet;
+    }
+
+    /**
+     * Parses a {@code String label} into a {@code Label}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code label is invalid}.
+     */
+    public static Label parseLabel(String label) throws ParseException {
+        requireNonNull(label);
+
+        String trimmedLabel = label.trim();
+
+        if (!StringUtil.isValidLength(trimmedLabel, Label.MAX_LABEL_LENGTH)) {
+            throw new ExceedLengthException(Label.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+
+        if (!Label.isValidLabel(trimmedLabel)) {
+            throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Label(trimmedLabel);
     }
 
     /**

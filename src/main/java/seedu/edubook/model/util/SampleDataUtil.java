@@ -8,6 +8,7 @@ import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.ReadOnlyAddressBook;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -26,37 +27,43 @@ public class SampleDataUtil {
                     new Email("alexyeoh@example.com"),
                     new TuitionClass("Class 1-A"),
                     getTagSet("friends"),
-                    getAssignmentSet("Homework 1", "Homework 2")),
+                    getAssignmentSet("Homework 1", "Homework 2"),
+                    new Label("Late for class")),
             new Person(new PersonName("Bernice Yu"),
                     new Phone("99272758"),
                     new Email("berniceyu@example.com"),
                     new TuitionClass("Class 1-A"),
                     getTagSet("colleagues", "friends"),
-                    getAssignmentSet("Tutorial 1", "Lab 3")),
+                    getAssignmentSet("Tutorial 1", "Lab 3"),
+                    new Label("Allergic to peanuts")),
             new Person(new PersonName("Charlotte Oliveiro"),
                     new Phone("93210283"),
                     new Email("charlotte@example.com"),
                     new TuitionClass("Class 2-B"),
                     getTagSet("neighbours"),
-                    getAssignmentSet("Assignment 1", "Assignment 2")),
+                    getAssignmentSet("Assignment 1", "Assignment 2"),
+                    new Label("Best student")),
             new Person(new PersonName("David Li"),
                     new Phone("91031282"),
                     new Email("lidavid@example.com"),
                     new TuitionClass("Class 2-B"),
                     getTagSet("family"),
-                    getAssignmentSet("Lab 4", "Mission 7")),
+                    getAssignmentSet("Lab 4", "Mission 7"),
+                    new Label("Worst student")),
             new Person(new PersonName("Irfan Ibrahim"),
                     new Phone("92492021"),
                     new Email("irfan@example.com"),
                     new TuitionClass("W-14"),
                     getTagSet("classmates"),
-                    getAssignmentSet("Homework 1")),
+                    getAssignmentSet("Homework 1"),
+                    new Label("Tallest student")),
             new Person(new PersonName("Roy Balakrishnan"),
                     new Phone("92624417"),
                     new Email("royb@example.com"),
                     new TuitionClass("T-02"),
                     getTagSet("colleagues"),
-                    getAssignmentSet("Homework 1", "Tutorial 4", "Assignment 1", "Lab 3", "Studio 5"))
+                    getAssignmentSet("Homework 1", "Tutorial 4", "Assignment 1", "Lab 3", "Studio 5"),
+                    new Label("Completes homework on time"))
         };
     }
 
