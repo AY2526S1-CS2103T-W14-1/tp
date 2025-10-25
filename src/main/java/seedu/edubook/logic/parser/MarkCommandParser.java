@@ -1,5 +1,7 @@
 package seedu.edubook.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.edubook.logic.commands.MarkCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 
@@ -16,6 +18,8 @@ public class MarkCommandParser implements Parser<MarkCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public MarkCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         // Parse the assignment name and target (student or class)
         MarkingCommandParserUtil.ParsedPacket data =
                 MarkingCommandParserUtil.parseAssignmentAndTarget(args, MarkCommand.MESSAGE_USAGE);

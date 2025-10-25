@@ -30,6 +30,7 @@ import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
 
 public class MarkCommandTest {
+    private ModelStub modelStub = new ModelStub();
 
     @Test
     public void constructor_nullAssignmentName_throwsNullPointerException() {
@@ -44,11 +45,8 @@ public class MarkCommandTest {
 
     @Test
     public void execute_success() throws CommandException {
-        ModelStub modelStub = new ModelStub();
         MarkCommand command = new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, NAME_TARGET_CARL);
-
         CommandResult result = command.execute(modelStub);
-
         assertEquals(String.format(MESSAGE_MARK_SUCCESS,
                         ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, CARL.getName()),
                 result.getFeedbackToUser()
@@ -57,9 +55,7 @@ public class MarkCommandTest {
 
     @Test
     public void execute_nonExistentPerson_throwsCommandException() {
-        ModelStub modelStub = new ModelStub();
         MarkCommand command = new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, NAME_TARGET_NONEXISTENT);
-
         CommandException e = assertThrows(CommandException.class, () -> command.execute(modelStub));
         assertEquals(String.format(MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }

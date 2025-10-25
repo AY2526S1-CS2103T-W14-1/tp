@@ -26,6 +26,7 @@ import seedu.edubook.model.tag.Tag;
 import seedu.edubook.testutil.PersonBuilder;
 
 public class UnmarkCommandTest {
+    private ModelStub modelStub = new ModelStub();
 
     @Test
     public void constructor_nullAssignmentName_throwsNullPointerException() {
@@ -40,7 +41,6 @@ public class UnmarkCommandTest {
 
     @Test
     public void execute_success() throws CommandException {
-        ModelStub modelStub = new ModelStub();
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK_TO_UNMARK.assignmentName, ALICE.getName());
 
         CommandResult result = command.execute(modelStub);
@@ -53,7 +53,6 @@ public class UnmarkCommandTest {
 
     @Test
     public void execute_nonExistentPerson_throwsCommandException() {
-        ModelStub modelStub = new ModelStub();
         PersonName student = new PersonName("Nonexistent");
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK_TO_UNMARK.assignmentName, student);
 

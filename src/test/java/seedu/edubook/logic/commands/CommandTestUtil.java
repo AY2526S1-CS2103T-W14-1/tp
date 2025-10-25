@@ -75,6 +75,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_ASSIGNMENT_VALID_STUDENT =
+           " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_HOMEWORK + " " + PREFIX_PERSON_NAME + VALID_NAME_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
