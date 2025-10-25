@@ -20,7 +20,6 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_CONFLICTING_PREFIXES = "Specify only n/NAME or c/CLASS, not both.";
-    public static final String MESSAGE_INVALID_CLASS = "Specify only n/NAME or c/CLASS, not both.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -10,7 +10,7 @@ import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.TuitionClass;
 
 /**
- * Represents a target that assigns an assignment to all students in a class.
+ * Represents a target that represents all students in a specified class.
  */
 public class ClassTarget implements Target {
 
@@ -21,16 +21,27 @@ public class ClassTarget implements Target {
     public static final String MESSAGE_ASSIGN_SUCCESS =
             "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped).";
 
+    /** Template for success message when assignment is unassigned from a class. */
     public static final String MESSAGE_UNASSIGN_SUCCESS =
             "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped).";
+
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
+
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
 
     public static final String MESSAGE_MARK_SUCCESS =
             "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
 
+    /** Template for message when view class is successful. */
+    private static final String MESSAGE_VIEW_SUCCESS =
+            "Here are the details of all the students in '%1$s'.";
+
     private final TuitionClass tuitionClass;
 
     /**
-     * Constructs a {@code ClassAssignTarget} for the given class.
+     * Constructs a {@code ClassTarget} for the given class.
      *
      * @param tuitionClass The class whose students will be assigned.
      */
@@ -76,6 +87,21 @@ public class ClassTarget implements Target {
                                         int alreadyMarkedCount, int notExistCount) {
         return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName(),
                 markedCount, alreadyMarkedCount, notExistCount);
+    }
+
+    @Override
+    public String getLabelSuccessMessage(String assignmentName) {
+        return String.format(MESSAGE_LABEL_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getUnlabelSuccessMessage(String assignmentName) {
+        return String.format(MESSAGE_UNLABEL_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getViewSuccessMessage() {
+        return String.format(MESSAGE_VIEW_SUCCESS, tuitionClass);
     }
 
     @Override
