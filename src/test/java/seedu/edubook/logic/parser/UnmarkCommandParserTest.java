@@ -18,7 +18,6 @@ import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
-import static seedu.edubook.testutil.TypicalPersons.AMY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
