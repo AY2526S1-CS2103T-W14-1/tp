@@ -90,13 +90,13 @@ public class ClassTarget implements Target {
     }
 
     @Override
-    public String getLabelSuccessMessage(String assignmentName) {
-        return String.format(MESSAGE_LABEL_SUCCESS, assignmentName, getDisplayName());
+    public String getLabelSuccessMessage(String labelName) {
+        return String.format(MESSAGE_LABEL_SUCCESS, labelName, getDisplayName());
     }
 
     @Override
-    public String getUnlabelSuccessMessage(String assignmentName) {
-        return String.format(MESSAGE_UNLABEL_SUCCESS, assignmentName, getDisplayName());
+    public String getUnlabelSuccessMessage() {
+        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
     }
 
     @Override

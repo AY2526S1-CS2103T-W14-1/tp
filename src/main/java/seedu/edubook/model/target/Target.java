@@ -68,11 +68,10 @@ public interface Target {
     /**
      * Returns the formatted success message after successfully unassigning a label to this target.
      *
-     * @param labelName Name of the label.
      *
      * @return Formatted success message.
      */
-    String getUnlabelSuccessMessage(String labelName);
+    String getUnlabelSuccessMessage();
 
     /**
      * Returns the formatted success message after successfully viewing the target.
