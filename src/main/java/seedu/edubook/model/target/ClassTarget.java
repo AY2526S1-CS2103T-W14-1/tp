@@ -21,13 +21,18 @@ public class ClassTarget implements Target {
     public static final String MESSAGE_ASSIGN_SUCCESS =
             "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped).";
 
+    /** Template for success message when assignment is unassigned from a class. */
     public static final String MESSAGE_UNASSIGN_SUCCESS =
             "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped).";
+
+    /** Template for message when view class is successful. */
+    private static final String MESSAGE_VIEW_SUCCESS =
+            "Here are the details of all the students in '%1$s'.";
 
     private final TuitionClass tuitionClass;
 
     /**
-     * Constructs a {@code ClassAssignTarget} for the given class.
+     * Constructs a {@code ClassTarget} for the given class.
      *
      * @param tuitionClass The class whose students will be assigned.
      */
@@ -53,10 +58,6 @@ public class ClassTarget implements Target {
         return tuitionClass.toString();
     }
 
-    public TuitionClass getTuitionClass() {
-        return this.tuitionClass;
-    }
-
     @Override
     public boolean isSinglePersonTarget() {
         return false;
@@ -70,6 +71,11 @@ public class ClassTarget implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName(), successCount, skippedCount);
+    }
+
+    @Override
+    public String getViewSuccessMessage() {
+        return String.format(MESSAGE_VIEW_SUCCESS, tuitionClass);
     }
 
     @Override

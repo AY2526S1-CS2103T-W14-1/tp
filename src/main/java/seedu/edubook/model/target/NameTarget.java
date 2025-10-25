@@ -26,8 +26,11 @@ public class NameTarget implements Target {
 
     private final PersonName name;
 
+    /** Template for message when view class is successful. */
+    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
+
     /**
-     * Constructs a {@code NameAssignTarget} for the given person name.
+     * Constructs a {@code NameTarget} for the given person name.
      *
      * @param name The name of the student to assign to.
      */
@@ -68,6 +71,11 @@ public class NameTarget implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getViewSuccessMessage() {
+        return String.format(MESSAGE_VIEW_SUCCESS, name);
     }
 
     @Override

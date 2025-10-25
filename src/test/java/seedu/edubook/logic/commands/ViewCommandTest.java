@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
-import seedu.edubook.model.assign.NameTarget;
+import seedu.edubook.model.target.NameTarget;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 

@@ -4,17 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import java.util.List;
+import java.util.logging.Logger;
 import java.util.function.Predicate;
 
+import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.Messages;
+import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.assign.ClassTarget;
-import seedu.edubook.model.assign.NameTarget;
-import seedu.edubook.model.assign.Target;
+import seedu.edubook.model.target.Target;
 import seedu.edubook.model.person.Person;
-import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.TuitionClass;
 
 /**
  * Finds and lists a person in address book with the specified name.
@@ -34,8 +33,8 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_VIEW_STUDENT_SUCCESS =
             "Here are the details of %1$s.";
-    public static final String MESSAGE_VIEW_CLASS_SUCCESS =
-            "Here are the details of all the students in %1$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
     private final Target target;
 
@@ -51,52 +50,19 @@ public class ViewCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (target instanceof NameTarget) {
-            NameTarget nameTarget = (NameTarget) target;
-            return viewByName(model, nameTarget);
-        } else {
-            ClassTarget classTarget = (ClassTarget) target;
-            return viewByClass(model, classTarget);
-        }
-    }
+        logger.info("Executing ViewCommand for target: " + target.getDisplayName());
 
-    /**
-     * Views a student identified by their name in the displayed person list.
-     *
-     * @param model {@code Model} which the ViewCommand should operate on.
-     * @return {@code CommandResult} which will output the result of Command.
-     */
-    private CommandResult viewByName(Model model, NameTarget nameTarget) {
-        PersonName name = nameTarget.getName();
-        Predicate<Person> predicate = person -> person.getName().equals(name);
+        List<Person> studentsToView = target.getPersons(model);
+        Predicate<Person> predicate = studentsToView::contains;
         model.updateFilteredPersonList(predicate);
-        if (model.getFilteredPersonList().isEmpty()) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_INVALID_NAME));
-        }
-        return new CommandResult(
-                String.format(MESSAGE_VIEW_STUDENT_SUCCESS, name));
-    }
+        String message = target.getViewSuccessMessage();
 
-    /**
-     * Views all the students in a class identified by their tuition class in the displayed person list.
-     *
-     * @param model {@code Model} which the ViewCommand should operate on.
-     * @return {@code CommandResult} which will output the result of Command.
-     */
-    private CommandResult viewByClass(Model model, ClassTarget classTarget) {
-        TuitionClass tuitionClass = classTarget.getTuitionClass();
-        Predicate<Person> predicate = person -> person.getTuitionClass().equals(tuitionClass);
-        model.updateFilteredPersonList(predicate);
-        if (model.getFilteredPersonList().isEmpty()) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_INVALID_NAME));
-        }
-        return new CommandResult(
-                String.format(MESSAGE_VIEW_CLASS_SUCCESS, tuitionClass));
+        logger.info("ViewCommand completed: " + message);
+
+        return new CommandResult(message);
     }
 
     @Override

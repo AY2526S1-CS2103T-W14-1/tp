@@ -55,4 +55,11 @@ public interface Target {
      * @return Formatted success message.
      */
     String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount);
+
+    /**
+     * Returns the formatted success message after successfully viewing the target.
+     *
+     * @return Formatted success message.
+     */
+    String getViewSuccessMessage();
 }
