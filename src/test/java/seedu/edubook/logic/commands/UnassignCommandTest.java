@@ -45,13 +45,13 @@ public class UnassignCommandTest {
 
     @Test
     public void constructor_nullTarget_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new UnassignCommand(ASSIGNMENT_HOMEWORK, null));
+        assertThrows(NullPointerException.class, () -> new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, null));
     }
 
     @Test
     public void execute_nameTarget_success() throws CommandException {
         ModelStub model = new ModelStub();
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_BENSON);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_BENSON);
 
         CommandResult result = command.execute(model);
 
@@ -64,7 +64,7 @@ public class UnassignCommandTest {
     @Test
     public void execute_classTargetSingleStudent_success() throws CommandException {
         ModelStub model = new ModelStub();
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
         CommandResult result = command.execute(model);
 
@@ -77,7 +77,7 @@ public class UnassignCommandTest {
     @Test
     public void execute_classTargetMultipleStudents_successAndSkip() throws CommandException {
         ModelStubMultipleStudents model = new ModelStubMultipleStudents();
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
         CommandResult result = command.execute(model);
 
@@ -89,7 +89,7 @@ public class UnassignCommandTest {
     @Test
     public void execute_classTargetAllStudentsSkipped_throwsAssignmentNotFoundException() {
         ModelStubAllStudentsSkipped model = new ModelStubAllStudentsSkipped();
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
         AssignmentNotFoundException e = assertThrows(
                 AssignmentNotFoundException.class, () -> command.execute(model));
@@ -104,7 +104,7 @@ public class UnassignCommandTest {
     @Test
     public void execute_nonExistentPerson_throwsCommandException() {
         ModelStub model = new ModelStub();
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_NONEXISTENT);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_NONEXISTENT);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
@@ -113,7 +113,7 @@ public class UnassignCommandTest {
     @Test
     public void execute_emptyClass_throwsCommandException() {
         ModelStubEmptyClass model = new ModelStubEmptyClass();
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_NONEXISTENT);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_NONEXISTENT);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(String.format(ClassTarget.MESSAGE_NO_STUDENTS_FOUND,
@@ -123,15 +123,16 @@ public class UnassignCommandTest {
 
     @Test
     public void equals_nameTarget() {
-        UnassignCommand unassignHomeworkAmy = new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_AMY);
-        UnassignCommand unassignHomeworkBenson = new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_BENSON);
-        UnassignCommand unassignLabAmy = new UnassignCommand(ASSIGNMENT_LAB, NAME_TARGET_AMY);
+        UnassignCommand unassignHomeworkAmy = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
+        UnassignCommand unassignHomeworkBenson = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+                NAME_TARGET_BENSON);
+        UnassignCommand unassignLabAmy = new UnassignCommand(ASSIGNMENT_LAB.assignmentName, NAME_TARGET_AMY);
 
         // same object -> true
         assertEquals(unassignHomeworkAmy, unassignHomeworkAmy);
 
         // same values -> true
-        UnassignCommand copy = new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_AMY);
+        UnassignCommand copy = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
         assertEquals(unassignHomeworkAmy, copy);
 
         // different assignment -> false
@@ -149,10 +150,13 @@ public class UnassignCommandTest {
 
     @Test
     public void equals_classTarget() {
-        UnassignCommand unassignHomeworkClassA = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
-        UnassignCommand unassignHomeworkClassACopy = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
-        UnassignCommand unassignHomeworkClassB = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_BENSON);
-        UnassignCommand unassignLabClassA = new UnassignCommand(ASSIGNMENT_LAB, CLASS_TARGET_AMY);
+        UnassignCommand unassignHomeworkClassA = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+                CLASS_TARGET_AMY);
+        UnassignCommand unassignHomeworkClassACopy = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+                CLASS_TARGET_AMY);
+        UnassignCommand unassignHomeworkClassB = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+                CLASS_TARGET_BENSON);
+        UnassignCommand unassignLabClassA = new UnassignCommand(ASSIGNMENT_LAB.assignmentName, CLASS_TARGET_AMY);
 
         // same object -> true
         assertEquals(unassignHomeworkClassA, unassignHomeworkClassA);
@@ -175,7 +179,7 @@ public class UnassignCommandTest {
 
     @Test
     public void toString_nameTarget() {
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, NAME_TARGET_AMY);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
         String str = command.toString();
 
         assertTrue(str.contains("assignment"));
@@ -186,7 +190,7 @@ public class UnassignCommandTest {
 
     @Test
     public void toString_classTarget() {
-        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
+        UnassignCommand command = new UnassignCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
         String str = command.toString();
 
         assertTrue(str.contains("assignment"));

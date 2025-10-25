@@ -3,10 +3,15 @@ package seedu.edubook.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.edubook.model.target.NameTarget.MESSAGE_MARK_SUCCESS;
+import static seedu.edubook.model.target.NameTarget.MESSAGE_PERSON_NOT_FOUND;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK_TO_MARK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_LAB_TO_MARK;
-import static seedu.edubook.testutil.TypicalPersons.ALICE;
-import static seedu.edubook.testutil.TypicalPersons.HOON;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_BENSON;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_CARL;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_NONEXISTENT;
+import static seedu.edubook.testutil.TypicalPersons.CARL;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,13 +28,13 @@ import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
-import seedu.edubook.testutil.PersonBuilder;
 
 public class MarkCommandTest {
+    private ModelStub modelStub = new ModelStub();
 
     @Test
     public void constructor_nullAssignmentName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new MarkCommand(null, HOON.getName()));
+        assertThrows(NullPointerException.class, () -> new MarkCommand(null, NAME_TARGET_AMY));
     }
 
     @Test
@@ -40,59 +45,49 @@ public class MarkCommandTest {
 
     @Test
     public void execute_success() throws CommandException {
-        ModelStub modelStub = new ModelStub();
-        MarkCommand command = new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, ALICE.getName());
-
+        MarkCommand command = new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, NAME_TARGET_CARL);
         CommandResult result = command.execute(modelStub);
-
-        assertEquals(String.format(MarkCommand.MESSAGE_SUCCESS,
-                        ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, ALICE.getName()),
+        assertEquals(String.format(MESSAGE_MARK_SUCCESS,
+                        ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, CARL.getName()),
                 result.getFeedbackToUser()
         );
     }
 
     @Test
     public void execute_nonExistentPerson_throwsCommandException() {
-        ModelStub modelStub = new ModelStub();
-        PersonName student = new PersonName("Nonexistent");
-        MarkCommand command = new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, student);
-
+        MarkCommand command = new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, NAME_TARGET_NONEXISTENT);
         CommandException e = assertThrows(CommandException.class, () -> command.execute(modelStub));
-        assertEquals(MarkCommand.MESSAGE_STUDENT_NOT_FOUND, e.getMessage());
+        assertEquals(String.format(MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice")
-                .withAssignments(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName.fullName).build();
-        Person bob = new PersonBuilder().withName("Bob")
-                .withAssignments(ASSIGNMENT_LAB_TO_MARK.assignmentName.fullName).build();
-        MarkCommand markHomeworkToAliceCommand =
-                new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, alice.getName());
-        MarkCommand markLabToBobCommand =
-                new MarkCommand(ASSIGNMENT_LAB_TO_MARK.assignmentName, bob.getName());
-        MarkCommand markLabToAliceCommand =
-                new MarkCommand(ASSIGNMENT_LAB_TO_MARK.assignmentName, ALICE.getName());
+        MarkCommand markHomeworkToAmyCommand =
+                new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, NAME_TARGET_AMY);
+        MarkCommand markLabToBensonCommand =
+                new MarkCommand(ASSIGNMENT_LAB_TO_MARK.assignmentName, NAME_TARGET_BENSON);
+        MarkCommand markLabToAmyCommand =
+                new MarkCommand(ASSIGNMENT_LAB_TO_MARK.assignmentName, NAME_TARGET_AMY);
 
         // same object -> true
-        assertEquals(markHomeworkToAliceCommand, markHomeworkToAliceCommand);
+        assertEquals(markHomeworkToAmyCommand, markHomeworkToAmyCommand);
 
         // same assignment and same person name -> true
-        MarkCommand markHomeworkToAliceCommandCopy =
-                new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, alice.getName());
-        assertEquals(markHomeworkToAliceCommand, markHomeworkToAliceCommandCopy);
+        MarkCommand markHomeworkToAmyCommandCopy =
+                new MarkCommand(ASSIGNMENT_HOMEWORK_TO_MARK.assignmentName, NAME_TARGET_AMY);
+        assertEquals(markHomeworkToAmyCommand, markHomeworkToAmyCommandCopy);
 
         // different types -> false
-        assertNotEquals(1, markLabToBobCommand);
+        assertNotEquals(1, markLabToBensonCommand);
 
         // null -> false
-        assertNotEquals(null, markHomeworkToAliceCommand);
+        assertNotEquals(null, markHomeworkToAmyCommand);
 
         // same assignment but different person name -> false
-        assertNotEquals(markLabToAliceCommand, markLabToBobCommand);
+        assertNotEquals(markLabToAmyCommand, markLabToBensonCommand);
 
         // different assignment but same person name -> false
-        assertNotEquals(markHomeworkToAliceCommand, markLabToAliceCommand);
+        assertNotEquals(markHomeworkToAmyCommand, markLabToAmyCommand);
     }
 
     class ModelStub extends ModelManager {
