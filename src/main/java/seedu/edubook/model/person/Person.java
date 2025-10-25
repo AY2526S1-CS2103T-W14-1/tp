@@ -12,6 +12,7 @@ import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
+import seedu.edubook.logic.commands.exceptions.AssignmentUnmarkedException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.label.Label;
@@ -221,7 +222,7 @@ public class Person {
      *
      * @param assignmentName Assignment name to be checked
      * @throws AssignmentNotFoundException if target assignment is not found.
-     * @throws AssignmentMarkedException if target assignment is marked.
+     * @throws AssignmentMarkedException if target assignment is already marked.
      */
     public void markAssignment(AssignmentName assignmentName)
             throws AssignmentNotFoundException, AssignmentMarkedException {
@@ -230,6 +231,27 @@ public class Person {
         for (Assignment assignment : assignments) {
             if (assignment.hasName(assignmentName)) {
                 assignment.mark();
+                return;
+            }
+        }
+        throw AssignmentNotFoundException.forStudent();
+    }
+
+    /**
+     * Checks whether the student has an assignment matching given assignment name.
+     * Unmarks the assignment if present, throws exception otherwise.
+     *
+     * @param assignmentName Assignment name to be checked
+     * @throws AssignmentNotFoundException if target assignment is not found.
+     * @throws AssignmentUnmarkedException if target assignment is already unmarked.
+     */
+    public void unmarkAssignment(AssignmentName assignmentName)
+            throws AssignmentNotFoundException, AssignmentUnmarkedException {
+        requireNonNull(assignmentName);
+
+        for (Assignment assignment : assignments) {
+            if (assignment.hasName(assignmentName)) {
+                assignment.unmark();
                 return;
             }
         }

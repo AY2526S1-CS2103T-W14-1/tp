@@ -7,11 +7,14 @@ import static seedu.edubook.testutil.Assert.assertThrows;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TASK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_ONE_TO_MARK;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_ONE_TO_UNMARK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL_TWO_TO_MARK;
+import static seedu.edubook.testutil.TypicalAssignments.UNMARKED_ASSIGNMENT_TEST_TO_UNMARK;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
+import seedu.edubook.logic.commands.exceptions.AssignmentUnmarkedException;
 import seedu.edubook.model.tag.Tag;
 
 public class AssignmentTest {
@@ -43,6 +46,17 @@ public class AssignmentTest {
     public void markedAssignment_throwsExceptionWhenMarked() throws AssignmentMarkedException {
         ASSIGNMENT_TUTORIAL_TWO_TO_MARK.mark();
         assertThrows(AssignmentMarkedException.class, ASSIGNMENT_TUTORIAL_TWO_TO_MARK::mark);
+    }
+
+    @Test
+    public void unmarkedAssignment_throwsExceptionWhenUnmarked() {
+        assertThrows(AssignmentUnmarkedException.class, UNMARKED_ASSIGNMENT_TEST_TO_UNMARK::unmark);
+    }
+
+    @Test
+    public void markedAssignment_unmarkedSuccessfully() throws AssignmentUnmarkedException {
+        ASSIGNMENT_TUTORIAL_ONE_TO_UNMARK.unmark();
+        assertTrue(!ASSIGNMENT_TUTORIAL_ONE_TO_UNMARK.isDone());
     }
 
     @Test
