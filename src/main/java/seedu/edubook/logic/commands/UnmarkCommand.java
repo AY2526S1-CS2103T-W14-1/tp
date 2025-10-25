@@ -68,6 +68,7 @@ public class UnmarkCommand extends Command {
         this.target = target;
     }
 
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         logger.info("Executing UnmarkCommand for target: " + target.getDisplayName());

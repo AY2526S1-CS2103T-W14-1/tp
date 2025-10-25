@@ -101,5 +101,8 @@ public interface Target {
      * @param notExistCount Number of assignments that do not exist for the target(s).
      * @return Formatted success message.
      */
-    String getUnmarkSuccessMessage(String assignmentName, int unmarkedCount, int alreadyUnmarkedCount, int notExistCount);
+    String getUnmarkSuccessMessage(String assignmentName,
+                                   int unmarkedCount,
+                                   int alreadyUnmarkedCount,
+                                   int notExistCount);
 }

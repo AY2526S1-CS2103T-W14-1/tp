@@ -45,7 +45,7 @@ public class AssignCommandTest {
     }
 
     @Test
-    public void constructor_nullAssignTarget_throwsNullPointerException() {
+    public void constructor_nullTarget_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignCommand(ASSIGNMENT_HOMEWORK.assignmentName, null));
     }
 
