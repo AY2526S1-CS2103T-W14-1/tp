@@ -11,7 +11,7 @@ import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Represents a target that assigns an assignment to a single student by name.
+ * Represents a target that represents a student with the specified name.
  */
 public class NameTarget implements Target {
 
@@ -24,10 +24,10 @@ public class NameTarget implements Target {
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'.";
 
-    private final PersonName name;
-
     /** Template for message when view class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
+
+    private final PersonName name;
 
     /**
      * Constructs a {@code NameTarget} for the given person name.

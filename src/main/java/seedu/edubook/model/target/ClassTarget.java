@@ -10,7 +10,7 @@ import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.TuitionClass;
 
 /**
- * Represents a target that assigns an assignment to all students in a class.
+ * Represents a target that represents all students in a specified class.
  */
 public class ClassTarget implements Target {
 

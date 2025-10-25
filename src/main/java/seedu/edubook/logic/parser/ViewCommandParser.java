@@ -9,12 +9,12 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.target.AssignmentTarget;
-import seedu.edubook.model.target.NameTarget;
-import seedu.edubook.model.target.ClassTarget;
-import seedu.edubook.model.target.Target;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
+import seedu.edubook.model.target.AssignmentTarget;
+import seedu.edubook.model.target.ClassTarget;
+import seedu.edubook.model.target.NameTarget;
+import seedu.edubook.model.target.Target;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -85,7 +85,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         boolean hasAssignmentPrefix = argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent();
 
         // Use XOR to assert that only one of n/ or c/ is present and not none or both.
-        assert hasNamePrefix ^ hasClassPrefix ^ hasAssignmentPrefix: "Exactly one of n/, c/ or a/ must be present.";
+        assert hasNamePrefix ^ hasClassPrefix ^ hasAssignmentPrefix : "Exactly one of n/, c/ or a/ must be present.";
 
         if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
             PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());

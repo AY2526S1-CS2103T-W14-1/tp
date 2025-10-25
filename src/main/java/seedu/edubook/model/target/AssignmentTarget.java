@@ -1,15 +1,17 @@
 package seedu.edubook.model.target;
 
-import seedu.edubook.logic.commands.exceptions.CommandException;
-import seedu.edubook.model.Model;
-import seedu.edubook.model.assignment.Assignment;
-import seedu.edubook.model.assignment.AssignmentName;
-import seedu.edubook.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.model.Model;
+import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.person.Person;
 
+/**
+ * Represents a target that represents all students with the specified assignment name.
+ */
 public class AssignmentTarget implements Target {
 
     /** Error message when the assignment cannot be found in the model. */

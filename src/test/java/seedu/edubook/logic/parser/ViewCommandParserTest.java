@@ -8,8 +8,8 @@ import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.ViewCommand;
-import seedu.edubook.model.target.NameTarget;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.target.NameTarget;
 
 public class ViewCommandParserTest {
 

@@ -5,15 +5,15 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
-import seedu.edubook.model.target.Target;
 import seedu.edubook.model.person.Person;
+import seedu.edubook.model.target.Target;
 
 /**
  * Finds and lists a person in address book with the specified name.
