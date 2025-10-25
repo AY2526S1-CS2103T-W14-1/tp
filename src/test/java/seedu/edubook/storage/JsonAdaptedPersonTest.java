@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
@@ -26,6 +27,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_ASSIGNMENT = "$Homework 1";
+    private static final String INVALID_LABEL = "Late for clas$";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -47,6 +49,10 @@ public class JsonAdaptedPersonTest {
             String.join("", java.util.Collections.nCopies(50, "test"));
     private static final String INVALID_PHONE_LENGTH =
             String.join("", java.util.Collections.nCopies(10, "1234"));
+    private static final String INVALID_LABEL_LENGTH =
+            String.join("", java.util.Collections.nCopies(50, "test"));
+
+    private static final String BLANK_LABEL = "";
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -188,6 +194,39 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_CLASS, VALID_TAGS, invalidAssignments, VALID_LABEL);
         assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidLabel_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        VALID_CLASS, VALID_TAGS, VALID_ASSIGNMENTS, INVALID_LABEL);
+        String expectedMessage = Label.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidLabelLength_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                        VALID_CLASS, VALID_TAGS, VALID_ASSIGNMENTS, INVALID_LABEL_LENGTH);
+        String expectedMessage = Label.MESSAGE_LENGTH_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullLabel_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_CLASS, VALID_TAGS, VALID_ASSIGNMENTS, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Label.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_blankLabel_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_CLASS, VALID_TAGS, VALID_ASSIGNMENTS, BLANK_LABEL);
+        assertEquals(BENSON, person.toModelType());
     }
 
 }

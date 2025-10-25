@@ -152,12 +152,12 @@ class JsonAdaptedPerson {
     }
 
     private Label convertLabel(String label) throws IllegalValueException {
-        if (label.isBlank()) {
-            return Label.EMPTY;
-        }
         if (label == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Label.class.getSimpleName()));
+        }
+        if (label.isBlank()) {
+            return Label.EMPTY;
         }
         if (!StringUtil.isValidLength(label, Label.MAX_LABEL_LENGTH)) {
             throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
