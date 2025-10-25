@@ -24,6 +24,12 @@ public class NameTarget implements Target {
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'.";
 
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
+
+    /** Template for success message when assignment is assigned to a student. */
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
+
     /** Template for message when view class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
 
@@ -54,10 +60,6 @@ public class NameTarget implements Target {
         return name.fullName;
     }
 
-    public PersonName getName() {
-        return this.name;
-    }
-
     @Override
     public boolean isSinglePersonTarget() {
         return true;
@@ -71,6 +73,16 @@ public class NameTarget implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getLabelSuccessMessage(String assignmentName) {
+        return String.format(MESSAGE_LABEL_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getUnlabelSuccessMessage(String assignmentName) {
+        return String.format(MESSAGE_UNLABEL_SUCCESS, assignmentName, getDisplayName());
     }
 
     @Override
