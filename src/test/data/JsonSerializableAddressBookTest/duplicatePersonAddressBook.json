@@ -4,11 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "class": "123",
-    "tags": [ "friends" ]
+    "tags": [ "friends" ],
+    "label": ""
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "class": "4th"
+    "class": "4th",
+    "label": ""
   } ]
 }

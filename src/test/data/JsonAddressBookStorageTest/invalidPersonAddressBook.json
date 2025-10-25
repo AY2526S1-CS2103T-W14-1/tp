@@ -3,6 +3,7 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "class": "4th"
+    "class": "4th",
+    "label": ""
   } ]
 }
