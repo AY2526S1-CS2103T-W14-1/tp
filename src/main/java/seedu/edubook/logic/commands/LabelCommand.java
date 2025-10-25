@@ -1,5 +1,12 @@
 package seedu.edubook.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+
+import java.util.List;
+import java.util.logging.Logger;
+
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
@@ -7,12 +14,6 @@ import seedu.edubook.model.Model;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.target.Target;
-
-import java.util.List;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.*;
 
 /**
  * Creates a label for a student
@@ -34,6 +35,12 @@ public class LabelCommand extends Command {
     private final Label label;
     private final Target target;
 
+    /**
+     * Creates a LabelCommand for a given label and target
+     *
+     * @param label
+     * @param target
+     */
     public LabelCommand(Label label, Target target) {
         requireNonNull(label);
         requireNonNull(target);

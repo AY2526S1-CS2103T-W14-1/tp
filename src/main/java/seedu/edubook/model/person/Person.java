@@ -110,7 +110,9 @@ public class Person {
         return tuitionClass;
     }
 
-    public Label getLabel() { return label; }
+    public Label getLabel() {
+        return label;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

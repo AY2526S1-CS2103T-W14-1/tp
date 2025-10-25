@@ -1,9 +1,6 @@
 package seedu.edubook.logic.parser;
 
-import static seedu.edubook.logic.Messages.MESSAGE_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
@@ -11,9 +8,6 @@ import seedu.edubook.logic.commands.LabelCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.TuitionClass;
-import seedu.edubook.model.target.ClassTarget;
-import seedu.edubook.model.target.NameTarget;
 import seedu.edubook.model.target.NameTargetForLabel;
 import seedu.edubook.model.target.Target;
 
