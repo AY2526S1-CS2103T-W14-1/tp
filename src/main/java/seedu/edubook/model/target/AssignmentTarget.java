@@ -29,6 +29,9 @@ public class AssignmentTarget implements Target {
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
 
+    public static final String MESSAGE_MARK_SUCCESS =
+            "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
+
     /** Template for message when view class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
             "Here are the details of all the students with assignment '%1$s'.";
@@ -75,6 +78,13 @@ public class AssignmentTarget implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName());
+    }
+
+    @Override
+    public String getMarkSuccessMessage(String assignmentName, int markedCount,
+                                        int alreadyMarkedCount, int notExistCount) {
+        return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName(),
+                markedCount, alreadyMarkedCount, notExistCount);
     }
 
     @Override

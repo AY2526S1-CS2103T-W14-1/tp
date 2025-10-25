@@ -31,12 +31,12 @@ public class ClassTarget implements Target {
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
 
+    public static final String MESSAGE_MARK_SUCCESS =
+            "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
+
     /** Template for message when view class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
             "Here are the details of all the students in '%1$s'.";
-
-    public static final String MESSAGE_MARK_SUCCESS =
-            "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
 
     private final TuitionClass tuitionClass;
 
