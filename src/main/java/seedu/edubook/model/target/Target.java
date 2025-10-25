@@ -55,4 +55,29 @@ public interface Target {
      * @return Formatted success message.
      */
     String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount);
+
+    /**
+     * Returns the formatted success message after successfully assigning a label to this target.
+     *
+     * @param labelName Name of the label.
+     *
+     * @return Formatted success message.
+     */
+    String getLabelSuccessMessage(String labelName);
+
+    /**
+     * Returns the formatted success message after successfully unassigning a label to this target.
+     *
+     * @param labelName Name of the label.
+     *
+     * @return Formatted success message.
+     */
+    String getUnlabelSuccessMessage(String labelName);
+
+    /**
+     * Returns the formatted success message after successfully viewing the target.
+     *
+     * @return Formatted success message.
+     */
+    String getViewSuccessMessage();
 }

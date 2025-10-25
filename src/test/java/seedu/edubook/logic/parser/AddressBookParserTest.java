@@ -145,6 +145,7 @@ public class AddressBookParserTest {
     public void parseCommand_view() throws Exception {
         ViewCommand command = (ViewCommand) parser.parseCommand(
                 ViewCommand.COMMAND_WORD + " n/Alice");
-        assertEquals(new ViewCommand(new PersonName("Alice")), command);
+        PersonName name = new PersonName("Alice");
+        assertEquals(new ViewCommand(new NameTarget(name)), command);
     }
 }

@@ -8,7 +8,7 @@ import seedu.edubook.logic.commands.LabelCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.target.NameTargetForLabel;
+import seedu.edubook.model.target.NameTarget;
 import seedu.edubook.model.target.Target;
 
 /**
@@ -75,7 +75,7 @@ public class LabelCommandParser implements Parser<LabelCommand> {
     private static Target parseLabelTarget(ArgumentMultimap argMultimap) throws ParseException {
 
         PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
-        return new NameTargetForLabel(personName);
+        return new NameTarget(personName);
 
     }
 
