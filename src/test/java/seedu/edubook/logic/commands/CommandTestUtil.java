@@ -2,12 +2,7 @@ package seedu.edubook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.edubook.logic.parser.CliSyntax.*;
 import static seedu.edubook.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -40,6 +35,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ASSIGNMENT_HOMEWORK = "Homework 2";
     public static final String VALID_ASSIGNMENT_TUTORIAL = "Tutorial 2";
+    public static final String VALID_LABEL_GOOD = "Top student";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_PERSON_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_PERSON_NAME + VALID_NAME_BOB;
@@ -53,6 +49,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String ASSIGNMENT_DESC_HOMEWORK = " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_HOMEWORK;
     public static final String ASSIGNMENT_DESC_TUTORIAL = " " + PREFIX_ASSIGNMENT_NAME + VALID_ASSIGNMENT_TUTORIAL;
+    public static final String LABEL_DESC_GOOD = " " + PREFIX_LABEL + VALID_LABEL_GOOD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_PERSON_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

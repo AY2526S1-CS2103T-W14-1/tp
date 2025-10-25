@@ -4,18 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
-import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_LAB;
-import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
-import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_BENSON;
-import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_NONEXISTENT;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_BAD;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
-import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_BENSON;
-import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_NONEXISTENT;
 import static seedu.edubook.testutil.TypicalNameTargetsForLabel.*;
 import static seedu.edubook.testutil.TypicalPersons.ALICE;
 
