@@ -35,6 +35,9 @@ public class ClassTarget implements Target {
     private static final String MESSAGE_VIEW_SUCCESS =
             "Here are the details of all the students in '%1$s'.";
 
+    public static final String MESSAGE_MARK_SUCCESS =
+            "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
+
     private final TuitionClass tuitionClass;
 
     /**
@@ -77,6 +80,13 @@ public class ClassTarget implements Target {
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
         return String.format(MESSAGE_UNASSIGN_SUCCESS, assignmentName, getDisplayName(), successCount, skippedCount);
+    }
+
+    @Override
+    public String getMarkSuccessMessage(String assignmentName, int markedCount,
+                                        int alreadyMarkedCount, int notExistCount) {
+        return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName(),
+                markedCount, alreadyMarkedCount, notExistCount);
     }
 
     @Override

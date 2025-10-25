@@ -24,9 +24,9 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
 
         assert data != null : "data should not be null";
         assert data.assignmentName != null : "data should contain assignmentName";
-        assert data.student != null : "data should contain student";
+        assert data.person != null : "data should contain student";
 
-        return new UnmarkCommand(data.assignmentName, data.student);
+        return new UnmarkCommand(data.assignmentName, data.person);
     }
 
 }
