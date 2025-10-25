@@ -1,5 +1,6 @@
 package seedu.edubook.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
@@ -50,6 +51,11 @@ public class UnmarkCommandParserTest {
         assertParseSuccess(parser,
                 ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY,
                 new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, AMY.getName()));
+    }
+
+    @Test
+    public void parse_nullArgs_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
     }
 
     @Test

@@ -13,6 +13,7 @@ import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.commons.Name;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -35,6 +36,7 @@ class JsonAdaptedPerson {
     private final String tuitionClass;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
+    private final String label;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +47,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("class") String tuitionClass,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments
+                             @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
+                             @JsonProperty("label") String label
     ) {
         this.name = name;
         this.phone = phone;
@@ -57,6 +60,7 @@ class JsonAdaptedPerson {
         if (assignments != null) {
             this.assignments.addAll(assignments);
         }
+        this.label = label;
     }
 
     /**
@@ -73,6 +77,7 @@ class JsonAdaptedPerson {
         assignments.addAll(source.getAssignments().stream()
                 .map(JsonAdaptedAssignment::new)
                 .collect(Collectors.toList()));
+        label = (source.getLabel().isEmpty()) ? "" : source.getLabel().labelContent;
     }
 
     /**
@@ -134,13 +139,34 @@ class JsonAdaptedPerson {
         if (!TuitionClass.isValidClass(tuitionClass)) {
             throw new IllegalValueException(TuitionClass.MESSAGE_CONSTRAINTS);
         }
+
+        final Label modelLabel = convertLabel(label);
+
         final TuitionClass modelClass = new TuitionClass(tuitionClass);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Assignment> modelAssignments = new HashSet<>(personAssignments);
 
-        return new Person(modelName, modelPhone, modelEmail, modelClass, modelTags, modelAssignments);
+        return new Person(modelName, modelPhone, modelEmail, modelClass, modelTags, modelAssignments, modelLabel);
+    }
+
+    private Label convertLabel(String label) throws IllegalValueException {
+        if (label.isBlank()) {
+            return Label.EMPTY;
+        }
+        if (label == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Label.class.getSimpleName()));
+        }
+        if (!StringUtil.isValidLength(label, Label.MAX_LABEL_LENGTH)) {
+            throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+        if (!Label.isValidLabel(label)) {
+            throw new IllegalValueException(Label.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Label(label);
     }
 
 }
