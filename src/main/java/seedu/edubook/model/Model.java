@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.edubook.commons.core.GuiSettings;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
@@ -93,10 +94,18 @@ public interface Model {
     /**
      * Finds all persons belonging to the specified class.
      *
-     * @param tuitionClass the class to filter by.
+     * @param tuitionClass The class to filter by.
      * @return a list of persons in the specified class.
      */
     List<Person> findPersonsByClass(TuitionClass tuitionClass);
+
+    /**
+     * Finds all persons with the specified assignment name.
+     *
+     * @param assignmentName The name of the assignment to filter by.
+     * @return a list of persons with the specified assignment name.
+     */
+    List<Person> findPersonsByAssignmentName(AssignmentName assignmentName);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

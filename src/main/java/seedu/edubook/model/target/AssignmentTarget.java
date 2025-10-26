@@ -6,68 +6,68 @@ import java.util.List;
 
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
-import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Represents a target that represents a student with the specified name.
+ * Represents a target that represents all students with the specified assignment name.
  */
-public class NameTarget implements Target {
+public class AssignmentTarget implements Target {
 
-    /** Error message when the student cannot be found in the model. */
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Student '%s' not found.";
+    /** Error message when the assignment cannot be found in the model. */
+    public static final String MESSAGE_NO_ASSIGNMENT_FOUND = "Assignment '%s' not found.";
 
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'.";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNASSIGN_SUCCESS = "Assignment '%s' unassigned from student: '%s'.";
-
-    public static final String MESSAGE_MARK_SUCCESS = "Assignment '%s' marked for student: '%s'.";
+    public static final String MESSAGE_UNASSIGN_SUCCESS = "New assignment '%s' unassigned from student: '%s'.";
 
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from student: '%s'.";
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
 
-    /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNLABEL_FAILURE = "Student '%s' does not have an existing label";
+    public static final String MESSAGE_MARK_SUCCESS =
+            "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
 
     /** Template for message when view class is successful. */
-    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
+    private static final String MESSAGE_VIEW_SUCCESS =
+            "Here are the details of all the students with assignment '%1$s'.";
 
-    private final PersonName name;
+    private final AssignmentName assignmentName;
 
     /**
-     * Constructs a {@code NameTarget} for the given person name.
+     * Constructs an {@code AssignmentTarget} for the given person assignment.
      *
-     * @param name The name of the student to assign to.
+     * @param assignmentName The assignment name of the students.
      */
-    public NameTarget(PersonName name) {
-        requireNonNull(name);
-        this.name = name;
+    public AssignmentTarget(AssignmentName assignmentName) {
+        requireNonNull(assignmentName);
+        this.assignmentName = assignmentName;
     }
 
     @Override
     public List<Person> getPersons(Model model) throws CommandException {
-        try {
-            Person person = model.findPersonByName(name);
-            return List.of(person);
-        } catch (PersonNotFoundException e) {
-            throw new CommandException(String.format(MESSAGE_PERSON_NOT_FOUND, name));
+        assert model != null : "Model cannot be null.";
+
+        List<Person> persons = model.findPersonsByAssignmentName(assignmentName);
+        assert persons != null : "Returned list of persons should not be null.";
+        if (persons.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_NO_ASSIGNMENT_FOUND, assignmentName));
         }
+        return persons;
     }
 
     @Override
     public String getDisplayName() {
-        return name.fullName;
+        return assignmentName.toString();
     }
 
     @Override
     public boolean isSinglePersonTarget() {
-        return true;
+        return false;
     }
 
     @Override
@@ -83,7 +83,8 @@ public class NameTarget implements Target {
     @Override
     public String getMarkSuccessMessage(String assignmentName, int markedCount,
                                         int alreadyMarkedCount, int notExistCount) {
-        return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName());
+        return String.format(MESSAGE_MARK_SUCCESS, assignmentName, getDisplayName(),
+                markedCount, alreadyMarkedCount, notExistCount);
     }
 
     @Override
@@ -98,12 +99,12 @@ public class NameTarget implements Target {
 
     @Override
     public String getUnlabelFailureMessage() {
-        return String.format(MESSAGE_UNLABEL_FAILURE, getDisplayName());
+        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
     }
 
     @Override
     public String getViewSuccessMessage() {
-        return String.format(MESSAGE_VIEW_SUCCESS, name);
+        return String.format(MESSAGE_VIEW_SUCCESS, assignmentName);
     }
 
     @Override
@@ -111,20 +112,20 @@ public class NameTarget implements Target {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof NameTarget)) {
+        if (!(other instanceof AssignmentTarget)) {
             return false;
         }
-        NameTarget otherTarget = (NameTarget) other;
-        return name.equals(otherTarget.name);
+        AssignmentTarget otherTarget = (AssignmentTarget) other;
+        return assignmentName.equals(otherTarget.assignmentName);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return assignmentName.hashCode();
     }
 
     @Override
     public String toString() {
-        return "NameTarget{name=" + name.fullName + "}";
+        return "AssignmentTarget{Assignment=" + assignmentName + "}";
     }
 }

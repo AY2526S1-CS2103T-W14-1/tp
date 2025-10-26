@@ -1,17 +1,20 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 
+import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
-import seedu.edubook.logic.Messages;
+import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.person.Person;
-import seedu.edubook.model.person.PersonName;
-import seedu.edubook.model.person.TuitionClass;
+import seedu.edubook.model.target.Target;
 
 /**
  * Finds and lists a person in address book with the specified name.
@@ -21,86 +24,50 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": View the details of a student or view the details of all the students in a class. "
-            + "Parameters when viewing a single student: "
-            + PREFIX_PERSON_NAME + "NAME\n"
+            + ": View the details of a single student, all students in a class "
+            + " or all students with a particular assignment. "
+            + "Parameters: ["
+            + PREFIX_PERSON_NAME + "NAME | "
+            + PREFIX_CLASS + "CLASS | "
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe"
-            + "Parameters when viewing a class: "
-            + PREFIX_CLASS + "CLASS\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B";
+            + " OR "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B"
+            + " OR "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ASSIGNMENT_NAME + "Tutorial 1";
 
     public static final String MESSAGE_VIEW_STUDENT_SUCCESS =
             "Here are the details of %1$s.";
-    public static final String MESSAGE_VIEW_CLASS_SUCCESS =
-            "Here are the details of all the students in %1$s.";
 
-    private final PersonName name;
-    private final TuitionClass tuitionClass;
+    private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
 
-    /**
-     * Creates a {@code ViewCommand} to view student with specified {@code name}
-     *
-     * @param name {@code name} of the student to view.
-     */
-    public ViewCommand(PersonName name) {
-        this.name = name;
-        tuitionClass = null;
-    }
+    private final Target target;
 
     /**
-     * Creates a {@code ViewCommand} to view class with specified {@code tuitionClass}
+     * Creates a {@code ViewCommand} to view student with specified {@code target}
      *
-     * @param tuitionClass {@code tuitionClass} of the students to view.
+     * @param target The target to assign to (single student or class).
      */
-    public ViewCommand(TuitionClass tuitionClass) {
-        this.tuitionClass = tuitionClass;
-        this.name = null;
+    public ViewCommand(Target target) {
+        requireNonNull(target);
+        this.target = target;
     }
+
 
     @Override
-    public CommandResult execute(Model model) {
-        if (this.tuitionClass == null) {
-            return viewByName(model);
-        } else {
-            return viewByClass(model);
-        }
-
-    }
-
-    /**
-     * Views a student identified by their name in the displayed person list.
-     *
-     * @param model {@code Model} which the ViewCommand should operate on.
-     * @return {@code CommandResult} which will output the result of Command.
-     */
-    public CommandResult viewByName(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Predicate<Person> predicate = person -> person.getName().equals(name);
-        model.updateFilteredPersonList(predicate);
-        if (model.getFilteredPersonList().isEmpty()) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_INVALID_NAME));
-        }
-        return new CommandResult(
-                String.format(MESSAGE_VIEW_STUDENT_SUCCESS, name));
-    }
 
-    /**
-     * Views all the students in a class identified by their tuition class in the displayed person list.
-     *
-     * @param model {@code Model} which the ViewCommand should operate on.
-     * @return {@code CommandResult} which will output the result of Command.
-     */
-    public CommandResult viewByClass(Model model) {
-        requireNonNull(model);
-        Predicate<Person> predicate = person -> person.getTuitionClass().equals(tuitionClass);
+        logger.info("Executing ViewCommand for target: " + target.getDisplayName());
+
+        List<Person> studentsToView = target.getPersons(model);
+        Predicate<Person> predicate = studentsToView::contains;
         model.updateFilteredPersonList(predicate);
-        if (model.getFilteredPersonList().isEmpty()) {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_INVALID_NAME));
-        }
-        return new CommandResult(
-                String.format(MESSAGE_VIEW_CLASS_SUCCESS, tuitionClass));
+        String message = target.getViewSuccessMessage();
+
+        logger.info("ViewCommand completed: " + message);
+
+        return new CommandResult(message);
     }
 
     @Override
@@ -116,24 +83,13 @@ public class ViewCommand extends Command {
 
         ViewCommand otherViewCommand = (ViewCommand) other;
 
-        // Handle case where both use name
-        if (name != null && otherViewCommand.name != null) {
-            return name.equals(otherViewCommand.name);
-        }
-
-        // Handle case where both use class
-        if (tuitionClass != null && otherViewCommand.tuitionClass != null) {
-            return tuitionClass.equals(otherViewCommand.tuitionClass);
-        }
-
-        // Return false if one uses tuitionClass and one uses name.
-        return false;
+        return target.equals(otherViewCommand.target);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", name)
+                .add("target", target)
                 .toString();
     }
 }

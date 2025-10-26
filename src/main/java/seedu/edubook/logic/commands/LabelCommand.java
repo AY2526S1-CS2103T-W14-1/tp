@@ -59,9 +59,8 @@ public class LabelCommand extends Command {
             model.setPerson(person, person.withAddedLabel(label));
         }
 
-        String message = target.getAssignSuccessMessage(label.toString(), 0, 0);
+        String message = target.getLabelSuccessMessage(label.toString());
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
-
 
         logger.info("LabelCommand completed: " + message);
         return new CommandResult(message);

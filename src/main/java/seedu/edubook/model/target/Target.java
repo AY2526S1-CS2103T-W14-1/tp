@@ -57,6 +57,37 @@ public interface Target {
     String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount);
 
     /**
+     * Returns the formatted success message after successfully assigning a label to this target.
+     *
+     * @param labelName Name of the label.
+     *
+     * @return Formatted success message.
+     */
+    String getLabelSuccessMessage(String labelName);
+
+    /**
+     * Returns the formatted success message after successfully unassigning a label to this target.
+     *
+     *
+     * @return Formatted success message.
+     */
+    String getUnlabelSuccessMessage();
+
+    /**
+     * If student does not have any label, label command is not executed.
+     *
+     * @return Formatted failure message
+     */
+    String getUnlabelFailureMessage();
+
+    /**
+     * Returns the formatted success message after successfully viewing the target.
+     *
+     * @return Formatted success message.
+     */
+    String getViewSuccessMessage();
+
+    /**
      * Returns the formatted success message after successfully marking an assignment for this target.
      *
      * @param assignmentName Name of the assignment.
