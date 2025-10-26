@@ -111,7 +111,7 @@ public class EditCommand extends Command {
         Set<Assignment> updatedAssignments = editPersonDescriptor.getAssignments()
                 .orElse(personToEdit.getAssignments());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedClass, 
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedClass,
                 updatedTags, updatedAssignments, updatedLabel);
     }
 
