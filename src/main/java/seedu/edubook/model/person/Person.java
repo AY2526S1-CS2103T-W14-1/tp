@@ -174,6 +174,21 @@ public class Person {
     }
 
     /**
+     *
+     */
+    public Person withRemovedLabel() {
+        return new Person(
+                this.name,
+                this.phone,
+                this.email,
+                this.tuitionClass,
+                this.tags,
+                this.assignments,
+                Label.EMPTY
+        );
+    }
+
+    /**
      * Removes an assignment from the person, and creates a new person with the new assignment set.
      * This ensures immutability of Person objects.
      *
