@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_CLASS;
+import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS;
+import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_LAB;
 import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
@@ -100,6 +102,44 @@ public class UnmarkCommandTest {
                         VALID_CLASS_AMY,
                         ASSIGNMENT_HOMEWORK.assignmentName)
         );
+    }
+
+    @Test
+    public void execute__singleAssignmentNotFound_throwsCommandException() {
+        ModelStubAssignmentMissing model = new ModelStubAssignmentMissing();
+        UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
+
+        CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals(
+                String.format(MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE, NAME_TARGET_AMY.getDisplayName(),
+                        ASSIGNMENT_HOMEWORK.assignmentName),
+                e.getMessage()
+        );
+    }
+
+    @Test
+    public void execute__classAllMissingAssignment_throwsCommandException() {
+        ModelStubAllMissingAssignments model = new ModelStubAllMissingAssignments();
+        UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
+
+        CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals(
+                String.format(MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS,
+                        CLASS_TARGET_AMY.getDisplayName(),
+                        ASSIGNMENT_HOMEWORK.assignmentName),
+                e.getMessage()
+        );
+    }
+
+    @Test
+    public void execute__classMixedError_throwsCommandException() {
+        ModelStubMixedClass model = new ModelStubMixedClass();
+        UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
+
+        CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
+        assertTrue(e.getMessage().contains("No assignments were unmarked for class"));
+        assertTrue(e.getMessage().contains("already unmarked"));
+        assertTrue(e.getMessage().contains("did not exist"));
     }
 
     @Test
@@ -241,7 +281,6 @@ public class UnmarkCommandTest {
             PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
             PersonStub tom = new PersonStub(new PersonName("Tom"), phone, email, tuitionClass, new HashSet<>());
 
-            // Bob already unmarked (skip), Alice & Tom can be unmarked successfully
             bob.alreadyUnmarked = true;
             return List.of(alice, bob, tom);
         }
@@ -256,7 +295,6 @@ public class UnmarkCommandTest {
             PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
             PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
 
-            // both already unmarked
             alice.alreadyUnmarked = true;
             bob.alreadyUnmarked = true;
 
@@ -264,9 +302,50 @@ public class UnmarkCommandTest {
         }
     }
 
+    static class ModelStubAllMissingAssignments extends ModelStub {
+        @Override
+        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+            Phone phone = new Phone("11112222");
+            Email email = new Email("missing@edu.com");
+
+            PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
+            alice.missingAssignment = true;
+            bob.missingAssignment = true;
+            return List.of(alice, bob);
+        }
+    }
+
+    static class ModelStubMixedClass extends ModelStub {
+        @Override
+        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+            Phone phone = new Phone("33333333");
+            Email email = new Email("mix@edu.com");
+
+            PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
+            alice.alreadyUnmarked = true;
+            bob.missingAssignment = true;
+            return List.of(alice, bob);
+        }
+    }
+
+    static class ModelStubAssignmentMissing extends ModelStub {
+        @Override
+        public PersonStub findPersonByName(PersonName name) {
+            Phone phone = new Phone("44444444");
+            Email email = new Email("missing@edu.com");
+            TuitionClass tuitionClass = new TuitionClass(VALID_CLASS_AMY);
+            PersonStub person = new PersonStub(name, phone, email, tuitionClass, new HashSet<>());
+            person.missingAssignment = true;
+            return person;
+        }
+    }
+
     static class PersonStub extends Person {
         private final PersonName name;
         private boolean alreadyUnmarked = false;
+        private boolean missingAssignment = false;
 
         PersonStub(PersonName name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
             super(name, phone, email, tuitionClass, tags);
@@ -284,7 +363,9 @@ public class UnmarkCommandTest {
             if (alreadyUnmarked) {
                 throw new AssignmentUnmarkedException();
             }
-            // else do nothing = successfully unmarked
+            if (missingAssignment) {
+                throw new AssignmentNotFoundException("dummy");
+            }
         }
     }
 }
