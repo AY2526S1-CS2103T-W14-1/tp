@@ -8,9 +8,8 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_BAD;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
-import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_AMY;
-import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_BENSON;
-import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_NONEXISTENT;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_BENSON;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_NONEXISTENT;
 import static seedu.edubook.testutil.TypicalPersons.ALICE;
 
 import java.util.HashSet;
@@ -30,7 +29,7 @@ import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
-import seedu.edubook.model.target.NameTargetForLabel;
+import seedu.edubook.model.target.NameTarget;
 
 public class LabelCommandTest {
 
@@ -47,12 +46,12 @@ public class LabelCommandTest {
     @Test
     public void execute_nameTargetforLabel_success() throws CommandException {
         ModelStub model = new ModelStub();
-        LabelCommand command = new LabelCommand(LABEL_GOOD, NAME_TARGET_FOR_LABEL_BENSON);
+        LabelCommand command = new LabelCommand(LABEL_GOOD, NAME_TARGET_BENSON);
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = NAME_TARGET_FOR_LABEL_BENSON.getAssignSuccessMessage(
-                LABEL_GOOD.toString(), 0, 0);
+        String expectedMessage = NAME_TARGET_BENSON.getLabelSuccessMessage(
+                LABEL_GOOD.toString());
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
@@ -114,10 +113,10 @@ public class LabelCommandTest {
     @Test
     public void execute_nonExistentPersonForLabel_throwsCommandException() {
         ModelStub model = new ModelStub();
-        LabelCommand command = new LabelCommand(LABEL_BAD, NAME_TARGET_FOR_LABEL_NONEXISTENT);
+        LabelCommand command = new LabelCommand(LABEL_BAD, NAME_TARGET_NONEXISTENT);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals(String.format(NameTargetForLabel.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
+        assertEquals(String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }
     /*
     @Test
@@ -133,15 +132,15 @@ public class LabelCommandTest {
     */
     @Test
     public void equals_nameAssignTarget() {
-        LabelCommand labelBadToAmyCommand = new LabelCommand(LABEL_BAD, NAME_TARGET_FOR_LABEL_AMY);
-        LabelCommand labelBadToBensonCommand = new LabelCommand(LABEL_BAD, NAME_TARGET_FOR_LABEL_BENSON);
+        LabelCommand labelBadToAmyCommand = new LabelCommand(LABEL_BAD, NAME_TARGET_AMY);
+        LabelCommand labelBadToBensonCommand = new LabelCommand(LABEL_BAD, NAME_TARGET_BENSON);
         LabelCommand labelGoodToAliceCommand = new LabelCommand(LABEL_GOOD, NAME_TARGET_AMY);
 
         // same object -> true
         assertEquals(labelBadToAmyCommand, labelBadToAmyCommand);
 
         // same assignment and same person name -> true
-        LabelCommand labelBadToAmyCommandCopy = new LabelCommand(LABEL_BAD, NAME_TARGET_FOR_LABEL_AMY);
+        LabelCommand labelBadToAmyCommandCopy = new LabelCommand(LABEL_BAD, NAME_TARGET_AMY);
         assertEquals(labelBadToAmyCommand, labelBadToAmyCommandCopy);
 
         // different types -> false
@@ -186,7 +185,7 @@ public class LabelCommandTest {
     */
     @Test
     public void toString_nameLabelTarget() {
-        LabelCommand labelCommand = new LabelCommand(LABEL_GOOD, NAME_TARGET_FOR_LABEL_AMY);
+        LabelCommand labelCommand = new LabelCommand(LABEL_GOOD, NAME_TARGET_AMY);
 
         String str = labelCommand.toString();
 

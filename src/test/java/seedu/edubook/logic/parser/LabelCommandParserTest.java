@@ -14,7 +14,7 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
-import static seedu.edubook.testutil.TypicalNameTargetsForLabel.NAME_TARGET_FOR_LABEL_AMY;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,7 +51,7 @@ public class LabelCommandParserTest {
     public void parse_personPrefix_success() {
         assertParseSuccess(parser,
                 LABEL_DESC_GOOD + NAME_DESC_AMY,
-                new LabelCommand(LABEL_GOOD, NAME_TARGET_FOR_LABEL_AMY));
+                new LabelCommand(LABEL_GOOD, NAME_TARGET_AMY));
     }
     /*
     @Test
