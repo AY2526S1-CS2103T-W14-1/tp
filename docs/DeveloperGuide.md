@@ -263,15 +263,23 @@ Given below is an example usage scenario and how the label/unlabel mechanism beh
 
 Step 1. The user launches the application for the first time. The `EduBook` will be initialized with the initial EduBook state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![LabelState0](images/LabelState0.png)
 
 Step 2. The user executes `label n/John Doe l/Late for class` command to label John Doe in the EduBook. 
 
-Step 3. The user executes `unlabel n/John Doe` to remove the label.
+![LabelState1](images/LabelState1.png)
+
+Step 3. The user executes `edit n/John Doe l/Serve detention` to edit the label from `Late for class` to `Serve detention`.
+
+![LabelState2](images/LabelState2.png)
+
+Step 4. The user executes `unlabel n/John Doe` to remove the label.
+
+![LabelState3](images/LabelState3.png)
 
 The following sequence diagram shows how a label operation goes through the `Logic` component:
 
-![UndoSequenceDiagram](images/LabelSequenceDiagram.png)
+![LabelSequenceDiagram](images/LabelSequenceDiagram.png)
 
 #### Design considerations:
 
