@@ -62,7 +62,7 @@ public class NameTargetTest {
     public void getUnassignSuccessMessage_formatsCorrectly() {
         String result = NAME_TARGET_AMY.getUnassignSuccessMessage("Tutorial 1", 1, 0);
 
-        assertEquals("New assignment 'Tutorial 1' unassigned from student: 'Amy Bee'.", result);
+        assertEquals("Assignment 'Tutorial 1' unassigned from student: 'Amy Bee'.", result);
     }
 
     @Test

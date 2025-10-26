@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.edubook.commons.core.GuiSettings;
 import seedu.edubook.commons.core.LogsCenter;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
@@ -132,6 +133,17 @@ public class ModelManager implements Model {
         return this.addressBook.getPersonList()
                 .stream()
                 .filter(p -> p.getTuitionClass().equals(tuitionClass))
+                .toList();
+    }
+
+    @Override
+    public List<Person> findPersonsByAssignmentName(AssignmentName assignmentName) {
+        requireNonNull(assignmentName);
+        return this.addressBook.getPersonList()
+                .stream()
+                .filter(p -> p.getAssignments()
+                        .stream()
+                        .anyMatch(assignment -> assignment.hasName(assignmentName)))
                 .toList();
     }
 

@@ -14,6 +14,7 @@ import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.target.Target;
 
@@ -41,19 +42,19 @@ public class AssignCommand extends Command {
 
     private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
 
-    private final Assignment assignment;
+    private final AssignmentName assignmentName;
     private final Target target;
 
     /**
-     * Creates an AssignCommand for a given assignment and target.
+     * Creates an AssignCommand for a given assignment name and target.
      *
-     * @param assignment The assignment to assign.
+     * @param assignmentName The name of the assignment to assign.
      * @param target The target to assign to (single student or class).
      */
-    public AssignCommand(Assignment assignment, Target target) {
-        requireNonNull(assignment);
+    public AssignCommand(AssignmentName assignmentName, Target target) {
+        requireNonNull(assignmentName);
         requireNonNull(target);
-        this.assignment = assignment;
+        this.assignmentName = assignmentName;
         this.target = target;
     }
 
@@ -78,7 +79,7 @@ public class AssignCommand extends Command {
         handleNoAssignments(successCount);
 
         // Generate success message
-        String message = target.getAssignSuccessMessage(assignment.assignmentName.toString(),
+        String message = target.getAssignSuccessMessage(assignmentName.toString(),
                 successCount, skippedCount);
 
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
@@ -103,7 +104,8 @@ public class AssignCommand extends Command {
 
         for (Person person : assignees) {
             try {
-                model.setPerson(person, person.withAddedAssignment(assignment));
+                Assignment newAssignment = new Assignment(assignmentName);
+                model.setPerson(person, person.withAddedAssignment(newAssignment));
                 successCount++;
             } catch (AssignmentAlreadyExistsException e) {
                 skippedCount++;
@@ -124,9 +126,7 @@ public class AssignCommand extends Command {
             if (target.isSinglePersonTarget()) {
                 throw AssignmentAlreadyExistsException.forStudent();
             } else {
-                throw AssignmentAlreadyExistsException.forClass(target.getDisplayName(),
-                        assignment.assignmentName.toString()
-                );
+                throw AssignmentAlreadyExistsException.forClass(target.getDisplayName(), assignmentName.toString());
             }
         }
     }
@@ -135,14 +135,14 @@ public class AssignCommand extends Command {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof AssignCommand
-                && assignment.equals(((AssignCommand) other).assignment)
+                && assignmentName.equals(((AssignCommand) other).assignmentName)
                 && target.equals(((AssignCommand) other).target));
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("assignment", assignment)
+                .add("assignmentName", assignmentName)
                 .add("target", target)
                 .toString();
     }
