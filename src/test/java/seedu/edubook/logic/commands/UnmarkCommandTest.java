@@ -105,7 +105,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute__singleAssignmentNotFound_throwsCommandException() {
+    public void execute_singleAssignmentNotFound_throwsCommandException() {
         ModelStubAssignmentMissing model = new ModelStubAssignmentMissing();
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
 
@@ -118,7 +118,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute__classAllMissingAssignment_throwsCommandException() {
+    public void execute_classAllMissingAssignment_throwsCommandException() {
         ModelStubAllMissingAssignments model = new ModelStubAllMissingAssignments();
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
@@ -132,7 +132,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute__classMixedErrorOneUnmarked_throwsCommandException() {
+    public void execute_classMixedErrorOneUnmarked_throwsCommandException() {
         ModelStubMixedClassOneUnmarked model = new ModelStubMixedClassOneUnmarked();
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
@@ -142,7 +142,7 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute__classMixedErrorMoreThanOneUnmarked_throwsCommandException() {
+    public void execute_classMixedErrorMoreThanOneUnmarked_throwsCommandException() {
         ModelStubMixedClassMoreThanOneUnmarked model = new ModelStubMixedClassMoreThanOneUnmarked();
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
