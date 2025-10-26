@@ -34,7 +34,6 @@ import seedu.edubook.logic.commands.ListCommand;
 import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -59,27 +58,25 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_assign() throws Exception {
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_HOMEWORK);
-        Assignment assignment = new Assignment(assignmentName);
         PersonName personName = ParserUtil.parsePersonName(VALID_NAME_AMY);
         Target nameTarget = new NameTarget(personName);
 
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY);
 
-        assertEquals(new AssignCommand(assignment, nameTarget), command);
+        assertEquals(new AssignCommand(assignmentName, nameTarget), command);
     }
 
     @Test
     public void parseCommand_unassign() throws Exception {
         AssignmentName assignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_TUTORIAL);
-        Assignment assignment = new Assignment(assignmentName);
         PersonName personName = ParserUtil.parsePersonName(VALID_NAME_BOB);
         Target nameTarget = new NameTarget(personName);
 
         UnassignCommand command = (UnassignCommand) parser.parseCommand(
                 UnassignCommand.COMMAND_WORD + ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_BOB);
 
-        assertEquals(new UnassignCommand(assignment, nameTarget), command);
+        assertEquals(new UnassignCommand(assignmentName, nameTarget), command);
     }
 
     @Test
@@ -145,6 +142,7 @@ public class AddressBookParserTest {
     public void parseCommand_view() throws Exception {
         ViewCommand command = (ViewCommand) parser.parseCommand(
                 ViewCommand.COMMAND_WORD + " n/Alice");
-        assertEquals(new ViewCommand(new PersonName("Alice")), command);
+        PersonName name = new PersonName("Alice");
+        assertEquals(new ViewCommand(new NameTarget(name)), command);
     }
 }

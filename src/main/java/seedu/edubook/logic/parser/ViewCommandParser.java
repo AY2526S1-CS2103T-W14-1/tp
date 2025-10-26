@@ -6,13 +6,15 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
-import java.util.stream.Stream;
-
-import seedu.edubook.logic.commands.AssignCommand;
 import seedu.edubook.logic.commands.ViewCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
+import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
+import seedu.edubook.model.target.AssignmentTarget;
+import seedu.edubook.model.target.ClassTarget;
+import seedu.edubook.model.target.NameTarget;
+import seedu.edubook.model.target.Target;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -30,70 +32,71 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     public ViewCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_CLASS, PREFIX_ASSIGNMENT_NAME);
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PERSON_NAME);
+        validateViewCommandPrefixes(argMultimap);
 
-        if (noPrefixesPresent(argMultimap, PREFIX_PERSON_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_CLASS);
+        Target target = parseViewTarget(argMultimap);
 
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS);
-
-            if (noPrefixesPresent(argMultimap, PREFIX_CLASS)
-                    || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        ViewCommand.MESSAGE_USAGE));
-            }
-
-            TuitionClass tuitionClass =
-                    ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
-
-            return new ViewCommand(tuitionClass);
-        }
-
-        PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
-
-        return new ViewCommand(name);
+        return new ViewCommand(target);
     }
 
     /**
-     * Validates the prefixes provided for the {@code assign} command.
-     * Ensures that the {@code assignment} prefix (a/) is present and exactly one of
-     * either the person {@code name} name prefix (n/) or the {@code class} prefix (c/) is present.
+     * Validates the prefixes provided for the {@code view} command.
+     * Ensures that exactly one of either the person {@code name} name prefix (n/)
+     * or the {@code class} prefix (c/) is present.
      * Also checks that no unexpected preamble exists and that there are no duplicate prefixes.
      *
      * @param argMultimap The tokenized arguments containing prefixes and values.
      * @throws ParseException If the validation fails due to missing or conflicting prefixes,
      *                        unexpected preamble, or duplicate prefixes.
      */
-    private static void validateAssignCommandPrefixes(ArgumentMultimap argMultimap) throws ParseException {
-        boolean hasAssignment = argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent();
+    private static void validateViewCommandPrefixes(ArgumentMultimap argMultimap) throws ParseException {
         boolean hasName = argMultimap.getValue(PREFIX_PERSON_NAME).isPresent();
         boolean hasClass = argMultimap.getValue(PREFIX_CLASS).isPresent();
+        boolean hasAssignment = argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent();
 
-        if (!hasAssignment || (!hasName && !hasClass)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        if (hasName && hasClass) {
+        if (!hasName && !hasClass && !hasAssignment) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
+
+        if (hasName && hasClass && !hasAssignment) {
             throw new ParseException(MESSAGE_CONFLICTING_PREFIXES);
         }
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
-        }
-
         // Ensure no duplicate prefixes
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME, PREFIX_CLASS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PERSON_NAME, PREFIX_CLASS, PREFIX_ASSIGNMENT_NAME);
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Creates a {@code ViewTarget} based on the provided argument multimap.
+     *
+     * @param argMultimap The tokenized arguments containing prefixes and values.
+     * @return A {@code Target} representing the viewing target.
+     * @throws ParseException If parsing of the target fails.
      */
-    private static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return !Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static Target parseViewTarget(ArgumentMultimap argMultimap) throws ParseException {
+        boolean hasNamePrefix = argMultimap.getValue(PREFIX_PERSON_NAME).isPresent();
+        boolean hasClassPrefix = argMultimap.getValue(PREFIX_CLASS).isPresent();
+        boolean hasAssignmentPrefix = argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent();
+
+        // Use XOR to assert that only one of n/ or c/ is present and not none or both.
+        assert hasNamePrefix ^ hasClassPrefix ^ hasAssignmentPrefix : "Exactly one of n/, c/ or a/ must be present.";
+
+        if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
+            PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
+            return new NameTarget(personName);
+        } else if (argMultimap.getValue(PREFIX_CLASS).isPresent()) {
+            TuitionClass tuitionClass = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
+            return new ClassTarget(tuitionClass);
+        } else {
+            AssignmentName assignmentName =
+                    ParserUtil.parseAssignmentName(argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
+            return new AssignmentTarget(assignmentName);
+        }
     }
 }

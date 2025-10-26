@@ -31,7 +31,7 @@ public class MarkingCommandParserUtilTest {
                 MarkingCommandParserUtil.parseAssignmentAndPerson(VALID_ASSIGNMENT_VALID_STUDENT, MESSAGE_USAGE);
 
         assertEquals(new AssignmentName(VALID_ASSIGNMENT_HOMEWORK), result.assignmentName);
-        assertEquals(new PersonName(VALID_NAME_AMY), result.student);
+        assertEquals(new PersonName(VALID_NAME_AMY), result.person);
     }
 
     @Test
@@ -95,6 +95,6 @@ public class MarkingCommandParserUtilTest {
         ParsedPacket packet = new ParsedPacket(name, student);
 
         assertSame(name, packet.assignmentName);
-        assertSame(student, packet.student);
+        assertSame(student, packet.person);
     }
 }

@@ -8,7 +8,6 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import seedu.edubook.logic.commands.UnassignCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.TuitionClass;
@@ -41,11 +40,10 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
 
         AssignmentName assignmentName = ParserUtil
                 .parseAssignmentName(argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
-        Assignment assignment = new Assignment(assignmentName);
 
         Target target = parseUnassignTarget(argMultimap);
 
-        return new UnassignCommand(assignment, target);
+        return new UnassignCommand(assignmentName, target);
     }
 
     /**
@@ -80,10 +78,10 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
     }
 
     /**
-     * Creates an {@code AssignTarget} based on the provided argument multimap.
+     * Creates a {@code Target} based on the provided argument multimap.
      *
      * @param argMultimap The tokenized arguments containing prefixes and values.
-     * @return An {@code AssignTarget} representing the assignment target.
+     * @return A {@code Target} representing the target.
      * @throws ParseException If parsing of the target fails.
      */
     private static Target parseUnassignTarget(ArgumentMultimap argMultimap) throws ParseException {
