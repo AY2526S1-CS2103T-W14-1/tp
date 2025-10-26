@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_CLASS;
+import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_SINGLE;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
@@ -88,6 +90,19 @@ public class UnmarkCommandTest {
         // 3 students: 1 skipped (already unmarked), 2 successful unmarks
         String expectedMessage = CLASS_TARGET_AMY.getUnmarkSuccessMessage(VALID_ASSIGNMENT_HOMEWORK, 2, 1, 0);
         assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_nameAlreadyUnmarked_throwsCommandException() {
+        ModelStubSingleStudentAlreadyUnmarked model = new ModelStubSingleStudentAlreadyUnmarked();
+        UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
+
+        CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals(e.getMessage(),
+                String.format(MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_SINGLE,
+                        VALID_NAME_AMY,
+                        ASSIGNMENT_HOMEWORK.assignmentName)
+        );
     }
 
     @Test
@@ -292,6 +307,18 @@ public class UnmarkCommandTest {
 
             bob.alreadyUnmarked = true;
             return List.of(alice, bob, tom);
+        }
+    }
+
+    static class ModelStubSingleStudentAlreadyUnmarked extends ModelStub {
+        @Override
+        public PersonStub findPersonByName(PersonName name) {
+            Phone phone = new Phone("99999999");
+            Email email = new Email("dummy@edu.com");
+            TuitionClass tuitionClass = new TuitionClass(VALID_CLASS_AMY);
+            PersonStub alice = new PersonStub(name, phone, email, tuitionClass, new HashSet<>());
+            alice.alreadyUnmarked = true;
+            return alice;
         }
     }
 
