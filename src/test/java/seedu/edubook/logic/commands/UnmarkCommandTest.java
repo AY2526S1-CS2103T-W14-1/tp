@@ -9,6 +9,7 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_CLASS;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_SINGLE;
+import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_MIXED_CLASS;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS;
 import static seedu.edubook.logic.commands.UnmarkCommand.MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE;
 import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_HOMEWORK;
@@ -152,8 +153,7 @@ public class UnmarkCommandTest {
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals("No assignments were unmarked for class \"Class A\". 1 was already unmarked and 1 did not exist.",
-                e.getMessage());
+        assertEquals(e.getMessage(), String.format(MESSAGE_ASSIGNMENT_MIXED_CLASS, VALID_CLASS_AMY, 1, "was", 1));
     }
 
     @Test
@@ -162,8 +162,8 @@ public class UnmarkCommandTest {
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertEquals("No assignments were unmarked for class \"Class A\". 2 were already unmarked and 1 did not exist.",
-                e.getMessage());
+        assertEquals(e.getMessage(), String.format(MESSAGE_ASSIGNMENT_MIXED_CLASS, VALID_CLASS_AMY, 2, "were", 1));
+
     }
 
     @Test
