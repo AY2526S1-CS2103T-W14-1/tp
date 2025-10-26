@@ -20,6 +20,7 @@ import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -130,6 +131,11 @@ public class UnlabelCommandTest {
 
         // different type -> false
         assertNotEquals(1, unlabelAmy);
+
+        // string type -> false
+        Object other = "I am a string";
+        assertNotEquals(unlabelAmy, other);
+
     }
     /*
     @Test
@@ -181,6 +187,38 @@ public class UnlabelCommandTest {
         assertTrue(str.contains("Class A"));
     }
     */
+
+    @Test
+    public void execute_nameTarget_success() throws CommandException {
+        ModelStub model = new ModelStub() {
+            @Override
+            public PersonStub findPersonByName(PersonName name) {
+                Phone dummyPhone = new Phone("98765432");
+                Email dummyEmail = new Email("test@gmail.com");
+                TuitionClass dummyClass = new TuitionClass(VALID_CLASS_AMY);
+
+                PersonStub person = new PersonStub(name, dummyPhone, dummyEmail, dummyClass, new HashSet<>()) {
+                    @Override
+                    public Label getLabel() {
+                        return new Label("Project A");
+                    }
+
+                    @Override
+                    public Person withRemovedLabel() {
+                        return this;
+                    }
+                };
+                return person;
+            }
+        };
+
+        UnlabelCommand command = new UnlabelCommand(NAME_TARGET_AMY);
+        CommandResult result = command.execute(model);
+
+        String expectedMessage = NAME_TARGET_AMY.getUnlabelSuccessMessage();
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
     static class ModelStub extends ModelManager {
         @Override
         public PersonStub findPersonByName(PersonName name) throws PersonNotFoundException {
