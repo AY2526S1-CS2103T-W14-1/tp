@@ -132,14 +132,23 @@ public class UnmarkCommandTest {
     }
 
     @Test
-    public void execute__classMixedError_throwsCommandException() {
-        ModelStubMixedClass model = new ModelStubMixedClass();
+    public void execute__classMixedErrorOneUnmarked_throwsCommandException() {
+        ModelStubMixedClassOneUnmarked model = new ModelStubMixedClassOneUnmarked();
         UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
-        assertTrue(e.getMessage().contains("No assignments were unmarked for class"));
-        assertTrue(e.getMessage().contains("already unmarked"));
-        assertTrue(e.getMessage().contains("did not exist"));
+        assertEquals("No assignments were unmarked for class \"Class A\". 1 was already unmarked and 1 did not exist.",
+                e.getMessage());
+    }
+
+    @Test
+    public void execute__classMixedErrorMoreThanOneUnmarked_throwsCommandException() {
+        ModelStubMixedClassMoreThanOneUnmarked model = new ModelStubMixedClassMoreThanOneUnmarked();
+        UnmarkCommand command = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, CLASS_TARGET_AMY);
+
+        CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
+        assertEquals("No assignments were unmarked for class \"Class A\". 2 were already unmarked and 1 did not exist.",
+                e.getMessage());
     }
 
     @Test
@@ -316,7 +325,7 @@ public class UnmarkCommandTest {
         }
     }
 
-    static class ModelStubMixedClass extends ModelStub {
+    static class ModelStubMixedClassOneUnmarked extends ModelStub {
         @Override
         public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
             Phone phone = new Phone("33333333");
@@ -327,6 +336,22 @@ public class UnmarkCommandTest {
             alice.alreadyUnmarked = true;
             bob.missingAssignment = true;
             return List.of(alice, bob);
+        }
+    }
+
+    static class ModelStubMixedClassMoreThanOneUnmarked extends ModelStub {
+        @Override
+        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+            Phone phone = new Phone("33333333");
+            Email email = new Email("mix@edu.com");
+
+            PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub claire = new PersonStub(new PersonName("Claire"), phone, email, tuitionClass, new HashSet<>());
+            alice.alreadyUnmarked = true;
+            bob.alreadyUnmarked = true;
+            claire.missingAssignment = true;
+            return List.of(alice, bob, claire);
         }
     }
 
