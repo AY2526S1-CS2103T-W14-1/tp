@@ -5,6 +5,7 @@ import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_CLASS, PREFIX_TAG, PREFIX_ASSIGNMENT_NAME);
+                        PREFIX_EMAIL, PREFIX_CLASS, PREFIX_TAG, PREFIX_ASSIGNMENT_NAME, PREFIX_LABEL);
 
         Index index;
 
@@ -60,6 +61,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_CLASS).isPresent()) {
             editPersonDescriptor.setTuitionClass(ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LABEL).isPresent()) {
+            editPersonDescriptor.setLabel(ParserUtil.parseLabel(argMultimap.getValue(PREFIX_LABEL).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseAssignmentsForEdit(argMultimap.getAllValues(PREFIX_ASSIGNMENT_NAME))

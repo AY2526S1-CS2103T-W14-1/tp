@@ -1,6 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
@@ -23,18 +24,22 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": View the details of a student or view the details of all the students in a class. "
-            + "Parameters when viewing a single student: "
-            + PREFIX_PERSON_NAME + "NAME\n"
+            + ": View the details of a single student, all students in a class "
+            + " or all students with a particular assignment. "
+            + "Parameters: ["
+            + PREFIX_PERSON_NAME + "NAME | "
+            + PREFIX_CLASS + "CLASS | "
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe"
-            + "Parameters when viewing a class: "
-            + PREFIX_CLASS + "CLASS\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B";
+            + " OR "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B"
+            + " OR "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ASSIGNMENT_NAME + "Tutorial 1";
 
     public static final String MESSAGE_VIEW_STUDENT_SUCCESS =
             "Here are the details of %1$s.";
 
-    private static final Logger logger = LogsCenter.getLogger(AssignCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
 
     private final Target target;
 
