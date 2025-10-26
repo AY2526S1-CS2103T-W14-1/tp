@@ -84,8 +84,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         boolean hasClassPrefix = argMultimap.getValue(PREFIX_CLASS).isPresent();
         boolean hasAssignmentPrefix = argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent();
 
-        // Use XOR to assert that only one of n/ or c/ is present and not none or both.
-        assert hasNamePrefix ^ hasClassPrefix ^ hasAssignmentPrefix : "Exactly one of n/, c/ or a/ must be present.";
+        // Use XOR to assert that only one of n/, c/ or a/ is present.
+        assert (hasNamePrefix ^ hasClassPrefix) ^ hasAssignmentPrefix : "Exactly one of n/, c/ or a/ must be present.";
 
         if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
             PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
