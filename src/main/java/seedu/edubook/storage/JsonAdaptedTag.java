@@ -1,9 +1,12 @@
 package seedu.edubook.storage;
 
+import static seedu.edubook.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.edubook.commons.exceptions.IllegalValueException;
+import seedu.edubook.commons.util.StringUtil;
 import seedu.edubook.model.tag.Tag;
 
 /**
@@ -39,6 +42,13 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
+        if (tagName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Tag.class.getSimpleName()));
+        }
+        if (!StringUtil.isValidLength(tagName, Tag.MAX_TAG_LENGTH)) {
+            throw new IllegalValueException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }

@@ -18,7 +18,8 @@ public class Label {
             + MAX_LABEL_LENGTH + " characters";
 
     public static final Label EMPTY = new Label("EMPTY", true);
-    /*
+
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
