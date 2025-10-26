@@ -20,7 +20,7 @@ public class Assignment {
     public static final String MESSAGE_LENGTH_CONSTRAINTS = "Assignment names should only contain a maximum of "
             + MAX_ASSIGNMENT_LENGTH + " characters";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
