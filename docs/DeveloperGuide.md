@@ -322,39 +322,48 @@ Tutors, without established systems, can use EduBook to efficiently keep track o
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                               | So that I can…​                                                      |
-|----------|----------|------------------------------------------------------------|----------------------------------------------------------------------|
-| `* * *`  | tutor    | add a student to EduBook                                   | keep track of his information                                        |
-| `* * *`  | tutor    | delete a student from EduBook                              | remove an entry for a past student                                   |
-| `* * *`  | tutor    | view a student’s details                                   | review his information quickly                                       |
-| `* * *`  | tutor    | assign an assignment to a student                          | track and manage his assignment                                      |
-| `* * *`  | tutor    | unassign an assignment from a student                      | reduce clutter once his assignment is completed and no longer needed |
-| `* *`    | new user | clear all my data after trying out the app                 | start with a clean slate                                             |
-| `* *`    | new user | have a helper that introduces me to the app's features     | better understand how to use the app                                 |
-| `* *`    | tutor    | create assignments without deadlines                       | track time-insensitive assignments                                   |
-| `* *`    | tutor    | create assignments with deadlines                          | track time-sensitive assignments                                     |
-| `* *`    | tutor    | mark assignments as done                                   | keep track of assignment completion                                  |
-| `* *`    | tutor    | mark assignments as not done                               | keep track of assignment incompletion                                |
-| `* *`    | tutor    | view a list of students’ overdue assignments               | see which students did not submit                                    |
-| `* *`    | tutor    | view all of my students' information and assignments       | review overall information when needed                               |
-| `* *`    | tutor    | search for a student quickly by name                       | find his record without browsing manually                            |
-| `* *`    | tutor    | remind myself of assignments with impending deadlines      | better manage assignments                                            |
-| `* *`    | tutor    | remind myself of assignments which have exceeded deadlines | check for students who did not submit on time                        |
-| `* *`    | tutor    | edit a student’s details                                   | update his information when changes occur                            |
-| `* *`    | tutor    | group students                                             | manage group work more easily                                        |
-| `* *`    | tutor    | ungroup students                                           | simplify management when groups are no longer needed                 |
-| `* *`    | tutor    | assign an assignment in batches                            | send out copies of the assignment to multiple students at once       |
-| `* *`    | tutor    | mark an assignment as submitted in batches                 | save time marking multiple students’ assignment at once              |
-| `* *`    | tutor    | mark the attendance of a student                           | keep track of whether he turned up for class                         |
-| `* *`    | tutor    | unmark the attendance of a student                         | correct mistakes in marking his attendance                           |
-| `* *`    | tutor    | clear an entire group of students                          | remove them when they graduate from my class                         |
-| `* *`    | tutor    | clear all students in EduBook                              | reset EduBook for the next academic year                             |
-| `* *`    | tutor    | filter students by assignment status or group              | find specific subsets of students efficiently                        |
-| `* *`    | tutor    | autosave student details to the local hard disk            | persist data automatically                                           |
-| `* *`    | tutor    | retrieve student details from the local hard disk          | reload persisted data                                                |        
-| `*`      | tutor    | mark a student’s payment status as paid                    | keep track that he has paid                                          |
-| `*`      | tutor    | mark a student’s payment status as unpaid                  | keep track that he has not paid                                      |
-| `*`      | tutor    | keep a record of my total pay                              | monitor total payments received from students                        |
+| Priority | As a …​       | I want to …​                                           | So that I can…​                                                           |
+|----------|---------------|--------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | tutor         | add a student to EduBook                               | keep track of their information                                           |
+| `* * *`  | tutor         | delete a student from EduBook                          | remove an entry for a past student                                        |
+| `* * *`  | tutor         | view a student’s details                               | review their information quickly                                          |
+| `* * *`  | tutor         | create assignments without deadlines                   | track time-insensitive assignments                                        |
+| `* * *`  | tutor         | assign an assignment to a student                      | track and manage their assignment                                         |
+| `* * *`  | tutor         | unassign an assignment from a student                  | reduce clutter once their assignment is completed and no longer needed    |
+| `* * *`  | user          | exit the app                                           | close EduBook safely and end my session                                   |
+| `* *`    | new user      | clear all my data after trying out the app             | start with a clean slate                                                  |
+| `* *`    | new user      | have a helper that introduces me to the app's features | better understand how to use the app                                      |
+| `* *`    | tutor         | mark assignments as done                               | keep track of assignment completion                                       |
+| `* *`    | tutor         | mark assignments as not done                           | keep track of assignment incompletion                                     |
+| `* *`    | tutor         | view all of my students' information and assignments   | review overall information when needed                                    |
+| `* *`    | tutor         | search for a student by name                           | find their record without browsing manually                               |
+| `* *`    | tutor         | add a note to a student                                | keep additional information for reference                                 |
+| `* *`    | tutor         | remove a note from a student                           | clear notes that are no longer relevant                                   |
+| `* *`    | tutor         | edit a student’s details                               | update their information when changes occur                               |
+| `* *`    | tutor         | group students                                         | manage group work more easily                                             |
+| `* *`    | tutor         | ungroup students                                       | simplify management when groups are no longer needed                      |
+| `* *`    | tutor         | assign an assignment in batches                        | send out copies of the assignment to multiple students at once            |
+| `* *`    | tutor         | unassign an assignment in batches                      | remove the assignment from multiple students at once efficiently          |
+| `* *`    | tutor         | mark assignments as done in batches                    | save time marking multiple students’ assignments as completed at once     |
+| `* *`    | tutor         | mark assignments as not done in batches                | save time marking multiple students’ assignments as not completed at once |
+| `* *`    | tutor         | add a note to an entire group of students              | keep additional information about the whole group                         |
+| `* *`    | tutor         | remove a note from an entire group of students         | clear notes that are no longer relevant for the group                     |
+| `* *`    | tutor         | clear an entire group of students                      | remove them when they graduate from my class                              |
+| `* *`    | tutor         | clear all students in EduBook                          | reset EduBook for the next academic year                                  |
+| `* *`    | tutor         | filter students by assignment assigned                 | view all students assigned to a specific assignment                       |
+| `* *`    | tutor         | filter students by group                               | view students belonging to a specific group easily                        |
+| `* *`    | tutor         | autosave student details to the local hard disk        | persist data automatically                                                |
+| `* *`    | tutor         | retrieve student details from the local hard disk      | reload persisted data                                                     |        
+| `* *`    | advanced user | edit the data file directly                            | make bulk changes or fix data outside the app                             |        
+| `*`      | tutor         | create assignments with deadlines                      | track time-sensitive assignments                                          |
+| `*`      | tutor         | view a list of students’ overdue assignments           | see which assignments my students submitted late                          |
+| `*`      | tutor         | filter students by an assignment's completion status   | view which students have completed, are in progress, or are late          |
+| `*`      | tutor         | remind myself of assignments with impending deadlines  | better manage assignments                                                 |
+| `*`      | tutor         | mark the attendance of a student                       | keep track of whether they turned up for class                            |
+| `*`      | tutor         | unmark the attendance of a student                     | correct mistakes in marking their attendance                              |
+| `*`      | tutor         | mark a student’s payment status as paid                | keep track that they have paid                                            |
+| `*`      | tutor         | mark a student’s payment status as unpaid              | keep track that they have not paid                                        |
+| `*`      | tutor         | keep a record of my total pay                          | monitor total payments received from students                             |
 
 ### Use cases
 
