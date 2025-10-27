@@ -1,7 +1,9 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.*;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.List;
 import java.util.logging.Logger;
