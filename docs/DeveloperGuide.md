@@ -247,7 +247,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Label/Unlabel feature
+### Label/Unlabel feature
 
 #### Proposed Implementation
 
