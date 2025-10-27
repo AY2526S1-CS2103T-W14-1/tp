@@ -331,6 +331,6 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 | **Delete**   | `delete {INDEX | n/NAME}`                                                         | `delete 3`, `delete n/John Doe`                                                    |
 | **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
 | **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
-| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                 | `mark a/Tutorial 1 n/John Doe`                                                     |
+| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                     | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                         |
 | **Clear**    | `clear`                                                                         | `clear`                                                                            |
 | **Exit**     | `exit`                                                                          | `exit`                                                                             |
