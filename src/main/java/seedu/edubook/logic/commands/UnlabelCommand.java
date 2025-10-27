@@ -48,12 +48,19 @@ public class UnlabelCommand extends Command {
 
         List<Person> studentsToUnlabel = target.getPersons(model);
 
+        int count = 0;
+        int size = studentsToUnlabel.size();
+
         for (Person person : studentsToUnlabel) {
             if (person.getLabel().equals(Label.EMPTY)) {
-                String message = target.getUnlabelFailureMessage();
-                return new CommandResult(message);
+                count++;
             }
             model.setPerson(person, person.withRemovedLabel());
+        }
+
+        if (count == size) {
+            String message = target.getUnlabelFailureMessage();
+            return new CommandResult(message);
         }
 
         // Generate success message
