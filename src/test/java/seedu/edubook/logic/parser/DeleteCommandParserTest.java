@@ -9,6 +9,7 @@ import static seedu.edubook.testutil.TypicalPersonNames.NAME_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.DeleteCommand;
+import seedu.edubook.model.target.NameTarget;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -33,7 +34,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgsName_returnsDeleteCommand() {
-        assertParseSuccess(parser, " n/Alice Pauline", new DeleteCommand(NAME_FIRST_PERSON));
+        assertParseSuccess(parser, " n/Alice Pauline", new DeleteCommand(new NameTarget(NAME_FIRST_PERSON)));
     }
 
     @Test

@@ -21,7 +21,7 @@ public class NameTarget implements Target {
     /** Template for success message when assignment is assigned to a student. */
     public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'.";
 
-    /** Template for success message when assignment is assigned to a student. */
+    /** Template for success message when assignment is unassigned from a student. */
     public static final String MESSAGE_UNASSIGN_SUCCESS = "Assignment '%s' unassigned from student: '%s'.";
 
     /** Template for success message when assignment is marked for a student. */
@@ -30,16 +30,19 @@ public class NameTarget implements Target {
     /** Template for success message when assignment is unmarked for a student. */
     public static final String MESSAGE_UNMARK_SUCCESS = "Assignment '%s' marked for student: '%s'.";
 
-    /** Template for success message when assignment is assigned to a student. */
+    /** Template for success message when label is assigned to a student. */
     public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
 
-    /** Template for success message when assignment is assigned to a student. */
+    /** Template for success message when label is unassigned from a student. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from student: '%s'.";
 
-    /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNLABEL_FAILURE = "Student '%s' does not have an existing label";
+    /** Template for failure message when label is unassigned from a student. */
+    public static final String MESSAGE_UNLABEL_FAILURE = "Student '%s' does not have an existing label.";
 
-    /** Template for message when view class is successful. */
+    /** Template for message when delete student is successful. */
+    public static final String MESSAGE_DELETE_SUCCESS = "Student %1$s has been deleted.";
+
+    /** Template for message when view student is successful. */
     private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
 
     private final PersonName name;
@@ -114,6 +117,11 @@ public class NameTarget implements Target {
     @Override
     public String getViewSuccessMessage() {
         return String.format(MESSAGE_VIEW_SUCCESS, name);
+    }
+
+    @Override
+    public String getDeleteSuccessMessage() {
+        return String.format(MESSAGE_DELETE_SUCCESS, getDisplayName());
     }
 
     @Override

@@ -111,4 +111,11 @@ public interface Target {
                                    int unmarkedCount,
                                    int alreadyUnmarkedCount,
                                    int notExistCount);
+
+    /**
+     * Returns the formatted success message after successfully deleting this target.
+     *
+     * @return Formatted success message.
+     */
+    String getDeleteSuccessMessage();
 }
