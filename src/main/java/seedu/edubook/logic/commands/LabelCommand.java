@@ -1,8 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
-import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static seedu.edubook.logic.parser.CliSyntax.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,11 +23,16 @@ public class LabelCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a label for a student.\n"
             + "Parameters: "
-            + PREFIX_LABEL + "LABEL "
-            + PREFIX_PERSON_NAME + "NAME\n"
+            + PREFIX_LABEL + "LABEL ["
+            + PREFIX_PERSON_NAME + "NAME | "
+            + PREFIX_CLASS + "CLASS]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_LABEL + "Late for class "
-            + PREFIX_PERSON_NAME + "John Doe";
+            + PREFIX_LABEL + "Tutorial 6 "
+            + PREFIX_PERSON_NAME + "John Doe"
+            + " OR "
+            + COMMAND_WORD + " "
+            + PREFIX_LABEL + "Tutorial 6 "
+            + PREFIX_CLASS + "Class 1-B";
 
     private static final Logger logger = LogsCenter.getLogger(LabelCommand.class);
 
