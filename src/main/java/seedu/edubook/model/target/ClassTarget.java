@@ -28,10 +28,10 @@ public class ClassTarget implements Target {
     /** Template for success message when label is assigned to a student. */
     public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for class: '%s'.";
 
-    /** Template for success message when label is assigned to a class. */
+    /** Template for success message when label is unassigned from a class. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from class: '%s'.";
 
-    /** Template for failure message when label is assigned to a class. */
+    /** Template for failure message when label is unassigned from a class. */
     public static final String MESSAGE_UNLABEL_FAILURE = "Entire class '%s' does not have an existing label";
 
     /** Template for success message when assignment is marked for a class. */
@@ -41,6 +41,10 @@ public class ClassTarget implements Target {
     /** Template for success message when assignment is unmarked for a class. */
     public static final String MESSAGE_UNMARK_SUCCESS =
             "Assignment '%s' unmarked for class '%s' (%d unmarked, %d already unmarked, %d not exist).";
+
+    /** Template for message when delete class is successful. */
+    public static final String MESSAGE_DELETE_SUCCESS =
+            "All students in  %1$s have been deleted.";
 
     /** Template for message when viewing a class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
@@ -122,6 +126,11 @@ public class ClassTarget implements Target {
     @Override
     public String getViewSuccessMessage() {
         return String.format(MESSAGE_VIEW_SUCCESS, tuitionClass);
+    }
+
+    @Override
+    public String getDeleteSuccessMessage() {
+        return String.format(MESSAGE_DELETE_SUCCESS, getDisplayName());
     }
 
     @Override

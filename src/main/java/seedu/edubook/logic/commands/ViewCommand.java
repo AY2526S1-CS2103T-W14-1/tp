@@ -44,15 +44,14 @@ public class ViewCommand extends Command {
     private final Target target;
 
     /**
-     * Creates a {@code ViewCommand} to view student with specified {@code target}
+     * Creates a {@code ViewCommand} to view all students in specified {@code target}
      *
-     * @param target The target to assign to (single student or class).
+     * @param target The target to view (single student, class or assignment).
      */
     public ViewCommand(Target target) {
         requireNonNull(target);
         this.target = target;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

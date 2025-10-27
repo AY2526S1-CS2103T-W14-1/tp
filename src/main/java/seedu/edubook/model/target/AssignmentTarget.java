@@ -17,12 +17,6 @@ public class AssignmentTarget implements Target {
     /** Error message when the assignment cannot be found in the model. */
     public static final String MESSAGE_NO_ASSIGNMENT_FOUND = "Assignment '%s' not found.";
 
-    /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
-
-    /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
-
     /** Template for message when view assignment is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
             "Here are the details of all the students with assignment '%1$s'.";
@@ -85,18 +79,24 @@ public class AssignmentTarget implements Target {
 
     @Override
     public String getLabelSuccessMessage(String labelName) {
-        return String.format(MESSAGE_LABEL_SUCCESS, labelName, getDisplayName());
+        return "[Error: Unexpected call to getLabelSuccessMessage on AssignmentTarget]";
     }
 
     @Override
     public String getUnlabelSuccessMessage() {
-        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
+        return "[Error: Unexpected call to getUnlabelSuccessMessage on AssignmentTarget]";
     }
 
     @Override
     public String getUnlabelFailureMessage() {
-        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
+        return "[Error: Unexpected call to getUnmarkFailureMessage on AssignmentTarget]";
     }
+
+    @Override
+    public String getDeleteSuccessMessage() {
+        return "[Error: Unexpected call to getDeleteSuccessMessage on AssignmentTarget]";
+    }
+
 
     @Override
     public String getViewSuccessMessage() {

@@ -1,6 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.person.Person;
-import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.target.Target;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -21,58 +22,66 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified "
-            + "by their name or the index number used in the displayed person list.\n"
+            + ": Deletes a student identified by their name or the index number used in the "
+            + "displayed person list or all students in a class.\n"
             + "Parameters: [INDEX (must be a positive integer) | "
-            + PREFIX_PERSON_NAME + "NAME]\n"
+            + PREFIX_PERSON_NAME + "NAME | "
+            + PREFIX_CLASS + "CLASS]\n"
             + "Example: " + COMMAND_WORD + " 1"
             + " OR "
-            + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe"
+            + " OR "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Student %1$s has been deleted.";
 
+    private final Target target;
     private final Index targetIndex;
 
-    private final PersonName targetName;
-
     /**
-     * Creates a {@code DeleteCommand} to remove student at specified {@code targetIndex}
+     * Creates a {@code DeleteCommand} to delete student at specified {@code targetIndex}
      *
-     * @param targetIndex
+     * @param targetIndex The index of the student to delete.
      */
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
-        this.targetName = null;
+        this.target = null;
     }
 
     /**
-     * Creates a {@code DeleteCommand} to remove student at specified {@code name}
+     * Creates a {@code DeleteCommand} to delete all students in specified {@code target}
      *
-     * @param name
+     * @param target Target student or class to delete.
      */
-    public DeleteCommand(PersonName name) {
-        this.targetName = name;
+    public DeleteCommand(Target target) {
+        requireNonNull(target);
+        this.target = target;
         this.targetIndex = null;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (this.targetName == null) {
+        requireNonNull(model);
+
+        if (this.target == null) {
             return deleteByIndex(model);
         } else {
-            return deleteByName(model);
+            return deleteByTarget(model);
         }
     }
 
     /**
      * Removes a person identified by their index in the displayed person list.
      *
-     * @param model
-     * @return
-     * @throws CommandException
+     * @param model The model to remove.
+     *
+     * @throws CommandException If {@code targetIndex} is bigger than the number of students.
      */
     public CommandResult deleteByIndex(Model model) throws CommandException {
         requireNonNull(model);
+        requireNonNull(targetIndex);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -81,28 +90,24 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete.getName()));
     }
 
     /**
      * Removes a person identified by their name in the displayed person list.
      *
-     * @param model
-     * @return
-     * @throws CommandException
+     * @param model The model to remove.
      */
-    public CommandResult deleteByName(Model model) throws CommandException {
+    public CommandResult deleteByTarget(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        requireNonNull(target);
 
-        for (Person p : lastShownList) {
-            if (p.getName().equals(this.targetName)) {
-                model.deletePerson(p);
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(p)));
-            }
+        List<Person> studentsToDelete = target.getPersons(model);
+
+        for (Person p : studentsToDelete) {
+            model.deletePerson(p);
         }
-
-        throw new CommandException(Messages.MESSAGE_INVALID_NAME);
+        return new CommandResult(String.format(target.getDeleteSuccessMessage()));
     }
 
     @Override
@@ -124,23 +129,23 @@ public class DeleteCommand extends Command {
         }
 
         // Handle case where both use name
-        if (targetName != null && otherDeleteCommand.targetName != null) {
-            return targetName.equals(otherDeleteCommand.targetName);
+        if (target != null && otherDeleteCommand.target != null) {
+            return target.equals(otherDeleteCommand.target);
         }
 
-        // If one uses index and the other uses name, they're not equal
+        // If one uses index and the other uses prefix, they're not equal
         return false;
     }
 
     @Override
     public String toString() {
-        if (targetName == null) {
+        if (target == null) {
             return new ToStringBuilder(this)
                     .add("targetIndex", targetIndex)
                     .toString();
         } else {
             return new ToStringBuilder(this)
-                    .add("targetName", targetName)
+                    .add("target", target)
                     .toString();
         }
     }
