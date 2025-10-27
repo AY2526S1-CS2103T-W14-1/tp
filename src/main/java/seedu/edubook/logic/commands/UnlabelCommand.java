@@ -1,6 +1,7 @@
 package seedu.edubook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
 import java.util.List;
@@ -23,9 +24,14 @@ public class UnlabelCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a label from a student. \n"
             + "Parameters: "
-            + PREFIX_PERSON_NAME + "NAME\n"
+            + "["
+            + PREFIX_PERSON_NAME + "NAME | "
+            + PREFIX_CLASS + "CLASS]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PERSON_NAME + "John Doe";
+            + PREFIX_PERSON_NAME + "John Doe"
+            + " OR "
+            + COMMAND_WORD + " "
+            + PREFIX_CLASS + "Class 1-B";
 
     private static final Logger logger = LogsCenter.getLogger(UnlabelCommand.class);
 
