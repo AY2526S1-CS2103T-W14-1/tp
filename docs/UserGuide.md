@@ -230,19 +230,32 @@ Examples:
 * `unassign a/Homework c/Class 1-A` — unassigns `Homework` from all students in `Class 1-A`, skipping those who do not have it
 * `unassign a/Tutorial 1 c/Tutorial Group 2` — unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping those who do not have it
 
-### Marking a student's assignment: `mark`
+### Marking an assignment: `mark`
 
-Marks an assignment of a specified student as completed.
+Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
 
-Format: `mark a/ASSIGNMENT_NAME n/NAME`
+Format: `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
 
-* Marks assignment, `ASSIGNMENT_NAME`, of student named, `NAME`, as completed.
-* The student must exist in EduBook.
-* The specified assignment must exist for the specified student.
-* The specified assignment must not already be marked.
+* You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
+  e.g. `mark a/Homework n/Bob` or `mark a/Homework c/Class 1-A`, but not both.
+
+* If `n/NAME` is used:
+    * Marks the assignment `ASSIGNMENT_NAME` of the student named `NAME` as completed.
+    * The student must exist in EduBook.
+    * The specified assignment must exist for the specified student.
+    * The specified assignment must not already be marked.
+
+* If `c/CLASS` is used:
+    * Marks the assignment `ASSIGNMENT_NAME` as completed for every student in the specified class `CLASS`.
+    * Students who do not have the assignment or whose assignment is already marked are skipped.
+    * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
+    * At least one student in the specified class must currently have the assignment unmarked.
 
 Examples:
-* `mark a/Tutorial 1 n/John Doe` marks `Tutorial 1` of `John Doe` as completed.
+* `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
+* `mark a/Homework n/Bob` — marks `Homework` of `Bob` as completed
+* `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
+* `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
 
 ### Apply a label: `label`
 
@@ -361,12 +374,12 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                               | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
 | **List**     | `list`                                                                              | `list`                                                                             |
 | **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view {n/NAME                                                                       | c/CLASS}`                                                          | `view n/James Lee`, `view c/Class-B`                                               |
-| **Delete**   | `delete {INDEX                                                                      | n/NAME}`                                                         | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME                                                   | c/CLASS}`                                    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME                                                 | c/CLASS}`                                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
-| **Mark**     | `mark a/ASSIGNMENT_NAME n/NAME`                                                     | `mark a/Tutorial 1 n/John Doe`                                                     |
-| **Label**    | `label l/LABEL {n/NAME                                                              | c/CLASS}`                                    | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`                     | 
-| **Unlabel**  | `unlabel {n/NAME                                                                    | c/CLASS}`                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                     |                                                                                     |                                              |
-| **Clear**    | `clear`                                                                             | `clear`                                                                            |
-| **Exit**     | `exit`                                                                              | `exit`                                                                             |
+| **View**     | `view {n/NAME | c/CLASS}`                                                          | `view n/James Lee`, `view c/Class-B`                                               |
+| **Delete**   | `delete {INDEX | n/NAME}`                                                         | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
+| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                     | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                         |
+| **Label**    | `label l/LABEL {n/NAME | c/CLASS}`                                              | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`               |
+| **Unlabel**  | `unlabel {n/NAME | c/CLASS}`                                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                                        |
+| **Clear**    | `clear`                                                                         | `clear`                                                                            |
+| **Exit**     | `exit`                                                                          | `exit`                                                                             |
