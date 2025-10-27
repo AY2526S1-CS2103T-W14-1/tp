@@ -229,19 +229,32 @@ Examples:
 * `unassign a/Homework c/Class 1-A` — unassigns `Homework` from all students in `Class 1-A`, skipping those who do not have it
 * `unassign a/Tutorial 1 c/Tutorial Group 2` — unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping those who do not have it
 
-### Marking a student's assignment: `mark`
+### Marking an assignment: `mark`
 
-Marks an assignment of a specified student as completed.
+Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
 
-Format: `mark a/ASSIGNMENT_NAME n/NAME`
+Format: `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
 
-* Marks assignment, `ASSIGNMENT_NAME`, of student named, `NAME`, as completed.
-* The student must exist in EduBook.
-* The specified assignment must exist for the specified student.
-* The specified assignment must not already be marked.
+* You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
+  e.g. `mark a/Homework n/Bob` or `mark a/Homework c/Class 1-A`, but not both.
+
+* If `n/NAME` is used:
+    * Marks the assignment `ASSIGNMENT_NAME` of the student named `NAME` as completed.
+    * The student must exist in EduBook.
+    * The specified assignment must exist for the specified student.
+    * The specified assignment must not already be marked.
+
+* If `c/CLASS` is used:
+    * Marks the assignment `ASSIGNMENT_NAME` as completed for every student in the specified class `CLASS`.
+    * Students who do not have the assignment or whose assignment is already marked are skipped.
+    * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
+    * At least one student in the specified class must currently have the assignment unmarked.
 
 Examples:
-* `mark a/Tutorial 1 n/John Doe` marks `Tutorial 1` of `John Doe` as completed.
+* `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
+* `mark a/Homework n/Bob` — marks `Homework` of `Bob` as completed
+* `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
+* `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
 
 ### Clearing all entries : `clear`
 
