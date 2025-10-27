@@ -29,7 +29,7 @@ public class ClassTarget implements Target {
     public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for class: '%s'.";
 
     /** Template for success message when assignment is assigned to a class. */
-    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from class: '%s'.";
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from class: '%s'.";
 
     /** Template for success message when assignment is marked for a class. */
     public static final String MESSAGE_MARK_SUCCESS =
