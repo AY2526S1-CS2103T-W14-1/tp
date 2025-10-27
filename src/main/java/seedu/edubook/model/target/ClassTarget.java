@@ -25,11 +25,14 @@ public class ClassTarget implements Target {
     public static final String MESSAGE_UNASSIGN_SUCCESS =
             "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped).";
 
-    /** Template for success message when assignment is assigned to a student. */
+    /** Template for success message when label is assigned to a student. */
     public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for class: '%s'.";
 
-    /** Template for success message when assignment is assigned to a class. */
+    /** Template for success message when label is assigned to a class. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from class: '%s'.";
+
+    /** Template for failure message when label is assigned to a class. */
+    public static final String MESSAGE_UNLABEL_FAILURE = "Entire class '%s' does not have an existing label";
 
     /** Template for success message when assignment is marked for a class. */
     public static final String MESSAGE_MARK_SUCCESS =
@@ -113,7 +116,7 @@ public class ClassTarget implements Target {
 
     @Override
     public String getUnlabelFailureMessage() {
-        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
+        return String.format(MESSAGE_UNLABEL_FAILURE, getDisplayName());
     }
 
     @Override
