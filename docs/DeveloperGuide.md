@@ -446,22 +446,27 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 **Extensions**
 
 * 1a. One or more details are missing or invalid (student/class name, assignment name)
-  * 1a1. EduBook informs the tutor of the invalid input(s).
-    
-  Use case ends.
-
-* 1b. Assignment already assigned
-  * 1b1. EduBook informs the tutor that the assignment has already been assigned 
-    to the student or all students in the class.
-
-  Use case ends.  
-
-* 1c. Target does not exist
-  * 1c1. EduBook informs the tutor that the student or class does not exist.
+    * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
-**Use case: UC4** - Unassign an assignment.
+* 1b. Target does not exist
+    * 1b1. EduBook informs the tutor that the student or class does not exist.
+
+  Use case ends.
+
+* 2a. Assignment already assigned to a student
+    * 2a1. EduBook informs the tutor that the assignment has already been assigned to the student.
+
+  Use case ends.
+
+* 2b. Assignment already assigned from a class
+    * 2a1. EduBook informs the tutor that the assignment has already been assigned to all students in the
+      specified class.
+
+  Use case ends.
+
+**Use case: UC5** - Unassign an assignment.
 
 **MSS**
 
@@ -478,35 +483,44 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
-* 1b. Assignment already unassigned
-    * 1b1. EduBook informs the tutor that the assignment has already been unassigned
-      from the student or all students in the class.
+* 1b. Target does not exist
+    * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
 
-* 1c. Target does not exist
-    * 1c1. EduBook informs the tutor that the student or class does not exist.
+* 2a. Assignment already unassigned from a student
+    * 2a1. EduBook informs the tutor that the assignment has already been unassigned from the student.
 
   Use case ends.
 
-**Use case: UC8** - Mark an assignment as completed for a student.
+* 2b. Assignment already unassigned from a class
+    * 2a1. EduBook informs the tutor that the assignment has already been unassigned from all students in the
+      specified class.
+
+  Use case ends.
+
+**Use case: UC6** - Mark an assignment as completed.
 
 **MSS**
 
-1. Tutor requests to mark an assignment as completed for a student.
-2. EduBook updates the specified student's assignment status to complete.
+1. Tutor requests to mark an assignment as completed. 
+2. EduBook checks whether the target is a single student or a class. 
+3. EduBook updates the assignment status to completed for the student or for every student in the class.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, assignment name).
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
     * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
-* 1b. Assignment is already marked as completed.
-    * 1b1. EduBook informs the tutor that the assignment has been already been marked as completed.
+* 1b. Assignment already marked as completed
+    * 1b1. If target is a single student, EduBook informs the tutor that the assignment is already marked as completed.
+    * 1b2. If target is a class:
+      All students already completed: EduBook informs the tutor that all students have already been marked as completed.
+      Some students already completed, some not: EduBook marks the incomplete ones as completed and informs the tutor which students were already marked.
 
   Use case ends.
 
