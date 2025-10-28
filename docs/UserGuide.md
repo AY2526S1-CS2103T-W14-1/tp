@@ -106,7 +106,10 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/criminal`
+* `add n/Betsy Crowe t/Team B e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/Grade A`
+
+The layout of the inputs are shown as follows:
+![Add Example](images/AddExample.png "Add Example")
 
 ### Listing all students : `list`
 
@@ -203,6 +206,10 @@ Examples:
 * `assign a/Tutorial 1 n/John Doe` — assigns `Tutorial 1` to `John Doe`
 * `assign a/Homework c/Class 1-A` — assigns `Homework` to all students in `Class 1-A`, skipping those who already have it
 * `assign a/Tutorial 1 c/Tutorial Group 2` — assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping those who already have it
+
+The assignment will initially be displayed as not completed. An example is shown below:
+![Assignment Example](images/UnmarkedAssignment.png "Assignment Example")
+
 
 ### Unassigning an assignment: `unassign`
 
@@ -306,6 +313,9 @@ Examples:
 * `label l/Latecomer n/John Doe` — applies `Latecomer` to `John Doe`
 * `label l/Online class c/Class 1-A` — applies `Online class` to all students in `Class 1-A`
 * `label l/Remedial c/Tutorial Group 2` — assigns `Remedial` to all students in `Tutorial Group 2`
+
+The label will be displayed between the students' details and assignments. An example is shown below:
+![Label Example](images/LabelExample.png "Label Example")
 
 ### Removing a label: `unlabel`
 
