@@ -381,12 +381,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, class, phone number, email).
+* 1a. One or more details are missing or invalid (student name, class, phone number, email)
   * 1a1. EduBook informs the user of the invalid input(s).
     
   Use case ends.
 
-* 1b. Student already exists in the list.
+* 1b. Student already exists in the list
   * 1b1. EduBook informs the user that the student already exists.
 
   Use case ends.  
@@ -402,12 +402,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, index).
+* 1a. One or more details are missing or invalid (student name, index)
   * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
 
-* 1b. Student does not exist.
+* 1b. Student does not exist
     * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
@@ -423,117 +423,69 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, index). 
+* 1a. One or more details are missing or invalid (student name, index).
   * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
 
-* 1b. Student does not exist.
+* 1b. Student does not exist
   * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
 
-**Use case: UC4** - Assign an assignment to a student.
+**Use case: UC4** - Assign an assignment.
 
 **MSS**
 
-1. Tutor requests to assign an assignment to a student. 
-2. EduBook adds the assignment to the specified student.
+1. Tutor requests to assign an assignment. 
+2. EduBook checks whether the target is a student or a class. 
+3. EduBook adds the assignment to the specified student or to every student in the specified class.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, assignment name).
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
   * 1a1. EduBook informs the tutor of the invalid input(s).
     
   Use case ends.
 
-* 1b. Assignment already assigned to student.
-  * 1b1. EduBook informs the tutor that the assignment has been assigned.
+* 1b. Assignment already assigned
+  * 1b1. EduBook informs the tutor that the assignment has already been assigned 
+    to the student or all students in the class.
 
   Use case ends.  
 
-* 1c. Student does not exist.
-  * 1c1. EduBook informs the tutor that the student does not exist.
+* 1c. Target does not exist
+  * 1c1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
 
-**Use case: UC5** - Unassign an assignment from a student.
+**Use case: UC4** - Unassign an assignment.
 
 **MSS**
 
-1. Tutor requests to unassign an assignment from a student. 
-2. EduBook removes the assignment from the specified student.
+1. Tutor requests to unassign an assignment.
+2. EduBook checks whether the target is a student or a class.
+3. EduBook removes the assignment from the specified student or from every student in the specified class.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, assignment name).
-  * 1a1. EduBook informs the tutor of the invalid input(s).
-    
-  Use case ends.
-
-* 1b. Assignment does not exist for specified student.
-  * 1b1. EduBook informs the tutor that the assignment does not exist for the specified student.
-
-  Use case ends.  
-
-* 1c. Student does not exist.
-  * 1c1. EduBook informs the tutor that the student does not exist.
-
-  Use case ends.
-
-**Use case: UC6** - Assign an assignment to a class.
-
-**MSS**
-
-1. Tutor requests to assign an assignment to a class.
-2. EduBook adds the assignment to every student in the specified class.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. One or more details are missing or invalid (class name, assignment name).
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
     * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
-* 1b. Assignment already assigned to all the students in the class.
-    * 1b1. EduBook informs the tutor that the assignment has been assigned to all the students.
+* 1b. Assignment already unassigned
+    * 1b1. EduBook informs the tutor that the assignment has already been unassigned
+      from the student or all students in the class.
 
   Use case ends.
 
-* 1c. class does not exist.
-    * 1c1. EduBook informs the tutor that the class does not exist.
-
-  Use case ends.
-
-**Use case: UC7** - Unassign an assignment from a class.
-
-**MSS**
-
-1. Tutor requests to unassign an assignment from a class.
-2. EduBook removes the assignment from the specified class.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. One or more details are missing or invalid (class name, assignment name).
-    * 1a1. EduBook informs the tutor of the invalid input(s).
-
-  Use case ends.
-
-* 1b. Assignment already does not exist for all the students in the class.
-    * 1b1. EduBook informs the tutor that the assignment does not exist for all the students.
-
-  Use case ends.
-
-* 1c. class does not exist.
-    * 1c1. EduBook informs the tutor that the class does not exist.
+* 1c. Target does not exist
+    * 1c1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
 
