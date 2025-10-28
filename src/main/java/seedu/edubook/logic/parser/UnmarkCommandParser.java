@@ -1,0 +1,32 @@
+package seedu.edubook.logic.parser;
+
+import static java.util.Objects.requireNonNull;
+
+import seedu.edubook.logic.commands.UnmarkCommand;
+import seedu.edubook.logic.parser.exceptions.ParseException;
+
+/**
+ * Parses input arguments and creates a new UnmarkCommand object.
+ */
+public class UnmarkCommandParser implements Parser<UnmarkCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the UnmarkCommand
+     * and returns a UnmarkCommand object for execution.
+     *
+     * @param args input string entered by the user.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
+    public UnmarkCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
+        MarkingCommandParserUtil.ParsedPacket data =
+                MarkingCommandParserUtil.parseAssignmentAndTarget(args, UnmarkCommand.MESSAGE_USAGE);
+
+        assert data.assignmentName != null : "data should contain assignmentName";
+        assert data.target != null : "data should contain student";
+
+        return new UnmarkCommand(data.assignmentName, data.target);
+    }
+
+}
