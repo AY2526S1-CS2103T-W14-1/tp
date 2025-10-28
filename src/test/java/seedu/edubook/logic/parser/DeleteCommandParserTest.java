@@ -1,0 +1,50 @@
+package seedu.edubook.logic.parser;
+
+import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.edubook.testutil.TypicalPersonNames.NAME_FIRST_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.edubook.logic.commands.DeleteCommand;
+import seedu.edubook.model.target.NameTarget;
+
+/**
+ * As we are only doing white-box testing, our test cases do not cover path variations
+ * outside of the DeleteCommand code. For example, inputs "1" and "1 abc" take the
+ * same path through the DeleteCommand, and therefore we test only one of them.
+ * The path variation for those two cases occur inside the ParserUtil, and
+ * therefore should be covered by the ParserUtilTest.
+ */
+public class DeleteCommandParserTest {
+
+    private DeleteCommandParser parser = new DeleteCommandParser();
+
+    @Test
+    public void parse_validArgsIndex_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgsName_returnsDeleteCommand() {
+        assertParseSuccess(parser, " n/Alice Pauline", new DeleteCommand(new NameTarget(NAME_FIRST_PERSON)));
+    }
+
+    @Test
+    public void parse_invalidArgsName_returnDeleteCommand() {
+        assertParseFailure(parser, "n/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_nameWithPreamble_throwsParseException() {
+        assertParseFailure(parser, "some text n/Alice",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+}
