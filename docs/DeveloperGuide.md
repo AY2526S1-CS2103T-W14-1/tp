@@ -547,11 +547,11 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
-* 2e. Mixed case: some students in a class already marked, some missing assignment
+* 2e. Mixed case: in a class, some students' assignments are already marked, while some are missing the assignment
   * 2e1. EduBook informs the tutor that no assignments were marked, and reports how many students' assignments were 
     already marked and how many did not exist.
 
-Use case ends.
+  Use case ends.
 
 **Use case: UC7** - Unmark an assignment.
 
@@ -597,11 +597,11 @@ Use case ends.
 
   Use case ends.
 
-* 2e. Mixed case: some students in a class already unmarked, some missing assignment
+* 2e. Mixed case: in a class, some students' assignments are already unmarked, while some are missing the assignment
     * 2e1. EduBook informs the tutor that no assignments were unmarked, and reports how many students' assignments were
       already unmarked and how many did not exist.
 
-Use case ends.
+  Use case ends.
 
 ### Non-Functional Requirements
 
