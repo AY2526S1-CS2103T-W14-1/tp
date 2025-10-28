@@ -175,7 +175,7 @@ To restore full view, use the `list` command.
 
 ### Deleting a student : `delete`
 
-Deletes the specified student (identified by name or index) from Edubook.
+Removes the specified student (identified by name or index) from Edubook.
 
 Format: `delete {INDEX | n/NAME | c/CLASS}`
 
@@ -184,17 +184,18 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
   e.g. `delete 1`, `delete n/John Doe` or `delete c/Class 10B`
 
 * If `INDEX` is used:
+    * Removes the student with the specified `INDEX`.
     * The index refers to the index number shown in the **current view**.
     * The index must be a **positive integer** 1, 2, 3, …​
 
 * If `n/NAME` is used:
-    * Displays the student with the specified `NAME`.
+    * Removes the student with the specified `NAME`.
     * The search is case-sensitive. e.g. `hans` will not match `Hans`.
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
 
 * If `c/CLASS` is used:
-    * Displays all students with the specified `CLASS`.
+    * Removes all students with the specified `CLASS`.
     * The search is case-sensitive. e.g. `w14` will not match `W14`.
     * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
     * The full class name is required for the search to be successful. e.g. `W14` will not return `Class W14`.
