@@ -24,37 +24,6 @@ import seedu.edubook.model.target.Target;
 public class MarkingCommandParserUtil {
 
     /**
-     * Parses the given {@code String} of arguments and returns a pair of (AssignmentName, PersonName).
-     *
-     * @param args input string entered by the user.
-     * @param messageUsage usage message of the calling command.
-     * @return a ParsedPacket object containing the parsed assignment name and student name.
-     * @throws ParseException if the user input does not conform to the expected format.
-     */
-    public static ParsedPacket parseAssignmentAndPerson(String args, String messageUsage)
-            throws ParseException {
-        assert args != null : "args should not be null";
-        assert messageUsage != null : "messageUsage should not be null";
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage));
-        }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME);
-
-        AssignmentName assignmentName = ParserUtil.parseAssignmentName(
-                argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
-
-        PersonName student = ParserUtil.parsePersonName(
-                argMultimap.getValue(PREFIX_PERSON_NAME).get());
-
-        return new ParsedPacket(assignmentName, student);
-    }
-
-    /**
      * Parses the given {@code String} of arguments and returns a {@code ParsedPacket}
      * containing the assignment name and the target (person or class).
      *
@@ -65,6 +34,9 @@ public class MarkingCommandParserUtil {
      */
     public static ParsedPacket parseAssignmentAndTarget(String args, String messageUsage)
             throws ParseException {
+        assert args != null : "args should not be null";
+        assert messageUsage != null : "messageUsage should not be null";
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT_NAME, PREFIX_PERSON_NAME, PREFIX_CLASS);
 
@@ -178,4 +150,3 @@ public class MarkingCommandParserUtil {
         }
     }
 }
-

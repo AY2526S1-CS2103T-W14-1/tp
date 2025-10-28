@@ -4,13 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.edubook.logic.Messages.MESSAGE_CONFLICTING_PREFIXES;
+import static seedu.edubook.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_TUTORIAL;
+import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_VALID_STUDENT;
-import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.edubook.testutil.TypicalAssignments.ASSIGNMENT_TUTORIAL;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,36 +25,56 @@ import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.person.PersonName;
 
 
-
 public class MarkingCommandParserUtilTest {
 
     private static final String MESSAGE_USAGE = "dummy";
 
     @Test
-    public void parseAssignmentAndPerson_validArgs_returnsParsedPacket() throws Exception {
-        ParsedPacket result =
-                MarkingCommandParserUtil.parseAssignmentAndPerson(VALID_ASSIGNMENT_VALID_STUDENT, MESSAGE_USAGE);
+    public void parseAssignmentAndTarget_validPerson_success() throws Exception {
+        MarkingCommandParserUtil.ParsedPacket packet =
+                MarkingCommandParserUtil.parseAssignmentAndTarget(ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_AMY,
+                        MESSAGE_USAGE);
 
-        assertEquals(new AssignmentName(VALID_ASSIGNMENT_HOMEWORK), result.assignmentName);
-        assertEquals(new PersonName(VALID_NAME_AMY), result.person);
+        assertEquals(ASSIGNMENT_TUTORIAL.assignmentName, packet.assignmentName);
+        assertEquals(NAME_TARGET_AMY, packet.target);
     }
 
     @Test
-    public void parseAssignmentAndPerson_missingAssignmentPrefix_throwsParseException() {
+    public void parseAssignmentAndTarget_validClass_success() throws Exception {
+        MarkingCommandParserUtil.ParsedPacket packet =
+                MarkingCommandParserUtil.parseAssignmentAndTarget(ASSIGNMENT_DESC_TUTORIAL + CLASS_DESC_AMY,
+                        MESSAGE_USAGE);
+
+        assertEquals(ASSIGNMENT_TUTORIAL.assignmentName, packet.assignmentName);
+        assertEquals(CLASS_TARGET_AMY, packet.target);
+    }
+
+    @Test
+    public void parseAssignmentAndTarget_missingAssignmentPrefix_throwsParseException() {
         ParseException exception = assertThrows(ParseException.class, () ->
-                MarkingCommandParserUtil.parseAssignmentAndPerson(NAME_DESC_AMY, MESSAGE_USAGE));
+                MarkingCommandParserUtil.parseAssignmentAndTarget(NAME_DESC_AMY, MESSAGE_USAGE));
 
         assertTrue(exception.getMessage().contains(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE)));
     }
 
     @Test
-    public void parseAssignmentAndPerson_missingPersonPrefix_throwsParseException() {
+    public void parseAssignmentAndPerson_missingTargetPrefix_throwsParseException() {
         ParseException exception = assertThrows(ParseException.class, () ->
-                MarkingCommandParserUtil.parseAssignmentAndPerson(ASSIGNMENT_DESC_TUTORIAL, MESSAGE_USAGE));
+                MarkingCommandParserUtil.parseAssignmentAndTarget(ASSIGNMENT_DESC_TUTORIAL, MESSAGE_USAGE));
 
         assertTrue(exception.getMessage().contains(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE)));
+    }
+
+    @Test
+    public void parseAssignmentAndPerson_conflictingTargetPrefixes_throwsParseException() {
+        ParseException exception = assertThrows(ParseException.class, () ->
+                MarkingCommandParserUtil.parseAssignmentAndTarget(
+                        ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_AMY + CLASS_DESC_AMY, MESSAGE_USAGE));
+
+        assertTrue(exception.getMessage().contains(
+                String.format(MESSAGE_CONFLICTING_PREFIXES, MESSAGE_USAGE)));
     }
 
     @Test
@@ -57,16 +82,26 @@ public class MarkingCommandParserUtilTest {
         String args = PREAMBLE_NON_EMPTY + VALID_ASSIGNMENT_VALID_STUDENT;
 
         ParseException exception = assertThrows(ParseException.class, () ->
-                MarkingCommandParserUtil.parseAssignmentAndPerson(args, MESSAGE_USAGE));
+                MarkingCommandParserUtil.parseAssignmentAndTarget(args, MESSAGE_USAGE));
 
         assertTrue(exception.getMessage().contains(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE)));
     }
 
     @Test
+    public void parseAssignmentAndPerson_duplicatePrefixes_throwsParseException() {
+        ParseException exception = assertThrows(ParseException.class, () ->
+                MarkingCommandParserUtil.parseAssignmentAndTarget(
+                        ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_AMY + NAME_DESC_AMY, MESSAGE_USAGE));
+
+        assertTrue(exception.getMessage().contains(
+                String.format(MESSAGE_DUPLICATE_FIELDS, MESSAGE_USAGE)));
+    }
+
+    @Test
     public void parseNullArgs_throwsAssertionError() {
         AssertionError e = assertThrows(AssertionError.class, () ->
-                MarkingCommandParserUtil.parseAssignmentAndPerson(null, MESSAGE_USAGE));
+                MarkingCommandParserUtil.parseAssignmentAndTarget(null, MESSAGE_USAGE));
 
         assertEquals("args should not be null", e.getMessage());
     }
@@ -74,7 +109,7 @@ public class MarkingCommandParserUtilTest {
     @Test
     public void parseNullMessageUsage_throwsAssertionError() {
         AssertionError e = assertThrows(AssertionError.class, () ->
-                MarkingCommandParserUtil.parseAssignmentAndPerson(VALID_ASSIGNMENT_VALID_STUDENT, null));
+                MarkingCommandParserUtil.parseAssignmentAndTarget(ASSIGNMENT_DESC_HOMEWORK + NAME_DESC_AMY, null));
 
         assertEquals("messageUsage should not be null", e.getMessage());
     }
@@ -82,7 +117,7 @@ public class MarkingCommandParserUtilTest {
     @Test
     public void parseEmptyArgs_throwsParseException() {
         ParseException exception = assertThrows(ParseException.class, () ->
-                MarkingCommandParserUtil.parseAssignmentAndPerson("", MESSAGE_USAGE));
+                MarkingCommandParserUtil.parseAssignmentAndTarget("", MESSAGE_USAGE));
 
         assertTrue(exception.getMessage().contains(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE)));

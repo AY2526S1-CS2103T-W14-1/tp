@@ -1,6 +1,7 @@
 package seedu.edubook.logic.parser;
 
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_LABEL_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.LABEL_DESC_BAD;
@@ -13,6 +14,7 @@ import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
 
@@ -23,6 +25,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.LabelCommand;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.TuitionClass;
 
 
 public class LabelCommandParserTest {
@@ -34,8 +37,8 @@ public class LabelCommandParserTest {
     private static final String DUPLICATE_PERSON_PREFIX_MESSAGE =
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PERSON_NAME);
 
-    /*private static final String DUPLICATE_CLASS_PREFIX_MESSAGE =
-            Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_CLASS);*/
+    private static final String DUPLICATE_CLASS_PREFIX_MESSAGE =
+            Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_CLASS);
 
     private static final String DUPLICATE_BOTH_PREFIXES_MESSAGE =
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_LABEL, PREFIX_PERSON_NAME);
@@ -53,14 +56,14 @@ public class LabelCommandParserTest {
                 LABEL_DESC_GOOD + NAME_DESC_AMY,
                 new LabelCommand(LABEL_GOOD, NAME_TARGET_AMY));
     }
-    /*
+
     @Test
     public void parse_classPrefix_success() {
         assertParseSuccess(parser,
-                ASSIGNMENT_DESC_HOMEWORK + CLASS_DESC_AMY,
-                new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY));
+                LABEL_DESC_GOOD + CLASS_DESC_AMY,
+                new LabelCommand(LABEL_GOOD, CLASS_TARGET_AMY));
     }
-    */
+
     @Test
     public void parse_missingLabelPrefix_failure() {
         // Missing assignment prefix
@@ -74,14 +77,13 @@ public class LabelCommandParserTest {
         assertParseFailure(parser, LABEL_DESC_GOOD,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, LabelCommand.MESSAGE_USAGE));
     }
-    /*
+
     @Test
     public void parse_allPrefixesPresent_failure() {
-        String input = " a/Homework 2 n/Amy c/A";
+        String input = " l/Allergic to milk n/Amy c/A";
         assertParseFailure(parser, input,
                 "Specify only n/NAME or c/CLASS, not both.");
     }
-    */
 
     @Test
     public void parse_duplicateLabelPrefix_failure() {
@@ -94,13 +96,13 @@ public class LabelCommandParserTest {
         String input = PREAMBLE_WHITESPACE + LABEL_DESC_GOOD + NAME_DESC_AMY + NAME_DESC_BOB;
         assertParseFailure(parser, input, DUPLICATE_PERSON_PREFIX_MESSAGE);
     }
-    /*
+
     @Test
     public void parse_duplicateClassPrefix_failure() {
-        String input = " a/Homework 2 c/A c/B";
+        String input = " l/Allergic to milk c/A c/B";
         assertParseFailure(parser, input, DUPLICATE_CLASS_PREFIX_MESSAGE);
     }
-    */
+
     @Test
     public void parse_duplicateLabelAndPersonPrefixes_failure() {
         String input = PREAMBLE_WHITESPACE + LABEL_DESC_GOOD + LABEL_DESC_BAD
@@ -121,13 +123,13 @@ public class LabelCommandParserTest {
         assertParseFailure(parser, LABEL_DESC_GOOD + INVALID_NAME_DESC,
                 PersonName.MESSAGE_CONSTRAINTS);
     }
-    /*
+
     @Test
     public void parse_invalidClass_failure() {
-        String input = " a/Homework 2 c/";
+        String input = " l/Allergic to milk c/";
         assertParseFailure(parser, input, TuitionClass.MESSAGE_CONSTRAINTS);
     }
-    */
+
     @Test
     public void parse_nonEmptyPreamble_failure() {
         String userInput = PREAMBLE_NON_EMPTY + LABEL_DESC_BAD + NAME_DESC_AMY;

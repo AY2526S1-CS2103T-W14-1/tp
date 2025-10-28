@@ -41,14 +41,18 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_ASSIGNMENT_ALREADY_MARKED_SINGLE =
             "%s's assignment \"%s\" has already been marked.";
+
     public static final String MESSAGE_ASSIGNMENT_ALREADY_MARKED_CLASS =
             "All %d students in class \"%s\" already have \"%s\" marked.";
+
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE =
             "%s does not have an assignment named \"%s\".";
+
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS =
             "No students in class \"%s\" have an assignment named \"%s\".";
+
     public static final String MESSAGE_ASSIGNMENT_MIXED_CLASS =
-            "No assignments were marked for class \"%s\". %d were already marked and %d did not exist.";
+            "No assignments were marked for class \"%s\". %d %s already marked and %d did not exist.";
 
     private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 
@@ -123,7 +127,7 @@ public class MarkCommand extends Command {
                 logger.fine(() -> "Already marked: " + person.getName());
             } catch (AssignmentNotFoundException e) {
                 notExistCount++;
-                logger.fine(() -> "Assignment not exist for: " + person.getName());
+                logger.fine(() -> "Assignment does not exist for: " + person.getName());
             }
         }
 
@@ -186,7 +190,11 @@ public class MarkCommand extends Command {
         }
 
         // Mixed reason: combination of already marked and not exist
-        return String.format(MESSAGE_ASSIGNMENT_MIXED_CLASS, targetName, alreadyMarkedCount, notExistCount);
+        return String.format(MESSAGE_ASSIGNMENT_MIXED_CLASS,
+                targetName,
+                alreadyMarkedCount,
+                alreadyMarkedCount == 1 ? "was" : "were",
+                notExistCount);
     }
 
     @Override

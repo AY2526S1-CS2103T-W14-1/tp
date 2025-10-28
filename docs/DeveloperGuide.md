@@ -72,6 +72,10 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+The `UI` component consists of 2 interfaces, Ui and ErrorDisplayable. The `Ui` interface handles changes to the UI upon error-free
+outcomes. The `ErrorDisplayable` interface handles error reporting to the user upon unexpected behaviours within Edubook.
+
+
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
@@ -243,7 +247,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Label/Unlabel feature
+### Label/Unlabel feature
 
 #### Proposed Implementation
 
@@ -259,15 +263,23 @@ Given below is an example usage scenario and how the label/unlabel mechanism beh
 
 Step 1. The user launches the application for the first time. The `EduBook` will be initialized with the initial EduBook state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![LabelState0](images/LabelState0.png)
 
 Step 2. The user executes `label n/John Doe l/Late for class` command to label John Doe in the EduBook. 
 
-Step 3. The user executes `unlabel n/John Doe` to remove the label.
+![LabelState1](images/LabelState1.png)
+
+Step 3. The user executes `edit n/John Doe l/Serve detention` to edit the label from `Late for class` to `Serve detention`.
+
+![LabelState2](images/LabelState2.png)
+
+Step 4. The user executes `unlabel n/John Doe` to remove the label.
+
+![LabelState3](images/LabelState3.png)
 
 The following sequence diagram shows how a label operation goes through the `Logic` component:
 
-![UndoSequenceDiagram](images/LabelSequenceDiagram.png)
+![LabelSequenceDiagram](images/LabelSequenceDiagram.png)
 
 #### Design considerations:
 

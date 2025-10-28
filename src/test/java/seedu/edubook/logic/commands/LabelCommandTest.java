@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_BENSON;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_NONEXISTENT;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_BAD;
 import static seedu.edubook.testutil.TypicalLabel.LABEL_GOOD;
 import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
@@ -29,6 +32,7 @@ import seedu.edubook.model.person.Phone;
 import seedu.edubook.model.person.TuitionClass;
 import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 import seedu.edubook.model.tag.Tag;
+import seedu.edubook.model.target.ClassTarget;
 import seedu.edubook.model.target.NameTarget;
 
 public class LabelCommandTest {
@@ -56,59 +60,18 @@ public class LabelCommandTest {
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
 
-    /*
     @Test
     public void execute_classTargetForLabelSingleStudent_success() throws CommandException {
         ModelStub model = new ModelStub();
-        AssignCommand command = new AssignCommand(LABEL_BAD, CLASS_TARGET_FOR_LABEL_AMY);
+        LabelCommand command = new LabelCommand(LABEL_BAD, CLASS_TARGET_AMY);
 
         CommandResult result = command.execute(model);
 
-        String expectedMessage = CLASS_TARGET_AMY.getAssignSuccessMessage(
-                ASSIGNMENT_HOMEWORK.assignmentName.toString(), 1, 0);
+        String expectedMessage = CLASS_TARGET_AMY.getLabelSuccessMessage(
+                LABEL_BAD.toString());
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
-
-    @Test
-    public void execute_classTargetMultipleStudents_successAndSkip() throws CommandException {
-        ModelStubMultipleStudents model = new ModelStubMultipleStudents();
-        AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
-
-        CommandResult result = command.execute(model);
-
-        // 3 students: 2 skipped (already have assignment), 1 success
-        String expectedMessage = CLASS_TARGET_AMY.getAssignSuccessMessage(VALID_ASSIGNMENT_HOMEWORK, 1, 2);
-
-        assertEquals(expectedMessage, result.getFeedbackToUser());
-    }
-
-    @Test
-    public void execute_classTargetAllStudentsSkipped_throwsAssignmentAlreadyExistsException() {
-        ModelStubAllStudentsSkipped model = new ModelStubAllStudentsSkipped();
-        AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
-
-        AssignmentAlreadyExistsException e = assertThrows(
-                AssignmentAlreadyExistsException.class, () -> command.execute(model));
-
-        assertEquals(
-                AssignmentAlreadyExistsException
-                        .forClass(CLASS_TARGET_AMY.getDisplayName(), ASSIGNMENT_HOMEWORK.assignmentName.toString())
-                        .getMessage(),
-                e.getMessage());
-    }
-
-    @Test
-    public void execute_duplicateAssignment_throwsAssignmentAlreadyExistsException() {
-        ModelStub model = new ModelStub();
-        Assignment duplicateAssignment = new Assignment(new AssignmentName("Duplicate"));
-        AssignCommand command = new AssignCommand(duplicateAssignment, NAME_TARGET_AMY);
-
-        AssignmentAlreadyExistsException e = assertThrows(
-                AssignmentAlreadyExistsException.class, () -> command.execute(model));
-        assertEquals(AssignmentAlreadyExistsException.forStudent().getMessage(), e.getMessage());
-    }
-    */
 
     @Test
     public void execute_nonExistentPersonForLabel_throwsCommandException() {
@@ -118,18 +81,18 @@ public class LabelCommandTest {
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, "Nonexistent"), e.getMessage());
     }
-    /*
+
     @Test
     public void execute_emptyClass_throwsCommandException() {
         ModelStub model = new ModelStubEmptyClass();
-        AssignCommand command = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_NONEXISTENT);
+        LabelCommand command = new LabelCommand(LABEL_GOOD, CLASS_TARGET_NONEXISTENT);
 
         CommandException e = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(String.format(ClassTarget.MESSAGE_NO_STUDENTS_FOUND,
                         CLASS_TARGET_NONEXISTENT.getDisplayName()),
                 e.getMessage());
     }
-    */
+
     @Test
     public void equals_nameAssignTarget() {
         LabelCommand labelBadToAmyCommand = new LabelCommand(LABEL_BAD, NAME_TARGET_AMY);
@@ -156,33 +119,32 @@ public class LabelCommandTest {
         assertNotEquals(labelBadToAmyCommand, labelGoodToAliceCommand);
     }
 
-    /*
     @Test
     public void equals_classAssignTarget() {
-        AssignCommand assignHomeworkToClassA = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
-        AssignCommand assignHomeworkToClassACopy = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
-        AssignCommand assignHomeworkToClassB = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_BENSON);
-        AssignCommand assignLabToClassA = new AssignCommand(ASSIGNMENT_LAB, CLASS_TARGET_AMY);
+        LabelCommand labelGoodToClassA = new LabelCommand(LABEL_GOOD, CLASS_TARGET_AMY);
+        LabelCommand labelGoodToClassACopy = new LabelCommand(LABEL_GOOD, CLASS_TARGET_AMY);
+        LabelCommand labelGoodToClassB = new LabelCommand(LABEL_GOOD, CLASS_TARGET_BENSON);
+        LabelCommand labelBadToClassA = new LabelCommand(LABEL_BAD, CLASS_TARGET_AMY);
 
         // same object -> true
-        assertEquals(assignHomeworkToClassA, assignHomeworkToClassA);
+        assertEquals(labelGoodToClassA, labelGoodToClassA);
 
         // same values -> true
-        assertEquals(assignHomeworkToClassA, assignHomeworkToClassACopy);
+        assertEquals(labelGoodToClassA, labelGoodToClassACopy);
 
         // different class target -> false
-        assertNotEquals(assignHomeworkToClassA, assignHomeworkToClassB);
+        assertNotEquals(labelGoodToClassA, labelGoodToClassB);
 
         // different assignment but same class -> false
-        assertNotEquals(assignHomeworkToClassA, assignLabToClassA);
+        assertNotEquals(labelBadToClassA, labelGoodToClassA);
 
         // different type -> false
-        assertNotEquals(1, assignHomeworkToClassA);
+        assertNotEquals(1, labelGoodToClassA);
 
         // null -> false
-        assertNotEquals(null, assignHomeworkToClassA);
+        assertNotEquals(null, labelGoodToClassA);
     }
-    */
+
     @Test
     public void toString_nameLabelTarget() {
         LabelCommand labelCommand = new LabelCommand(LABEL_GOOD, NAME_TARGET_AMY);
@@ -194,19 +156,19 @@ public class LabelCommandTest {
         assertTrue(str.contains("target"));
         assertTrue(str.contains("Amy"));
     }
-    /*
+
     @Test
-    public void toString_classAssignTarget() {
-        AssignCommand assignCommand = new AssignCommand(ASSIGNMENT_HOMEWORK, CLASS_TARGET_AMY);
+    public void toString_classLabelTarget() {
+        LabelCommand labelCommand = new LabelCommand(LABEL_GOOD, CLASS_TARGET_AMY);
 
-        String str = assignCommand.toString();
+        String str = labelCommand.toString();
 
-        assertTrue(str.contains("assignment"));
-        assertTrue(str.contains("Homework 2"));
+        assertTrue(str.contains("label"));
+        assertTrue(str.contains("Top student"));
         assertTrue(str.contains("target"));
         assertTrue(str.contains("Class A"));
     }
-    */
+
     static class ModelStub extends ModelManager {
         @Override
         public PersonStub findPersonByName(PersonName name) throws PersonNotFoundException {
@@ -237,41 +199,6 @@ public class LabelCommandTest {
         @Override
         public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
             return List.of(); // empty class
-        }
-    }
-
-    static class ModelStubMultipleStudents extends ModelStub {
-        @Override
-        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
-            Phone phone = new Phone("98765432");
-            Email email = new Email("dumb@gmail.com");
-
-            PersonStub alice = new PersonStub(ALICE.getName(), phone, email, tuitionClass, new HashSet<>());
-            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
-            PersonStub tom = new PersonStub(new PersonName("Tom"), phone, email, tuitionClass, new HashSet<>());
-
-            // Mark bob and tom as already having the assignment
-            bob.hasDuplicateAssignment = true;
-            tom.hasDuplicateAssignment = true;
-
-            return List.of(alice, bob, tom);
-        }
-    }
-
-    static class ModelStubAllStudentsSkipped extends ModelStub {
-        @Override
-        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
-            Phone phone = new Phone("99999999");
-            Email email = new Email("dummy@edu.com");
-
-            PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
-            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
-
-            // Mark both as already having the assignment
-            alice.hasDuplicateAssignment = true;
-            bob.hasDuplicateAssignment = true;
-
-            return List.of(alice, bob);
         }
     }
 

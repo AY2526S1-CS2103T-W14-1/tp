@@ -23,6 +23,7 @@ import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.target.NameTarget;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -38,7 +39,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                personToDelete.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -63,10 +64,10 @@ public class DeleteCommandTest {
                 personToDelete = p;
             }
         }
-        DeleteCommand deleteCommand = new DeleteCommand(NAME_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                personToDelete.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -77,9 +78,10 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidPersonNameUnfilteredList_throwsCommandException() {
         PersonName invalidName = new PersonName("John Doe");
-        DeleteCommand deleteCommand = new DeleteCommand(invalidName);
+        DeleteCommand deleteCommand = new DeleteCommand(new NameTarget(invalidName));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
+        assertCommandFailure(deleteCommand, model,
+                String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, invalidName));
     }
 
     @Test
@@ -90,7 +92,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                personToDelete.getName());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -123,10 +125,10 @@ public class DeleteCommandTest {
                 personToDelete = p;
             }
         }
-        DeleteCommand deleteCommand = new DeleteCommand(NAME_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                personToDelete.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -140,17 +142,20 @@ public class DeleteCommandTest {
         showPersonAtName(model, NAME_FIRST_PERSON);
 
         PersonName invalidName = NAME_SECOND_PERSON;
-        DeleteCommand deleteCommand = new DeleteCommand(invalidName);
+        DeleteCommand deleteCommand = new DeleteCommand(new NameTarget(invalidName));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_NAME);
+        assertCommandFailure(deleteCommand, model,
+                String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, invalidName));
     }
 
     @Test
     public void equals() {
+        NameTarget first = new NameTarget(NAME_FIRST_PERSON);
+        NameTarget second = new NameTarget(NAME_SECOND_PERSON);
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
-        DeleteCommand deleteThirdCommand = new DeleteCommand(NAME_FIRST_PERSON);
-        DeleteCommand deleteFourthCommand = new DeleteCommand(NAME_SECOND_PERSON);
+        DeleteCommand deleteThirdCommand = new DeleteCommand(first);
+        DeleteCommand deleteFourthCommand = new DeleteCommand(second);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
@@ -160,7 +165,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
-        DeleteCommand deleteThirdCommandCopy = new DeleteCommand(NAME_FIRST_PERSON);
+        DeleteCommand deleteThirdCommandCopy = new DeleteCommand(first);
         assertTrue(deleteThirdCommand.equals(deleteThirdCommandCopy));
 
         // different types -> returns false
@@ -181,15 +186,15 @@ public class DeleteCommandTest {
 
     @Test
     public void equals_bothHaveTargetNameSameName_returnsTrue() {
-        DeleteCommand command1 = new DeleteCommand(NAME_FIRST_PERSON);
-        DeleteCommand command2 = new DeleteCommand(NAME_FIRST_PERSON);
+        DeleteCommand command1 = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));;
+        DeleteCommand command2 = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));;
         assertTrue(command1.equals(command2));
     }
 
     @Test
     public void equals_bothHaveTargetNameDifferentName_returnsFalse() {
-        DeleteCommand command1 = new DeleteCommand(NAME_FIRST_PERSON);
-        DeleteCommand command2 = new DeleteCommand(NAME_SECOND_PERSON);
+        DeleteCommand command1 = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));;
+        DeleteCommand command2 = new DeleteCommand(new NameTarget(NAME_SECOND_PERSON));;
         assertFalse(command1.equals(command2));
     }
 
@@ -205,9 +210,9 @@ public class DeleteCommandTest {
     @Test
     public void toStringMethodName() {
         // When DeleteCommand using Name
-        PersonName targetName = NAME_THIRD_PERSON;
+        NameTarget targetName = new NameTarget(NAME_THIRD_PERSON);
         DeleteCommand deleteCommand = new DeleteCommand(targetName);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetName=" + targetName + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{target=" + targetName + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 

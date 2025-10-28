@@ -25,16 +25,28 @@ public class ClassTarget implements Target {
     public static final String MESSAGE_UNASSIGN_SUCCESS =
             "Assignment '%s' unassigned from class: '%s' (%d unassigned, %d skipped).";
 
-    /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
+    /** Template for success message when label is assigned to a student. */
+    public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for class: '%s'.";
 
-    /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label '%s' removed from student: '%s'.";
+    /** Template for success message when label is unassigned from a class. */
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from class: '%s'.";
 
+    /** Template for failure message when label is unassigned from a class. */
+    public static final String MESSAGE_UNLABEL_FAILURE = "Entire class '%s' does not have an existing label";
+
+    /** Template for success message when assignment is marked for a class. */
     public static final String MESSAGE_MARK_SUCCESS =
             "Assignment '%s' marked for class '%s' (%d marked, %d already marked, %d not exist).";
 
-    /** Template for message when view class is successful. */
+    /** Template for success message when assignment is unmarked for a class. */
+    public static final String MESSAGE_UNMARK_SUCCESS =
+            "Assignment '%s' unmarked for class '%s' (%d unmarked, %d already unmarked, %d not exist).";
+
+    /** Template for message when delete class is successful. */
+    public static final String MESSAGE_DELETE_SUCCESS =
+            "All students in  %1$s have been deleted.";
+
+    /** Template for message when viewing a class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
             "Here are the details of all the students in '%1$s'.";
 
@@ -90,18 +102,35 @@ public class ClassTarget implements Target {
     }
 
     @Override
-    public String getLabelSuccessMessage(String assignmentName) {
-        return String.format(MESSAGE_LABEL_SUCCESS, assignmentName, getDisplayName());
+    public String getUnmarkSuccessMessage(String assignmentName, int unmarkedCount,
+                                        int alreadyUnmarkedCount, int notExistCount) {
+        return String.format(MESSAGE_UNMARK_SUCCESS, assignmentName, getDisplayName(),
+                unmarkedCount, alreadyUnmarkedCount, notExistCount);
     }
 
     @Override
-    public String getUnlabelSuccessMessage(String assignmentName) {
-        return String.format(MESSAGE_UNLABEL_SUCCESS, assignmentName, getDisplayName());
+    public String getLabelSuccessMessage(String labelName) {
+        return String.format(MESSAGE_LABEL_SUCCESS, labelName, getDisplayName());
+    }
+
+    @Override
+    public String getUnlabelSuccessMessage() {
+        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
+    }
+
+    @Override
+    public String getUnlabelFailureMessage() {
+        return String.format(MESSAGE_UNLABEL_FAILURE, getDisplayName());
     }
 
     @Override
     public String getViewSuccessMessage() {
         return String.format(MESSAGE_VIEW_SUCCESS, tuitionClass);
+    }
+
+    @Override
+    public String getDeleteSuccessMessage() {
+        return String.format(MESSAGE_DELETE_SUCCESS, getDisplayName());
     }
 
     @Override
