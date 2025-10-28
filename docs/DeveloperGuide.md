@@ -440,6 +440,8 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 1. Tutor requests to assign an assignment. 
 2. EduBook checks whether the target is a student or a class. 
 3. EduBook adds the assignment to the specified student or to every student in the specified class.
+4. EduBook informs the tutor that the assignment was successfully assigned to the student,
+   or for a class, how many students were assigned the assignment and how many were skipped.
 
    Use case ends.
 
@@ -473,6 +475,8 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 1. Tutor requests to unassign an assignment.
 2. EduBook checks whether the target is a student or a class.
 3. EduBook removes the assignment from the specified student or from every student in the specified class.
+4. EduBook informs the tutor that the assignment was successfully unassigned from the student,
+   or for a class, how many students had the assignment unassigned and how many were skipped.
 
    Use case ends.
 
@@ -507,7 +511,7 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 2. EduBook checks whether the target is a single student or a class. 
 3. EduBook updates the assignment status to completed for the student or for all students in the class.
 4. EduBook informs the tutor that the assignment was successfully marked for the student, 
-   or for a class, how many students were marked, already marked, or did not have the assignment.
+   or for a class, how many students' assignments were marked, already marked, or did not have the assignment.
 
    Use case ends.
 
@@ -557,7 +561,7 @@ Use case ends.
 2. EduBook checks whether the target is a single student or a class.
 3. EduBook updates the assignment status to not completed for the student or for all students in the class.
 4. EduBook informs the tutor that the assignment was successfully unmarked for the student,
-   or for a class, how many students were unmarked, already unmarked, or did not have the assignment.
+   or for a class, how many students' assignments were unmarked, already unmarked, or did not have the assignment.
 
    Use case ends.
 
