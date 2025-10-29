@@ -47,7 +47,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLASS + "CLASS] "
             + "[" + PREFIX_TAG + "TAG]... "
+<<<<<<< Updated upstream
             + "[" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]...\n"
+=======
+            + "[" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]... "
+            + "[" + PREFIX_LABEL + "LABEL]\n"
+>>>>>>> Stashed changes
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
