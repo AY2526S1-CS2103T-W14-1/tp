@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.edubook.logic.Messages.MESSAGE_CONFLICTING_PREFIXES;
+import static seedu.edubook.logic.Messages.MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.Messages.MESSAGE_DUPLICATE_FIELDS;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edubook.logic.commands.CommandTestUtil.ASSIGNMENT_DESC_HOMEWORK;
@@ -74,7 +74,7 @@ public class MarkingCommandParserUtilTest {
                         ASSIGNMENT_DESC_TUTORIAL + NAME_DESC_AMY + CLASS_DESC_AMY, MESSAGE_USAGE));
 
         assertTrue(exception.getMessage().contains(
-                String.format(MESSAGE_CONFLICTING_PREFIXES, MESSAGE_USAGE)));
+                String.format(MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES, MESSAGE_USAGE)));
     }
 
     @Test

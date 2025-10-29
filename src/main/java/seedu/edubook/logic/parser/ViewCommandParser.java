@@ -1,7 +1,10 @@
 package seedu.edubook.logic.parser;
 
+import static seedu.edubook.logic.Messages.MESSAGE_CLASS_ASSIGNMENT_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.edubook.logic.Messages.MESSAGE_VIEW_CONFLICTING_PREFIXES;
+import static seedu.edubook.logic.Messages.MESSAGE_NAME_ASSIGNMENT_CONFLICTING_PREFIXES;
+import static seedu.edubook.logic.Messages.MESSAGE_NAME_CLASS_ASSIGNMENT_CONFLICTING_PREFIXES;
+import static seedu.edubook.logic.Messages.MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
@@ -65,7 +68,19 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         }
 
         if (hasName && hasClass && hasAssignment) {
-            throw new ParseException(MESSAGE_VIEW_CONFLICTING_PREFIXES);
+            throw new ParseException(MESSAGE_NAME_CLASS_ASSIGNMENT_CONFLICTING_PREFIXES);
+        }
+
+        if (hasName && hasClass) {
+            throw new ParseException(MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES);
+        }
+
+        if (hasName && hasAssignment) {
+            throw new ParseException(MESSAGE_NAME_ASSIGNMENT_CONFLICTING_PREFIXES);
+        }
+
+        if (hasClass && hasAssignment) {
+            throw new ParseException(MESSAGE_CLASS_ASSIGNMENT_CONFLICTING_PREFIXES);
         }
 
         // Ensure no duplicate prefixes
