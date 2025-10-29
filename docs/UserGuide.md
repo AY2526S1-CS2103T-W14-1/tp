@@ -145,19 +145,19 @@ Format: `view {n/NAME | c/CLASS | a/ASSIGNMENT}`
 
 * If `n/NAME` is used:
     * Displays the student with the specified `NAME`.
-    * The search is case-sensitive. e.g. `hans` will not match `Hans`.
+    * The search is case-insensitive. e.g. `hans` will match `Hans`.
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
 
 * If `c/CLASS` is used:
     * Displays all students with the specified `CLASS`.
-    * The search is case-sensitive. e.g. `w14` will not match `W14`.
+    * The search is case-insensitive. e.g. `w14` will match `W14`.
     * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
     * The full class name is required for the search to be successful. e.g. `W14` will not return `Class W14`.
 
 * If `a/ASSIGNMENT` is used:
     * Displays all students with the specified `ASSIGNMENT`.
-    * The search is case-sensitive. e.g. `Tutorial 1` will not match `tutorial 1`.
+    * The search is case-insensitive. e.g. `Tutorial 1` will match `tutorial 1`.
     * The order of the keywords matters. e.g. `Tutorial 1` will not match `1 Tutorial`.
     * The full assignment name is required for the search to be successful. e.g. `1` will not return `Tutorial 1`.
 
@@ -190,15 +190,15 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
 
 * If `n/NAME` is used:
     * Removes the student with the specified `NAME`.
-    * The search is case-sensitive. e.g. `hans` will not match `Hans`.
+    * The name is case-insensitive. e.g. `hans` will match `Hans`.
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
-    * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
+    * The full name is required for the removal to be successful. e.g. `Hans` will not return `Hans Bo`.
 
 * If `c/CLASS` is used:
     * Removes all students with the specified `CLASS`.
-    * The search is case-sensitive. e.g. `w14` will not match `W14`.
+    * The class is case-insensitive. e.g. `w14` will match `W14`.
     * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
-    * The full class name is required for the search to be successful. e.g. `W14` will not return `Class W14`.
+    * The full class name is required for the removal to be successful. e.g. `W14` will not return `Class W14`.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
