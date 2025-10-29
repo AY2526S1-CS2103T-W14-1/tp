@@ -1,7 +1,7 @@
 package seedu.edubook.logic.parser;
 
-import static seedu.edubook.logic.Messages.MESSAGE_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.Messages.MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
@@ -63,7 +63,7 @@ public class LabelCommandParser implements Parser<LabelCommand> {
         }
 
         if (hasName && hasClass) {
-            throw new ParseException(MESSAGE_CONFLICTING_PREFIXES);
+            throw new ParseException(MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES);
         }
 
         if (!argMultimap.getPreamble().isEmpty()) {
