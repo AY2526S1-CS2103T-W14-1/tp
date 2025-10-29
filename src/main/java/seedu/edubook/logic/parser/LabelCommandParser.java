@@ -1,6 +1,8 @@
 package seedu.edubook.logic.parser;
 
+import static seedu.edubook.logic.Messages.MESSAGE_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 
@@ -8,6 +10,8 @@ import seedu.edubook.logic.commands.LabelCommand;
 import seedu.edubook.logic.parser.exceptions.ParseException;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.person.TuitionClass;
+import seedu.edubook.model.target.ClassTarget;
 import seedu.edubook.model.target.NameTarget;
 import seedu.edubook.model.target.Target;
 
@@ -26,7 +30,7 @@ public class LabelCommandParser implements Parser<LabelCommand> {
      */
     public LabelCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_LABEL, PREFIX_PERSON_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_LABEL, PREFIX_PERSON_NAME, PREFIX_CLASS);
 
         // Validate prefixes, preamble, and duplicates
         validateLabelCommandPrefixes(argMultimap);
@@ -52,9 +56,14 @@ public class LabelCommandParser implements Parser<LabelCommand> {
     private static void validateLabelCommandPrefixes(ArgumentMultimap argMultimap) throws ParseException {
         boolean hasAssignment = argMultimap.getValue(PREFIX_LABEL).isPresent();
         boolean hasName = argMultimap.getValue(PREFIX_PERSON_NAME).isPresent();
+        boolean hasClass = argMultimap.getValue(PREFIX_CLASS).isPresent();
 
-        if (!hasAssignment || !hasName) {
+        if (!hasAssignment || (!hasName && !hasClass)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LabelCommand.MESSAGE_USAGE));
+        }
+
+        if (hasName && hasClass) {
+            throw new ParseException(MESSAGE_CONFLICTING_PREFIXES);
         }
 
         if (!argMultimap.getPreamble().isEmpty()) {
@@ -62,7 +71,7 @@ public class LabelCommandParser implements Parser<LabelCommand> {
         }
 
         // Ensure no duplicate prefixes
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LABEL, PREFIX_PERSON_NAME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_LABEL, PREFIX_PERSON_NAME, PREFIX_CLASS);
     }
 
     /**
@@ -73,9 +82,19 @@ public class LabelCommandParser implements Parser<LabelCommand> {
      * @throws ParseException If parsing of the target fails.
      */
     private static Target parseLabelTarget(ArgumentMultimap argMultimap) throws ParseException {
+        boolean hasNamePrefix = argMultimap.getValue(PREFIX_PERSON_NAME).isPresent();
+        boolean hasClassPrefix = argMultimap.getValue(PREFIX_CLASS).isPresent();
 
-        PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
-        return new NameTarget(personName);
+        // Use XOR to assert that only one of n/ or c/ is present and not none or both.
+        assert hasNamePrefix ^ hasClassPrefix : "Exactly one of n/ or c/ must be present.";
+
+        if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
+            PersonName personName = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get());
+            return new NameTarget(personName);
+        } else {
+            TuitionClass tuitionClass = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
+            return new ClassTarget(tuitionClass);
+        }
 
     }
 

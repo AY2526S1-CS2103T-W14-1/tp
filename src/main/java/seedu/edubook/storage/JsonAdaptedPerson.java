@@ -88,11 +88,18 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
+            if (tag == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+            }
             personTags.add(tag.toModelType());
         }
 
         final List<Assignment> personAssignments = new ArrayList<>();
         for (JsonAdaptedAssignment assignment : assignments) {
+            if (assignment == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Assignment.class.getSimpleName()));
+            }
             personAssignments.add(assignment.toModelType());
         }
 
@@ -152,12 +159,12 @@ class JsonAdaptedPerson {
     }
 
     private Label convertLabel(String label) throws IllegalValueException {
-        if (label.isBlank()) {
-            return Label.EMPTY;
-        }
         if (label == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Label.class.getSimpleName()));
+        }
+        if (label.isBlank()) {
+            return Label.EMPTY;
         }
         if (!StringUtil.isValidLength(label, Label.MAX_LABEL_LENGTH)) {
             throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);

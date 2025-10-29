@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,6 +24,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -47,12 +49,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_CLASS + "CLASS] "
             + "[" + PREFIX_TAG + "TAG]... "
-<<<<<<< Updated upstream
-            + "[" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]...\n"
-=======
-            + "[" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]... "
+            + "[" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]..."
             + "[" + PREFIX_LABEL + "LABEL]\n"
->>>>>>> Stashed changes
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -108,11 +106,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         TuitionClass updatedClass = editPersonDescriptor.getTuitionClass().orElse(personToEdit.getTuitionClass());
+        Label updatedLabel = editPersonDescriptor.getLabel().orElse(personToEdit.getLabel());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Assignment> updatedAssignments = editPersonDescriptor.getAssignments()
                 .orElse(personToEdit.getAssignments());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedClass, updatedTags, updatedAssignments);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedClass,
+                updatedTags, updatedAssignments, updatedLabel);
     }
 
     @Override
@@ -150,6 +150,7 @@ public class EditCommand extends Command {
         private TuitionClass tuitionClass;
         private Set<Tag> tags;
         private Set<Assignment> assignments;
+        private Label label;
 
         public EditPersonDescriptor() {}
 
@@ -164,13 +165,14 @@ public class EditCommand extends Command {
             setTuitionClass(toCopy.tuitionClass);
             setTags(toCopy.tags);
             setAssignments(toCopy.assignments);
+            setLabel(toCopy.label);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tuitionClass, tags, assignments);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tuitionClass, tags, assignments, label);
         }
 
         public void setName(PersonName name) {
@@ -195,6 +197,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setLabel(Label label) {
+            this.label = label;
+        }
+
+        public Optional<Label> getLabel() {
+            return Optional.ofNullable(label);
         }
 
         public void setTuitionClass(TuitionClass tuitionClass) {
@@ -257,7 +267,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(tuitionClass, otherEditPersonDescriptor.tuitionClass)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(assignments, otherEditPersonDescriptor.assignments);
+                    && Objects.equals(assignments, otherEditPersonDescriptor.assignments)
+                    && Objects.equals(label, otherEditPersonDescriptor.label);
         }
 
         @Override
@@ -269,6 +280,7 @@ public class EditCommand extends Command {
                     .add("class", tuitionClass)
                     .add("tags", tags)
                     .add("assignments", assignments)
+                    .add("label", label)
                     .toString();
         }
     }
