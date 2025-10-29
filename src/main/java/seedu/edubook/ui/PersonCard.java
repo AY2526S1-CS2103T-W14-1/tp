@@ -65,7 +65,7 @@ public class PersonCard extends UiPart<Region> {
                     Label assignmentLabel = new Label(assignment.assignmentName.fullName);
 
                     if (assignment.isDone()) {
-                        assignmentLabel.setStyle("-fx-background-color: #90EE90;");
+                        assignmentLabel.setStyle("-fx-background-color: #198754;");
                     }
                     assignments.getChildren().add(assignmentLabel);
                 });

@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -36,7 +38,15 @@
     </VBox>
 
     <VBox alignment="TOP_LEFT" GridPane.columnIndex="1">
-      <Label fx:id="label" styleClass="cell_small_label" text="\$label" />
+      <padding>
+        <Insets top="10" right="15" bottom="5" left="0" />
+      </padding>
+      <ImageView fx:id="pinIcon" fitWidth="16" fitHeight="16" pickOnBounds="true" preserveRatio="true">
+        <image>
+          <Image url="/images/pin.png"/>
+        </image>
+      </ImageView>
+      <Label fx:id="label" styleClass="cell_small_label" text="$label" translateX="20" wrapText="true" maxWidth="150" />
     </VBox>
 
     <VBox alignment="TOP_LEFT" minHeight="105" GridPane.columnIndex="2">
