@@ -619,10 +619,17 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Student**: A person receive tutoring lessons from tutors
-* **Tutor**: A person providing tutoring lessons to students
-* **Assignment**: Homework allocated to the respective student which can marked as completed
-* **Class**: A grouping of students to facilitate group work
+* **Student**: A person receive tutoring lessons from tutors.
+* **Tutor**: A person providing tutoring lessons to students.
+* **Class**: A grouping of students taught by a tutor.
+* **Assignment**: Tasks allocated to the respective student which can marked as completed.
+* **Assign**: Allocate assignments to a specific student or class.
+* **Mark**: Indicate an assignment as completed.
+* **Tag**: A flexible descriptor used to categorise or identify students based on user-defined attributes.
+* **Label**: A single, prominent identifier used to mark a student or class with a specific status or classification.
+* **View**: Filters the current list of students based on case-insensitive match on name, class or assignment.
+* **Find**: Filters the current list of students based on whether the name contains the specific keyword.
+* **Keyword**: A full word that is contained inside the student's full name.
 
 --------------------------------------------------------------------------------------------------------------------
 
