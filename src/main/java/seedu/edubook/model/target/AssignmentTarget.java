@@ -15,11 +15,16 @@ import seedu.edubook.model.person.Person;
 public class AssignmentTarget implements Target {
 
     /** Error message when the assignment cannot be found in the model. */
-    public static final String MESSAGE_NO_ASSIGNMENT_FOUND = "Assignment '%s' not found";
+    public static final String MESSAGE_NO_ASSIGNMENT_FOUND =
+            "Assignment \"%1$s\" not found";
 
-    /** Template for message when view assignment is successful. */
+    /** Template for message when viewing assignment is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
-            "Here are the details of all the students with assignment \"%1$s\"";
+            "Here are the details of all students with assignment \"%1$s\"";
+
+    /** Template for unexpected method call on AssignmentTarget. */
+    private static final String MESSAGE_UNEXPECTED_CALL =
+            "Error: getSuccessMessage should not be called on AssignmentTarget";
 
     private final AssignmentName assignmentName;
 
@@ -57,46 +62,45 @@ public class AssignmentTarget implements Target {
 
     @Override
     public String getAssignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
-        return "[Error: Unexpected call to getAssignSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getUnassignSuccessMessage(String assignmentName, int successCount, int skippedCount) {
-        return "[Error: Unexpected call to getUnassignSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getMarkSuccessMessage(String assignmentName, int markedCount,
                                         int alreadyMarkedCount, int notExistCount) {
-        return "[Error: Unexpected call to getMarkSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getUnmarkSuccessMessage(String assignmentName, int markedCount,
                                         int alreadyMarkedCount, int notExistCount) {
-        return "[Error: Unexpected call to getUnmarkSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getLabelSuccessMessage(String labelName) {
-        return "[Error: Unexpected call to getLabelSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getUnlabelSuccessMessage() {
-        return "[Error: Unexpected call to getUnlabelSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getUnlabelFailureMessage() {
-        return "[Error: Unexpected call to getUnmarkFailureMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
     public String getDeleteSuccessMessage() {
-        return "[Error: Unexpected call to getDeleteSuccessMessage on AssignmentTarget]";
+        return MESSAGE_UNEXPECTED_CALL;
     }
-
 
     @Override
     public String getViewSuccessMessage() {
