@@ -10,7 +10,7 @@ public class AssignmentUnmarkedException extends CommandException {
 
     /** Message indicating the assignment is already unmarked for the student */
     public static final String MESSAGE_ASSIGNMENT_ALREADY_UNMARKED = "This assignment "
-            + "is already unmarked for this student. ";
+            + "is already unmarked for this student";
 
     /**
      * Constructs a {@code AssignmentUnmarkedException} with a default message

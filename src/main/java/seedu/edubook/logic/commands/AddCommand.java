@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to EduBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to EduBook. \n"
             + "Parameters: "
             + PREFIX_PERSON_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

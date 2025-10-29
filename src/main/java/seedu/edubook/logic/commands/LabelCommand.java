@@ -25,9 +25,9 @@ public class LabelCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a label for a student.\n"
             + "Parameters: "
-            + PREFIX_LABEL + "LABEL ["
+            + PREFIX_LABEL + "LABEL {"
             + PREFIX_PERSON_NAME + "NAME | "
-            + PREFIX_CLASS + "CLASS]\n"
+            + PREFIX_CLASS + "CLASS}\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_LABEL + "Tutorial 6 "
             + PREFIX_PERSON_NAME + "John Doe"
