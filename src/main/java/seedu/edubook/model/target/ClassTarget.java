@@ -28,15 +28,11 @@ public class ClassTarget implements Target {
 
     /** Template for success message when label is assigned to a class. */
     public static final String MESSAGE_LABEL_SUCCESS =
-            "Label \"%1$s\" assigned to class \"%2$s\"";
+            "Label \"%1$s\" assigned to class \"%2$s\" (%3$d labeled, %4$d skipped)";
 
     /** Template for success message when label is unassigned from a class. */
     public static final String MESSAGE_UNLABEL_SUCCESS =
-            "Label removed from class \"%1$s\"";
-
-    /** Template for failure message when label is unassigned from a class. */
-    public static final String MESSAGE_UNLABEL_FAILURE =
-            "Class \"%1$s\" does not have any labels to remove";
+            "Label removed from class \"%1$s\" (%2$d unlabeled, %3$d skipped)";
 
     /** Template for success message when assignment is marked for a class. */
     public static final String MESSAGE_MARK_SUCCESS =
@@ -113,18 +109,13 @@ public class ClassTarget implements Target {
     }
 
     @Override
-    public String getLabelSuccessMessage(String labelName) {
-        return String.format(MESSAGE_LABEL_SUCCESS, labelName, getDisplayName());
+    public String getLabelSuccessMessage(String labelName, int successCount, int skippedCount) {
+        return String.format(MESSAGE_LABEL_SUCCESS, labelName, getDisplayName(), successCount, skippedCount);
     }
 
     @Override
-    public String getUnlabelSuccessMessage() {
-        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
-    }
-
-    @Override
-    public String getUnlabelFailureMessage() {
-        return String.format(MESSAGE_UNLABEL_FAILURE, getDisplayName());
+    public String getUnlabelSuccessMessage(int successCount, int skippedCount) {
+        return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName(), successCount, skippedCount);
     }
 
     @Override

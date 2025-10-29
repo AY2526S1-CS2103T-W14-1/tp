@@ -37,9 +37,9 @@ public class AssignmentNotFoundException extends CommandException {
 
     /**
      * Creates an {@code AssignmentNotFoundException} instance for the case where
-     * all students in a specified class already have the assignment.
+     * all students in a specified class does not have the assignment.
      *
-     * @param className The name of the class where all students have the assignment.
+     * @param className The name of the class where all students do not have the assignment.
      * @param assignmentName The name of the assignment that is already assigned.
      * @return An {@code AssignmentNotFoundException} with a formatted message.
      */

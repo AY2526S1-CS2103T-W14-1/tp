@@ -63,7 +63,7 @@ public interface Target {
      *
      * @return Formatted success message.
      */
-    String getLabelSuccessMessage(String labelName);
+    String getLabelSuccessMessage(String labelName, int successCount, int skippedCount);
 
     /**
      * Returns the formatted success message after successfully unassigning a label to this target.
@@ -71,14 +71,7 @@ public interface Target {
      *
      * @return Formatted success message.
      */
-    String getUnlabelSuccessMessage();
-
-    /**
-     * If student does not have any label, label command is not executed.
-     *
-     * @return Formatted failure message
-     */
-    String getUnlabelFailureMessage();
+    String getUnlabelSuccessMessage(int successCount, int skippedCount);
 
     /**
      * Returns the formatted success message after successfully viewing the target.

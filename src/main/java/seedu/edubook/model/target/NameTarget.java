@@ -36,9 +36,6 @@ public class NameTarget implements Target {
     /** Template for success message when label is unassigned from a student. */
     public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from student: \"%1$s\"";
 
-    /** Template for failure message when label is unassigned from a student. */
-    public static final String MESSAGE_UNLABEL_FAILURE = "Student \"%1$s\" does not have an existing label";
-
     /** Template for message when delete student is successful. */
     public static final String MESSAGE_DELETE_SUCCESS = "Student \"%1$s\" has been deleted";
 
@@ -100,18 +97,13 @@ public class NameTarget implements Target {
     }
 
     @Override
-    public String getLabelSuccessMessage(String labelName) {
+    public String getLabelSuccessMessage(String labelName, int successCount, int skippedCount) {
         return String.format(MESSAGE_LABEL_SUCCESS, labelName, getDisplayName());
     }
 
     @Override
-    public String getUnlabelSuccessMessage() {
+    public String getUnlabelSuccessMessage(int successCount, int skippedCount) {
         return String.format(MESSAGE_UNLABEL_SUCCESS, getDisplayName());
-    }
-
-    @Override
-    public String getUnlabelFailureMessage() {
-        return String.format(MESSAGE_UNLABEL_FAILURE, getDisplayName());
     }
 
     @Override

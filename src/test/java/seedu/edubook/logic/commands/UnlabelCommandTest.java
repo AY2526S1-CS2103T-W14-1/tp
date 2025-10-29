@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.logic.commands.exceptions.LabelNotFoundException;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.label.Label;
@@ -43,28 +44,24 @@ public class UnlabelCommandTest {
 
 
     @Test
-    public void execute_nameTarget_failure() throws CommandException {
+    public void execute_nameTargetNoLabel_failure() throws CommandException {
         ModelStub model = new ModelStub();
 
         UnlabelCommand command = new UnlabelCommand(NAME_TARGET_BENSON);
 
-        CommandResult result = command.execute(model);
-
-        String expectedMessage = NAME_TARGET_BENSON.getUnlabelFailureMessage();
-
-        assertEquals(expectedMessage, result.getFeedbackToUser());
+        CommandException e = assertThrows(LabelNotFoundException.class, () -> command.execute(model));
+        assertEquals(LabelNotFoundException.MESSAGE_STUDENT_ALREADY_UNASSIGNED,
+                e.getMessage());
     }
 
     @Test
-    public void execute_classTargetSingleStudent_success() throws CommandException {
+    public void execute_classTargetSingleStudentNoLabel_failure() throws CommandException {
         ModelStub model = new ModelStub();
         UnlabelCommand command = new UnlabelCommand(CLASS_TARGET_AMY);
 
-        CommandResult result = command.execute(model);
-
-        String expectedMessage = CLASS_TARGET_AMY.getUnlabelFailureMessage();
-
-        assertEquals(expectedMessage, result.getFeedbackToUser());
+        CommandException e = assertThrows(LabelNotFoundException.class, () -> command.execute(model));
+        assertEquals(LabelNotFoundException.forClass(CLASS_TARGET_AMY.getDisplayName()).getMessage(),
+                e.getMessage());
     }
 
     @Test
@@ -181,7 +178,7 @@ public class UnlabelCommandTest {
         UnlabelCommand command = new UnlabelCommand(NAME_TARGET_AMY);
         CommandResult result = command.execute(model);
 
-        String expectedMessage = NAME_TARGET_AMY.getUnlabelSuccessMessage();
+        String expectedMessage = NAME_TARGET_AMY.getUnlabelSuccessMessage(1, 0);
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
 
