@@ -14,12 +14,19 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_NAME = "The person name provided does not exist";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The index provided is invalid";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_CONFLICTING_PREFIXES = "Specify only n/NAME or c/CLASS, not both.";
+    public static final String MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES =
+            "Specify only one of n/NAME or c/CLASS, not both.";
+    public static final String MESSAGE_NAME_ASSIGNMENT_CONFLICTING_PREFIXES =
+            "Specify only one of n/NAME or a/ASSIGNMENT, not both.";
+    public static final String MESSAGE_CLASS_ASSIGNMENT_CONFLICTING_PREFIXES =
+            "Specify only one of c/CLASS or a/ASSIGNMENT, not both.";
+    public static final String MESSAGE_NAME_CLASS_ASSIGNMENT_CONFLICTING_PREFIXES =
+            "Specify only one of n/NAME, c/CLASS or a/ASSIGNMENT, not all three.";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
