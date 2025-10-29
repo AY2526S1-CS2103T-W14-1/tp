@@ -59,7 +59,7 @@ public class TuitionClass {
         }
 
         TuitionClass otherClass = (TuitionClass) other;
-        return value.equals(otherClass.value);
+        return value.toLowerCase().equals(otherClass.value.toLowerCase());
     }
 
     @Override

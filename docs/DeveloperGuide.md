@@ -386,10 +386,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
     
   Use case ends.
 
+
 * 1b. Student already exists in the list
   * 1b1. EduBook informs the user that the student already exists.
 
   Use case ends.  
+
 
 **Use case: UC2** - Remove a student
 
@@ -407,10 +409,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Student does not exist
     * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
+
 
 **Use case: UC3** - View a student
 
@@ -428,10 +432,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Student does not exist
   * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
+
 
 **Use case: UC4** - Assign an assignment.
 
@@ -452,21 +458,25 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Target does not exist
     * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
+
 
 * 2a. Assignment already assigned to a student
     * 2a1. EduBook informs the tutor that the assignment has already been assigned to the student.
 
   Use case ends.
 
+
 * 2b. Assignment already assigned from a class
     * 2b1. EduBook informs the tutor that the assignment has already been assigned to all students in the
       specified class.
 
   Use case ends.
+
 
 **Use case: UC5** - Unassign an assignment.
 
@@ -487,21 +497,25 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Target does not exist
   * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
+
 
 * 2a. Assignment already unassigned from a student
   * 2a1. EduBook informs the tutor that the assignment has already been unassigned from the student.
 
   Use case ends.
 
+
 * 2b. Assignment already unassigned from a class
   * 2b1. EduBook informs the tutor that the assignment has already been unassigned from all students in the
     specified class.
 
   Use case ends.
+
 
 **Use case: UC6** - Mark an assignment.
 
@@ -522,36 +536,44 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Target does not exist
   * 1b1. EduBook informs the tutor that the student or class does not exist.
   
   Use case ends.
+
 
 * 2a. Assignment already marked for a student 
   * 2a1. EduBook informs the tutor that the assignment is already marked.
 
   Use case ends.
 
+
 * 2b. Assignment already marked for all students in a class
   * 2b1. EduBook informs the tutor that the assignment is already marked for every student in the specified class.
 
   Use case ends.
+
 
 * 2c. Assignment does not exist for a student
   * 2c1. EduBook informs the tutor that the student does not have this assignment.
 
   Use case ends.
 
+
 * 2d. Assignment does not exist for a class
   * 2d1. EduBook informs the tutor that all students in the specified class do not have this assignment.
 
   Use case ends.
 
-* 2e. Mixed case: some students in a class already marked, some missing assignment
+
+* 2e. Mixed case where no assignments are marked for a class:
+  some students' assignments are already marked, while some are missing the assignment
   * 2e1. EduBook informs the tutor that no assignments were marked, and reports how many students' assignments were 
     already marked and how many did not exist.
 
-Use case ends.
+  Use case ends.
+
 
 **Use case: UC7** - Unmark an assignment.
 
@@ -572,36 +594,44 @@ Use case ends.
 
   Use case ends.
 
+
 * 1b. Target does not exist
     * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
+
 
 * 2a. Assignment already unmarked for a student
     * 2a1. EduBook informs the tutor that the assignment is already unmarked.
 
   Use case ends.
 
+
 * 2b. Assignment already unmarked for all students in a class
     * 2b1. EduBook informs the tutor that the assignment is already unmarked for every student in the specified class.
 
   Use case ends.
+
 
 * 2c. Assignment does not exist for a student
     * 2c1. EduBook informs the tutor that the student does not have this assignment.
 
   Use case ends.
 
+
 * 2d. Assignment does not exist for a class
     * 2d1. EduBook informs the tutor that all students in the specified class do not have this assignment.
 
   Use case ends.
 
-* 2e. Mixed case: some students in a class already unmarked, some missing assignment
+
+* 2e. Mixed case where no assignments are unmarked for a class:
+  some students' assignments are already unmarked, while some are missing the assignment
     * 2e1. EduBook informs the tutor that no assignments were unmarked, and reports how many students' assignments were
       already unmarked and how many did not exist.
 
-Use case ends.
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
