@@ -118,7 +118,7 @@ Format: `list`
 
 Edits an existing student in EduBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​ [a/ASSIGNMENT]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -135,30 +135,39 @@ Examples:
 
 ### Viewing student information: `view`
 
-Displays the information of a student or all students in a class, depending on the specified parameter.
+Displays the information of a student, all students in a class or all students with an assignment, depending on the specified parameter.
 
-Format: `view {n/NAME | c/CLASS}`
+Format: `view {n/NAME | c/CLASS | a/ASSIGNMENT}`
 
-* You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
-  e.g. `view n/John Doe` or `view c/W14`, but not both.
+* You must specify **exactly one** of the three parameters — one of `n/NAME`, `c/CLASS` or `a/ASSIGNMENT`.  
+  e.g. `view n/John Doe`, `view c/W14` or `view a/Tutorial 1`
+
 
 * If `n/NAME` is used:
     * Displays the student with the specified `NAME`.
-    * The search is case-sensitive. e.g. `hans` will not match `Hans`.
+    * The search is case-insensitive. e.g. `hans` will match `Hans`.
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
 
 * If `c/CLASS` is used:
     * Displays all students with the specified `CLASS`.
-    * The search is case-sensitive. e.g. `w14` will not match `W14`.
+    * The search is case-insensitive. e.g. `w14` will match `W14`.
     * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
     * The full class name is required for the search to be successful. e.g. `W14` will not return `Class W14`.
+
+* If `a/ASSIGNMENT` is used:
+    * Displays all students with the specified `ASSIGNMENT`.
+    * The search is case-insensitive. e.g. `Tutorial 1` will match `tutorial 1`.
+    * The order of the keywords matters. e.g. `Tutorial 1` will not match `1 Tutorial`.
+    * The full assignment name is required for the search to be successful. e.g. `1` will not return `Tutorial 1`.
 
 Examples:
 * `view n/John` — displays information of the student named `John`
 * `view n/alex david` — displays information of the student named `alex david`
-* `view c/Class B` — displays all students in `Class B`
-* `view c/W14` — displays all students in `W14`
+* `view c/Class 10B` — displays all students in the class `Class 10B`
+* `view c/W14` — displays all students in the class `W14`
+* `view a/Tutorial 1` — displays all students with the assignment `Tutorial 1`
+* `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To restore full view, use the `list` command.
@@ -166,17 +175,36 @@ To restore full view, use the `list` command.
 
 ### Deleting a student : `delete`
 
-Deletes the specified student (identified by name or index) from Edubook.
+Removes the specified student (identified by name or index) from Edubook.
 
-Format: `delete {INDEX | n/NAME}` 
+Format: `delete {INDEX | n/NAME | c/CLASS}`
 
-* The index refers to the index number shown in the **current view**.
-* The index must be a **positive integer** 1, 2, 3, …​
+
+* You must specify **exactly one** of the three parameters — one of `INDEX`, `n/NAME` or `c/CLASS`.  
+  e.g. `delete 1`, `delete n/John Doe` or `delete c/Class 10B`
+
+* If `INDEX` is used:
+    * Removes the student with the specified `INDEX`.
+    * The index refers to the index number shown in the **current view**.
+    * The index must be a **positive integer** 1, 2, 3, …​
+
+* If `n/NAME` is used:
+    * Removes the student with the specified `NAME`.
+    * The name is case-insensitive. e.g. `hans` will match `Hans`.
+    * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
+    * The full name is required for the removal to be successful. e.g. `Hans` will not return `Hans Bo`.
+
+* If `c/CLASS` is used:
+    * Removes all students with the specified `CLASS`.
+    * The class is case-insensitive. e.g. `w14` will match `W14`.
+    * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
+    * The full class name is required for the removal to be successful. e.g. `W14` will not return `Class W14`.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
 * `view n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `view` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
+* `delete c/Class 10B` deletes all students in the class "Class 10B"
 
 ### Assigning an assignment: `assign`
 
@@ -399,14 +427,14 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 | **Help**     | `help`                                                                                          | `help`                                                                              |
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                                           | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B`    |
 | **List**     | `list`                                                                                          | `list`                                                                              |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​ [a/ASSIGNMENT]…​`          | `edit 2 n/James Lee e/jameslee@example.com`                                         |
-| **View**     | `view {n/NAME \| c/CLASS}`                                                                     | `view n/James Lee`, `view c/Class-B`                                               |
-| **Delete**   | `delete {INDEX \| n/NAME}`                                                                     | `delete 3`, `delete n/John Doe`                                                   |
-| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                      |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                              | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
-| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                  | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                          |
-| **Unmark**   | `unmark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                               | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                      |
-| **Label**    | `label l/LABEL {n/NAME \| c/CLASS}`                                                           | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`                |
-| **Unlabel**  | `unlabel {n/NAME \| c/CLASS}`                                                                 | `unlabel n/John Doe`, `unlabel c/Class 10B`                                         |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​ [a/ASSIGNMENT]…​`           | `edit 2 n/James Lee e/jameslee@example.com`                                         |
+| **View**     | `view {n/NAME \| c/CLASS}`                                                                      | `view n/James Lee`, `view c/Class-B`                                               |
+| **Delete**   | `delete {INDEX \| n/NAME}`                                                                      | `delete 3`, `delete n/John Doe`                                                   |
+| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                  | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                      |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
+| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                    | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                          |
+| **Unmark**   | `unmark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                  | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                      |
+| **Label**    | `label l/LABEL {n/NAME \| c/CLASS}`                                                             | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`                |
+| **Unlabel**  | `unlabel {n/NAME \| c/CLASS}`                                                                   | `unlabel n/John Doe`, `unlabel c/Class 10B`                                         |
 | **Clear**    | `clear`                                                                                         | `clear`                                                                             |
 | **Exit**     | `exit`                                                                                          | `exit`                                                                              |

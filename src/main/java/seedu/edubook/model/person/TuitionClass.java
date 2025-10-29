@@ -64,7 +64,7 @@ public class TuitionClass {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return value.toLowerCase().hashCode();
     }
 
 }
