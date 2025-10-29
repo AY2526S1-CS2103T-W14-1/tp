@@ -52,7 +52,7 @@ public class ClassTarget implements Target {
 
     /** Template for message when viewing a class is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
-            "Here are the details of all students in class \"%1$s\"";
+            "Here are the details of all students in class \"%1$s\": ";
 
     private final TuitionClass tuitionClass;
 

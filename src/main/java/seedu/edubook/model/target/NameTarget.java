@@ -43,7 +43,7 @@ public class NameTarget implements Target {
     public static final String MESSAGE_DELETE_SUCCESS = "Student \"%1$s\" has been deleted";
 
     /** Template for message when view student is successful. */
-    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of \"%1$s\"";
+    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of \"%1$s\": ";
 
     private final PersonName name;
 

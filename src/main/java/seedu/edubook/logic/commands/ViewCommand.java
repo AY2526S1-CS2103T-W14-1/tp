@@ -37,7 +37,7 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_ASSIGNMENT_NAME + "Tutorial 1";
 
     public static final String MESSAGE_VIEW_STUDENT_SUCCESS =
-            "Here are the details of %1$s: ";
+            "Here are the details of \"%1$s\": ";
 
     private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
 

@@ -38,7 +38,7 @@ public class AssignmentNameTest {
     public void getMessageConstraints_returnsCorrectMessage() {
         AssignmentName assignmentName = new AssignmentName("Alex Yeoh"); // any valid name
         String expectedMessage = "An Assignment Name should only contain alphanumeric characters and spaces, "
-                + "and it should not be blank. ";
+                + "and it should not be blank";
 
         assertEquals(expectedMessage, assignmentName.getMessageConstraints());
     }

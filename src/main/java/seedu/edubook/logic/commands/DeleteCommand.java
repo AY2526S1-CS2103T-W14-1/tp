@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
             + " OR "
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Student %1$s has been deleted";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Student \"%1$s\" has been deleted";
 
     private final Target target;
     private final Index targetIndex;

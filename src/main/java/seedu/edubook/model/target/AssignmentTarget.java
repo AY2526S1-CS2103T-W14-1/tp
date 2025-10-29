@@ -20,7 +20,7 @@ public class AssignmentTarget implements Target {
 
     /** Template for message when viewing assignment is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =
-            "Here are the details of all students with assignment \"%1$s\"";
+            "Here are the details of all students with assignment \"%1$s\": ";
 
     /** Template for unexpected method call on AssignmentTarget. */
     private static final String MESSAGE_UNEXPECTED_CALL =
