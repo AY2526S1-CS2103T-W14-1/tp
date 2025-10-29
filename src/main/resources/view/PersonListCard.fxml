@@ -46,7 +46,7 @@
           <Image url="/images/pin.png"/>
         </image>
       </ImageView>
-      <Label fx:id="label" styleClass="cell_small_label" text="$label" translateX="20" wrapText="true" maxWidth="150" />
+      <Label fx:id="label" styleClass="cell_small_label" text="$label" translateX="20" wrapText="true" maxWidth="300" />
     </VBox>
 
     <VBox alignment="TOP_LEFT" minHeight="105" GridPane.columnIndex="2">
