@@ -386,10 +386,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
     
   Use case ends.
 
+
 * 1b. Student already exists in the list
   * 1b1. EduBook informs the user that the student already exists.
 
   Use case ends.  
+
 
 **Use case: UC2** - Remove a student
 
@@ -407,10 +409,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Student does not exist
     * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
+
 
 **Use case: UC3** - View a student
 
@@ -428,10 +432,12 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Student does not exist
   * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
+
 
 **Use case: UC4** - Assign an assignment.
 
@@ -452,21 +458,25 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Target does not exist
     * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
+
 
 * 2a. Assignment already assigned to a student
     * 2a1. EduBook informs the tutor that the assignment has already been assigned to the student.
 
   Use case ends.
 
+
 * 2b. Assignment already assigned from a class
     * 2b1. EduBook informs the tutor that the assignment has already been assigned to all students in the
       specified class.
 
   Use case ends.
+
 
 **Use case: UC5** - Unassign an assignment.
 
@@ -487,21 +497,25 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Target does not exist
   * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
+
 
 * 2a. Assignment already unassigned from a student
   * 2a1. EduBook informs the tutor that the assignment has already been unassigned from the student.
 
   Use case ends.
 
+
 * 2b. Assignment already unassigned from a class
   * 2b1. EduBook informs the tutor that the assignment has already been unassigned from all students in the
     specified class.
 
   Use case ends.
+
 
 **Use case: UC6** - Mark an assignment.
 
@@ -522,36 +536,44 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
   Use case ends.
 
+
 * 1b. Target does not exist
   * 1b1. EduBook informs the tutor that the student or class does not exist.
   
   Use case ends.
+
 
 * 2a. Assignment already marked for a student 
   * 2a1. EduBook informs the tutor that the assignment is already marked.
 
   Use case ends.
 
+
 * 2b. Assignment already marked for all students in a class
   * 2b1. EduBook informs the tutor that the assignment is already marked for every student in the specified class.
 
   Use case ends.
+
 
 * 2c. Assignment does not exist for a student
   * 2c1. EduBook informs the tutor that the student does not have this assignment.
 
   Use case ends.
 
+
 * 2d. Assignment does not exist for a class
   * 2d1. EduBook informs the tutor that all students in the specified class do not have this assignment.
 
   Use case ends.
 
-* 2e. Mixed case: some students in a class already marked, some missing assignment
+
+* 2e. Mixed case where no assignments are marked for a class:
+  some students' assignments are already marked, while some are missing the assignment
   * 2e1. EduBook informs the tutor that no assignments were marked, and reports how many students' assignments were 
     already marked and how many did not exist.
 
-Use case ends.
+  Use case ends.
+
 
 **Use case: UC7** - Unmark an assignment.
 
@@ -572,62 +594,72 @@ Use case ends.
 
   Use case ends.
 
+
 * 1b. Target does not exist
     * 1b1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
+
 
 * 2a. Assignment already unmarked for a student
     * 2a1. EduBook informs the tutor that the assignment is already unmarked.
 
   Use case ends.
 
+
 * 2b. Assignment already unmarked for all students in a class
     * 2b1. EduBook informs the tutor that the assignment is already unmarked for every student in the specified class.
 
   Use case ends.
+
 
 * 2c. Assignment does not exist for a student
     * 2c1. EduBook informs the tutor that the student does not have this assignment.
 
   Use case ends.
 
+
 * 2d. Assignment does not exist for a class
     * 2d1. EduBook informs the tutor that all students in the specified class do not have this assignment.
 
   Use case ends.
 
-* 2e. Mixed case: some students in a class already unmarked, some missing assignment
+
+* 2e. Mixed case where no assignments are unmarked for a class:
+  some students' assignments are already unmarked, while some are missing the assignment
     * 2e1. EduBook informs the tutor that no assignments were unmarked, and reports how many students' assignments were
       already unmarked and how many did not exist.
 
-Use case ends.
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 students and assignments without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 30 students without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to load the main interface in under 2 seconds on standard hardware.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  Search and filtering operations should complete within 1 second for up to 1000 entries.
+5.  Finding and viewing operations should complete within 1 second for up to 30 entries.
 6.  The user interface should be simple and intuitive for tutors who are less tech-savvy.
-7.  Data entered should be auto-saved to prevent loss during unexpected shutdowns.
-8.  Personal data of students should be stored securely using cybersecurity measures to prevent a potential data leakage.
-9.  Font size and UI components should be adjustable for better readability.
-10. The system should provide clear error messages to guide the user.
+7.  Data entered should be auto-saved upon every data changes to prevent loss during unexpected shutdowns.
+8.  Font size and UI components should be easily readable for the average user on fullscreen. 
+9.  The system should provide clear error messages to guide the user.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Student**: A person receive tutoring lessons from tutors
-* **Tutor**: A person providing tutoring lessons to students
-* **Lesson**: A scheduled tutoring session between a tutor and one or more students 
-* **Personal Data**: The details of each student such as name, contact and class details
-* **Assignment**: Homework allocated to the respective student which may optionally have a deadline
-* **Payment**: The agreed cost of a lesson by tutor and student, which may be tracked for billing purposes
-* **Class**: A grouping of students to facilitate group work
+* **Student**: A person receive tutoring lessons from tutors.
+* **Tutor**: A person providing tutoring lessons to students.
+* **Class**: A grouping of students taught by a tutor.
+* **Assignment**: Tasks allocated to the respective student which can marked as completed.
+* **Assign**: Allocate assignments to a specific student or class.
+* **Mark**: Indicate an assignment as completed.
+* **Tag**: A flexible descriptor used to categorise or identify students based on user-defined attributes.
+* **Label**: A single, prominent identifier used to mark a student or class with a specific status or classification.
+* **View**: Filters the current list of students based on case-insensitive match on name, class or assignment.
+* **Find**: Filters the current list of students based on whether the name contains the specific keyword.
+* **Keyword**: A full word that is contained inside the student's full name.
 
 --------------------------------------------------------------------------------------------------------------------
 

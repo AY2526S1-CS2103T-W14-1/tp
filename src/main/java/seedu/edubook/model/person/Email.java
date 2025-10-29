@@ -10,8 +10,8 @@ import static seedu.edubook.commons.util.AppUtil.checkArgument;
 public class Email {
 
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "Emails should only contain a maximum of 250 characters";
-    public static final int MAX_EMAIL_LENGTH = 250;
+            "Emails should only contain a maximum of 100 characters";
+    public static final int MAX_EMAIL_LENGTH = 100;
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
