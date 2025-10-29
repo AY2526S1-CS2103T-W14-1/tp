@@ -43,7 +43,7 @@ public class ParserUtilTest {
     private static final String VALID_CLASS_MAXLENGTH =
             String.join("", java.util.Collections.nCopies(20, "t"));
     private static final String VALID_EMAIL_MAXLENGTH =
-            String.join("", java.util.Collections.nCopies(238, "t")) + "@example.com";
+            String.join("", java.util.Collections.nCopies(88, "t")) + "@example.com";
     private static final String VALID_NAME_MAXLENGTH =
             String.join("", java.util.Collections.nCopies(100, "t"));
     private static final String VALID_PHONE_MAXLENGTH =
@@ -52,15 +52,15 @@ public class ParserUtilTest {
             String.join("", java.util.Collections.nCopies(100, "A"));
 
     private static final String INVALID_CLASS_MAXLENGTH_PLUSONE =
-            String.join("", java.util.Collections.nCopies(20, "t")) + "1";
+            VALID_CLASS_MAXLENGTH + "1";
     private static final String INVALID_EMAIL_MAXLENGTH_PLUSONE =
-            String.join("", java.util.Collections.nCopies(238, "t")) + "@example.com" + "1";
+            VALID_EMAIL_MAXLENGTH + "@example.com" + "1";
     private static final String INVALID_NAME_MAXLENGTH_PLUSONE =
-            String.join("", java.util.Collections.nCopies(100, "t")) + "1";
+            VALID_NAME_MAXLENGTH + "1";
     private static final String INVALID_PHONE_MAXLENGTH_PLUSONE =
-            String.join("", java.util.Collections.nCopies(20, "1")) + "1";
+            VALID_PHONE_MAXLENGTH + "1";
     private static final String INVALID_ASSIGNMENT_MAXLENGTH_PLUSONE =
-            String.join("", java.util.Collections.nCopies(100, "A")) + "1";
+            VALID_ASSIGNMENT_MAXLENGTH + "1";
 
     private static final String WHITESPACE = " \t\r\n";
 

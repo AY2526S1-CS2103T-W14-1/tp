@@ -72,11 +72,11 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 | Field      | Max Length | Format / Constraints                                                                                                                                                                                                                            |
 |------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
-| Email      | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
+| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
 | Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             |
 | Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                    |
 | Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
-| Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            | 
+| Tag        | 20         | Alphanumeric letters                                                                                                                                                                                                                            | 
 | Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                           |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
@@ -275,8 +275,7 @@ Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
   * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
   * At least one student in the specified class must currently have the assignment marked.
 
-Upon successful unmarking, the assignment should turn red as shown:
-![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
+Upon successful unmarking, the assignment will revert to red colour.
 
 Examples:
 * `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
