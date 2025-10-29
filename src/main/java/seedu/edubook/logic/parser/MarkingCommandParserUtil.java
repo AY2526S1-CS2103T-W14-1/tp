@@ -1,8 +1,8 @@
 package seedu.edubook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.edubook.logic.Messages.MESSAGE_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.edubook.logic.Messages.MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
@@ -73,7 +73,7 @@ public class MarkingCommandParserUtil {
         }
 
         if (hasName && hasClass) {
-            throw new ParseException(MESSAGE_CONFLICTING_PREFIXES);
+            throw new ParseException(MESSAGE_NAME_CLASS_CONFLICTING_PREFIXES);
         }
 
         if (!argMultimap.getPreamble().isEmpty()) {
