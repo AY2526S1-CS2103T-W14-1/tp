@@ -106,7 +106,10 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/criminal`
+* `add n/Betsy Crowe t/Team B e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/Grade A`
+
+The layout of the inputs are shown as follows:
+![Add Example](images/AddExample.png "Add Example")
 
 ### Listing all students : `list`
 
@@ -203,6 +206,10 @@ Examples:
 * `assign a/Tutorial 1 n/John Doe` — assigns `Tutorial 1` to `John Doe`
 * `assign a/Homework c/Class 1-A` — assigns `Homework` to all students in `Class 1-A`, skipping those who already have it
 * `assign a/Tutorial 1 c/Tutorial Group 2` — assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping those who already have it
+
+The assignment will initially be displayed as not completed. An example is shown below:
+![Assignment Example](images/UnmarkedAssignment.png "Assignment Example")
+
 
 ### Unassigning an assignment: `unassign`
 
@@ -307,6 +314,9 @@ Examples:
 * `label l/Online class c/Class 1-A` — applies `Online class` to all students in `Class 1-A`
 * `label l/Remedial c/Tutorial Group 2` — assigns `Remedial` to all students in `Tutorial Group 2`
 
+The label will be displayed between the students' details and assignments. An example is shown below:
+![Label Example](images/LabelExample.png "Label Example")
+
 ### Removing a label: `unlabel`
 
 Removes a label from a specific student or from all students in a class, depending on the specified parameter.
@@ -395,18 +405,18 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| Action       | Format                                                                              | Example                                                                            |
-|--------------|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                              | `help`                                                                             |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                               | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/friend t/colleague` |
-| **List**     | `list`                                                                              | `list`                                                                             |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                        |
-| **View**     | `view {n/NAME | c/CLASS}`                                                          | `view n/James Lee`, `view c/Class-B`                                               |
-| **Delete**   | `delete {INDEX | n/NAME}`                                                         | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                    | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                 | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
-| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                     | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                         |
-| **Label**    | `label l/LABEL {n/NAME | c/CLASS}`                                              | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`               |
-| **Unlabel**  | `unlabel {n/NAME | c/CLASS}`                                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                                        |
-| **Clear**    | `clear`                                                                         | `clear`                                                                            |
-| **Exit**     | `exit`                                                                          | `exit`                                                                             |
+| Action       | Format                                                                              | Example                                                                          |
+|--------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                              | `help`                                                                           |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                               | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
+| **List**     | `list`                                                                              | `list`                                                                           |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                      |
+| **View**     | `view {n/NAME | c/CLASS}`                                                                        | `view n/James Lee`, `view c/Class-B`                                               |
+| **Delete**   | `delete {INDEX | n/NAME}`                                                                         | `delete 3`, `delete n/John Doe`                                                    |
+| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                                                        | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                                                        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
+| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                                                        | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                         |
+| **Label**    | `label l/LABEL {n/NAME | c/CLASS}`                                                                        | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`               |
+| **Unlabel**  | `unlabel {n/NAME | c/CLASS}`                                                                        | `unlabel n/John Doe`, `unlabel c/Class 10B`                                        |
+| **Clear**    | `clear`                                                                         | `clear`                                                                          |
+| **Exit**     | `exit`                                                                          | `exit`                                                                           |
