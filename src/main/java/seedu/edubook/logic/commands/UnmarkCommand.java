@@ -27,9 +27,9 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks an assignment for a student or class.\n"
             + "Parameters: "
-            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT ["
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT {"
             + PREFIX_PERSON_NAME + "NAME | "
-            + PREFIX_CLASS + "CLASS]\n"
+            + PREFIX_CLASS + "CLASS}\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ASSIGNMENT_NAME + "Tutorial 6 "
             + PREFIX_PERSON_NAME + "John Doe"

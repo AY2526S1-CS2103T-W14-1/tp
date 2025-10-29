@@ -26,10 +26,10 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the details of a single student, all students in a class "
             + " or all students with a particular assignment. "
-            + "Parameters: ["
+            + "Parameters: {"
             + PREFIX_PERSON_NAME + "NAME | "
             + PREFIX_CLASS + "CLASS | "
-            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT]\n"
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT}\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_NAME + "John Doe"
             + " OR "
             + "Example: " + COMMAND_WORD + " " + PREFIX_CLASS + "Class 1-B"
@@ -37,7 +37,7 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_ASSIGNMENT_NAME + "Tutorial 1";
 
     public static final String MESSAGE_VIEW_STUDENT_SUCCESS =
-            "Here are the details of %1$s:";
+            "Here are the details of %1$s: ";
 
     private static final Logger logger = LogsCenter.getLogger(ViewCommand.class);
 
