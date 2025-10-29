@@ -111,14 +111,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePersonName_maxLength_success() throws Exception {
+    public void parsePersonName_maxLength_success() throws Exception { //Boundary value
         PersonName expectedName = new PersonName(VALID_NAME_MAXLENGTH);
         PersonName actualName = ParserUtil.parsePersonName(VALID_NAME_MAXLENGTH);
         assertEquals(expectedName, actualName);
     }
 
     @Test
-    public void parsePersonName_maxLengthPlusOne_throwsExceedLengthException() {
+    public void parsePersonName_maxLengthPlusOne_throwsExceedLengthException() { //Boundary value
         assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePersonName(INVALID_NAME_MAXLENGTH_PLUSONE));
     }
 
@@ -151,14 +151,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAssignmentName_maxLength_success() throws Exception {
+    public void parseAssignmentName_maxLength_success() throws Exception { //Boundary value
         AssignmentName expectedAssignmentName = new AssignmentName(VALID_ASSIGNMENT_MAXLENGTH);
         AssignmentName actualAssignmentName = ParserUtil.parseAssignmentName(VALID_ASSIGNMENT_MAXLENGTH);
         assertEquals(expectedAssignmentName, actualAssignmentName);
     }
 
     @Test
-    public void parseAssignmentName_maxLengthPlusOne_throwsExceedLengthException() {
+    public void parseAssignmentName_maxLengthPlusOne_throwsExceedLengthException() { //Boundary value
         assertThrows(ExceedLengthException.class, ()
                 -> ParserUtil.parseAssignmentName(INVALID_ASSIGNMENT_MAXLENGTH_PLUSONE));
     }
@@ -219,14 +219,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_maxLength_success() throws Exception {
+    public void parsePhone_maxLength_success() throws Exception { //Boundary value
         Phone expectedPhone = new Phone(VALID_PHONE_MAXLENGTH);
         Phone actualPhone = ParserUtil.parsePhone(VALID_PHONE_MAXLENGTH);
         assertEquals(expectedPhone, actualPhone);
     }
 
     @Test
-    public void parsePhone_maxLengthPlusOne_throwsExceedLengthException() {
+    public void parsePhone_maxLengthPlusOne_throwsExceedLengthException() { //Boundary value
         assertThrows(ExceedLengthException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_MAXLENGTH_PLUSONE));
     }
     @Test
@@ -258,14 +258,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseClass_maxLength_success() throws Exception {
+    public void parseClass_maxLength_success() throws Exception { //Boundary value
         TuitionClass expectedClass = new TuitionClass(VALID_CLASS_MAXLENGTH);
         TuitionClass actualClass = ParserUtil.parseClass(VALID_CLASS_MAXLENGTH);
         assertEquals(expectedClass, actualClass);
     }
 
     @Test
-    public void parseClass_maxLengthPlusOne_throwsExceedLengthException() {
+    public void parseClass_maxLengthPlusOne_throwsExceedLengthException() { //Boundary value
         assertThrows(ExceedLengthException.class, () -> ParserUtil.parseClass(INVALID_CLASS_MAXLENGTH_PLUSONE));
     }
 
@@ -298,14 +298,14 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_maxLength_success() throws Exception {
+    public void parseEmail_maxLength_success() throws Exception { //Boundary value
         Email expectedEmail = new Email(VALID_EMAIL_MAXLENGTH);
         Email actualEmail = ParserUtil.parseEmail(VALID_EMAIL_MAXLENGTH);
         assertEquals(expectedEmail, actualEmail);
     }
 
     @Test
-    public void parseEmail_maxLengthPlusOne_throwsExceedLengthException() {
+    public void parseEmail_maxLengthPlusOne_throwsExceedLengthException() { //Boundary value
         assertThrows(ExceedLengthException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL_MAXLENGTH_PLUSONE));
     }
 
