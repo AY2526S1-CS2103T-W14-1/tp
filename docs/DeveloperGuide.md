@@ -636,28 +636,30 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 students and assignments without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 30 students without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to load the main interface in under 2 seconds on standard hardware.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  Search and filtering operations should complete within 1 second for up to 1000 entries.
+5.  Finding and viewing operations should complete within 1 second for up to 30 entries.
 6.  The user interface should be simple and intuitive for tutors who are less tech-savvy.
-7.  Data entered should be auto-saved to prevent loss during unexpected shutdowns.
-8.  Personal data of students should be stored securely using cybersecurity measures to prevent a potential data leakage.
-9.  Font size and UI components should be adjustable for better readability.
-10. The system should provide clear error messages to guide the user.
+7.  Data entered should be auto-saved upon every data changes to prevent loss during unexpected shutdowns.
+8.  Font size and UI components should be easily readable for the average user on fullscreen. 
+9.  The system should provide clear error messages to guide the user.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Student**: A person receive tutoring lessons from tutors
-* **Tutor**: A person providing tutoring lessons to students
-* **Lesson**: A scheduled tutoring session between a tutor and one or more students 
-* **Personal Data**: The details of each student such as name, contact and class details
-* **Assignment**: Homework allocated to the respective student which may optionally have a deadline
-* **Payment**: The agreed cost of a lesson by tutor and student, which may be tracked for billing purposes
-* **Class**: A grouping of students to facilitate group work
+* **Student**: A person receive tutoring lessons from tutors.
+* **Tutor**: A person providing tutoring lessons to students.
+* **Class**: A grouping of students taught by a tutor.
+* **Assignment**: Tasks allocated to the respective student which can marked as completed.
+* **Assign**: Allocate assignments to a specific student or class.
+* **Mark**: Indicate an assignment as completed.
+* **Tag**: A flexible descriptor used to categorise or identify students based on user-defined attributes.
+* **Label**: A single, prominent identifier used to mark a student or class with a specific status or classification.
+* **View**: Filters the current list of students based on case-insensitive match on name, class or assignment.
+* **Find**: Filters the current list of students based on whether the name contains the specific keyword.
+* **Keyword**: A full word that is contained inside the student's full name.
 
 --------------------------------------------------------------------------------------------------------------------
 
