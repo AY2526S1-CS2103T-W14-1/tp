@@ -282,8 +282,7 @@ Format: `unmark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
   * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
   * At least one student in the specified class must currently have the assignment marked.
 
-Upon successful unmarking, the assignment should turn red as shown:
-![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
+Upon successful unmarking, the assignment will revert to red colour.
 
 Examples:
 * `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
