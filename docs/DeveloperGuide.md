@@ -322,39 +322,48 @@ Tutors, without established systems, can use EduBook to efficiently keep track o
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                               | So that I can…​                                                      |
-|----------|----------|------------------------------------------------------------|----------------------------------------------------------------------|
-| `* * *`  | tutor    | add a student to EduBook                                   | keep track of his information                                        |
-| `* * *`  | tutor    | delete a student from EduBook                              | remove an entry for a past student                                   |
-| `* * *`  | tutor    | view a student’s details                                   | review his information quickly                                       |
-| `* * *`  | tutor    | assign an assignment to a student                          | track and manage his assignment                                      |
-| `* * *`  | tutor    | unassign an assignment from a student                      | reduce clutter once his assignment is completed and no longer needed |
-| `* *`    | new user | clear all my data after trying out the app                 | start with a clean slate                                             |
-| `* *`    | new user | have a helper that introduces me to the app's features     | better understand how to use the app                                 |
-| `* *`    | tutor    | create assignments without deadlines                       | track time-insensitive assignments                                   |
-| `* *`    | tutor    | create assignments with deadlines                          | track time-sensitive assignments                                     |
-| `* *`    | tutor    | mark assignments as done                                   | keep track of assignment completion                                  |
-| `* *`    | tutor    | mark assignments as not done                               | keep track of assignment incompletion                                |
-| `* *`    | tutor    | view a list of students’ overdue assignments               | see which students did not submit                                    |
-| `* *`    | tutor    | view all of my students' information and assignments       | review overall information when needed                               |
-| `* *`    | tutor    | search for a student quickly by name                       | find his record without browsing manually                            |
-| `* *`    | tutor    | remind myself of assignments with impending deadlines      | better manage assignments                                            |
-| `* *`    | tutor    | remind myself of assignments which have exceeded deadlines | check for students who did not submit on time                        |
-| `* *`    | tutor    | edit a student’s details                                   | update his information when changes occur                            |
-| `* *`    | tutor    | group students                                             | manage group work more easily                                        |
-| `* *`    | tutor    | ungroup students                                           | simplify management when groups are no longer needed                 |
-| `* *`    | tutor    | assign an assignment in batches                            | send out copies of the assignment to multiple students at once       |
-| `* *`    | tutor    | mark an assignment as submitted in batches                 | save time marking multiple students’ assignment at once              |
-| `* *`    | tutor    | mark the attendance of a student                           | keep track of whether he turned up for class                         |
-| `* *`    | tutor    | unmark the attendance of a student                         | correct mistakes in marking his attendance                           |
-| `* *`    | tutor    | clear an entire group of students                          | remove them when they graduate from my class                         |
-| `* *`    | tutor    | clear all students in EduBook                              | reset EduBook for the next academic year                             |
-| `* *`    | tutor    | filter students by assignment status or group              | find specific subsets of students efficiently                        |
-| `* *`    | tutor    | autosave student details to the local hard disk            | persist data automatically                                           |
-| `* *`    | tutor    | retrieve student details from the local hard disk          | reload persisted data                                                |        
-| `*`      | tutor    | mark a student’s payment status as paid                    | keep track that he has paid                                          |
-| `*`      | tutor    | mark a student’s payment status as unpaid                  | keep track that he has not paid                                      |
-| `*`      | tutor    | keep a record of my total pay                              | monitor total payments received from students                        |
+| Priority | As a …​       | I want to …​                                           | So that I can…​                                                           |
+|----------|---------------|--------------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | tutor         | add a student to EduBook                               | keep track of their information                                           |
+| `* * *`  | tutor         | delete a student from EduBook                          | remove an entry for a past student                                        |
+| `* * *`  | tutor         | view a student’s details                               | review their information quickly                                          |
+| `* * *`  | tutor         | create assignments without deadlines                   | track time-insensitive assignments                                        |
+| `* * *`  | tutor         | assign an assignment to a student                      | track and manage their assignment                                         |
+| `* * *`  | tutor         | unassign an assignment from a student                  | reduce clutter once their assignment is completed and no longer needed    |
+| `* * *`  | user          | exit the app                                           | close EduBook safely and end my session                                   |
+| `* *`    | new user      | clear all my data after trying out the app             | start with a clean slate                                                  |
+| `* *`    | new user      | have a helper that introduces me to the app's features | better understand how to use the app                                      |
+| `* *`    | tutor         | mark assignments as done                               | keep track of assignment completion                                       |
+| `* *`    | tutor         | mark assignments as not done                           | keep track of assignment incompletion                                     |
+| `* *`    | tutor         | view all of my students' information and assignments   | review overall information when needed                                    |
+| `* *`    | tutor         | search for a student by name                           | find their record without browsing manually                               |
+| `* *`    | tutor         | add a note to a student                                | keep additional information for reference                                 |
+| `* *`    | tutor         | remove a note from a student                           | clear notes that are no longer relevant                                   |
+| `* *`    | tutor         | edit a student’s details                               | update their information when changes occur                               |
+| `* *`    | tutor         | group students                                         | manage group work more easily                                             |
+| `* *`    | tutor         | ungroup students                                       | simplify management when groups are no longer needed                      |
+| `* *`    | tutor         | assign an assignment in batches                        | send out copies of the assignment to multiple students at once            |
+| `* *`    | tutor         | unassign an assignment in batches                      | remove the assignment from multiple students at once efficiently          |
+| `* *`    | tutor         | mark assignments as done in batches                    | save time marking multiple students’ assignments as completed at once     |
+| `* *`    | tutor         | mark assignments as not done in batches                | save time marking multiple students’ assignments as not completed at once |
+| `* *`    | tutor         | add a note to an entire group of students              | keep additional information about the whole group                         |
+| `* *`    | tutor         | remove a note from an entire group of students         | clear notes that are no longer relevant for the group                     |
+| `* *`    | tutor         | clear an entire group of students                      | remove them when they graduate from my class                              |
+| `* *`    | tutor         | clear all students in EduBook                          | reset EduBook for the next academic year                                  |
+| `* *`    | tutor         | filter students by assignment assigned                 | view all students assigned to a specific assignment                       |
+| `* *`    | tutor         | filter students by group                               | view students belonging to a specific group easily                        |
+| `* *`    | tutor         | autosave student details to the local hard disk        | persist data automatically                                                |
+| `* *`    | tutor         | retrieve student details from the local hard disk      | reload persisted data                                                     |        
+| `* *`    | advanced user | edit the data file directly                            | make bulk changes or fix data outside the app                             |        
+| `*`      | tutor         | create assignments with deadlines                      | track time-sensitive assignments                                          |
+| `*`      | tutor         | view a list of students’ overdue assignments           | see which assignments my students submitted late                          |
+| `*`      | tutor         | filter students by an assignment's completion status   | view which students have completed, are in progress, or are late          |
+| `*`      | tutor         | remind myself of assignments with impending deadlines  | better manage assignments                                                 |
+| `*`      | tutor         | mark the attendance of a student                       | keep track of whether they turned up for class                            |
+| `*`      | tutor         | unmark the attendance of a student                     | correct mistakes in marking their attendance                              |
+| `*`      | tutor         | mark a student’s payment status as paid                | keep track that they have paid                                            |
+| `*`      | tutor         | mark a student’s payment status as unpaid              | keep track that they have not paid                                        |
+| `*`      | tutor         | keep a record of my total pay                          | monitor total payments received from students                             |
 
 ### Use cases
 
@@ -372,15 +381,17 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, class, phone number, email).
+* 1a. One or more details are missing or invalid (student name, class, phone number, email)
   * 1a1. EduBook informs the user of the invalid input(s).
     
   Use case ends.
 
-* 1b. Student already exists in the list.
+
+* 1b. Student already exists in the list
   * 1b1. EduBook informs the user that the student already exists.
 
   Use case ends.  
+
 
 **Use case: UC2** - Remove a student
 
@@ -393,15 +404,17 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, index).
+* 1a. One or more details are missing or invalid (student name, index)
   * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
 
-* 1b. Student does not exist.
+
+* 1b. Student does not exist
     * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
+
 
 **Use case: UC3** - View a student
 
@@ -414,93 +427,239 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, index). 
+* 1a. One or more details are missing or invalid (student name, index).
   * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
 
-* 1b. Student does not exist.
+
+* 1b. Student does not exist
   * 1b1. EduBook informs the user that the student does not exist.
 
   Use case ends.
 
-**Use case: UC4** - Assign an assignment to a student.
+
+**Use case: UC4** - Assign an assignment.
 
 **MSS**
 
-1. Tutor requests to assign an assignment to a student. 
-2. EduBook adds the assignment to the specified student.
+1. Tutor requests to assign an assignment. 
+2. EduBook checks whether the target is a student or a class. 
+3. EduBook adds the assignment to the specified student or to every student in the specified class.
+4. EduBook informs the tutor that the assignment was successfully assigned to the student,
+   or for a class, how many students were assigned the assignment and how many were skipped.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, assignment name).
-  * 1a1. EduBook informs the tutor of the invalid input(s).
-    
-  Use case ends.
-
-* 1b. Assignment already assigned to student.
-  * 1b1. EduBook informs the tutor that the assignment has been assigned.
-
-  Use case ends.  
-
-* 1c. Student does not exist.
-  * 1c1. EduBook informs the tutor that the student does not exist.
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
+    * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
-**Use case: UC5** - Unassign an assignment to a student.
+
+* 1b. Target does not exist
+    * 1b1. EduBook informs the tutor that the student or class does not exist.
+
+  Use case ends.
+
+
+* 2a. Assignment already assigned to a student
+    * 2a1. EduBook informs the tutor that the assignment has already been assigned to the student.
+
+  Use case ends.
+
+
+* 2b. Assignment already assigned from a class
+    * 2b1. EduBook informs the tutor that the assignment has already been assigned to all students in the
+      specified class.
+
+  Use case ends.
+
+
+**Use case: UC5** - Unassign an assignment.
 
 **MSS**
 
-1. Tutor requests to unassign an assignment to a student. 
-2. EduBook removes the assignment from the specified student.
+1. Tutor requests to unassign an assignment.
+2. EduBook checks whether the target is a student or a class.
+3. EduBook removes the assignment from the specified student or from every student in the specified class.
+4. EduBook informs the tutor that the assignment was successfully unassigned from the student,
+   or for a class, how many students had the assignment unassigned and how many were skipped.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, assignment name).
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
   * 1a1. EduBook informs the tutor of the invalid input(s).
-    
-  Use case ends.
-
-* 1b. Assignment does not exist for specified student.
-  * 1b1. EduBook informs the tutor that the assignment does not exist for the specified student.
-
-  Use case ends.  
-
-* 1c. Student does not exist.
-  * 1c1. EduBook informs the tutor that the student does not exist.
 
   Use case ends.
+
+
+* 1b. Target does not exist
+  * 1b1. EduBook informs the tutor that the student or class does not exist.
+
+  Use case ends.
+
+
+* 2a. Assignment already unassigned from a student
+  * 2a1. EduBook informs the tutor that the assignment has already been unassigned from the student.
+
+  Use case ends.
+
+
+* 2b. Assignment already unassigned from a class
+  * 2b1. EduBook informs the tutor that the assignment has already been unassigned from all students in the
+    specified class.
+
+  Use case ends.
+
+
+**Use case: UC6** - Mark an assignment.
+
+**MSS**
+
+1. Tutor requests to mark an assignment as completed. 
+2. EduBook checks whether the target is a single student or a class. 
+3. EduBook updates the assignment status to completed for the student or for all students in the class.
+4. EduBook informs the tutor that the assignment was successfully marked for the student, 
+   or for a class, how many students' assignments were marked, already marked, or did not have the assignment.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
+  * 1a1. EduBook informs the tutor of the invalid input(s).
+
+  Use case ends.
+
+
+* 1b. Target does not exist
+  * 1b1. EduBook informs the tutor that the student or class does not exist.
   
+  Use case ends.
+
+
+* 2a. Assignment already marked for a student 
+  * 2a1. EduBook informs the tutor that the assignment is already marked.
+
+  Use case ends.
+
+
+* 2b. Assignment already marked for all students in a class
+  * 2b1. EduBook informs the tutor that the assignment is already marked for every student in the specified class.
+
+  Use case ends.
+
+
+* 2c. Assignment does not exist for a student
+  * 2c1. EduBook informs the tutor that the student does not have this assignment.
+
+  Use case ends.
+
+
+* 2d. Assignment does not exist for a class
+  * 2d1. EduBook informs the tutor that all students in the specified class do not have this assignment.
+
+  Use case ends.
+
+
+* 2e. Mixed case where no assignments are marked for a class:
+  some students' assignments are already marked, while some are missing the assignment
+  * 2e1. EduBook informs the tutor that no assignments were marked, and reports how many students' assignments were 
+    already marked and how many did not exist.
+
+  Use case ends.
+
+
+**Use case: UC7** - Unmark an assignment.
+
+**MSS**
+
+1. Tutor requests to unmark an assignment as not completed.
+2. EduBook checks whether the target is a single student or a class.
+3. EduBook updates the assignment status to not completed for the student or for all students in the class.
+4. EduBook informs the tutor that the assignment was successfully unmarked for the student,
+   or for a class, how many students' assignments were unmarked, already unmarked, or did not have the assignment.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid (student/class name, assignment name)
+    * 1a1. EduBook informs the tutor of the invalid input(s).
+
+  Use case ends.
+
+
+* 1b. Target does not exist
+    * 1b1. EduBook informs the tutor that the student or class does not exist.
+
+  Use case ends.
+
+
+* 2a. Assignment already unmarked for a student
+    * 2a1. EduBook informs the tutor that the assignment is already unmarked.
+
+  Use case ends.
+
+
+* 2b. Assignment already unmarked for all students in a class
+    * 2b1. EduBook informs the tutor that the assignment is already unmarked for every student in the specified class.
+
+  Use case ends.
+
+
+* 2c. Assignment does not exist for a student
+    * 2c1. EduBook informs the tutor that the student does not have this assignment.
+
+  Use case ends.
+
+
+* 2d. Assignment does not exist for a class
+    * 2d1. EduBook informs the tutor that all students in the specified class do not have this assignment.
+
+  Use case ends.
+
+
+* 2e. Mixed case where no assignments are unmarked for a class:
+  some students' assignments are already unmarked, while some are missing the assignment
+    * 2e1. EduBook informs the tutor that no assignments were unmarked, and reports how many students' assignments were
+      already unmarked and how many did not exist.
+
+  Use case ends.
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 students and assignments without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 30 students without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to load the main interface in under 2 seconds on standard hardware.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  Search and filtering operations should complete within 1 second for up to 1000 entries.
+5.  Finding and viewing operations should complete within 1 second for up to 30 entries.
 6.  The user interface should be simple and intuitive for tutors who are less tech-savvy.
-7.  Data entered should be auto-saved to prevent loss during unexpected shutdowns.
-8.  Personal data of students should be stored securely using cybersecurity measures to prevent a potential data leakage.
-9.  Font size and UI components should be adjustable for better readability.
-10. The system should provide clear error messages to guide the user.
+7.  Data entered should be auto-saved upon every data changes to prevent loss during unexpected shutdowns.
+8.  Font size and UI components should be easily readable for the average user on fullscreen. 
+9.  The system should provide clear error messages to guide the user.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Student**: A person receive tutoring lessons from tutors
-* **Tutor**: A person providing tutoring lessons to students
-* **Lesson**: A scheduled tutoring session between a tutor and one or more students 
-* **Personal Data**: The details of each student such as name, contact and class details
-* **Assignment**: Homework allocated to the respective student which may optionally have a deadline
-* **Payment**: The agreed cost of a lesson by tutor and student, which may be tracked for billing purposes
-* **Class**: A grouping of students to facilitate group work
+* **Student**: A person receive tutoring lessons from tutors.
+* **Tutor**: A person providing tutoring lessons to students.
+* **Class**: A grouping of students taught by a tutor.
+* **Assignment**: Tasks allocated to the respective student which can marked as completed.
+* **Assign**: Allocate assignments to a specific student or class.
+* **Mark**: Indicate an assignment as completed.
+* **Tag**: A flexible descriptor used to categorise or identify students based on user-defined attributes.
+* **Label**: A single, prominent identifier used to mark a student or class with a specific status or classification.
+* **View**: Filters the current list of students based on case-insensitive match on name, class or assignment.
+* **Find**: Filters the current list of students based on whether the name contains the specific keyword.
+* **Keyword**: A full word that is contained inside the student's full name.
 
 --------------------------------------------------------------------------------------------------------------------
 
