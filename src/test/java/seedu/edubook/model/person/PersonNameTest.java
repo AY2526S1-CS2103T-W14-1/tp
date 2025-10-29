@@ -37,11 +37,7 @@ public class PersonNameTest {
     @Test
     public void getMessageConstraints_returnsCorrectMessage() {
         PersonName personName = new PersonName("Alex Yeoh"); // any valid name
-<<<<<<< Updated upstream
         String expectedMessage = "A student Name should only contain alphanumeric characters and spaces, "
-=======
-        String expectedMessage = "A  Name should only contain alphanumeric characters and spaces, "
->>>>>>> Stashed changes
                 + "and it should not be blank. ";
 
         assertEquals(expectedMessage, personName.getMessageConstraints());
