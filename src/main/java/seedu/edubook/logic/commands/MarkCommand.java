@@ -40,19 +40,19 @@ public class MarkCommand extends Command {
             + PREFIX_CLASS + "Class 1-B";
 
     public static final String MESSAGE_ASSIGNMENT_ALREADY_MARKED_SINGLE =
-            "%s's assignment \"%s\" has already been marked.";
+            "%s's assignment \"%s\" has already been marked";
 
     public static final String MESSAGE_ASSIGNMENT_ALREADY_MARKED_CLASS =
-            "All %d students in class \"%s\" already have \"%s\" marked.";
+            "All %d students in class \"%s\" already have \"%s\" marked";
 
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE =
-            "%s does not have an assignment named \"%s\".";
+            "%s does not have an assignment named \"%s\"";
 
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS =
-            "No students in class \"%s\" have an assignment named \"%s\".";
+            "No students in class \"%s\" have an assignment named \"%s\"";
 
     public static final String MESSAGE_ASSIGNMENT_MIXED_CLASS =
-            "No assignments were marked for class \"%s\". %d %s already marked and %d did not exist.";
+            "No assignments were marked for class \"%s\". %d %s already marked and %d did not exist";
 
     private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 

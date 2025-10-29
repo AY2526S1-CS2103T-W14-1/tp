@@ -39,19 +39,19 @@ public class UnmarkCommand extends Command {
             + PREFIX_CLASS + "Class 1-B";
 
     public static final String MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_SINGLE =
-            "%s's assignment \"%s\" has already been unmarked.";
+            "%s's assignment \"%s\" has already been unmarked";
 
     public static final String MESSAGE_ASSIGNMENT_ALREADY_UNMARKED_CLASS =
-            "All %d students in class \"%s\" already have \"%s\" unmarked.";
+            "All %d students in class \"%s\" already have \"%s\" unmarked";
 
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND_SINGLE =
-            "%s does not have an assignment named \"%s\".";
+            "%s does not have an assignment named \"%s\"";
 
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND_CLASS =
-            "No students in class \"%s\" have an assignment named \"%s\".";
+            "No students in class \"%s\" have an assignment named \"%s\"";
 
     public static final String MESSAGE_ASSIGNMENT_MIXED_CLASS =
-            "No assignments were unmarked for class \"%s\". %d %s already unmarked and %d did not exist.";
+            "No assignments were unmarked for class \"%s\". %d %s already unmarked and %d did not exist";
 
     private static final Logger logger = LogsCenter.getLogger(UnmarkCommand.class);
 

@@ -15,11 +15,11 @@ import seedu.edubook.model.person.TuitionClass;
 public class ClassTarget implements Target {
 
     /** Error message when no students are found in the class. */
-    public static final String MESSAGE_NO_STUDENTS_FOUND = "No students found in class: '%s'.";
+    public static final String MESSAGE_NO_STUDENTS_FOUND = "No students found in class: \"%s\"";
 
     /** Template for success message when assignment is assigned to a class. */
     public static final String MESSAGE_ASSIGN_SUCCESS =
-            "New assignment '%s' assigned to class: '%s' (%d assigned, %d skipped).";
+            "New assignment \"%s\" assigned to class: \"%s\" (%d assigned, %d skipped).";
 
     /** Template for success message when assignment is unassigned from a class. */
     public static final String MESSAGE_UNASSIGN_SUCCESS =
