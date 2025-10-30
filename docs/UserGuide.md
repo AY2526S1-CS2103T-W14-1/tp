@@ -404,7 +404,7 @@ EduBook data is saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-EduBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EduBook data is saved automatically as a JSON file `[JAR file location]/data/edubook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
 See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
