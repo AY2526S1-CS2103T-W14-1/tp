@@ -35,22 +35,34 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *-- "1" UniquePersonList : all
-UniquePersonList --> "*" Person
-Person *-- "1" PersonName
-Person *-- "1" Phone
-Person *-- "1" Email
-Person *-- "1" TuitionClass
-Person *-- "*" Tag
-Person *-- "*" Assignment
-Person *-- "1" Label
-Assignment *-- "1" AssignmentName
+AddressBook *-[hidden]-> "      1" UniquePersonList
+AddressBook *-[hidden]-> "      1" UniquePersonList
+AddressBook *--> " 1" UniquePersonList
+AddressBook *-[hidden]-> "      1" UniquePersonList
+AddressBook *-[hidden]-> "      1" UniquePersonList
 
-ModelManager --> "*" Person : filtered
+UniquePersonList -[hidden]-> "~* all" Person
+UniquePersonList --> "~* all" Person
+UniquePersonList -[hidden]-> "~* all" Person
+
+UniquePersonList -[hidden]-> "~* all" Person
+UniquePersonList -[hidden]-> "~* all" Person
+
+Person *--> "1" PersonName
+Person *--> "1" Phone
+Person *--> "        1" Email
+Person *--> "1" TuitionClass
+Person *--> "*" Tag
+Person *--> "*" Assignment
+Person *--> "1" Label
+Assignment *--> "1" AssignmentName
+
+ModelManager -[hidden]-> "~* filtered" Person
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 PersonName -[hidden]right-> Phone
 Phone -[hidden]right-> TuitionClass
 TuitionClass -[hidden]right-> Email
+ModelManager --> "  ~* filtered" Person
 @enduml
