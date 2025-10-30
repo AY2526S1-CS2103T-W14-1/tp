@@ -690,6 +690,42 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding students
+
+1. Adding students with all required fields
+
+    1. Prerequisites: EduBook is open.
+
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A`<br>
+       Expected: Student named "John Doe" is added. Success message displayed.
+
+1. Adding students with tags
+
+    1. Prerequisites: EduBook is open.
+
+    1. Test case: `add n/Bob Tan p/87654321 e/bob@example.com c/Class 3-C t/friend t/club`<br>
+       Expected: Student named "Bob Tan" is added with tags "friend" and "club". Success message displayed.
+
+1. Adding students with missing required fields
+
+    1. Prerequisites: EduBook is open.
+
+    1. Test case: `add n/John Doe e/johnd@example.com c/Class 1-A`<br>
+       Expected: No student is added. Error message displayed.
+
+1. Adding multiple students in sequence
+
+    1. Prerequisites: EduBook is open.
+
+    1. Test case:
+       ```
+       add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A
+       add n/Jane Smith p/12345678 e/jane@example.com c/Class 2-B
+       add n/Bob Tan p/87654321 e/bob@example.com c/Class 3-C t/friend
+       ```
+       Expected: All three students are added. Success messages displayed for each.
+
+
 ### Deleting students
 
 1. Deleting students by index
@@ -724,6 +760,52 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `delete c/Nonexistent Class`<br>
        Expected: No student is deleted. Error message displayed.
+
+### Assigning assignments
+
+1. Assigning an assignment to a student
+
+    1. Prerequisites: Student "John Doe" exists in EduBook. "John Doe" does not have "Homework" assigned.
+
+    1. Test case: `assign a/Homework n/John Doe`<br>
+       Expected: "Homework" assigned to John Doe. Success message displayed.
+
+1. Assigning an assignment to a class
+
+    1. Prerequisites: At least one student exists in class "1A" and does not have "Tutorial 1" assigned.
+
+    1. Test case: `assign a/Tutorial 1 c/1A`<br>
+       Expected: All students in class "1A" who do not have "Tutorial 1" assigned, are assigned it. Success message displayed.
+
+1. Assigning an existing assignment
+
+    1. Prerequisites: Student "Jane Smith" already has "Homework" assigned.
+
+    1. Test case: `assign a/Homework n/Jane Smith`<br>
+       Expected: "Homework" not assigned again. Error message displayed.
+
+### Unassigning assignments
+
+1. Unassigning an assignment from a student
+
+    1. Prerequisites: Student "John Doe" has "Homework" assigned.
+
+    1. Test case: `unassign a/Homework n/John Doe`<br>
+       Expected: "Homework" unassigned from John Doe. Success message displayed.
+
+1. Unassigning an assignment from a class
+
+    1. Prerequisites: At least one student exists in class "1A" and has "Tutorial 1" assigned.
+
+    1. Test case: `unassign a/Tutorial 1 c/1A`<br>
+       Expected: "Tutorial 1" unassigned from all students in class "1A" having the assignment. Success message displayed.
+
+1. Unassigning a non-existent assignment
+
+    1. Prerequisites: Student "Jane Smith" does not have "Homework" assigned.
+
+    1. Test case: `unassign a/Homework n/Jane Smith`<br>
+       Expected: Error message displayed.
 
 ### Saving data
 
