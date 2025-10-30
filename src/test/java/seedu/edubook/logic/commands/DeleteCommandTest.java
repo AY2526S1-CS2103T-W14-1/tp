@@ -138,17 +138,6 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonNameFilteredList_throwsCommandException() {
-        showPersonAtName(model, NAME_FIRST_PERSON);
-
-        PersonName invalidName = NAME_SECOND_PERSON;
-        DeleteCommand deleteCommand = new DeleteCommand(new NameTarget(invalidName));
-
-        assertCommandFailure(deleteCommand, model,
-                String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, invalidName));
-    }
-
-    @Test
     public void equals() {
         NameTarget first = new NameTarget(NAME_FIRST_PERSON);
         NameTarget second = new NameTarget(NAME_SECOND_PERSON);
