@@ -54,11 +54,11 @@ public class LabelCommandParser implements Parser<LabelCommand> {
      *                        unexpected preamble, or duplicate prefixes.
      */
     private static void validateLabelCommandPrefixes(ArgumentMultimap argMultimap) throws ParseException {
-        boolean hasAssignment = argMultimap.getValue(PREFIX_LABEL).isPresent();
+        boolean hasLabel = argMultimap.getValue(PREFIX_LABEL).isPresent();
         boolean hasName = argMultimap.getValue(PREFIX_PERSON_NAME).isPresent();
         boolean hasClass = argMultimap.getValue(PREFIX_CLASS).isPresent();
 
-        if (!hasAssignment || (!hasName && !hasClass)) {
+        if (!hasLabel || (!hasName && !hasClass)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LabelCommand.MESSAGE_USAGE));
         }
 
@@ -95,7 +95,5 @@ public class LabelCommandParser implements Parser<LabelCommand> {
             TuitionClass tuitionClass = ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get());
             return new ClassTarget(tuitionClass);
         }
-
     }
-
 }

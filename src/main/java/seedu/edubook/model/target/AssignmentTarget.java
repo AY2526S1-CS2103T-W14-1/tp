@@ -82,17 +82,12 @@ public class AssignmentTarget implements Target {
     }
 
     @Override
-    public String getLabelSuccessMessage(String labelName) {
+    public String getLabelSuccessMessage(String labelName, int successCount, int skippedCount) {
         return MESSAGE_UNEXPECTED_CALL;
     }
 
     @Override
-    public String getUnlabelSuccessMessage() {
-        return MESSAGE_UNEXPECTED_CALL;
-    }
-
-    @Override
-    public String getUnlabelFailureMessage() {
+    public String getUnlabelSuccessMessage(int successCount, int skippedCount) {
         return MESSAGE_UNEXPECTED_CALL;
     }
 

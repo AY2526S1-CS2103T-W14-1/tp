@@ -2,17 +2,23 @@ package seedu.edubook.storage;
 
 import static seedu.edubook.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.commons.util.StringUtil;
+import seedu.edubook.logic.commands.MarkCommand;
 import seedu.edubook.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.
  */
 class JsonAdaptedTag {
+
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 
     private final String tagName;
 
@@ -43,13 +49,16 @@ class JsonAdaptedTag {
      */
     public Tag toModelType() throws IllegalValueException {
         if (tagName == null) {
+            logger.info(() -> "File corrupted: Null tag name");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Tag.class.getSimpleName()));
         }
         if (!StringUtil.isValidLength(tagName, Tag.MAX_TAG_LENGTH)) {
+            logger.info(() -> "File corrupted: Tag name too long - " + tagName);
             throw new IllegalValueException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!Tag.isValidTagName(tagName)) {
+            logger.info(() -> "File corrupted: Invalid tag name - " + tagName);
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(tagName);

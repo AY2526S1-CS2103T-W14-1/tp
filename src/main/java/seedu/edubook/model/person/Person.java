@@ -13,6 +13,8 @@ import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.AssignmentMarkedException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.AssignmentUnmarkedException;
+import seedu.edubook.logic.commands.exceptions.LabelAlreadyExistsException;
+import seedu.edubook.logic.commands.exceptions.LabelNotFoundException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
 import seedu.edubook.model.label.Label;
@@ -159,8 +161,12 @@ public class Person {
      * @param label Label to be added.
      * @return The new person object.
      */
-    public Person withAddedLabel(Label label) {
+    public Person withAddedLabel(Label label) throws LabelAlreadyExistsException {
         requireNonNull(label);
+
+        if (!this.label.isEmpty) {
+            throw LabelAlreadyExistsException.forStudent();
+        }
 
         return new Person(
                 this.name,
@@ -176,7 +182,12 @@ public class Person {
     /**
      *
      */
-    public Person withRemovedLabel() {
+    public Person withRemovedLabel() throws LabelNotFoundException {
+
+        if (this.label.isEmpty) {
+            throw LabelNotFoundException.forStudent();
+        }
+
         return new Person(
                 this.name,
                 this.phone,
