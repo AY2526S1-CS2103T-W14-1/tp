@@ -451,7 +451,7 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| **Action**                                          | **Format**                                                             | **Example**                                                                         |
+| **Command**                                         | **Format**                                                             | **Example**                                                                         |
 |-----------------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | [**Help**](#viewing-help--help)                     | `help`                                                                 | `help`                                                                              |
 | [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                         | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B`    |
