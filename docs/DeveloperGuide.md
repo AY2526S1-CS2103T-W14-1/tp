@@ -731,15 +731,14 @@ handle their students' information.
 
 ### Difficulty Level and Challenges Faced
 
-Developing EduBook presented many unique challenges. Unlike AB3, which handles only one entity type, a `person`, 
+Developing EduBook presented a moderate-to-high level of difficulty. Unlike AB3, which handles only one entity type, a `person`, 
 EduBook extends heavily on the assign feature: `assign`. As a result, significant effort and work was needed to ensure 
-seamless interactions between `student` and `assignment` entities, including proper validation and error handling.
-Large amounts of effort was also needed to incorporate all our features including assignment assigning and marking, 
-student labels, and the accompanied UI design to ensure that the assignment status are clearly displayed to the user 
-in a appealing manner.
+seamless interactions between multiple interdependent entity types, in particular, the `student` and `assignment` entities.
+Careful co-ordination was hence required to ensure proper validation, error handling, and consistent behavior across all modules.
 
-Furthermore, handling multiple interdependent entities added complexity in data storage and retrieval, 
-along with maintaining consistent UI updates. 
+Key challenges we faced included implementing complex features which latched on the interactions between the entities, 
+including assignment assigning and marking, student labels, and a intuitive and visually appealing UI. Furthermore, 
+handling multiple interdependent entities added complexity in data storage and retrieval, along with maintaining consistent UI updates. 
 
 ### Effort Required
 
@@ -748,10 +747,12 @@ design, development, testing, and documentation, often revisiting and refining p
 and maintainability. Throughout the development process, we dedicated significant 
 amounts of time and resources to deeply understand the original AB3's structure, and from there, implement new features, 
 while remaining committed to maintaining code quality and following key software engineering 
-and Object-oriented Programming (OOP) principles. Our team also engaged in rigorous testing of our application through
+and Object-oriented Programming (OOP) principles. 
+
+Our team also engaged in rigorous testing of our application through
 implementation of comprehensive test cases, and continuously updated our documentation as well as code comments to ensure 
-clarity for future developers and project evaluators. To achieve this, our team put in long hours of planning, coding, 
-and evaluation to ensure that we can deliver a complete and well-structured product.
+clarity for future developers and project evaluators. Achieving this required long hours of careful planning, coding, 
+and evaluation, reflecting our team’s commitment to delivering a complete, robust, and well-structured product.
 
 ### Achievements
 
