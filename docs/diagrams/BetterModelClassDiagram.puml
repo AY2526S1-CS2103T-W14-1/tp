@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+left to right direction
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
@@ -7,7 +8,8 @@ skinparam classBackgroundColor MODEL_COLOR
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
 AddressBook *-up-> "1" UniqueAssignmentList
-UniqueTagList -[hidden]down- UniquePersonList
+
+UniqueAssignmentList -[hidden]down- UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueAssignmentList -right-> "*" Assignment
