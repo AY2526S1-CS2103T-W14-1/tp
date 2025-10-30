@@ -713,3 +713,84 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## **Appendix: Effort**
+
+### Project Overview
+
+Our project aims to provide an efficient contact management system for a tutor with a relatively large student base, 
+building on AddressBook Level 3 (AB3). Additional features include assigning and unassigning assignments, marking and 
+unmarking assignments as completed, labelling students and removing the labels, as well as viewing student data. 
+All the above could be done by class at once as well. These improvements are aimed to provide a cost-effective solution 
+to help tutors save time, money and manpower on repetitive tasks, while also enabling them to more effectively 
+handle their students' information.
+
+### Difficulty Level and Challenges Faced
+
+Developing EduBook presented many unique challenges. Unlike AB3, which handles only one entity type, a `person`, 
+EduBook extends heavily on the assign feature: `assign`. As a result, significant effort and work was needed to ensure 
+seamless interactions between `student` and `assignment` entities, including proper validation and error handling.
+Large amounts of effort was also needed to incorporate all our features including assignment assigning and marking, 
+student labels, and the accompanied UI design to ensure that the assignment status are clearly displayed to the user 
+in a appealing manner.
+
+Furthermore, handling multiple interdependent entities added complexity in data storage and retrieval, 
+along with maintaining consistent UI updates. 
+
+### Effort Required
+
+The effort required in implementing EduBook was extensive. Our team went through countless phases of discussions, 
+design, development, testing, and documentation, often revisiting and refining previous decisions to ensure correctness 
+and maintainability. Throughout the development process, we dedicated significant 
+amounts of time and resources to deeply understand the original AB3's structure, and from there, implement new features, 
+while remaining committed to maintaining code quality and following key software engineering 
+and Object-oriented Programming (OOP) principles. Our team also engaged in rigorous testing of our application through
+implementation of comprehensive test cases, and continuously updated our documentation as well as code comments to ensure 
+clarity for future developers and project evaluators. To achieve this, our team put in long hours of planning, coding, 
+and evaluation to ensure that we can deliver a complete and well-structured product.
+
+### Achievements
+
+Despite the difficulties faced, EduBook was able to achieve many milestones. This majorly enhanced the contact 
+management system's functionality to be more tailored to our target audience. Our key achievements include:
+
+1. Improved Student Removal (delete): Our `delete` command to enable tutors to remove a student by name
+instead of an ID, simplifying the process and reducing errors from incorrect lookups. We also allow tutors to delete an
+entire class at once, allowing quick removal of students. 
+
+
+2. Improved Student Look-up: Our `find` and `view` command allow tutors to quickly and efficiently search for students, 
+whether individually, by class, or by assignment. This provides immediate access to student information, significantly 
+improving convenience and productivity for tutors.
+
+
+3. Intuitive Label System: To allow tutors to remember important things about their students more clearly, 
+for e.g. 'always late', or 'allergic to peanuts', we have implemented a `label` command. This feature allows tutors 
+to assign custom labels to students, providing a quick and organized way to remember key details and manage their 
+interactions more effectively. This is accompanied by our `unlabel` command, which allows tutors to remove the label
+when necessary.
+
+
+4. Efficient Assignment Tracking: The `assign` command allows tutors to assign assignments to their students, providing 
+a quick and easy way for tutors to keep track of their students' work. This feature is complemented by the `mark` command,
+which allows tutors to update assignment completion status, helping them efficiently monitor their students' progress
+We also implemented assign or mark by class feature, such that tutors can perform these actions for entire classes at once,
+allowing them to manage large volumes of assignments, while significantly reducing repetitive work, improving overall 
+productivity. These features are accompanied by our `unassign` and `unmark` command, which allows tutors to unassign
+the assignments or unmark them as completed when necessary.
+
+
+5. Sleek and Intuitive UI with Color-Coded Tracking: We enhanced the user interface with a clean, modern design, 
+incorporating brighter backgrounds and visually appealing color schemes to improve readability and overall user experience. 
+To complement this, we implemented a color-coded assignment tracking system, where colors dynamically indicate 
+completion status, green representing a completed assignment, and red representing a not completed one. 
+This allows tutors to quickly assess and prioritize students’ work at a glance.
+
+### Effort Saved Through Reuse
+
+For our project, approximately 10% of the effort was saved through reuse of AB3's existing codebase. Features which 
+already existed in AB3 such as `add` and `delete` were adapted from the existing implementation to fit our users' needs.

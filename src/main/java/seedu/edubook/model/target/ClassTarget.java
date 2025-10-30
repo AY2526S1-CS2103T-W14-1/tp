@@ -15,8 +15,7 @@ import seedu.edubook.model.person.TuitionClass;
 public class ClassTarget implements Target {
 
     /** Error message when no students are found in the class. */
-    public static final String MESSAGE_NO_STUDENTS_FOUND =
-            "No students found in class \"%1$s\"";
+    public static final String MESSAGE_NO_STUDENTS_FOUND = "No students found in class \"%1$s\"";
 
     /** Template for success message when assignment is assigned to a class. */
     public static final String MESSAGE_ASSIGN_SUCCESS =
@@ -27,16 +26,13 @@ public class ClassTarget implements Target {
             "Assignment \"%1$s\" unassigned from class \"%2$s\" (%3$d unassigned, %4$d skipped)";
 
     /** Template for success message when label is assigned to a class. */
-    public static final String MESSAGE_LABEL_SUCCESS =
-            "Label \"%1$s\" assigned to class \"%2$s\"";
+    public static final String MESSAGE_LABEL_SUCCESS = "Label \"%1$s\" assigned to class \"%2$s\"";
 
     /** Template for success message when label is unassigned from a class. */
-    public static final String MESSAGE_UNLABEL_SUCCESS =
-            "Label removed from class \"%1$s\"";
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Label removed from class \"%1$s\"";
 
     /** Template for failure message when label is unassigned from a class. */
-    public static final String MESSAGE_UNLABEL_FAILURE =
-            "Class \"%1$s\" does not have any labels to remove";
+    public static final String MESSAGE_UNLABEL_FAILURE = "Class \"%1$s\" does not have any labels to remove";
 
     /** Template for success message when assignment is marked for a class. */
     public static final String MESSAGE_MARK_SUCCESS =
@@ -47,12 +43,10 @@ public class ClassTarget implements Target {
             "Assignment \"%1$s\" unmarked for class \"%2$s\" (%3$d unmarked, %4$d already unmarked, %5$d not exist)";
 
     /** Template for message when delete class is successful. */
-    public static final String MESSAGE_DELETE_SUCCESS =
-            "All students in class \"%1$s\" have been deleted";
+    public static final String MESSAGE_DELETE_SUCCESS = "All students in class \"%1$s\" have been deleted";
 
     /** Template for message when viewing a class is successful. */
-    private static final String MESSAGE_VIEW_SUCCESS =
-            "Here are the details of all students in class \"%1$s\": ";
+    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of all students in class \"%1$s\": ";
 
     private final TuitionClass tuitionClass;
 
