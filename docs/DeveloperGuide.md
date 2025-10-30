@@ -737,8 +737,9 @@ seamless interactions between multiple interdependent entity types, in particula
 Careful co-ordination was hence required to ensure proper validation, error handling, and consistent behavior across all modules.
 
 Key challenges we faced included implementing complex features which latched on the interactions between the entities, 
-including assignment assigning and marking, student labels, and a intuitive and visually appealing UI. Furthermore, 
-handling multiple interdependent entities added complexity in data storage and retrieval, along with maintaining consistent UI updates. 
+including assignment assigning and marking, student labels, and an intuitive and visually appealing UI. 
+Furthermore, handling multiple interdependent entities added complexity in data storage, data retrieval, and UI updates,
+which we had to carefully design and implement to ensure consistency, efficiency, and synchronization between all components.
 
 ### Effort Required
 
