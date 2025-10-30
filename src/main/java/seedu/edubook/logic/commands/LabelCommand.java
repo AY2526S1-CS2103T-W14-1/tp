@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.util.ToStringBuilder;
 import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.logic.commands.exceptions.LabelAlreadyExistsException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Person;
@@ -59,17 +60,71 @@ public class LabelCommand extends Command {
         requireNonNull(model);
         logger.info("Executing LabelCommand for target: " + target.getDisplayName());
 
-        List<Person> studentToLabel = target.getPersons(model);
+        List<Person> studentsToLabel = target.getPersons(model);
 
-        for (Person person : studentToLabel) {
-            model.setPerson(person, person.withAddedLabel(label));
-        }
+        // Process all assignments and count successes and skips
+        int[] counts = processAssignments(model, studentsToLabel);
 
-        String message = target.getLabelSuccessMessage(label.toString());
+        assert counts.length == 2 : "processAssignments must return an array of length 2";
+        assert counts[0] >= 0 && counts[1] >= 0 : "success and skip counts must not be negative";
+        assert counts[0] + counts[1] == studentsToLabel.size()
+                : "sum of success and skipped counts must match total students processed";
+
+        int successCount = counts[0];
+        int skippedCount = counts[1];
+
+        handleNoAssignments(successCount);
+
+        // Generate success message
+        String message = target.getLabelSuccessMessage(label.toString(),
+                successCount, skippedCount);
+
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
         logger.info("LabelCommand completed: " + message);
         return new CommandResult(message);
+    }
+
+    /**
+     * Processes assignment of labels for each person in the list.
+     * <p>
+     * Skips students who already have a label and counts successes and skips.
+     *
+     * @param model The model to update.
+     * @param assignees The list of students to assign the label to.
+     * @return An array where index 0 is the number of successful assignments,
+     *         and index 1 is the number of skipped assignments.
+     */
+    private int[] processAssignments(Model model, List<Person> assignees) {
+        int successCount = 0;
+        int skippedCount = 0;
+
+        for (Person person : assignees) {
+            try {
+                model.setPerson(person, person.withAddedLabel(label));
+                successCount++;
+            } catch (LabelAlreadyExistsException e) {
+                skippedCount++;
+                logger.fine(() -> "Skipped " + person.getName() + " (already has label)");
+            }
+        }
+        return new int[]{successCount, skippedCount};
+    }
+
+    /**
+     * Throws LabelAlreadyExistsException if no new labels were added.
+     *
+     * @param successCount Number of successful labels added.
+     * @throws LabelAlreadyExistsException If no new labels were added.
+     */
+    private void handleNoAssignments(int successCount) throws LabelAlreadyExistsException {
+        if (successCount == 0) {
+            if (target.isSinglePersonTarget()) {
+                throw LabelAlreadyExistsException.forStudent();
+            } else {
+                throw LabelAlreadyExistsException.forClass(target.getDisplayName());
+            }
+        }
     }
 
     @Override
