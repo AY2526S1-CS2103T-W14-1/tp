@@ -859,7 +859,7 @@ testers are expected to do more *exploratory* testing.
        Expected: All students in class "1A" who have "Tutorial 1" assigned and initially marked
        are unmarked. Success message displayed.
 
-1. Unmarking an assignment which has already been marked
+1. Unmarking an assignment which has already been unmarked
 
     1. Prerequisites: Student "Jane Smith" already has "Homework" unmarked.
 
