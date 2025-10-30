@@ -873,6 +873,103 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `unmark a/Homework n/Alex Yeoh`<br>
        Expected: "Homework" not unmarked. Error message displayed.
 
+### Viewing students
+
+1. Viewing a student
+
+    1. Prerequisites: Student "John Doe" exists in Edubook.
+
+    1. Test case: `view n/John Doe`<br>
+       Expected: Student named John Doe is displayed. Success message displayed.
+
+   1. Test case: `view n/Nonexistent Name`<br>
+      Expected: Error message displayed.
+
+1. Viewing all students in a class
+
+    1. Prerequisites: At least one student is in class "1A".
+
+    1. Test case: `view c/1A`<br>
+       Expected: All students from class "1A" are displayed. Success message displayed.
+
+    1. Test case: `view c/Nonexistent Class`<br>
+       Expected: Error message displayed.
+   
+1. Viewing all students with an assignment
+
+    1. Prerequisites: At least one student has the assignment "Homework".
+
+    1. Test case: `view a/Homework`<br>
+       Expected: All students with assignment "Homework" are displayed. 
+       Success message displayed.
+
+    1. Test case: `view a/Nonexistent assignment`<br>
+       Expected: Error message displayed.
+
+### Unlabeling students
+
+1. Unlabeling a student
+
+    1. Prerequisites: Student "John Doe" exists in Edubook. "John Doe" has a label.
+
+    1. Test case: `unlabel n/John Doe`<br>
+       Expected: John Doe's label is removed. Success message displayed.
+
+1. Unlabeling all students in a class
+
+    1. Prerequisites: At least one student is in class "1A". 
+       At least one student in class "1A" has a label.
+
+    1. Test case: `unlabel class c/1A`<br>
+       Expected: All students in class "1A" has their label removed. Success message displayed.
+
+1. Unlabeling a student who does not have an existing label
+
+    1. Prerequisites: Student "John Doe" exists in Edubook. "John Doe" does not have a label.
+
+    1. Test case: `unlabel n/John Doe`<br>
+       Expected: Error message displayed.
+
+1. Unlabeling a class with no students having an existing label
+
+    1. Prerequisites: At least one student is in class "1A".
+       All students in class "1A" does not have a label.
+
+    1. Test case: `unlabel c/1A`<br>
+       Expected: Error message displayed.
+
+Labeling students
+
+1. Labeling a student
+
+    1. Prerequisites: Student "John Doe" exists in Edubook. "John Doe" does not have a label.
+
+    1. Test case: `label l/Top student n/John Doe`<br>
+       Expected: John Doe is now labeled as "Top student". Success message displayed.
+
+1. Labeling all students in a class
+
+    1. Prerequisites: At least one student is in class "1A".
+       All students in class "1A" does not have a label.
+
+    1. Test case: `label l/Morning class c/1A`<br>
+       Expected: All students in class "1A" is labeled as "Morning class". Success message displayed.
+
+1. Labeling a student who has an existing label
+
+    1. Prerequisites: Student "John Doe" exists in Edubook. "John Doe" has a label "Bad student".
+
+    1. Test case: `label l/Top student n/John Doe`<br>
+       Expected: John Doe keeps the "Bad student" label.  Error message displayed.
+
+1. Labeling a class with all students having an existing label
+
+    1. Prerequisites: At least one student is in class "1A".
+       All students in class "1A" have a label "Morning class".
+
+    1. Test case: `label l/Afternoon class c/1A`<br>
+       Expected: All students in "1A" keeps the "Afternoon class" label.  Error message displayed.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
