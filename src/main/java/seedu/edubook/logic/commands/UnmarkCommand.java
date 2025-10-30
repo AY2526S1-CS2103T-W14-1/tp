@@ -96,7 +96,7 @@ public class UnmarkCommand extends Command {
 
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
-        logger.info("UnmarkCommand completed: " + message);
+        logger.info("UnmarkCommand completed successfully: " + message);
         return new CommandResult(message);
     }
 

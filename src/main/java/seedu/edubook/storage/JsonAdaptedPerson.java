@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.edubook.commons.core.LogsCenter;
 import seedu.edubook.commons.exceptions.IllegalValueException;
 import seedu.edubook.commons.util.StringUtil;
+import seedu.edubook.logic.commands.MarkCommand;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.commons.Name;
 import seedu.edubook.model.label.Label;
@@ -28,6 +31,7 @@ import seedu.edubook.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
 
     private final String name;
     private final String phone;
@@ -89,6 +93,7 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             if (tag == null) {
+                logger.info(() -> "File corrupted: Null tag");
                 throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
             }
             personTags.add(tag.toModelType());
@@ -97,6 +102,7 @@ class JsonAdaptedPerson {
         final List<Assignment> personAssignments = new ArrayList<>();
         for (JsonAdaptedAssignment assignment : assignments) {
             if (assignment == null) {
+                logger.info(() -> "File corrupted: Null assignment");
                 throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                         Assignment.class.getSimpleName()));
             }
@@ -104,46 +110,58 @@ class JsonAdaptedPerson {
         }
 
         if (name == null) {
+            logger.info(() -> "File corrupted: Null student name");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!StringUtil.isValidLength(name, PersonName.MAX_NAME_LENGTH)) {
+            logger.info(() -> "File corrupted: Student name too long - " + name);
             throw new IllegalValueException(PersonName.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!PersonName.isValidName(name)) {
+            logger.info(() -> "File corrupted: Invalid student name - " + name);
             throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
         final PersonName modelName = new PersonName(name);
 
         if (phone == null) {
+            logger.info(() -> "File corrupted: Null phone");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!StringUtil.isValidLength(phone, Phone.MAX_PHONE_LENGTH)) {
+            logger.info(() -> "File corrupted: Phone too long - " + phone);
             throw new IllegalValueException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!Phone.isValidPhone(phone)) {
+            logger.info(() -> "File corrupted: Invalid phone - " + phone);
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
+            logger.info(() -> "File corrupted: Null email");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!StringUtil.isValidLength(email, Email.MAX_EMAIL_LENGTH)) {
+            logger.info(() -> "File corrupted: Email too long - " + email);
             throw new IllegalValueException(Email.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!Email.isValidEmail(email)) {
+            logger.info(() -> "File corrupted: Invalid email - " + email);
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
 
         if (tuitionClass == null) {
+            logger.info(() -> "File corrupted: Null class");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TuitionClass.class.getSimpleName()));
         }
         if (!StringUtil.isValidLength(tuitionClass, TuitionClass.MAX_CLASS_LENGTH)) {
+            logger.info(() -> "File corrupted: Class too long - " + tuitionClass);
             throw new IllegalValueException(TuitionClass.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!TuitionClass.isValidClass(tuitionClass)) {
+            logger.info(() -> "File corrupted: Invalid class - " + tuitionClass);
             throw new IllegalValueException(TuitionClass.MESSAGE_CONSTRAINTS);
         }
 
@@ -160,6 +178,7 @@ class JsonAdaptedPerson {
 
     private Label convertLabel(String label) throws IllegalValueException {
         if (label == null) {
+            logger.info(() -> "File corrupted: Null label");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Label.class.getSimpleName()));
         }
@@ -167,9 +186,11 @@ class JsonAdaptedPerson {
             return Label.EMPTY;
         }
         if (!StringUtil.isValidLength(label, Label.MAX_LABEL_LENGTH)) {
+            logger.info(() -> "File corrupted: Label too long - " + label);
             throw new IllegalValueException(Label.MESSAGE_LENGTH_CONSTRAINTS);
         }
         if (!Label.isValidLabel(label)) {
+            logger.info(() -> "File corrupted: Invalid label - " + label);
             throw new IllegalValueException(Label.MESSAGE_CONSTRAINTS);
         }
 

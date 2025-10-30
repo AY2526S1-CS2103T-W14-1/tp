@@ -67,9 +67,9 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-#### Formatting rules for parameters:
+#### Formatting rules for inputs:
 
-| Field      | Max Length | Format / Constraints                                                                                                                                                                                                                            |
+| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                            |
 |------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
 | Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: must include at least one `.`, with labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
@@ -80,7 +80,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 | Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                           |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-For identification purposes, all names (student or assignment) and classes are case-sensitive.
+For identification purposes, all inputs are case-insensitive unless stated otherwise.
 </div>
 
 ### Viewing help : `help`
@@ -98,7 +98,7 @@ Adds a student to EduBook.
 
 Format: `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`
 
-* All inputs must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
+* All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 A student can have any number of tags (including 0)
@@ -106,7 +106,10 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/criminal`
+* `add n/Betsy Crowe t/Remedial Group e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/Grade A`
+
+An example of the layout is shown below:
+![Add Example](images/AddExample.png "Add Example")
 
 ### Listing all students : `list`
 
@@ -120,6 +123,7 @@ Edits an existing student in EduBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​`
 
+* All edited inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -206,12 +210,32 @@ Examples:
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 * `delete c/Class 10B` deletes all students in the class "Class 10B"
 
+
+### Locating students by name: `find`
+
+Finds students whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched. e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return
+`Hans Gruber`, `Bo Yang`
+
+Examples
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`,`David Li`
+
+![Find Example](images/FindExample.png "Find Example")
+
 ### Assigning an assignment: `assign`
 
 Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
 
 Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
+* The format for assignment can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `assign a/Homework n/Bob` or `assign a/Homework c/Class 1-A`, but not both.
 
@@ -231,6 +255,10 @@ Examples:
 * `assign a/Tutorial 1 n/John Doe` — assigns `Tutorial 1` to `John Doe`
 * `assign a/Homework c/Class 1-A` — assigns `Homework` to all students in `Class 1-A`, skipping those who already have it
 * `assign a/Tutorial 1 c/Tutorial Group 2` — assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping those who already have it
+
+A new assignment will be unmarked by default. The assignment will be displayed to the right of the student's details and label. An
+example is shown below:
+![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Unassigning an assignment: `unassign`
 
@@ -317,6 +345,7 @@ Applies a label to a specific student or to all students in a class, depending o
 
 Format: `label l/LABEL {n/NAME | c/CLASS}`
 
+* The format for label can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `label l/Top student n/Bob` or `label l/Online Meeting c/Class 1-A`, but not both.
 
@@ -375,7 +404,7 @@ EduBook data is saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-EduBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EduBook data is saved automatically as a JSON file `[JAR file location]/data/edubook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
 See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
@@ -384,7 +413,7 @@ See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
 :exclamation: **Caution:**  
 If your changes to the data file make its format invalid, EduBook will display an error message.  
 
-To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. Otherwise, a new empty file will be used.  
+To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. Otherwise, a new empty file will be used. The new file **will be saved** upon using the `exit` command or making changes to the file, **erasing the old file**.
 ![Error Message](images/FileCorruptedExample.png "Error Message for File Corruption")
 
 Furthermore, certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
@@ -430,6 +459,7 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 | **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​ [a/ASSIGNMENT]…​`           | `edit 2 n/James Lee e/jameslee@example.com`                                         |
 | **View**     | `view {n/NAME \| c/CLASS}`                                                                      | `view n/James Lee`, `view c/Class-B`                                               |
 | **Delete**   | `delete {INDEX \| n/NAME}`                                                                      | `delete 3`, `delete n/John Doe`                                                   |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`                                                                  | `find alex`, `find alex david`                                                    |
 | **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                  | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                      |
 | **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
 | **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                    | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                          |

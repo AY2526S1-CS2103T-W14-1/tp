@@ -99,7 +99,7 @@ public class MarkCommand extends Command {
 
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
 
-        logger.info("MarkCommand completed: " + message);
+        logger.info("MarkCommand completed successfully: " + message);
         return new CommandResult(message);
     }
 
