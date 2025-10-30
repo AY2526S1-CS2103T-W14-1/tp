@@ -13,6 +13,11 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 ## Quick start
 
 1. Ensure you have Java `17` or above installed on your computer.<br>
+   💡 **Tip:** To check your version, open a command terminal and run:
+
+   ```bash
+   java -version
+   ```
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W14-1/tp/releases).
