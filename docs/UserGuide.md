@@ -15,15 +15,15 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 1. Ensure you have Java `17` or above installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W14-1/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your EduBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your EduBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edubook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edubook.jar` command to run the application.<br>
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all students.
@@ -36,7 +36,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -72,11 +72,11 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 | Field      | Max Length | Format / Constraints                                                                                                                                                                                                                            |
 |------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
-| Email      | 250        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
+| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: must include at least one `.`, with labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
 | Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             |
 | Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                    |
 | Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
-| Tag        | none       | Alphanumeric letters                                                                                                                                                                                                                            | 
+| Tag        | 20         | Alphanumeric letters                                                                                                                                                                                                                            | 
 | Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                           |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
@@ -96,7 +96,7 @@ Format: `help`
 
 Adds a student to EduBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`
 
 * All inputs must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
 
@@ -106,10 +106,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A`
-* `add n/Betsy Crowe t/Team B e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/Grade A`
-
-The layout of the inputs are shown as follows:
-![Add Example](images/AddExample.png "Add Example")
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/criminal`
 
 ### Listing all students : `list`
 
@@ -121,7 +118,7 @@ Format: `list`
 
 Edits an existing student in EduBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -138,30 +135,39 @@ Examples:
 
 ### Viewing student information: `view`
 
-Displays the information of a student or all students in a class, depending on the specified parameter.
+Displays the information of a student, all students in a class or all students with an assignment, depending on the specified parameter.
 
-Format: `view {n/NAME | c/CLASS}`
+Format: `view {n/NAME | c/CLASS | a/ASSIGNMENT}`
 
-* You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
-  e.g. `view n/John Doe` or `view c/W14`, but not both.
+* You must specify **exactly one** of the three parameters — one of `n/NAME`, `c/CLASS` or `a/ASSIGNMENT`.  
+  e.g. `view n/John Doe`, `view c/W14` or `view a/Tutorial 1`
+
 
 * If `n/NAME` is used:
     * Displays the student with the specified `NAME`.
-    * The search is case-sensitive. e.g. `hans` will not match `Hans`.
+    * The search is case-insensitive. e.g. `hans` will match `Hans`.
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
 
 * If `c/CLASS` is used:
     * Displays all students with the specified `CLASS`.
-    * The search is case-sensitive. e.g. `w14` will not match `W14`.
+    * The search is case-insensitive. e.g. `w14` will match `W14`.
     * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
     * The full class name is required for the search to be successful. e.g. `W14` will not return `Class W14`.
+
+* If `a/ASSIGNMENT` is used:
+    * Displays all students with the specified `ASSIGNMENT`.
+    * The search is case-insensitive. e.g. `Tutorial 1` will match `tutorial 1`.
+    * The order of the keywords matters. e.g. `Tutorial 1` will not match `1 Tutorial`.
+    * The full assignment name is required for the search to be successful. e.g. `1` will not return `Tutorial 1`.
 
 Examples:
 * `view n/John` — displays information of the student named `John`
 * `view n/alex david` — displays information of the student named `alex david`
-* `view c/Class B` — displays all students in `Class B`
-* `view c/W14` — displays all students in `W14`
+* `view c/Class 10B` — displays all students in the class `Class 10B`
+* `view c/W14` — displays all students in the class `W14`
+* `view a/Tutorial 1` — displays all students with the assignment `Tutorial 1`
+* `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To restore full view, use the `list` command.
@@ -169,34 +175,53 @@ To restore full view, use the `list` command.
 
 ### Deleting a student : `delete`
 
-Deletes the specified student (identified by name or index) from Edubook.
+Removes the specified student (identified by name or index) from Edubook.
 
-Format: `delete {INDEX | n/NAME}` 
+Format: `delete {INDEX | n/NAME | c/CLASS}`
 
-* The index refers to the index number shown in the **current view**.
-* The index must be a **positive integer** 1, 2, 3, …​
+
+* You must specify **exactly one** of the three parameters — one of `INDEX`, `n/NAME` or `c/CLASS`.  
+  e.g. `delete 1`, `delete n/John Doe` or `delete c/Class 10B`
+
+* If `INDEX` is used:
+    * Removes the student with the specified `INDEX`.
+    * The index refers to the index number shown in the **current view**.
+    * The index must be a **positive integer** 1, 2, 3, …​
+
+* If `n/NAME` is used:
+    * Removes the student with the specified `NAME`.
+    * The name is case-insensitive. e.g. `hans` will match `Hans`.
+    * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
+    * The full name is required for the removal to be successful. e.g. `Hans` will not return `Hans Bo`.
+
+* If `c/CLASS` is used:
+    * Removes all students with the specified `CLASS`.
+    * The class is case-insensitive. e.g. `w14` will match `W14`.
+    * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
+    * The full class name is required for the removal to be successful. e.g. `W14` will not return `Class W14`.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the address book.
 * `view n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `view` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
+* `delete c/Class 10B` deletes all students in the class "Class 10B"
 
 ### Assigning an assignment: `assign`
 
 Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
 
-Format: `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
+Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `assign a/Homework n/Bob` or `assign a/Homework c/Class 1-A`, but not both.
 
 * If `n/NAME` is used:
-    * Assigns the assignment `ASSIGNMENT_NAME` to the student named `NAME`.
+    * Assigns the assignment `ASSIGNMENT` to the student named `NAME`.
     * The student must exist in EduBook.
     * The specified student must not already have the assignment.
 
 * If `c/CLASS` is used:
-    * Assigns the assignment `ASSIGNMENT_NAME` to every student in the specified class `CLASS`.
+    * Assigns the assignment `ASSIGNMENT` to every student in the specified class `CLASS`.
     * Students who already have the assignment are skipped.
     * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
     * At least one student in the specified class must not currently have the assignment.
@@ -207,26 +232,22 @@ Examples:
 * `assign a/Homework c/Class 1-A` — assigns `Homework` to all students in `Class 1-A`, skipping those who already have it
 * `assign a/Tutorial 1 c/Tutorial Group 2` — assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping those who already have it
 
-The assignment will initially be displayed as not completed. An example is shown below:
-![Assignment Example](images/UnmarkedAssignment.png "Assignment Example")
-
-
 ### Unassigning an assignment: `unassign`
 
 Unassigns an assignment from a specific student or from all students in a class, depending on the specified parameter.
 
-Format: `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
+Format: `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unassign a/Homework n/Bob` or `unassign a/Homework c/Class 1-A`, but not both.
 
 * If `n/NAME` is used:
-    * Unassigns the assignment `ASSIGNMENT_NAME` from the student named `NAME`.
+    * Unassigns the assignment `ASSIGNMENT` from the student named `NAME`.
     * The student must exist in EduBook.
     * The specified assignment must exist for the specified student.
 
 * If `c/CLASS` is used:
-    * Unassigns the assignment `ASSIGNMENT_NAME` from every student in the specified class `CLASS`.
+    * Unassigns the assignment `ASSIGNMENT` from every student in the specified class `CLASS`.
     * Students who do not have the assignment are skipped.
     * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
     * At least one student in the specified class must currently have the assignment.
@@ -241,19 +262,19 @@ Examples:
 
 Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
 
-Format: `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
+Format: `mark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `mark a/Homework n/Bob` or `mark a/Homework c/Class 1-A`, but not both.
 
 * If `n/NAME` is used:
-    * Marks the assignment `ASSIGNMENT_NAME` of the student named `NAME` as completed.
+    * Marks the assignment `ASSIGNMENT` of the student named `NAME` as completed.
     * The student must exist in EduBook.
     * The specified assignment must exist for the specified student.
     * The specified assignment must not already be marked.
 
 * If `c/CLASS` is used:
-    * Marks the assignment `ASSIGNMENT_NAME` as completed for every student in the specified class `CLASS`.
+    * Marks the assignment `ASSIGNMENT` as completed for every student in the specified class `CLASS`.
     * Students who do not have the assignment or whose assignment is already marked are skipped.
     * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
     * At least one student in the specified class must currently have the assignment unmarked.
@@ -265,25 +286,24 @@ Upon successful marking, the assignment should turn green as shown:
 
 Unmarks an assignment as not completed for a specific student or for all students in a class, depending on the specified parameter.
 
-Format: `unmark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`
+Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unmark a/Homework n/Bob` or `unmark a/Homework c/Class 1-A`, but not both.
 
 * If `n/NAME` is used:
-  * Unmarks the assignment `ASSIGNMENT_NAME` of the student named `NAME` as not completed.
+  * Unmarks the assignment `ASSIGNMENT` of the student named `NAME` as not completed.
   * The student must exist in EduBook.
   * The specified assignment must exist for the specified student.
   * The specified assignment must not already be unmarked.
 
 * If `c/CLASS` is used:
-  * Unmarks the assignment `ASSIGNMENT_NAME` as not completed for every student in the specified class `CLASS`.
+  * Unmarks the assignment `ASSIGNMENT` as not completed for every student in the specified class `CLASS`.
   * Students who do not have the assignment or whose assignment is already unmarked are skipped.
   * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
   * At least one student in the specified class must currently have the assignment marked.
 
-Upon successful unmarking, the assignment should turn red as shown:
-![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
+Upon successful unmarking, the assignment will revert to red colour.
 
 Examples:
 * `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
@@ -313,9 +333,6 @@ Examples:
 * `label l/Latecomer n/John Doe` — applies `Latecomer` to `John Doe`
 * `label l/Online class c/Class 1-A` — applies `Online class` to all students in `Class 1-A`
 * `label l/Remedial c/Tutorial Group 2` — assigns `Remedial` to all students in `Tutorial Group 2`
-
-The label will be displayed between the students' details and assignments. An example is shown below:
-![Label Example](images/LabelExample.png "Label Example")
 
 ### Removing a label: `unlabel`
 
@@ -405,18 +422,19 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| Action       | Format                                                                              | Example                                                                          |
-|--------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| **Help**     | `help`                                                                              | `help`                                                                           |
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                               | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
-| **List**     | `list`                                                                              | `list`                                                                           |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG] [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                      |
-| **View**     | `view {n/NAME | c/CLASS}`                                                                        | `view n/James Lee`, `view c/Class-B`                                               |
-| **Delete**   | `delete {INDEX | n/NAME}`                                                                         | `delete 3`, `delete n/John Doe`                                                    |
-| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                                                        | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                     |
-| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                                                        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                 |
-| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`                                                                        | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                         |
-| **Label**    | `label l/LABEL {n/NAME | c/CLASS}`                                                                        | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`               |
-| **Unlabel**  | `unlabel {n/NAME | c/CLASS}`                                                                        | `unlabel n/John Doe`, `unlabel c/Class 10B`                                        |
-| **Clear**    | `clear`                                                                         | `clear`                                                                          |
-| **Exit**     | `exit`                                                                          | `exit`                                                                           |
+| **Action**   | **Format**                                                                                      | **Example**                                                                         |
+|--------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| **Help**     | `help`                                                                                          | `help`                                                                              |
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS [t/TAG]…​`                                           | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B`    |
+| **List**     | `list`                                                                                          | `list`                                                                              |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS] [t/TAG]…​ [a/ASSIGNMENT]…​`           | `edit 2 n/James Lee e/jameslee@example.com`                                         |
+| **View**     | `view {n/NAME \| c/CLASS}`                                                                      | `view n/James Lee`, `view c/Class-B`                                               |
+| **Delete**   | `delete {INDEX \| n/NAME}`                                                                      | `delete 3`, `delete n/John Doe`                                                   |
+| **Assign**   | `assign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                  | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                      |
+| **Unassign** | `unassign a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
+| **Mark**     | `mark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                    | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                          |
+| **Unmark**   | `unmark a/ASSIGNMENT_NAME {n/NAME \| c/CLASS}`                                                  | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                      |
+| **Label**    | `label l/LABEL {n/NAME \| c/CLASS}`                                                             | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`                |
+| **Unlabel**  | `unlabel {n/NAME \| c/CLASS}`                                                                   | `unlabel n/John Doe`, `unlabel c/Class 10B`                                         |
+| **Clear**    | `clear`                                                                                         | `clear`                                                                             |
+| **Exit**     | `exit`                                                                                          | `exit`                                                                              |

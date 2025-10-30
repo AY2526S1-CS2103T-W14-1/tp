@@ -11,11 +11,11 @@ public class AssignmentNotFoundException extends CommandException {
 
     /** Message indicating the assignment is not found for the student. */
     public static final String MESSAGE_STUDENT_ALREADY_UNASSIGNED = "This student does not have "
-            + "this assignment currently. ";
+            + "this assignment currently";
 
     /** Message indicating the assignment is not found for the whole class. */
     public static final String MESSAGE_CLASS_ALREADY_UNASSIGNED =
-            "All students in '%s' do not have the assignment '%s'.";
+            "All students in '%s' do not have the assignment \"%s\"";
 
     /**
      * Constructs an {@code AssignmentNotFoundException} with a default message

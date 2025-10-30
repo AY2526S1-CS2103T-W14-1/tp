@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric, spaces are allowed";
     public static final String MESSAGE_LENGTH_CONSTRAINTS =
-            "A Tag should only contain a maximum of 20 characters.";
+            "A Tag should only contain a maximum of 20 characters";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\p{Space}]+";
     public static final int MAX_TAG_LENGTH = 20;
 
@@ -47,12 +47,12 @@ public class Tag {
         }
 
         Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        return tagName.toLowerCase().equals(otherTag.tagName.toLowerCase());
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return tagName.toLowerCase().hashCode();
     }
 
     /**

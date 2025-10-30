@@ -38,7 +38,7 @@ public class NameTargetTest {
         ModelStub model = new ModelStub();
 
         CommandException e = assertThrows(CommandException.class, () -> NAME_TARGET_NONEXISTENT.getPersons(model));
-        assertTrue(e.getMessage().contains("Student 'Nonexistent' not found."));
+        assertTrue(e.getMessage().contains("Student \"Nonexistent\" not found"));
     }
 
     @Test
@@ -55,14 +55,14 @@ public class NameTargetTest {
     public void getAssignSuccessMessage_formatsCorrectly() {
         String result = NAME_TARGET_AMY.getAssignSuccessMessage("Tutorial 1", 1, 0);
 
-        assertEquals("New assignment 'Tutorial 1' assigned to student: 'Amy Bee'.", result);
+        assertEquals("New assignment \"Tutorial 1\" assigned to student: \"Amy Bee\"", result);
     }
 
     @Test
     public void getUnassignSuccessMessage_formatsCorrectly() {
         String result = NAME_TARGET_AMY.getUnassignSuccessMessage("Tutorial 1", 1, 0);
 
-        assertEquals("Assignment 'Tutorial 1' unassigned from student: 'Amy Bee'.", result);
+        assertEquals("Assignment \"Tutorial 1\" unassigned from student: \"Amy Bee\"", result);
     }
 
     @Test

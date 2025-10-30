@@ -16,34 +16,34 @@ import seedu.edubook.model.person.exceptions.PersonNotFoundException;
 public class NameTarget implements Target {
 
     /** Error message when the student cannot be found in the model. */
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Student '%s' not found.";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "Student \"%1$s\" not found";
 
     /** Template for success message when assignment is assigned to a student. */
-    public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment '%s' assigned to student: '%s'.";
+    public static final String MESSAGE_ASSIGN_SUCCESS = "New assignment \"%1$s\" assigned to student: \"%2$s\"";
 
     /** Template for success message when assignment is unassigned from a student. */
-    public static final String MESSAGE_UNASSIGN_SUCCESS = "Assignment '%s' unassigned from student: '%s'.";
+    public static final String MESSAGE_UNASSIGN_SUCCESS = "Assignment \"%1$s\" unassigned from student: \"%2$s\"";
 
     /** Template for success message when assignment is marked for a student. */
-    public static final String MESSAGE_MARK_SUCCESS = "Assignment '%s' marked for student: '%s'.";
+    public static final String MESSAGE_MARK_SUCCESS = "Assignment \"%1$s\" marked for student: \"%2$s\"";
 
     /** Template for success message when assignment is unmarked for a student. */
-    public static final String MESSAGE_UNMARK_SUCCESS = "Assignment '%s' marked for student: '%s'.";
+    public static final String MESSAGE_UNMARK_SUCCESS = "Assignment \"%1$s\" marked for student: \"%2$s\"";
 
     /** Template for success message when label is assigned to a student. */
-    public static final String MESSAGE_LABEL_SUCCESS = "New label '%s' created for student: '%s'.";
+    public static final String MESSAGE_LABEL_SUCCESS = "New label \"%1$s\" created for student: \"%2$s\"";
 
     /** Template for success message when label is unassigned from a student. */
-    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from student: '%s'.";
+    public static final String MESSAGE_UNLABEL_SUCCESS = "Existing label removed from student: \"%1$s\"";
 
     /** Template for failure message when label is unassigned from a student. */
-    public static final String MESSAGE_UNLABEL_FAILURE = "Student '%s' does not have an existing label.";
+    public static final String MESSAGE_UNLABEL_FAILURE = "Student \"%1$s\" does not have an existing label";
 
     /** Template for message when delete student is successful. */
-    public static final String MESSAGE_DELETE_SUCCESS = "Student %1$s has been deleted.";
+    public static final String MESSAGE_DELETE_SUCCESS = "Student \"%1$s\" has been deleted";
 
     /** Template for message when view student is successful. */
-    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of %1$s.";
+    private static final String MESSAGE_VIEW_SUCCESS = "Here are the details of \"%1$s\": ";
 
     private final PersonName name;
 

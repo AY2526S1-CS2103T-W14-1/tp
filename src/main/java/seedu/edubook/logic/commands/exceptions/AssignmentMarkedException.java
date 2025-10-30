@@ -10,7 +10,7 @@ public class AssignmentMarkedException extends CommandException {
 
     /** Message indicating the assignment is already marked for the student */
     public static final String MESSAGE_ASSIGNMENT_ALREADY_MARKED = "This assignment "
-            + "is already marked for this student. ";
+            + "is already marked for this student";
 
     /**
      * Constructs a {@code AssignmentMarkedException} with a default message

@@ -82,7 +82,7 @@ public class LabelCommandParserTest {
     public void parse_allPrefixesPresent_failure() {
         String input = " l/Allergic to milk n/Amy c/A";
         assertParseFailure(parser, input,
-                "Specify only n/NAME or c/CLASS, not both.");
+                "Specify only one of n/NAME or c/CLASS, not both");
     }
 
     @Test

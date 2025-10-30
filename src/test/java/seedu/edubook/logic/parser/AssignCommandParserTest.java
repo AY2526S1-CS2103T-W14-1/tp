@@ -82,7 +82,7 @@ public class AssignCommandParserTest {
     public void parse_allPrefixesPresent_failure() {
         String input = " a/Homework 2 n/Amy c/A";
         assertParseFailure(parser, input,
-                "Specify only n/NAME or c/CLASS, not both.");
+                "Specify only one of n/NAME or c/CLASS, not both");
     }
 
     @Test
