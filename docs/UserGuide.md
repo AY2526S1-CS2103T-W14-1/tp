@@ -12,7 +12,17 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 ## Quick start
 
+<div markdown="span" class="alert alert-primary">
+💡 <strong>Tip:</strong>  
+If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
+</div>
+
 1. Ensure you have Java `17` or above installed on your computer.<br>
+   💡 **Tip:** To check your version, open a command terminal and run:
+
+   ```bash
+   java -version
+   ```
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W14-1/tp/releases).
@@ -67,7 +77,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-#### Formatting rules for inputs:
+#### Formatting rules for inputs
 
 | Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                            |
 |------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
