@@ -106,7 +106,10 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/Class 1-A`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/criminal`
+* `add n/Betsy Crowe t/Remedial Group e/betsycrowe@example.com c/Tutorial Group 2 p/1234567 t/Grade A`
+
+An example of the layout is shown below:
+![Add Example](images/AddExample.png "Add Example")
 
 ### Listing all students : `list`
 
@@ -206,6 +209,25 @@ Examples:
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 * `delete c/Class 10B` deletes all students in the class "Class 10B"
 
+
+### Locating students by name: `find`
+
+Finds students whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched. e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return
+`Hans Gruber`, `Bo Yang`
+
+Examples
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`,`David Li`
+
+![Find Example](images/FindExample.png "Find Example")
+
 ### Assigning an assignment: `assign`
 
 Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
@@ -231,6 +253,10 @@ Examples:
 * `assign a/Tutorial 1 n/John Doe` — assigns `Tutorial 1` to `John Doe`
 * `assign a/Homework c/Class 1-A` — assigns `Homework` to all students in `Class 1-A`, skipping those who already have it
 * `assign a/Tutorial 1 c/Tutorial Group 2` — assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping those who already have it
+
+A new assignment will be unmarked by default. The assignment will be displayed to the right of the student's details and label. An
+example is shown below:
+![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Unassigning an assignment: `unassign`
 
