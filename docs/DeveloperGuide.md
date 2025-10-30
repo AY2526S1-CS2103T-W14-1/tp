@@ -807,6 +807,72 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `unassign a/Homework n/Jane Smith`<br>
        Expected: Error message displayed.
 
+### Marking assignments
+
+1. Marking an assignment for a student
+
+    1. Prerequisites: Student "John Doe" exists in EduBook. "John Doe" must have "Homework" assigned to him. 
+       "Homework" must initially be unmarked.
+
+    1. Test case: `mark a/Homework n/John Doe`<br>
+       Expected: John Doe's "Homework" marked. Success message displayed.
+
+1. Marking an assignment for a class
+
+    1. Prerequisites: At least one student exists in class "1A". At least one student must have "Tutorial 1" assigned, 
+       and it must initially be unmarked.
+
+    1. Test case: `mark a/Tutorial 1 c/1A`<br>
+       Expected: All students in class "1A" who have "Tutorial 1" assigned and initially unmarked are marked. 
+       Success message displayed.
+
+1. Marking an assignment which has already been marked
+
+    1. Prerequisites: Student "Jane Smith" already has "Homework" marked.
+
+    1. Test case: `mark a/Homework n/Jane Smith`<br>
+       Expected: "Homework" not marked again. Error message displayed.
+
+1. Marking a non-existent assignment.
+
+    1. Prerequisites: Student "Alex Yeoh" must not have "Homework" assigned.
+
+    1. Test case: `mark a/Homework n/Alex Yeoh`<br>
+       Expected: "Homework" not marked. Error message displayed.
+
+### Unmarking assignments
+
+1. Unmarking an assignment for a student
+
+    1. Prerequisites: Student "John Doe" exists in EduBook. "John Doe" must have "Homework" assigned to him.
+       "Homework" must initially be marked.
+
+    1. Test case: `unmark a/Homework n/John Doe`<br>
+       Expected: John Doe's "Homework" unmarked. Success message displayed.
+
+1. Unmarking an assignment for a class
+
+    1. Prerequisites: At least one student exists in class "1A". At least one student must have "Tutorial 1" assigned,
+       and it must initially be marked.
+
+    1. Test case: `unmark a/Tutorial 1 c/1A`<br>
+       Expected: All students in class "1A" who have "Tutorial 1" assigned and initially marked
+       are unmarked. Success message displayed.
+
+1. Unmarking an assignment which has already been unmarked
+
+    1. Prerequisites: Student "Jane Smith" already has "Homework" unmarked.
+
+    1. Test case: `unmark a/Homework n/Jane Smith`<br>
+       Expected: "Homework" not unmarked again. Error message displayed.
+
+1. Unmarking a non-existent assignment.
+
+    1. Prerequisites: Student "Alex Yeoh" must not have "Homework" assigned.
+
+    1. Test case: `unmark a/Homework n/Alex Yeoh`<br>
+       Expected: "Homework" not unmarked. Error message displayed.
+
 ### Viewing students
 
 1. Viewing a student
