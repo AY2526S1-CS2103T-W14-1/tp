@@ -807,6 +807,39 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `unassign a/Homework n/Jane Smith`<br>
        Expected: Error message displayed.
 
+### Viewing students
+
+1. Viewing a student
+
+    1. Prerequisites: Student "John Doe" exists in Edubook.
+
+    1. Test case: `view n/John Doe`<br>
+       Expected: Student named John Doe is displayed. Success message displayed.
+
+   1. Test case: `view n/Nonexistent Name`<br>
+      Expected: No student is displayed. Error message displayed.
+
+1. Viewing all students in a class
+
+    1. Prerequisites: At least one student is in class "1A".
+
+    1. Test case: `view c/1A`<br>
+       Expected: All students from class "1A" are displayed. Success message displayed.
+
+    1. Test case: `view c/Nonexistent Class`<br>
+       Expected: No student is displayed. Error message displayed.
+   
+1. Viewing all students with an assignment
+
+    1. Prerequisites: At least one student has the assignment "Homework".
+
+    1. Test case: `view a/Homework`<br>
+       Expected: All students with assignment "Homework" are displayed. 
+       Success message displayed.
+
+    1. Test case: `view a/Nonexistent assignment`<br>
+       Expected: No student is displayed. Error message displayed.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
