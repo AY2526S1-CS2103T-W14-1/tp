@@ -67,7 +67,7 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-#### Formatting rules for inputs:
+#### Formatting rules for inputs
 
 | Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                            |
 |------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
