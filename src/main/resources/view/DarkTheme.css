@@ -402,12 +402,13 @@
 }
 
 #assignments .label {
-    -fx-text-fill: black;
-    -fx-background-color: #fe6b75;
+    -fx-text-fill: white;
+    -fx-background-color: #dc3445;
     -fx-padding: 3 6 3 6;
     -fx-border-radius: 4;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+    -fx-font-weight: bold;
 }
 
 #alertDialogPane {
