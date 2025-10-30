@@ -120,7 +120,7 @@ public class ModelManager implements Model {
     public Person findPersonByName(PersonName target) throws PersonNotFoundException {
         requireAllNonNull(target);
 
-        return this.getFilteredPersonList()
+        return this.addressBook.getPersonList()
                 .stream()
                 .filter(p -> p.getName().equals(target))
                 .findFirst()
