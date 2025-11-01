@@ -219,7 +219,7 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
     * The full class name is required for the removal to be successful. e.g. `W14` will not return `Class W14`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `list` followed by `delete 2` deletes the 2nd student in EduBook.
 * `view n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `view` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 * `delete c/Class 10B` deletes all students in the class "Class 10B"
@@ -234,7 +234,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched. e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return
+* Students matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return
 `Hans Gruber`, `Bo Yang`
 
 Examples
