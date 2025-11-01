@@ -28,7 +28,7 @@ public class NameTarget implements Target {
     public static final String MESSAGE_MARK_SUCCESS = "Assignment \"%1$s\" marked for student: \"%2$s\"";
 
     /** Template for success message when assignment is unmarked for a student. */
-    public static final String MESSAGE_UNMARK_SUCCESS = "Assignment \"%1$s\" marked for student: \"%2$s\"";
+    public static final String MESSAGE_UNMARK_SUCCESS = "Assignment \"%1$s\" unmarked for student: \"%2$s\"";
 
     /** Template for success message when label is assigned to a student. */
     public static final String MESSAGE_LABEL_SUCCESS = "New label \"%1$s\" created for student: \"%2$s\"";

@@ -79,15 +79,15 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 #### Formatting rules for inputs
 
-| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                            |
-|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
+| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                                |
+|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                             |
 | Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: must include at least one `.`, with labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                             |
-| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                    |
-| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                         |
-| Tag        | 20         | Alphanumeric letters                                                                                                                                                                                                                            | 
-| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                           |
+| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                 |
+| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                        |
+| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                             |
+| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                     | 
+| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                             |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 For identification purposes, all inputs are case-insensitive unless stated otherwise.
@@ -163,11 +163,13 @@ Format: `view {n/NAME | c/CLASS | a/ASSIGNMENT}`
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
 
+
 * If `c/CLASS` is used:
     * Displays all students with the specified `CLASS`.
     * The search is case-insensitive. e.g. `w14` will match `W14`.
     * The order of the keywords matters. e.g. `Class 14W` will not match `14W Class`.
     * The full class name is required for the search to be successful. e.g. `W14` will not return `Class W14`.
+
 
 * If `a/ASSIGNMENT` is used:
     * Displays all students with the specified `ASSIGNMENT`.
@@ -202,11 +204,13 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
     * The index refers to the index number shown in the **current view**.
     * The index must be a **positive integer** 1, 2, 3, …​
 
+
 * If `n/NAME` is used:
     * Removes the student with the specified `NAME`.
     * The name is case-insensitive. e.g. `hans` will match `Hans`.
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the removal to be successful. e.g. `Hans` will not return `Hans Bo`.
+
 
 * If `c/CLASS` is used:
     * Removes all students with the specified `CLASS`.
@@ -215,7 +219,7 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
     * The full class name is required for the removal to be successful. e.g. `W14` will not return `Class W14`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the address book.
+* `list` followed by `delete 2` deletes the 2nd student in EduBook.
 * `view n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `view` command.
 * `delete n/John Doe` deletes the student with the exact name "John Doe"
 * `delete c/Class 10B` deletes all students in the class "Class 10B"
@@ -230,7 +234,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched. e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return
+* Students matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return
 `Hans Gruber`, `Bo Yang`
 
 Examples
@@ -253,6 +257,7 @@ Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
     * Assigns the assignment `ASSIGNMENT` to the student named `NAME`.
     * The student must exist in EduBook.
     * The specified student must not already have the assignment.
+
 
 * If `c/CLASS` is used:
     * Assigns the assignment `ASSIGNMENT` to every student in the specified class `CLASS`.
@@ -284,6 +289,7 @@ Format: `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`
     * The student must exist in EduBook.
     * The specified assignment must exist for the specified student.
 
+
 * If `c/CLASS` is used:
     * Unassigns the assignment `ASSIGNMENT` from every student in the specified class `CLASS`.
     * Students who do not have the assignment are skipped.
@@ -311,11 +317,18 @@ Format: `mark a/ASSIGNMENT {n/NAME | c/CLASS}`
     * The specified assignment must exist for the specified student.
     * The specified assignment must not already be marked.
 
+
 * If `c/CLASS` is used:
     * Marks the assignment `ASSIGNMENT` as completed for every student in the specified class `CLASS`.
     * Students who do not have the assignment or whose assignment is already marked are skipped.
     * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
     * At least one student in the specified class must currently have the assignment unmarked.
+
+Examples:
+* `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
+* `mark a/Homework n/Bob` — marks `Homework` of `Bob` as completed
+* `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
+* `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
 
 Upon successful marking, the assignment should turn green as shown:
 ![Marked Assignment](images/MarkedAssignment.png "Marked Assignment")
@@ -333,7 +346,8 @@ Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
   * Unmarks the assignment `ASSIGNMENT` of the student named `NAME` as not completed.
   * The student must exist in EduBook.
   * The specified assignment must exist for the specified student.
-  * The specified assignment must not already be unmarked.
+  * The specified assignment must not already be unmarked.  
+
 
 * If `c/CLASS` is used:
   * Unmarks the assignment `ASSIGNMENT` as not completed for every student in the specified class `CLASS`.
@@ -341,13 +355,13 @@ Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
   * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
   * At least one student in the specified class must currently have the assignment marked.
 
-Upon successful unmarking, the assignment will revert to red colour.
-
 Examples:
-* `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
-* `mark a/Homework n/Bob` — marks `Homework` of `Bob` as completed
-* `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
-* `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
+* `unmark a/Tutorial 1 n/John Doe` — unmarks `Tutorial 1` of `John Doe` as not completed
+* `unmark a/Homework n/Bob` — unmarks `Homework` of `Bob` as not completed
+* `unmark a/Tutorial 1 c/Class 1-A` — unmarks `Tutorial 1` as not completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already unmarked
+* `unmark a/Homework c/Tutorial Group 2` — unmarks `Homework` as not completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already unmarked
+
+Upon successful unmarking, the assignment will revert to red colour.
 
 ### Apply a label: `label`
 
@@ -363,6 +377,7 @@ Format: `label l/LABEL {n/NAME | c/CLASS}`
     * Applies the label `LABEL` to the student named `NAME`.
     * The student must exist in EduBook.
     * The student must not have a current label.
+
 
 * If `c/CLASS` is used:
     * Applies the label `LABEL` to every student in the specified class `CLASS`.
@@ -388,6 +403,7 @@ Format: `unlabel {n/NAME | c/CLASS}`
     * Removes the label from the student named `NAME`.
     * The student must exist in EduBook.
     * The student must have a label.
+
 
 * If `c/CLASS` is used:
     * Removes the label from every student in the specified class `CLASS`.
@@ -421,7 +437,7 @@ EduBook data is saved in the hard disk automatically after any command that chan
 EduBook data is saved automatically as a JSON file `[JAR file location]/data/edubook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
-See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
+See [Formatting rules for inputs](#formatting-rules-for-inputs) above.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**  
