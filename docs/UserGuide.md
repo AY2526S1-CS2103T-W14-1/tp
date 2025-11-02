@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-EduBook is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduBook can get your student management tasks done faster than traditional GUI apps.
+EduBook is a **desktop app for managing student details** that combines the simplicity of text-based commands 
+with a clean, easy-to-use user interface. Its design lets you perform student management tasks quickly and efficiently, 
+regardless of whether you prefer typing or using the visual interface.
 
 * Table of Contents
 {:toc}
@@ -12,8 +14,8 @@ EduBook is a **desktop app for managing student details, optimized for use via a
 
 ## Quick start
 
-<div markdown="span" class="alert alert-primary">
-💡 <strong>Tip:</strong>  
+<div markdown="span" class="alert alert-info">
+💡 <strong>Tip: </strong>  
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
 
@@ -56,7 +58,7 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -79,17 +81,17 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 #### Formatting rules for inputs
 
-| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                                |
-|------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                             |
-| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: must include at least one `.`, with labels separated by `.`, start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                 |
-| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                        |
-| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                             |
-| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                     | 
-| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                             |
+| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                               |
+|------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                            |
+| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
+| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                |
+| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                       |
+| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                            |
+| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                             | 
+| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                            |
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 For identification purposes, all inputs are case-insensitive unless stated otherwise.
 </div>
 
@@ -110,7 +112,7 @@ Format: `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`
 
 * All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 A student can have any number of tags (including 0)
 </div>
 
@@ -133,15 +135,17 @@ Edits an existing student in EduBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​`
 
-* All edited inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
+* All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* You must provide at least one of the additional fields.
 * Existing values will be updated to the input values.
-* When editing tags or/and assignments, the existing tags or/and assignments of the student will be removed i.e adding of tags and assignments are not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
-* You can remove all the student’s assignments by typing `a/` without
-    specifying any assignments after it.
+* When editing tags or assignments, all existing tags or assignments will be removed.
+  add n/Bob p/81234567 e/bobbyg@gmail.com c/Class 1-A
+<div markdown="span" class="alert alert-info">
+💡 <strong>Tip: </strong>  
+You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
+without specifying any tags or assignments after the command.
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -185,8 +189,8 @@ Examples:
 * `view a/Tutorial 1` — displays all students with the assignment `Tutorial 1`
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To restore full view, use the `list` command.
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+  To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
 ### Deleting a student : `delete`
@@ -198,6 +202,7 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the three parameters — one of `INDEX`, `n/NAME` or `c/CLASS`.  
   e.g. `delete 1`, `delete n/John Doe` or `delete c/Class 10B`
+
 
 * If `INDEX` is used:
     * Removes the student with the specified `INDEX`.
@@ -221,15 +226,14 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in EduBook.
 * `view n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `view` command.
-* `delete n/John Doe` deletes the student with the exact name "John Doe"
-* `delete c/Class 10B` deletes all students in the class "Class 10B"
+* `delete n/John Doe` deletes the student with the exact name "John Doe".
+* `delete c/Class 10B` deletes all students in the class "Class 10B".
 
-
-### Locating students by name: `find`
+### Finding students by name: `find`
 
 Finds students whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -241,17 +245,25 @@ Examples
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`,`David Li`
 
+<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+Use <code>find</code> to search for students by **partial names or keywords!**<br>
+For example: <code>find Alex</code> will return all students whose name contains "Alex".
+</div>
+
+An example of the command `find alex david` is shown below.
+
 ![Find Example](images/FindExample.png "Find Example")
 
 ### Assigning an assignment: `assign`
 
-Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
+Assigns an assignment to a specific student or to all students in a class, depending on your input.
 
 Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * The format for assignment can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `assign a/Homework n/Bob` or `assign a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Assigns the assignment `ASSIGNMENT` to the student named `NAME`.
@@ -271,8 +283,14 @@ Examples:
 * `assign a/Homework c/Class 1-A` — assigns `Homework` to all students in `Class 1-A`, skipping those who already have it
 * `assign a/Tutorial 1 c/Tutorial Group 2` — assigns `Tutorial 1` to all students in `Tutorial Group 2`, skipping those who already have it
 
-A new assignment will be unmarked by default. The assignment will be displayed to the right of the student's details and label. An
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+A newly assigned assignment will be unmarked by default.
+</div>
+
+The assignment will be displayed to the right of the student's details and label. An
 example is shown below:
+
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Unassigning an assignment: `unassign`
@@ -283,6 +301,7 @@ Format: `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unassign a/Homework n/Bob` or `unassign a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Unassigns the assignment `ASSIGNMENT` from the student named `NAME`.
@@ -302,6 +321,12 @@ Examples:
 * `unassign a/Homework c/Class 1-A` — unassigns `Homework` from all students in `Class 1-A`, skipping those who do not have it
 * `unassign a/Tutorial 1 c/Tutorial Group 2` — unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping those who do not have it
 
+After unassigning an assignment, the assignment will no longer be displayed.
+
+For example, using the command `unassign n/Bob a/Homework`, the "Homework" assignment will no longer be displayed as shown below.
+
+![Unassigned Assignment](images/UnassignedAssignment.png "Unassigned Assignment")
+
 ### Marking an assignment: `mark`
 
 Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
@@ -310,6 +335,7 @@ Format: `mark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `mark a/Homework n/Bob` or `mark a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Marks the assignment `ASSIGNMENT` of the student named `NAME` as completed.
@@ -330,7 +356,8 @@ Examples:
 * `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
 * `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
 
-Upon successful marking, the assignment should turn green as shown:
+Upon successful marking of an assignment, the assignment should turn green as shown:
+
 ![Marked Assignment](images/MarkedAssignment.png "Marked Assignment")
 
 ### Unmarking an assignment: `unmark`
@@ -341,6 +368,7 @@ Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unmark a/Homework n/Bob` or `unmark a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
   * Unmarks the assignment `ASSIGNMENT` of the student named `NAME` as not completed.
@@ -361,17 +389,25 @@ Examples:
 * `unmark a/Tutorial 1 c/Class 1-A` — unmarks `Tutorial 1` as not completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already unmarked
 * `unmark a/Homework c/Tutorial Group 2` — unmarks `Homework` as not completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already unmarked
 
-Upon successful unmarking, the assignment will revert to red colour.
+Upon successful unmarking, the assignment will revert to red colour as shown:
+
+![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Apply a label: `label`
 
-Applies a label to a specific student or to all students in a class, depending on the specified parameter.
+The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
+
+<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+Labels help you keep track of specific information about students, such as 'Top Student' or 'Always Late', making it
+easier to organise and identify your students!
+</div>
 
 Format: `label l/LABEL {n/NAME | c/CLASS}`
 
 * The format for label can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `label l/Top student n/Bob` or `label l/Online Meeting c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Applies the label `LABEL` to the student named `NAME`.
@@ -388,16 +424,21 @@ Examples:
 * `label l/Top student n/Bob` — applies `Top student` to `Bob`
 * `label l/Latecomer n/John Doe` — applies `Latecomer` to `John Doe`
 * `label l/Online class c/Class 1-A` — applies `Online class` to all students in `Class 1-A`
-* `label l/Remedial c/Tutorial Group 2` — assigns `Remedial` to all students in `Tutorial Group 2`
+* `label l/Remedial c/Tutorial Group 2` — applies `Remedial` to all students in `Tutorial Group 2`
+
+Upon applying a label successfully, the label will appear next to the student's details as shown below.
+
+![Apply Label](images/Label.png "Apply label")
 
 ### Removing a label: `unlabel`
 
-Removes a label from a specific student or from all students in a class, depending on the specified parameter.
+The unlabel command lets you remove a label from a specific student or from all students in a class, depending on your input.
 
 Format: `unlabel {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unlabel n/Bob` or `unlabel c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Removes the label from the student named `NAME`.
@@ -416,11 +457,22 @@ Examples:
 * `unlabel c/Class 1-A` — removes any label from all students in `Class 1-A`
 * `unlabel c/Tutorial Group 2` — removes any label from all students in `Tutorial Group 2`
 
+Upon removing a label successfully, the label will no longer be displayed next to the student's details.
+
+An example is shown below.
+
+![Remove Label](images/NoLabel.png "Remove label")
+
 ### Clearing all entries : `clear`
 
 Clears all entries from EduBook.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution: **  
+The `clear` command will permanently remove all student data. This action cannot be undone.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -439,12 +491,18 @@ EduBook data is saved automatically as a JSON file `[JAR file location]/data/edu
 Please ensure that formatting rules are followed during manual editing.   
 See [Formatting rules for inputs](#formatting-rules-for-inputs) above.
 
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. 
+Otherwise, a new empty file will be used. The new file **will be saved** upon using the `exit` command or making changes to the file, 
+**erasing the old file**.
+
+![Error Message](images/FileCorruptedExample.png "Error Message for File Corruption")
+</div>
+
+
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**  
-If your changes to the data file make its format invalid, EduBook will display an error message.  
-
-To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. Otherwise, a new empty file will be used. The new file **will be saved** upon using the `exit` command or making changes to the file, **erasing the old file**.
-![Error Message](images/FileCorruptedExample.png "Error Message for File Corruption")
+If your changes to the data file make its format invalid, EduBook will display an error message.
 
 Furthermore, certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
 Only edit the data file if you are confident that you can update it correctly.
@@ -481,20 +539,20 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| **Command**                                         | **Format**                                                                               | **Example**                                                                         |
-|-----------------------------------------------------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                     | `help`                                                                                   | `help`                                                                              |
-| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                           | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B`    |
-| [**List**](#listing-all-students--list)             | `list`                                                                                   | `list`                                                                              |
-| [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                         |
-| [**View**](#viewing-student-information-view)       | `view {n/NAME                                                                            | c/CLASS}`                                                     | `view n/James Lee`, `view c/Class-B`                                               |
-| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX                                                                           | n/NAME}`                                                    | `delete 3`, `delete n/John Doe`                                                   |
-| [**Find**](#locating-students-by-name-find)         | `find KEYWORD [MORE_KEYWORDS]`                                                           | `find alex`, `find alex david`                                                    |
-| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`                               | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                      |
-| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME                                                      | c/CLASS}`                            | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
-| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME                                                          | c/CLASS}`                               | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                          |
-| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`                            | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                      |
-| [**Label**](#apply-a-label-label)                   | `label l/LABEL {n/NAME                                                                   | c/CLASS}`                                      | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`                |
-| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME                                                                         | c/CLASS}`                                           | `unlabel n/John Doe`, `unlabel c/Class 10B`                                         |
-| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                                                  | `clear`                                                                             |
-| [**Exit**](#exiting-the-program--exit)              | `exit`                                                                                   | `exit`                                                                              |
+| **Command**                                         | **Format**                                               | **Example**                                                                      |
+|-----------------------------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                     | `help`                                                   | `help`                                                                           |
+| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`          | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
+| [**List**](#listing-all-students--list)             | `list`                                                   | `list`                                                                           |
+| [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                      |
+| [**View**](#viewing-student-information-view)       | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`              | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`                        |
+| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe`                                                  |
+| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                        | `find alex`, `find alex david`                                                   |
+| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`          | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                   |
+| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`               |
+| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`            | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                       |
+| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`          | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                   |
+| [**Label**](#apply-a-label-label)                   | `label l/LABEL {n/NAME | c/CLASS}`                     | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`             |
+| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME | c/CLASS}`                            | `unlabel n/John Doe`, `unlabel c/Class 10B`                                      |
+| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                  | `clear`                                                                          |
+| [**Exit**](#exiting-the-program--exit)              | `exit`                                                   | `exit`                                                                           |
