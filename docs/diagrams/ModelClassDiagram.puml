@@ -54,7 +54,7 @@ Person *--> "        1" Email
 Person *--> "1" TuitionClass
 Person *--> "*" Tag
 Person *--> "*" Assignment
-Person *--> "1" Label
+Person *--> "   0..1" Label
 Assignment *--> "1" AssignmentName
 
 ModelManager -[hidden]-> "~* filtered" Person
