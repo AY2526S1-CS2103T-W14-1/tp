@@ -19,7 +19,7 @@ EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets o
 
 ## Quick start
 
-<div markdown="span" class="alert alert-info">:bulb:
+<div markdown="span" class="alert alert-success">:bulb:
 **Tip:**
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
@@ -61,7 +61,7 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Some information about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -86,15 +86,15 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 #### Formatting rules for inputs
 
-| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                               |
-|------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                            |
-| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric, hyphens allowed internally, last label ≥2 chars |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                |
-| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                       |
-| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                            |
-| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                             | 
-| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                            |
+| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          |
+|------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
+| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric characters, hyphens allowed internally, last label ≥2 chars |
+| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                           |
+| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                                  |
+| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
+| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                                        | 
+| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 For identification purposes, all inputs are case-insensitive unless stated otherwise.
@@ -145,8 +145,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…�
 * You must provide at least one of the additional fields.
 * Existing values will be updated to the input values.
 * When editing tags or assignments, all existing tags or assignments will be removed.
-  add n/Bob p/81234567 e/bobbyg@gmail.com c/Class 1-A
-<div markdown="span" class="alert alert-info">:bulb:
+<div markdown="span" class="alert alert-success">:bulb:
 **Tip:** You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
 without specifying any tags or assignments after the command.
 </div>
@@ -171,7 +170,6 @@ Format: `view {n/NAME | c/CLASS | a/ASSIGNMENT}`
     * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`.
     * The full name is required for the search to be successful. e.g. `Hans` will not return `Hans Bo`.
 
-
 * If `c/CLASS` is used:
     * Displays all students with the specified `CLASS`.
     * The search is case-insensitive. e.g. `w14` will match `W14`.
@@ -193,7 +191,7 @@ Examples:
 * `view a/Tutorial 1` — displays all students with the assignment `Tutorial 1`
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
   To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
@@ -248,11 +246,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]…​`
 Examples
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`,`David Li`
-
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
-Use <code>find</code> to search for students by **partial names or keywords!**<br>
-For example: <code>find Alex</code> will return all students whose name contains "Alex".
-</div>
 
 An example of the command `find alex david` is shown below.
 
@@ -401,9 +394,8 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
-Labels help you keep track of specific information about students, such as 'Top Student' or 'Always Late', making it
-easier to organise and identify your students!
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+Use labels to note important details about your students — like “Needs Help” or “Great Participation.”
 </div>
 
 Format: `label l/LABEL {n/NAME | c/CLASS}`
