@@ -19,8 +19,8 @@ EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets o
 
 ## Quick start
 
-<div markdown="span" class="alert alert-info">
-💡 <strong>Tip: </strong>  
+<div markdown="span" class="alert alert-info">:bulb 
+**Tip:**
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
 
@@ -550,7 +550,7 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 | [**List**](#listing-all-students--list)             | `list`                                                                                   | `list`                                                                           |
 | [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                      |
 | [**View**](#viewing-student-information-view)       | `view {n/NAME                                                                            | c/CLASS | a/ASSIGNMENT}`              | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`                        |
-| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX                                                                           | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe, delete c/Class 1-A`                                                  |
+| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX                                                                           | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe`, `delete c/Class 1-A`                                                  |
 | [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                                                         | `find alex`, `find alex david`                                                   |
 | [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`          | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                   |
 | [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME                                                      | c/CLASS}`        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`               |
