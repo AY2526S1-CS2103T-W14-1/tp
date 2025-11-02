@@ -3,9 +3,14 @@ layout: page
 title: User Guide
 ---
 
-EduBook is a **desktop app for managing student details** that combines the simplicity of text-based commands 
-with a clean, easy-to-use user interface. Its design lets you perform student management tasks quickly and efficiently, 
+EduBook is an **all-in-one student management desktop application**, specially built for tutors handling 10-30 students across multiple classes.
+It helps you organize student details, track assignments, and even jot down important notes, so that you can stay on top of your teaching game!
+
+What makes EduBook **truly special** is that it combines the simplicity of text-based commands with a clean, easy-to-use user interface. 
+Its design lets you perform student management tasks quickly and efficiently, 
 regardless of whether you prefer typing or using the visual interface.
+
+EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebook. With EduBook, everything is just *a few keystrokes* away. 
 
 * Table of Contents
 {:toc}
@@ -141,9 +146,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…�
 * Existing values will be updated to the input values.
 * When editing tags or assignments, all existing tags or assignments will be removed.
   add n/Bob p/81234567 e/bobbyg@gmail.com c/Class 1-A
-<div markdown="span" class="alert alert-info">
-💡 <strong>Tip: </strong>  
-You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
+<div markdown="span" class="alert alert-info">:bulb:
+**Tip:** You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
 without specifying any tags or assignments after the command.
 </div>
 
@@ -245,7 +249,7 @@ Examples
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`,`David Li`
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
 Use <code>find</code> to search for students by **partial names or keywords!**<br>
 For example: <code>find Alex</code> will return all students whose name contains "Alex".
 </div>
@@ -393,11 +397,11 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Apply a label: `label`
+### Applying a label: `label`
 
 The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
 Labels help you keep track of specific information about students, such as 'Top Student' or 'Always Late', making it
 easier to organise and identify your students!
 </div>
@@ -470,7 +474,7 @@ Clears all entries from EduBook.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution: **  
+:exclamation: **Caution:**  
 The `clear` command will permanently remove all student data. This action cannot be undone.
 </div>
 
@@ -492,6 +496,8 @@ Please ensure that formatting rules are followed during manual editing.
 See [Formatting rules for inputs](#formatting-rules-for-inputs) above.
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+If your changes to the data file make its format invalid, EduBook will display an error message as shown below.
+
 To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. 
 Otherwise, a new empty file will be used. The new file **will be saved** upon using the `exit` command or making changes to the file, 
 **erasing the old file**.
@@ -501,10 +507,8 @@ Otherwise, a new empty file will be used. The new file **will be saved** upon us
 
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:**  
-If your changes to the data file make its format invalid, EduBook will display an error message.
-
-Furthermore, certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
+:exclamation: **Caution:**
+Certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
 Only edit the data file if you are confident that you can update it correctly.
 </div>
 
@@ -539,20 +543,20 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| **Command**                                         | **Format**                                               | **Example**                                                                      |
-|-----------------------------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                     | `help`                                                   | `help`                                                                           |
-| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`          | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
-| [**List**](#listing-all-students--list)             | `list`                                                   | `list`                                                                           |
+| **Command**                                         | **Format**                                                                               | **Example**                                                                      |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                     | `help`                                                                                   | `help`                                                                           |
+| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                           | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
+| [**List**](#listing-all-students--list)             | `list`                                                                                   | `list`                                                                           |
 | [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                      |
-| [**View**](#viewing-student-information-view)       | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`              | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`                        |
-| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe`                                                  |
-| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                        | `find alex`, `find alex david`                                                   |
-| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`          | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                   |
-| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`               |
-| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`            | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                       |
-| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`          | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                   |
-| [**Label**](#apply-a-label-label)                   | `label l/LABEL {n/NAME | c/CLASS}`                     | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`             |
-| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME | c/CLASS}`                            | `unlabel n/John Doe`, `unlabel c/Class 10B`                                      |
-| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                  | `clear`                                                                          |
-| [**Exit**](#exiting-the-program--exit)              | `exit`                                                   | `exit`                                                                           |
+| [**View**](#viewing-student-information-view)       | `view {n/NAME                                                                            | c/CLASS | a/ASSIGNMENT}`              | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`                        |
+| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX                                                                           | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe, delete c/Class 1-A`                                                  |
+| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                                                         | `find alex`, `find alex david`                                                   |
+| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`          | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                   |
+| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME                                                      | c/CLASS}`        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`               |
+| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME                                                          | c/CLASS}`            | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                       |
+| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`          | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                   |
+| [**Label**](#apply-a-label-label)                   | `label l/LABEL {n/NAME                                                                   | c/CLASS}`                     | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`             |
+| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME                                                                         | c/CLASS}`                            | `unlabel n/John Doe`, `unlabel c/Class 10B`                                      |
+| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                                                  | `clear`                                                                          |
+| [**Exit**](#exiting-the-program--exit)              | `exit`                                                                                   | `exit`                                                                           |
