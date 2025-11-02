@@ -141,9 +141,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…�
 * Existing values will be updated to the input values.
 * When editing tags or assignments, all existing tags or assignments will be removed.
   add n/Bob p/81234567 e/bobbyg@gmail.com c/Class 1-A
-<div markdown="span" class="alert alert-info">
-💡 <strong>Tip: </strong>  
-You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
+<div markdown="span" class="alert alert-info">:bulb:
+**Tip:** You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
 without specifying any tags or assignments after the command.
 </div>
 
@@ -245,7 +244,7 @@ Examples
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`,`David Li`
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
 Use <code>find</code> to search for students by **partial names or keywords!**<br>
 For example: <code>find Alex</code> will return all students whose name contains "Alex".
 </div>
@@ -393,11 +392,11 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Apply a label: `label`
+### Applying a label: `label`
 
 The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
 Labels help you keep track of specific information about students, such as 'Top Student' or 'Always Late', making it
 easier to organise and identify your students!
 </div>
@@ -470,7 +469,7 @@ Clears all entries from EduBook.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution: **  
+:exclamation: **Caution:**  
 The `clear` command will permanently remove all student data. This action cannot be undone.
 </div>
 
