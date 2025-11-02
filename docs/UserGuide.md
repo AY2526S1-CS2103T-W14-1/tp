@@ -402,7 +402,7 @@ The label command lets you assign a single label to a specific student or to all
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
 Use **labels** when you want to highlight the most *important* thing you want to remember about a student — like “Needs Help” or “Great Participation.” 
-Use **tags** when you want to add extra information or categories about a student, such as “Math Club” or “Remedial Group.”
+Use **tags** when you want to add extra miscellaneous information about a student, such as “Math Club” or “Remedial Group.”
 This makes managing your students **much easier!**
 </div>
 
