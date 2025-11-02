@@ -672,9 +672,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file<br>
+   1. Ensure you have Java `17` or above installed on your computer.<br>
+   To check your version, open a command terminal and run ```java -version```
+   2. Download the jar file and copy it into an empty folder
+   3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edubook.jar` command 
+   to run the application.<br>   
    Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
 1. Saving window preferences
@@ -1056,3 +1058,19 @@ This allows tutors to quickly assess and prioritize students’ work at a glance
 
 For our project, approximately 10% of the effort was saved through reuse of AB3's existing codebase. Features which 
 already existed in AB3 such as `add` and `delete` were adapted from the existing implementation to fit our users' needs.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## **Appendix: Planned Enhancements**
+
+Team Size: 5
+
+Based on the current implementation of EduBook, there are known bugs and limitations that we have planned to improve in a future
+iteration. The features are as listed below:
+
+1. **Support for special characters within a name**. Currently, when adding or editing a student, EduBook does not allow the
+input of special characters such as `/` or `-`. As this may be of some inconvenience to tutors when adding students, 
+the planned enhancement would hence be to relax the name validation by modifying EduBook to allow a limited set of safe
+special characters when entering names. This allows flexibility and reduces inconveniences for users.
