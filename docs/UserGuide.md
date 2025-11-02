@@ -140,10 +140,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…�
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags or/and assignments, the existing tags or/and assignments of the student will be removed i.e adding of tags and assignments are not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
-* You can remove all the student’s assignments by typing `a/` without
-    specifying any assignments after it.
 
 <div markdown="span" class="alert alert-info">
 💡 <strong>Tip: </strong>  
