@@ -453,26 +453,26 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student/class name, assignment name)
+* 1a. One or more details are missing or invalid 
     * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
 
-* 1b. Target does not exist
-    * 1b1. EduBook informs the tutor that the student or class does not exist.
+* 2a. Target does not exist
+    * 2a1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
 
 
-* 2a. Assignment already assigned to a student
-    * 2a1. EduBook informs the tutor that the assignment has already been assigned to the student.
+* 3a. Assignment already assigned to a student
+    * 3a1. EduBook informs the tutor that the assignment has already been assigned to the student.
 
   Use case ends.
 
 
-* 2b. Assignment already assigned from a class
-    * 2b1. EduBook informs the tutor that the assignment has already been assigned to all students in the
+* 3b. Assignment already assigned to a class
+    * 3b1. EduBook informs the tutor that the assignment has already been assigned to all students in the
       specified class.
 
   Use case ends.
@@ -492,26 +492,26 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student/class name, assignment name)
+* 1a. One or more details are missing or invalid 
   * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
 
-* 1b. Target does not exist
-  * 1b1. EduBook informs the tutor that the student or class does not exist.
+* 2a. Target does not exist
+  * 2a1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
 
 
-* 2a. Assignment already unassigned from a student
-  * 2a1. EduBook informs the tutor that the assignment has already been unassigned from the student.
+* 3a. Assignment already unassigned from a student
+  * 3a1. EduBook informs the tutor that the assignment has already been unassigned from the student.
 
   Use case ends.
 
 
-* 2b. Assignment already unassigned from a class
-  * 2b1. EduBook informs the tutor that the assignment has already been unassigned from all students in the
+* 3b. Assignment already unassigned from a class
+  * 3b1. EduBook informs the tutor that the assignment has already been unassigned from all students in the
     specified class.
 
   Use case ends.
@@ -531,14 +531,14 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 2a. One or more details are missing or invalid (student/class name, assignment name)
-  * 2a1. EduBook informs the tutor of the invalid input(s).
+* 1a. One or more details are missing or invalid 
+  * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
 
-* 2b. Target does not exist
-  * 2b1. EduBook informs the tutor that the student or class does not exist.
+* 2a. Target does not exist
+  * 2a1. EduBook informs the tutor that the student or class does not exist.
   
   Use case ends.
 
@@ -589,14 +589,14 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 2a. One or more details are missing or invalid (student/class name, assignment name)
-  * 2a1. EduBook informs the tutor of the invalid input(s).
+* 1a. One or more details are missing or invalid 
+  * 1a1. EduBook informs the tutor of the invalid input(s).
 
   Use case ends.
 
 
-* 2b. Target does not exist
-  * 2b1. EduBook informs the tutor that the student or class does not exist.
+* 2a. Target does not exist
+  * 2a1. EduBook informs the tutor that the student or class does not exist.
 
   Use case ends.
 
