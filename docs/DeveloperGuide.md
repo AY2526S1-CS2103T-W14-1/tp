@@ -404,7 +404,7 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, index)
+* 1a. One or more details are missing or invalid.
   * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
@@ -427,7 +427,7 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **Extensions**
 
-* 1a. One or more details are missing or invalid (student name, index).
+* 1a. One or more details are missing or invalid.
   * 1a1. EduBook informs the user of the invalid input.
 
   Use case ends.
