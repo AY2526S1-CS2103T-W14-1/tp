@@ -69,6 +69,9 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 **:information_source: Some information about the command format:**<br>
 
+* Command words are case-insensitive (command word refers to the first word in the command format).<br>
+  e.g. `add` can be supplied as `ADD`, `adD`, `AdD`, etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
