@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-EduBook is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduBook can get your 
-student management tasks done faster than traditional GUI apps.
+EduBook is a **desktop app for managing student details** that combines the simplicity of text-based commands 
+with a clean, easy-to-use user interface. Its design lets you perform student management tasks quickly and efficiently, 
+whether you prefer typing or using the visual interface.
 
 * Table of Contents
 {:toc}
@@ -14,8 +14,8 @@ student management tasks done faster than traditional GUI apps.
 
 ## Quick start
 
-<div markdown="span" class="alert alert-primary">
-💡 <strong>Tip:</strong>  
+<div markdown="span" class="alert alert-info">
+💡 <strong>Tip: </strong>  
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
 
@@ -145,6 +145,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…�
 * You can remove all the student’s assignments by typing `a/` without
     specifying any assignments after it.
 
+<div markdown="span" class="alert alert-info">
+💡 <strong>Tip: </strong>  
+You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
+without specifying any tags or assignments after the command.
+</div>
+
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
@@ -187,7 +193,7 @@ Examples:
 * `view a/Tutorial 1` — displays all students with the assignment `Tutorial 1`
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
   To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
