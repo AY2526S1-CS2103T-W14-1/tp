@@ -17,19 +17,25 @@ EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
-
 <div markdown="span" class="alert alert-success">:bulb:
 **Tip:**
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick start
+
 1. Ensure you have Java `17` or above installed on your computer.<br>
-   💡 **Tip:** To check your version, open a command terminal and run:
+
+   <div class="alert alert-success" markdown="1">
+   :bulb: **Tip:** To check your version, open a command terminal and run:
 
    ```bash
    java -version
    ```
+   </div>
+
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-W14-1/tp/releases).
