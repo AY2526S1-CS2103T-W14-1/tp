@@ -19,11 +19,11 @@ UniquePersonList -right-> "*" Person
 Person *-up-> "*" Tag
 Person *-right-> "*" Assignment
 
-Person *--> "1" PersonName
+Person *--> "1    " PersonName
 Person *--> "1" Phone
 Person *--> "1" Email
 Person *--> "1" TuitionClass
-Person *--> "1" Label
+Person *--> "0..1    " Label
 
 Assignment *-right-> "1" AssignmentName
 @enduml
