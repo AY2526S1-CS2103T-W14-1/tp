@@ -22,6 +22,8 @@ EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets o
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `17` or above installed on your computer.<br>
