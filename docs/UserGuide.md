@@ -3,9 +3,14 @@ layout: page
 title: User Guide
 ---
 
-EduBook is a **desktop app for managing student details** that combines the simplicity of text-based commands 
-with a clean, easy-to-use user interface. Its design lets you perform student management tasks quickly and efficiently, 
+EduBook is an **all-in-one student management desktop application**, specially built for tutors handling 10-30 students across multiple classes.
+It helps you organize student details, track assignments, and even jot down important notes, so that you can stay on top of your teaching game!
+
+What makes EduBook **truly special** is that it combines the simplicity of text-based commands with a clean, easy-to-use user interface. 
+Its design lets you perform student management tasks quickly and efficiently, 
 regardless of whether you prefer typing or using the visual interface.
+
+EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebook. With EduBook, everything is just *a few keystrokes* away. 
 
 * Table of Contents
 {:toc}
