@@ -14,7 +14,7 @@ regardless of whether you prefer typing or using the visual interface.
 
 ## Quick start
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-success">
 💡 <strong>Tip: </strong>  
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
@@ -141,7 +141,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…�
 * Existing values will be updated to the input values.
 * When editing tags or assignments, all existing tags or assignments will be removed.
   add n/Bob p/81234567 e/bobbyg@gmail.com c/Class 1-A
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-success">
 💡 <strong>Tip: </strong>  
 You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
 without specifying any tags or assignments after the command.
@@ -189,7 +189,7 @@ Examples:
 * `view a/Tutorial 1` — displays all students with the assignment `Tutorial 1`
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
   To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
@@ -245,7 +245,7 @@ Examples
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`,`David Li`
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+<div markdown="span" class="alert alert-success">:bulb: **Tip: **
 Use <code>find</code> to search for students by **partial names or keywords!**<br>
 For example: <code>find Alex</code> will return all students whose name contains "Alex".
 </div>
@@ -397,7 +397,7 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip: **
+<div markdown="span" class="alert alert-success">:bulb: **Tip: **
 Labels help you keep track of specific information about students, such as 'Top Student' or 'Always Late', making it
 easier to organise and identify your students!
 </div>
