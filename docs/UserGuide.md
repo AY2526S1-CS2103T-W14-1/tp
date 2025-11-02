@@ -106,7 +106,7 @@ If you just want to see all available commands quickly, jump straight to the <a 
 For identification purposes, all parameters are case-insensitive unless stated otherwise.
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -115,7 +115,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a student: `add`
+### Adding students: `add`
 
 Adds a student to EduBook.
 
@@ -134,13 +134,13 @@ Examples:
 An example of the layout is shown below:
 ![Add Example](images/AddExample.png "Add Example")
 
-### Listing all students : `list`
+### Listing all students: `list`
 
 Shows a list of all students in EduBook.
 
 Format: `list`
 
-### Editing a student : `edit`
+### Editing students: `edit`
 
 Edits an existing student in EduBook.
 
@@ -201,7 +201,7 @@ Examples:
   To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
-### Deleting a student : `delete`
+### Deleting students: `delete`
 
 Removes the specified student (identified by name or index) from Edubook.
 
@@ -257,7 +257,7 @@ An example of the command `find alex david` is shown below.
 
 ![Find Example](images/FindExample.png "Find Example")
 
-### Assigning an assignment: `assign`
+### Assigning assignments: `assign`
 
 Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
 
@@ -296,7 +296,7 @@ example is shown below:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Unassigning an assignment: `unassign`
+### Unassigning assignments: `unassign`
 
 Unassigns an assignment from a specific student or from all students in a class, depending on the specified parameter.
 
@@ -330,7 +330,7 @@ For example, using the command `unassign n/Bob a/Homework`, the "Homework" assig
 
 ![Unassigned Assignment](images/UnassignedAssignment.png "Unassigned Assignment")
 
-### Marking an assignment: `mark`
+### Marking assignments: `mark`
 
 Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
 
@@ -363,7 +363,7 @@ Upon successful marking of an assignment, the assignment should turn green as sh
 
 ![Marked Assignment](images/MarkedAssignment.png "Marked Assignment")
 
-### Unmarking an assignment: `unmark`
+### Unmarking assignments: `unmark`
 
 Unmarks an assignment as not completed for a specific student or for all students in a class, depending on the specified parameter.
 
@@ -396,7 +396,7 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Labelling student: `label`
+### Labelling students: `label`
 
 Labels a specific student or all students in a class, depending on the specified parameter.
 
@@ -434,7 +434,7 @@ Upon applying a label successfully, the label will appear next to the student's 
 
 ![Apply Label](images/Label.png "Apply label")
 
-### Unlabelling student: `unlabel`
+### Unlabelling students: `unlabel`
 
 Unlabels a specific student or all students in a class, depending on the specified parameter.
 
@@ -467,7 +467,7 @@ An example is shown below.
 
 ![Remove Label](images/NoLabel.png "Remove label")
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from EduBook.
 
@@ -478,7 +478,7 @@ Format: `clear`
 The `clear` command will permanently remove all student data. This action cannot be undone.
 </div>
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -543,20 +543,20 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| **Command**                                         | **Format**                                                                         | **Example**                                                               |
-|-----------------------------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                     | `help`                                                                             | `help`                                                                    |
-| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                     | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
-| [**List**](#listing-all-students--list)             | `list`                                                                             | `list`                                                                    |
-| [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                    |
-| [**View**](#viewing-student-information-view)       | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`                                                 | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`            |
-| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX | n/NAME | c/CLASS}`                                                      | `delete 3`, `delete n/John Doe`, `delete c/Class 1-A`                |
-| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                                                   | `find alex`, `find alex david`                                            |
-| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`               |
-| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`                                          | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`         |
-| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT {n/NAME | c/CLASS}`                                             | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                  |
-| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`               |
-| [**Label**](#applying-a-label-label)                | `label l/LABEL {n/NAME | c/CLASS}`                                                | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`          |
-| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME | c/CLASS}`                                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                                    |
-| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                                            | `clear`                                                                   |
-| [**Exit**](#exiting-the-program--exit)              | `exit`                                                                             | `exit`                                                                    |
+| **Command**                                     | **Format**                                                                         | **Example**                                                               |
+|-------------------------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| [**Help**](#viewing-help-help)                  | `help`                                                                             | `help`                                                                    |
+| [**Add**](#adding-students-add)                 | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                     | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
+| [**List**](#listing-all-students-list)          | `list`                                                                             | `list`                                                                    |
+| [**Edit**](#editing-students-edit)              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                    |
+| [**View**](#viewing-student-information-view)   | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`                                                 | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`            |
+| [**Delete**](#deleting-students-delete)         | `delete {INDEX | n/NAME | c/CLASS}`                                                      | `delete 3`, `delete n/John Doe`, `delete c/Class 1-A`                |
+| [**Find**](#finding-students-by-name-find)      | `find KEYWORD [MORE_KEYWORDS]…​`                                                   | `find alex`, `find alex david`                                            |
+| [**Assign**](#assigning-assignments-assign)     | `assign a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`               |
+| [**Unassign**](#unassigning-assignments-unassign) | `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`                                          | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`         |
+| [**Mark**](#marking-assignments-mark)           | `mark a/ASSIGNMENT {n/NAME | c/CLASS}`                                             | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                  |
+| [**Unmark**](#unmarking-assignments-unmark)     | `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`               |
+| [**Label**](#labelling-students-label)          | `label l/LABEL {n/NAME | c/CLASS}`                                                | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`          |
+| [**Unlabel**](#unlabelling-students-unlabel)    | `unlabel {n/NAME | c/CLASS}`                                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                                    |
+| [**Clear**](#clearing-all-entries-clear)        | `clear`                                                                            | `clear`                                                                   |
+| [**Exit**](#exiting-the-program-exit)           | `exit`                                                                             | `exit`                                                                    |
