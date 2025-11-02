@@ -10,7 +10,7 @@ What makes EduBook **truly special** is that it combines the simplicity of text-
 Its design lets you perform student management tasks quickly and efficiently, 
 regardless of whether you prefer typing or using the visual interface.
 
-EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebook. With EduBook, everything is just *a few keystrokes* away. 
+EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebook. With EduBook, everything is just **a few keystrokes** away. 
 
 * Table of Contents
 {:toc}

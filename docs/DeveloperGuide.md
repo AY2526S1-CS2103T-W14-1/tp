@@ -672,9 +672,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file<br>
+   1. Ensure you have Java `17` or above installed on your computer.<br>
+   To check your version, open a command terminal and run ```java -version```
+   2. Download the jar file and copy it into an empty folder
+   3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar edubook.jar` command 
+   to run the application.<br>   
    Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
 1. Saving window preferences
