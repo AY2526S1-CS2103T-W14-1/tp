@@ -1058,3 +1058,19 @@ This allows tutors to quickly assess and prioritize students’ work at a glance
 
 For our project, approximately 10% of the effort was saved through reuse of AB3's existing codebase. Features which 
 already existed in AB3 such as `add` and `delete` were adapted from the existing implementation to fit our users' needs.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## **Appendix: Planned Enhancements**
+
+Team Size: 5
+
+Based on the current implementation of EduBook, there are known bugs and limitations that we have planned to improve in a future
+iteration. The features are as listed below:
+
+1. **Support for special characters within a name**. Currently, when adding or editing a student, EduBook does not allow the
+input of special characters such as `/` or `-`. As this may be of some inconvenience to tutors when adding students, 
+the planned enhancement would hence be to relax the name validation by modifying EduBook to allow a limited set of safe
+special characters when entering names. This allows flexibility and reduces inconveniences for users.
