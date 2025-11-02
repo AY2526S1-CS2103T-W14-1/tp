@@ -90,9 +90,9 @@ If you just want to see all available commands quickly, jump straight to the <a 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-#### Formatting rules for inputs
+#### Formatting rules for parameters
 
-| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          |
+| Parameters | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          |
 |------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
 | Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric characters, hyphens allowed internally, last label ≥2 chars |
@@ -103,7 +103,7 @@ If you just want to see all available commands quickly, jump straight to the <a 
 | Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-For identification purposes, all inputs are case-insensitive unless stated otherwise.
+For identification purposes, all parameters are case-insensitive unless stated otherwise.
 </div>
 
 ### Viewing help : `help`
@@ -121,7 +121,7 @@ Adds a student to EduBook.
 
 Format: `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`
 
-* All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
+* All parameters must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 A student can have any number of tags (including 0)
@@ -146,10 +146,10 @@ Edits an existing student in EduBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​`
 
-* All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
+* All parameters must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * You must provide at least one of the additional fields.
-* Existing values will be updated to the input values.
+* Existing values will be updated to the parameters values.
 * When editing tags or assignments, all existing tags or assignments will be removed.
 <div markdown="span" class="alert alert-success">:bulb:
 **Tip:** You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
@@ -259,11 +259,11 @@ An example of the command `find alex david` is shown below.
 
 ### Assigning an assignment: `assign`
 
-Assigns an assignment to a specific student or to all students in a class, depending on your input.
+Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
 
 Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
-* The format for assignment can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
+* The format for assignment can be accessed here: [Formatting rules for parameters](#formatting-rules-for-parameters).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `assign a/Homework n/Bob` or `assign a/Homework c/Class 1-A`, but not both.
 
@@ -396,9 +396,9 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Applying a label: `label`
+### Labelling student: `label`
 
-The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
+Labels a specific student or all students in a class, depending on the specified parameter.
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**<br>
 Use **labels** when you want to highlight the most *important* thing you want to remember about a student — like “Needs Help” or “Great Participation.”<br>
@@ -408,7 +408,7 @@ This makes managing your students **much easier!**
 
 Format: `label l/LABEL {n/NAME | c/CLASS}`
 
-* The format for label can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
+* The format for label can be accessed here: [Formatting rules for parameters](#formatting-rules-for-parameters).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `label l/Top student n/Bob` or `label l/Online Meeting c/Class 1-A`, but not both.
 
@@ -434,9 +434,9 @@ Upon applying a label successfully, the label will appear next to the student's 
 
 ![Apply Label](images/Label.png "Apply label")
 
-### Removing a label: `unlabel`
+### Unlabelling student: `unlabel`
 
-The unlabel command lets you remove a label from a specific student or from all students in a class, depending on your input.
+Unlabels a specific student or all students in a class, depending on the specified parameter.
 
 Format: `unlabel {n/NAME | c/CLASS}`
 
@@ -493,7 +493,7 @@ EduBook data is saved in the hard disk automatically after any command that chan
 EduBook data is saved automatically as a JSON file `[JAR file location]/data/edubook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
-See [Formatting rules for inputs](#formatting-rules-for-inputs) above.
+See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 If your changes to the data file make its format invalid, EduBook will display an error message as shown below.
