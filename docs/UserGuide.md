@@ -302,6 +302,10 @@ Examples:
 * `unassign a/Homework c/Class 1-A` — unassigns `Homework` from all students in `Class 1-A`, skipping those who do not have it
 * `unassign a/Tutorial 1 c/Tutorial Group 2` — unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping those who do not have it
 
+After unassigning an assignment, the assignment will no longer be displayed to the right of the student's details and label. 
+For example, using the command `unassign n/Bob a/Homework`, the "Homework" assignment will no longer be displayed as shown below.
+![Unassigned Assignment](images/UnassignedAssignment.png "Unassigned Assignment")
+
 ### Marking an assignment: `mark`
 
 Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
@@ -361,7 +365,8 @@ Examples:
 * `unmark a/Tutorial 1 c/Class 1-A` — unmarks `Tutorial 1` as not completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already unmarked
 * `unmark a/Homework c/Tutorial Group 2` — unmarks `Homework` as not completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already unmarked
 
-Upon successful unmarking, the assignment will revert to red colour.
+Upon successful unmarking, the assignment will revert to red colour as shown:
+![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Apply a label: `label`
 
