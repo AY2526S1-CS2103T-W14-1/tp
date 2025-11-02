@@ -496,6 +496,8 @@ Please ensure that formatting rules are followed during manual editing.
 See [Formatting rules for inputs](#formatting-rules-for-inputs) above.
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+If your changes to the data file make its format invalid, EduBook will display an error message as shown below.
+
 To retain your saved file, exit immediately without making changes to the blank file. Revert the changes and reload EduBook. 
 Otherwise, a new empty file will be used. The new file **will be saved** upon using the `exit` command or making changes to the file, 
 **erasing the old file**.
@@ -505,10 +507,8 @@ Otherwise, a new empty file will be used. The new file **will be saved** upon us
 
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:**  
-If your changes to the data file make its format invalid, EduBook will display an error message.
-
-Furthermore, certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
+:exclamation: **Caution:**
+Certain edits can cause the EduBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range).  
 Only edit the data file if you are confident that you can update it correctly.
 </div>
 
@@ -543,20 +543,20 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| **Command**                                         | **Format**                                               | **Example**                                                                      |
-|-----------------------------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                     | `help`                                                   | `help`                                                                           |
-| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`          | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
-| [**List**](#listing-all-students--list)             | `list`                                                   | `list`                                                                           |
+| **Command**                                         | **Format**                                                                               | **Example**                                                                      |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                     | `help`                                                                                   | `help`                                                                           |
+| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                           | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
+| [**List**](#listing-all-students--list)             | `list`                                                                                   | `list`                                                                           |
 | [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                      |
-| [**View**](#viewing-student-information-view)       | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`              | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`                        |
-| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe`                                                  |
-| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                        | `find alex`, `find alex david`                                                   |
-| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`          | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                   |
-| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`               |
-| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`            | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                       |
-| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT_NAME {n/NAME | c/CLASS}`          | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                   |
-| [**Label**](#apply-a-label-label)                   | `label l/LABEL {n/NAME | c/CLASS}`                     | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`             |
-| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME | c/CLASS}`                            | `unlabel n/John Doe`, `unlabel c/Class 10B`                                      |
-| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                  | `clear`                                                                          |
-| [**Exit**](#exiting-the-program--exit)              | `exit`                                                   | `exit`                                                                           |
+| [**View**](#viewing-student-information-view)       | `view {n/NAME                                                                            | c/CLASS | a/ASSIGNMENT}`              | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`                        |
+| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX                                                                           | n/NAME | c/CLASS}`                    | `delete 3`, `delete n/John Doe, delete c/Class 1-A`                                                  |
+| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                                                         | `find alex`, `find alex david`                                                   |
+| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`          | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                   |
+| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME                                                      | c/CLASS}`        | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`               |
+| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME                                                          | c/CLASS}`            | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                       |
+| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`          | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`                   |
+| [**Label**](#apply-a-label-label)                   | `label l/LABEL {n/NAME                                                                   | c/CLASS}`                     | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`             |
+| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME                                                                         | c/CLASS}`                            | `unlabel n/John Doe`, `unlabel c/Class 10B`                                      |
+| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                                                  | `clear`                                                                          |
+| [**Exit**](#exiting-the-program--exit)              | `exit`                                                                                   | `exit`                                                                           |
