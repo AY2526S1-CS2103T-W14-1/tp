@@ -19,7 +19,7 @@ EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets o
 
 ## Quick start
 
-<div markdown="span" class="alert alert-info">:bulb 
+<div markdown="span" class="alert alert-info">:bulb:
 **Tip:**
 If you just want to see all available commands quickly, jump straight to the <a href="#command-summary">Command summary</a> table.
 </div>
