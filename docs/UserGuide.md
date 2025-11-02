@@ -246,7 +246,7 @@ Examples
 * `find alex david` returns `Alex Yeoh`,`David Li`
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip: **
-Use <code>find</code> to search for students by **partial names or keywords!**
+Use <code>find</code> to search for students by **partial names or keywords!**<br>
 For example: <code>find Alex</code> will return all students whose name contains "Alex".
 </div>
 
