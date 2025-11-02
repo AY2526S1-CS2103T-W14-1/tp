@@ -92,18 +92,24 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 #### Formatting rules for parameters
 
-| Parameters | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          |
-|------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
-| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric characters, hyphens allowed internally, last label ≥2 chars |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                           |
-| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                                  |
-| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
-| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                                        | 
-| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
+| Parameter  | Prefix | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          |
+|------------|--------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NAME`       | `n/`     | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
+| `EMAIL`      | `e/`     | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric characters, hyphens allowed internally, last label ≥2 chars |
+| `PHONE`      | `p/`     | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                           |
+| `CLASS`      | `c/`     | 20         | Any value, must not be blank                                                                                                                                                                                                                                                                  |
+| `ASSIGNMENT` | `a/`     | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
+| `TAG`        | `t/`     | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                                        | 
+| `LABEL`      | `l/`     | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 For identification purposes, all parameters are case-insensitive unless stated otherwise.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**  
+Prefixes are case-sensitive! They must be provided in lower-case only, or they will not be detected by the app.
+Example: `T/` will not be detected as a `TAG` prefix
 </div>
 
 ### Viewing help: `help`
