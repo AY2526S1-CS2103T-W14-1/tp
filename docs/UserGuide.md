@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-EduBook is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduBook can get your student management tasks done faster than traditional GUI apps.
+EduBook is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EduBook can get your 
+student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -186,7 +188,7 @@ Examples:
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To restore full view, use the `list` command.
+  To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
 ### Deleting a student : `delete`
@@ -198,6 +200,7 @@ Format: `delete {INDEX | n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the three parameters — one of `INDEX`, `n/NAME` or `c/CLASS`.  
   e.g. `delete 1`, `delete n/John Doe` or `delete c/Class 10B`
+
 
 * If `INDEX` is used:
     * Removes the student with the specified `INDEX`.
@@ -225,7 +228,7 @@ Examples:
 * `delete c/Class 10B` deletes all students in the class "Class 10B"
 
 
-### Locating students by name: `find`
+### Finding students by name: `find`
 
 Finds students whose names contain any of the given keywords.
 
@@ -253,6 +256,7 @@ Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `assign a/Homework n/Bob` or `assign a/Homework c/Class 1-A`, but not both.
 
+
 * If `n/NAME` is used:
     * Assigns the assignment `ASSIGNMENT` to the student named `NAME`.
     * The student must exist in EduBook.
@@ -273,6 +277,7 @@ Examples:
 
 A new assignment will be unmarked by default. The assignment will be displayed to the right of the student's details and label. An
 example is shown below:
+
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Unassigning an assignment: `unassign`
@@ -283,6 +288,7 @@ Format: `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unassign a/Homework n/Bob` or `unassign a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Unassigns the assignment `ASSIGNMENT` from the student named `NAME`.
@@ -302,8 +308,10 @@ Examples:
 * `unassign a/Homework c/Class 1-A` — unassigns `Homework` from all students in `Class 1-A`, skipping those who do not have it
 * `unassign a/Tutorial 1 c/Tutorial Group 2` — unassigns `Tutorial 1` from all students in `Tutorial Group 2`, skipping those who do not have it
 
-After unassigning an assignment, the assignment will no longer be displayed to the right of the student's details and label. 
+After unassigning an assignment, the assignment will no longer be displayed.
+
 For example, using the command `unassign n/Bob a/Homework`, the "Homework" assignment will no longer be displayed as shown below.
+
 ![Unassigned Assignment](images/UnassignedAssignment.png "Unassigned Assignment")
 
 ### Marking an assignment: `mark`
@@ -314,6 +322,7 @@ Format: `mark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `mark a/Homework n/Bob` or `mark a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Marks the assignment `ASSIGNMENT` of the student named `NAME` as completed.
@@ -334,7 +343,8 @@ Examples:
 * `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
 * `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
 
-Upon successful marking, the assignment should turn green as shown:
+Upon successful marking of an assignment, the assignment should turn green as shown:
+
 ![Marked Assignment](images/MarkedAssignment.png "Marked Assignment")
 
 ### Unmarking an assignment: `unmark`
@@ -345,6 +355,7 @@ Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unmark a/Homework n/Bob` or `unmark a/Homework c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
   * Unmarks the assignment `ASSIGNMENT` of the student named `NAME` as not completed.
@@ -366,6 +377,7 @@ Examples:
 * `unmark a/Homework c/Tutorial Group 2` — unmarks `Homework` as not completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already unmarked
 
 Upon successful unmarking, the assignment will revert to red colour as shown:
+
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
 ### Apply a label: `label`
@@ -377,6 +389,7 @@ Format: `label l/LABEL {n/NAME | c/CLASS}`
 * The format for label can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `label l/Top student n/Bob` or `label l/Online Meeting c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Applies the label `LABEL` to the student named `NAME`.
@@ -395,6 +408,10 @@ Examples:
 * `label l/Online class c/Class 1-A` — applies `Online class` to all students in `Class 1-A`
 * `label l/Remedial c/Tutorial Group 2` — assigns `Remedial` to all students in `Tutorial Group 2`
 
+Upon applying a label successfully, the label will appear next to the student's details as shown below.
+
+![Apply Label](images/Label.png "Apply label")
+
 ### Removing a label: `unlabel`
 
 Removes a label from a specific student or from all students in a class, depending on the specified parameter.
@@ -403,6 +420,7 @@ Format: `unlabel {n/NAME | c/CLASS}`
 
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `unlabel n/Bob` or `unlabel c/Class 1-A`, but not both.
+
 
 * If `n/NAME` is used:
     * Removes the label from the student named `NAME`.
@@ -420,6 +438,10 @@ Examples:
 * `unlabel n/John Doe` — removes any label from `John Doe`
 * `unlabel c/Class 1-A` — removes any label from all students in `Class 1-A`
 * `unlabel c/Tutorial Group 2` — removes any label from all students in `Tutorial Group 2`
+
+Upon removing a label successfully, the label will no longer be displayed next to the student's details as shown below.
+
+![Remove Label](images/NoLabel.png "Remove label")
 
 ### Clearing all entries : `clear`
 
@@ -494,7 +516,7 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 | [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                                         |
 | [**View**](#viewing-student-information-view)       | `view {n/NAME                                                                            | c/CLASS}`                                                     | `view n/James Lee`, `view c/Class-B`                                               |
 | [**Delete**](#deleting-a-student--delete)           | `delete {INDEX                                                                           | n/NAME}`                                                    | `delete 3`, `delete n/John Doe`                                                   |
-| [**Find**](#locating-students-by-name-find)         | `find KEYWORD [MORE_KEYWORDS]…​`                                                           | `find alex`, `find alex david`                                                    |
+| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                                                           | `find alex`, `find alex david`                                                    |
 | [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT_NAME {n/NAME                                                        | c/CLASS}`                               | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`                      |
 | [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT_NAME {n/NAME                                                      | c/CLASS}`                            | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`                  |
 | [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT_NAME {n/NAME                                                          | c/CLASS}`                               | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                          |
