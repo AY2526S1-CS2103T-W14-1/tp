@@ -936,7 +936,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `unlabel c/1A`<br>
        Expected: Error message displayed.
 
-Labeling students
+### Labeling students
 
 1. Labeling a student
 
@@ -986,7 +986,7 @@ Labeling students
 
 Our project aims to provide an efficient contact management system for a tutor with a relatively large student base, 
 building on AddressBook Level 3 (AB3). Additional features include assigning and unassigning assignments, marking and 
-unmarking assignments as completed, labelling students and removing the labels, as well as viewing student data. 
+unmarking assignments as completed, labeling students and removing the labels, as well as viewing student data. 
 All the above could be done by class at once as well. These improvements are aimed to provide a cost-effective solution 
 to help tutors save time, money and manpower on repetitive tasks, while also enabling them to more effectively 
 handle their students' information.
