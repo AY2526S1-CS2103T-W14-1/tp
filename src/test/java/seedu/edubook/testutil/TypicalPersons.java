@@ -49,6 +49,13 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withClass("FASS L12").build();
 
+    public static final Person JANE = new PersonBuilder().withName("Jane How")
+            .withClass("123")
+            .withEmail("jane@example.com")
+            .withPhone("94351250")
+            .withTags("friends")
+            .withAssignments("Homework 3").build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withClass(VALID_CLASS_AMY).withTags(VALID_TAG_FRIEND).build();
