@@ -34,6 +34,7 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.edubook.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.edubook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edubook.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -228,14 +229,14 @@ public class EditCommandParserTest {
                 + TAG_DESC_HUSBAND + ASSIGNMENT_DESC_TUTORIAL + LABEL_DESC_GOOD + LABEL_DESC_BAD;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_LABEL, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS));
 
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_CLASS_DESC + INVALID_EMAIL_DESC
                 + INVALID_PHONE_DESC + INVALID_CLASS_DESC + INVALID_EMAIL_DESC + INVALID_LABEL_DESC;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL, PREFIX_CLASS, PREFIX_PHONE));
     }
 
     @Test
