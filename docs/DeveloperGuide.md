@@ -34,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-Internally, we use AdressBook to represent EduBook, and person to represent student. Class names inherited from AB3 may be unchanged.
+Internally, we use AddressBook to represent EduBook, and person to represent student. Class names inherited from AB3 may be unchanged.
 </div>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
