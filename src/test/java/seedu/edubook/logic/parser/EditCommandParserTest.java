@@ -10,9 +10,12 @@ import static seedu.edubook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_LABEL_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.edubook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.edubook.logic.commands.CommandTestUtil.LABEL_DESC_BAD;
+import static seedu.edubook.logic.commands.CommandTestUtil.LABEL_DESC_GOOD;
 import static seedu.edubook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -22,6 +25,7 @@ import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOME
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_TUTORIAL;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_LABEL_GOOD;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -45,6 +49,7 @@ import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.EditCommand;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.PersonName;
 import seedu.edubook.model.person.Phone;
@@ -96,6 +101,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_CLASS_DESC, TuitionClass.MESSAGE_CONSTRAINTS); // invalid class
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_LABEL_DESC, Label.MESSAGE_CONSTRAINTS); // invalid label
         assertParseFailure(parser,
                 "1" + INVALID_ASSIGNMENT_DESC, AssignmentName.MESSAGE_CONSTRAINTS); // invalid assignment
 
@@ -129,12 +135,13 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + ASSIGNMENT_DESC_HOMEWORK
-                + EMAIL_DESC_AMY + CLASS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + ASSIGNMENT_DESC_TUTORIAL;
+                + EMAIL_DESC_AMY + CLASS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + ASSIGNMENT_DESC_TUTORIAL
+                + LABEL_DESC_GOOD;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withClass(VALID_CLASS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withAssignments(VALID_ASSIGNMENT_HOMEWORK,
-                        VALID_ASSIGNMENT_TUTORIAL).build();
+                        VALID_ASSIGNMENT_TUTORIAL).withLabel(VALID_LABEL_GOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -179,6 +186,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // label
+        userInput = targetIndex.getOneBased() + LABEL_DESC_GOOD;
+        descriptor = new EditPersonDescriptorBuilder().withLabel(VALID_LABEL_GOOD).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
@@ -212,14 +225,14 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + CLASS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + ASSIGNMENT_DESC_HOMEWORK + PHONE_DESC_AMY + CLASS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + ASSIGNMENT_DESC_HOMEWORK + PHONE_DESC_BOB + CLASS_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + ASSIGNMENT_DESC_TUTORIAL;
+                + TAG_DESC_HUSBAND + ASSIGNMENT_DESC_TUTORIAL + LABEL_DESC_GOOD + LABEL_DESC_BAD;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS));
 
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_CLASS_DESC + INVALID_EMAIL_DESC
-                + INVALID_PHONE_DESC + INVALID_CLASS_DESC + INVALID_EMAIL_DESC;
+                + INVALID_PHONE_DESC + INVALID_CLASS_DESC + INVALID_EMAIL_DESC + INVALID_LABEL_DESC;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CLASS));
