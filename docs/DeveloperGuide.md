@@ -34,8 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-In the Developer Guide, address book and EduBook are interchangeable. Student and person are interchangeable as well.
-Class names inherited from AB3 may remain unchanged.
+Internally, we use AdressBook to represent EduBook, and person to represent student. Class names inherited from AB3 may be unchanged.
 </div>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -78,7 +77,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-W14-1/tp/tree/master/src/main/java/seedu/edubook/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-W14-1/tp/tree/master/src/main/java/seedu/edubook/ui/Ui.java) and [`ErrorDisplayable.java`](https://github.com/AY2526S1-CS2103T-W14-1/tp/tree/master/src/main/java/seedu/edubook/ui/ErrorDisplayable.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
