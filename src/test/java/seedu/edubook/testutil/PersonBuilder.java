@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_CLASS = "123";
+    public static final String DEFAULT_LABEL = "Top student";
 
     private PersonName name;
     private Phone phone;
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private TuitionClass tuitionClass;
     private Set<Tag> tags;
     private Set<Assignment> assignments;
+    private Label label;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +42,7 @@ public class PersonBuilder {
         tuitionClass = new TuitionClass(DEFAULT_CLASS);
         tags = new HashSet<>();
         assignments = new HashSet<>();
+        label = new Label(DEFAULT_LABEL);
     }
 
     /**
@@ -51,6 +55,7 @@ public class PersonBuilder {
         tuitionClass = personToCopy.getTuitionClass();
         tags = new HashSet<>(personToCopy.getTags());
         assignments = new HashSet<>(personToCopy.getAssignments());
+        label = personToCopy.getLabel();
     }
 
     /**
@@ -90,6 +95,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLabel(String label) {
+        this.label = new Label(label);
         return this;
     }
 

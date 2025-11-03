@@ -21,10 +21,10 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.logic.commands.exceptions.LabelAlreadyExistsException;
 import seedu.edubook.model.ModelManager;
-import seedu.edubook.model.assignment.Assignment;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -48,7 +48,7 @@ public class LabelCommandTest {
     }
 
     @Test
-    public void execute_nameTargetforLabel_success() throws CommandException {
+    public void execute_nameTargetForLabel_success() throws CommandException {
         ModelStub model = new ModelStub();
         LabelCommand command = new LabelCommand(LABEL_GOOD, NAME_TARGET_BENSON);
 
@@ -58,6 +58,31 @@ public class LabelCommandTest {
                 LABEL_GOOD.toString(), 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_nameTargetWithLabel_throwsLabelAlreadyExistsException() {
+        ModelStub model = new ModelStub();
+        Label duplicateLabel = new Label("Duplicate");
+        LabelCommand command = new LabelCommand(duplicateLabel, NAME_TARGET_AMY);
+
+        LabelAlreadyExistsException e = assertThrows(
+                LabelAlreadyExistsException.class, () -> command.execute(model));
+
+        assertEquals(LabelAlreadyExistsException.forStudent().getMessage(), e.getMessage());
+    }
+
+    @Test
+    public void execute_classTargetAllStudentsSkipped_throwsLabelAlreadyExistsException() {
+        ModelStubAllStudentsSkipped model = new ModelStubAllStudentsSkipped();
+        LabelCommand command = new LabelCommand(LABEL_GOOD, CLASS_TARGET_AMY);
+
+        LabelAlreadyExistsException e = assertThrows(
+                LabelAlreadyExistsException.class, () -> command.execute(model));
+
+        assertEquals(
+                LabelAlreadyExistsException.forClass(CLASS_TARGET_AMY.getDisplayName()).getMessage(),
+                e.getMessage());
     }
 
     @Test
@@ -202,9 +227,25 @@ public class LabelCommandTest {
         }
     }
 
+    static class ModelStubAllStudentsSkipped extends ModelStub {
+        @Override
+        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+            Phone phone = new Phone("99999999");
+            Email email = new Email("dummy@edu.com");
+
+            PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
+
+            alice.hasLabel = true;
+            bob.hasLabel = true;
+
+            return List.of(alice, bob);
+        }
+    }
+
     static class PersonStub extends Person {
         private final PersonName name;
-        private boolean hasDuplicateAssignment = false;
+        private boolean hasLabel = false;
 
         PersonStub(PersonName name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
             super(name, phone, email, tuitionClass, tags);
@@ -217,9 +258,9 @@ public class LabelCommandTest {
         }
 
         @Override
-        public PersonStub withAddedAssignment(Assignment assignment) throws AssignmentAlreadyExistsException {
-            if (hasDuplicateAssignment || assignment.assignmentName.fullName.equals("Duplicate")) {
-                throw AssignmentAlreadyExistsException.forStudent();
+        public PersonStub withAddedLabel(Label label) throws LabelAlreadyExistsException {
+            if (hasLabel || label.labelContent.equals("Duplicate")) {
+                throw LabelAlreadyExistsException.forStudent();
             }
             return this;
         }
