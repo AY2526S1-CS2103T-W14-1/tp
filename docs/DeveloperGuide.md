@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on [AddressBook Level 3 (AB3) project by the SE-EDU initiative.](https://se-education.org/addressbook-level3/)
+* Built using JavaFX (maintained by [OpenJDK](https://wiki.openjdk.org/display/OpenJFX)) for the GUI.
+* Uses [Jackson](https://github.com/FasterXML/jackson) for JSON data serialization and deserialization.
+* Uses [JUnit](https://junit.org) for testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
