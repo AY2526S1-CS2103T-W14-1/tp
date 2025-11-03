@@ -68,7 +68,7 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 **:information_source: Some information about the command format:**<br>
 
-* Command words are case-insensitive (command word refers to the first word in the command format).<br>
+* Command words are **case-insensitive** (command word refers to the first word in the command format).<br>
   e.g. `add` can be supplied as `ADD`, `adD`, `AdD`, etc.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
@@ -105,12 +105,12 @@ If you just want to see all available commands quickly, jump straight to the <a 
 | `LABEL`      | `l/`   | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       | Multiple spaces are trimmed to a single space |
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-For identification purposes, all parameters are case-insensitive unless stated otherwise.
+For identification purposes, all parameters are **case-insensitive** unless stated otherwise.
 </div>
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**  
-Prefixes are case-sensitive! They must be provided in lower-case only, or they will not be detected by the app.
+Prefixes are **case-sensitive**! They must be provided in lower-case only, or they will not be detected by the app.<br>
 Example: `T/` will not be detected as a `TAG` prefix
 </div>
 
