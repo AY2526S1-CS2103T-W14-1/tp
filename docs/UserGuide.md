@@ -546,7 +546,7 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. **Using special prefixes for class name results in unclear error message**, if you want to enter a Class name "Class n/2", the "n/2" may be seen as a name prefix instead. The recommended solution would be to use "Class n-2" instead, replacing "/" with "-".
+3. **Using special prefixes for class name results in unclear error message**, if you want to enter a Class name "Class n/2", the "n/" may be seen as a name prefix instead. The recommended solution would be to use "Class n-2" instead, replacing "/" with "-".
 
 --------------------------------------------------------------------------------------------------------------------
 
