@@ -13,6 +13,8 @@ title: Developer Guide
 * Built using JavaFX (maintained by [OpenJDK](https://wiki.openjdk.org/display/OpenJFX)) for the GUI.
 * Uses [Jackson](https://github.com/FasterXML/jackson) for JSON data serialization and deserialization.
 * Uses [JUnit](https://junit.org) for testing.
+* Uses [PlantUML](https://plantuml.com/) for modelling.
+* Uses [Gradle](https://gradle.org/) for build automation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,6 +32,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+In the Developer Guide, address book and EduBook are interchangeable. Student and person are interchangeable as well.
+Class names inherited from AB3 may remain unchanged.
+</div>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
