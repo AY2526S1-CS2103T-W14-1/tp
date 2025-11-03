@@ -69,6 +69,9 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 **:information_source: Some information about the command format:**<br>
 
+* Command words are case-insensitive (command word refers to the first word in the command format).<br>
+  e.g. `add` can be supplied as `ADD`, `adD`, `AdD`, etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -90,23 +93,29 @@ If you just want to see all available commands quickly, jump straight to the <a 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-#### Formatting rules for inputs
+#### Formatting rules for parameters
 
-| Inputs     | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          |
-|------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name       | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
-| Email      | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric characters, hyphens allowed internally, last label ≥2 chars |
-| Phone      | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                           |
-| Class      | 20         | Any value, must not be blank                                                                                                                                                                                                                                                                  |
-| Assignment | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
-| Tag        | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                                        | 
-| Label      | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       |
+| Parameter    | Prefix | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          | Normalization                                 |
+|--------------|--------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| `NAME`       | `n/`   | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       | Multiple spaces are trimmed to a single space |
+| `EMAIL`      | `e/`   | 100        | Format: `local-part@domain`<br>- Local-part: alphanumeric + `+`, `_`, `.`, `-`; cannot start or end with a special character<br>- Domain: made out of domain labels separated by `.`, each label must start/end with alphanumeric characters, hyphens allowed internally, last label ≥2 chars | NIL                                           |
+| `PHONE`      | `p/`   | 20         | Digits only, at least 3 digits long                                                                                                                                                                                                                                                           | NIL                                           |
+| `CLASS`      | `c/`   | 20         | Any value, must not be blank                                                                                                                                                                                                                                                                  | Multiple spaces are trimmed to a single space |
+| `ASSIGNMENT` | `a/`   | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       | Multiple spaces are trimmed to a single space |
+| `TAG`        | `t/`   | 20         | Alphanumeric letters and spaces only; optional to have                                                                                                                                                                                                                                        | Multiple spaces are trimmed to a single space | 
+| `LABEL`      | `l/`   | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       | Multiple spaces are trimmed to a single space |
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-For identification purposes, all inputs are case-insensitive unless stated otherwise.
+For identification purposes, all parameters are case-insensitive unless stated otherwise.
 </div>
 
-### Viewing help : `help`
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**  
+Prefixes are case-sensitive! They must be provided in lower-case only, or they will not be detected by the app.
+Example: `T/` will not be detected as a `TAG` prefix
+</div>
+
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -115,13 +124,13 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a student: `add`
+### Adding students: `add`
 
 Adds a student to EduBook.
 
 Format: `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`
 
-* All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
+* All parameters must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 A student can have any number of tags (including 0)
@@ -134,22 +143,22 @@ Examples:
 An example of the layout is shown below:
 ![Add Example](images/AddExample.png "Add Example")
 
-### Listing all students : `list`
+### Listing all students: `list`
 
 Shows a list of all students in EduBook.
 
 Format: `list`
 
-### Editing a student : `edit`
+### Editing students: `edit`
 
 Edits an existing student in EduBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​`
 
-* All inputs must adhere to the [Formatting rules for inputs](#formatting-rules-for-inputs).
+* All parameters must adhere to the [Formatting rules for parameters](#formatting-rules-for-parameters).
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * You must provide at least one of the additional fields.
-* Existing values will be updated to the input values.
+* Existing values will be updated to the parameters values.
 * When editing tags or assignments, all existing tags or assignments will be removed.
 <div markdown="span" class="alert alert-success">:bulb:
 **Tip:** You can remove all of a student’s tags or assignments by typing <code>t/</code> or <code>a/</code> respectively, 
@@ -201,7 +210,7 @@ Examples:
   To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
 </div>
 
-### Deleting a student : `delete`
+### Deleting students: `delete`
 
 Removes the specified student (identified by name or index) from Edubook.
 
@@ -257,13 +266,13 @@ An example of the command `find alex david` is shown below.
 
 ![Find Example](images/FindExample.png "Find Example")
 
-### Assigning an assignment: `assign`
+### Assigning assignments: `assign`
 
-Assigns an assignment to a specific student or to all students in a class, depending on your input.
+Assigns an assignment to a specific student or to all students in a class, depending on the specified parameter.
 
 Format: `assign a/ASSIGNMENT {n/NAME | c/CLASS}`
 
-* The format for assignment can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
+* The format for assignment can be accessed here: [Formatting rules for parameters](#formatting-rules-for-parameters).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `assign a/Homework n/Bob` or `assign a/Homework c/Class 1-A`, but not both.
 
@@ -296,7 +305,7 @@ example is shown below:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Unassigning an assignment: `unassign`
+### Unassigning assignments: `unassign`
 
 Unassigns an assignment from a specific student or from all students in a class, depending on the specified parameter.
 
@@ -330,7 +339,7 @@ For example, using the command `unassign n/Bob a/Homework`, the "Homework" assig
 
 ![Unassigned Assignment](images/UnassignedAssignment.png "Unassigned Assignment")
 
-### Marking an assignment: `mark`
+### Marking assignments: `mark`
 
 Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
 
@@ -363,7 +372,7 @@ Upon successful marking of an assignment, the assignment should turn green as sh
 
 ![Marked Assignment](images/MarkedAssignment.png "Marked Assignment")
 
-### Unmarking an assignment: `unmark`
+### Unmarking assignments: `unmark`
 
 Unmarks an assignment as not completed for a specific student or for all students in a class, depending on the specified parameter.
 
@@ -396,9 +405,9 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
-### Applying a label: `label`
+### Labelling students: `label`
 
-The label command lets you assign a single label to a specific student or to all students in a class, depending on your input.
+Labels a specific student or all students in a class, depending on the specified parameter.
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**<br>
 Use **labels** when you want to highlight the most *important* thing you want to remember about a student — like “Needs Help” or “Great Participation.”<br>
@@ -408,7 +417,7 @@ This makes managing your students **much easier!**
 
 Format: `label l/LABEL {n/NAME | c/CLASS}`
 
-* The format for label can be accessed here: [Formatting rules for inputs](#formatting-rules-for-inputs).
+* The format for label can be accessed here: [Formatting rules for parameters](#formatting-rules-for-parameters).
 * You must specify **exactly one** of the two parameters — either `n/NAME` or `c/CLASS`.  
   e.g. `label l/Top student n/Bob` or `label l/Online Meeting c/Class 1-A`, but not both.
 
@@ -434,9 +443,9 @@ Upon applying a label successfully, the label will appear next to the student's 
 
 ![Apply Label](images/Label.png "Apply label")
 
-### Removing a label: `unlabel`
+### Unlabelling students: `unlabel`
 
-The unlabel command lets you remove a label from a specific student or from all students in a class, depending on your input.
+Unlabels a specific student or all students in a class, depending on the specified parameter.
 
 Format: `unlabel {n/NAME | c/CLASS}`
 
@@ -467,7 +476,7 @@ An example is shown below.
 
 ![Remove Label](images/NoLabel.png "Remove label")
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from EduBook.
 
@@ -478,7 +487,7 @@ Format: `clear`
 The `clear` command will permanently remove all student data. This action cannot be undone.
 </div>
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -493,7 +502,7 @@ EduBook data is saved in the hard disk automatically after any command that chan
 EduBook data is saved automatically as a JSON file `[JAR file location]/data/edubook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Please ensure that formatting rules are followed during manual editing.   
-See [Formatting rules for inputs](#formatting-rules-for-inputs) above.
+See [Formatting rules for parameters](#formatting-rules-for-parameters) above.
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
 If your changes to the data file make its format invalid, EduBook will display an error message as shown below.
@@ -543,20 +552,20 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Command summary
 
-| **Command**                                         | **Format**                                                                         | **Example**                                                               |
-|-----------------------------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| [**Help**](#viewing-help--help)                     | `help`                                                                             | `help`                                                                    |
-| [**Add**](#adding-a-student-add)                    | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                     | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
-| [**List**](#listing-all-students--list)             | `list`                                                                             | `list`                                                                    |
-| [**Edit**](#editing-a-student--edit)                | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                    |
-| [**View**](#viewing-student-information-view)       | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`                                                 | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`            |
-| [**Delete**](#deleting-a-student--delete)           | `delete {INDEX | n/NAME | c/CLASS}`                                                      | `delete 3`, `delete n/John Doe`, `delete c/Class 1-A`                |
-| [**Find**](#finding-students-by-name-find)          | `find KEYWORD [MORE_KEYWORDS]…​`                                                   | `find alex`, `find alex david`                                            |
-| [**Assign**](#assigning-an-assignment-assign)       | `assign a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`               |
-| [**Unassign**](#unassigning-an-assignment-unassign) | `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`                                          | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`         |
-| [**Mark**](#marking-an-assignment-mark)             | `mark a/ASSIGNMENT {n/NAME | c/CLASS}`                                             | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                  |
-| [**Unmark**](#unmarking-an-assignment-unmark)       | `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`               |
-| [**Label**](#applying-a-label-label)                | `label l/LABEL {n/NAME | c/CLASS}`                                                | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`          |
-| [**Unlabel**](#removing-a-label-unlabel)            | `unlabel {n/NAME | c/CLASS}`                                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                                    |
-| [**Clear**](#clearing-all-entries--clear)           | `clear`                                                                            | `clear`                                                                   |
-| [**Exit**](#exiting-the-program--exit)              | `exit`                                                                             | `exit`                                                                    |
+| **Command**                                     | **Format**                                                                         | **Example**                                                               |
+|-------------------------------------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| [**Help**](#viewing-help-help)                  | `help`                                                                             | `help`                                                                    |
+| [**Add**](#adding-students-add)                 | `add n/NAME p/PHONE e/EMAIL c/CLASS [t/TAG]…​`                                     | `add n/James Ho p/22224444 e/jamesho@example.com c/Class 10B t/Team A t/Grade B` |
+| [**List**](#listing-all-students-list)          | `list`                                                                             | `list`                                                                    |
+| [**Edit**](#editing-students-edit)              | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [l/LABEL] [t/TAG]…​ [a/ASSIGNMENT]…​` | `edit 2 n/James Lee e/jameslee@example.com`                    |
+| [**View**](#viewing-student-information-view)   | `view {n/NAME | c/CLASS | a/ASSIGNMENT}`                                                 | `view n/James Lee`, `view c/Class-B`, `view a/Tutorial 1`            |
+| [**Delete**](#deleting-students-delete)         | `delete {INDEX | n/NAME | c/CLASS}`                                                      | `delete 3`, `delete n/John Doe`, `delete c/Class 1-A`                |
+| [**Find**](#finding-students-by-name-find)      | `find KEYWORD [MORE_KEYWORDS]…​`                                                   | `find alex`, `find alex david`                                            |
+| [**Assign**](#assigning-assignments-assign)     | `assign a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `assign a/Tutorial 1 n/John Doe`, `assign a/Lab 2 c/Class 10B`               |
+| [**Unassign**](#unassigning-assignments-unassign) | `unassign a/ASSIGNMENT {n/NAME | c/CLASS}`                                          | `unassign a/Tutorial 1 n/John Doe`, `unassign a/Lab 2 c/Class 10B`         |
+| [**Mark**](#marking-assignments-mark)           | `mark a/ASSIGNMENT {n/NAME | c/CLASS}`                                             | `mark a/Tutorial 1 n/John Doe`, `mark a/Lab 2 c/Class 10B`                  |
+| [**Unmark**](#unmarking-assignments-unmark)     | `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`                                           | `unmark a/Tutorial 1 n/John Doe`, `unmark a/Lab 2 c/Class 10B`               |
+| [**Label**](#labelling-students-label)          | `label l/LABEL {n/NAME | c/CLASS}`                                                | `label l/Top student n/John Doe`, `label l/Online class c/Class 10B`          |
+| [**Unlabel**](#unlabelling-students-unlabel)    | `unlabel {n/NAME | c/CLASS}`                                                    | `unlabel n/John Doe`, `unlabel c/Class 10B`                                    |
+| [**Clear**](#clearing-all-entries-clear)        | `clear`                                                                            | `clear`                                                                   |
+| [**Exit**](#exiting-the-program-exit)           | `exit`                                                                             | `exit`                                                                    |
