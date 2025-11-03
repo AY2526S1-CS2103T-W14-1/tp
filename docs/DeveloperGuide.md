@@ -1095,7 +1095,7 @@ using `view` or `find`, should a tutor try to perform operations on other studen
 will succeed and a success message is displayed to the user. However, the list remains filtered and does not reflect the change. 
 As a result, this may mislead tutors into thinking that the command failed or had no effect. 
 The planned enhancement would be to modify the GUI such that it refreshes automatically and unfilters the list when a 
-change is made to a student currently not visible. The tutor is hence made aware of the successful change.
+change is made to a student currently not visible, such that the tutor is made aware of the successful change.
 
 4. **Allowing class names to use special prefixes**. Currently, using "Class n/2" as class name will result in unexpected behaviour as "n/" is a special
 prefix used for NAME. As this may cause some inconvenience to tutor whose class is "Class n/2", the planned enhancement would be to
