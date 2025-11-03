@@ -39,18 +39,24 @@ public class AddressBookParser {
 
     /**
      * Parses user input into command for execution.
+     * <p>
+     * The input is normalized by trimming extra spaces and converting the command word
+     * to lowercase before parsing.
      *
      * @param userInput full user input string
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        // Trim and replace multiple spaces with a single space
+        String normalizedInput = userInput.trim().replaceAll("\\s+", " ");
+
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(normalizedInput);
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase(); // case-insensitive command word
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
