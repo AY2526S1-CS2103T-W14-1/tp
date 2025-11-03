@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
@@ -40,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setTuitionClass(person.getTuitionClass());
         descriptor.setTags(person.getTags());
+        descriptor.setLabel(person.getLabel());
     }
 
     /**
@@ -71,6 +73,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withClass(String address) {
         descriptor.setTuitionClass(new TuitionClass(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Label} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withLabel(String label) {
+        descriptor.setLabel(new Label(label));
         return this;
     }
 
