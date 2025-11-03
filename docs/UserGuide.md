@@ -11,6 +11,7 @@ Its design lets you perform student management tasks quickly and efficiently.
 
 EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebooks. With EduBook, everything is just **a few keystrokes** away. 
 
+<a id="toc"></a>
 * Table of Contents
 {:toc}
 
@@ -60,6 +61,8 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 6. Refer to the [Features](#features) below for details of each command.
 
+[Back to Table of Contents](#toc)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -68,7 +71,7 @@ If you just want to see all available commands quickly, jump straight to the <a 
 
 **:information_source: Some information about the command format:**<br>
 
-* Command words are case-insensitive (command word refers to the first word in the command format).<br>
+* Command words are **case-insensitive** (command word refers to the first word in the command format).<br>
   e.g. `add` can be supplied as `ADD`, `adD`, `AdD`, etc.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
@@ -92,6 +95,8 @@ If you just want to see all available commands quickly, jump straight to the <a 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+[Back to Table of Contents](#toc)
+
 #### Formatting rules for parameters
 
 | Parameter    | Prefix | Max Length | Format / Constraints                                                                                                                                                                                                                                                                          | Normalization                                 |
@@ -105,14 +110,16 @@ If you just want to see all available commands quickly, jump straight to the <a 
 | `LABEL`      | `l/`   | 100        | Alphanumeric letters and spaces only; must not be blank                                                                                                                                                                                                                                       | Multiple spaces are trimmed to a single space |
 
 <div markdown="span" class="alert alert-primary">:pushpin: **Note:**
-For identification purposes, all parameters are case-insensitive unless stated otherwise.
+For identification purposes, all parameters are **case-insensitive** unless stated otherwise.
 </div>
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**  
-Prefixes are case-sensitive! They must be provided in lower-case only, or they will not be detected by the app.
+Prefixes are **case-sensitive**! They must be provided in lower-case only, or they will not be detected by the app.<br>
 Example: `T/` will not be detected as a `TAG` prefix
 </div>
+
+[Back to Table of Contents](#toc)
 
 ### Viewing help: `help`
 
@@ -122,6 +129,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+[Back to Table of Contents](#toc)
 
 ### Adding students: `add`
 
@@ -142,11 +150,15 @@ Examples:
 An example of the layout is shown below:
 ![Add Example](images/AddExample.png "Add Example")
 
+[Back to Table of Contents](#toc)
+
 ### Listing all students: `list`
 
 Shows a list of all students in EduBook.
 
 Format: `list`
+
+[Back to Table of Contents](#toc)
 
 ### Editing students: `edit`
 
@@ -167,6 +179,8 @@ without specifying any tags or assignments after the command.
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+
+[Back to Table of Contents](#toc)
 
 ### Viewing student information: `view`
 
@@ -206,12 +220,14 @@ Examples:
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-  To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
+  To restore full view, use the <a href="#listing-all-students-list"><code>list</code></a> command.
 </div>
+
+[Back to Table of Contents](#toc)
 
 ### Deleting students: `delete`
 
-Removes the specified student (identified by name or index) from EduBook.
+Removes the specified student (identified by index, name or class) from EduBook.
 
 Format: `delete {INDEX | n/NAME | c/CLASS}`
 
@@ -245,6 +261,8 @@ Examples:
 * `delete n/John Doe` deletes the student with the exact name "John Doe".
 * `delete c/Class 10B` deletes all students in the class "Class 10B".
 
+[Back to Table of Contents](#toc)
+
 ### Finding students by name: `find`
 
 Finds students whose names contain any of the given keywords.
@@ -264,6 +282,8 @@ Examples
 An example of the command `find alex david` is shown below.
 
 ![Find Example](images/FindExample.png "Find Example")
+
+[Back to Table of Contents](#toc)
 
 ### Assigning assignments: `assign`
 
@@ -304,6 +324,8 @@ example is shown below:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
 
+[Back to Table of Contents](#toc)
+
 ### Unassigning assignments: `unassign`
 
 Unassigns an assignment from a specific student or from all students in a class, depending on the specified parameter.
@@ -338,6 +360,8 @@ For example, using the command `unassign n/Bob a/Homework`, the "Homework" assig
 
 ![Unassigned Assignment](images/UnassignedAssignment.png "Unassigned Assignment")
 
+[Back to Table of Contents](#toc)
+
 ### Marking assignments: `mark`
 
 Marks an assignment as completed for a specific student or for all students in a class, depending on the specified parameter.
@@ -371,6 +395,8 @@ Upon successful marking of an assignment, the assignment should turn green as sh
 
 ![Marked Assignment](images/MarkedAssignment.png "Marked Assignment")
 
+[Back to Table of Contents](#toc)
+
 ### Unmarking assignments: `unmark`
 
 Unmarks an assignment for a specific student or for all students in a class, depending on the specified parameter, removing its completed status.
@@ -403,6 +429,8 @@ Examples:
 Upon successful unmarking, the assignment will revert to red colour as shown:
 
 ![Unmarked Assignment](images/UnmarkedAssignment.png "Unmarked Assignment")
+
+[Back to Table of Contents](#toc)
 
 ### Labelling students: `label`
 
@@ -448,6 +476,8 @@ Upon applying a label successfully, the label will appear next to the student's 
 
 ![Apply Label](images/Label.png "Apply label")
 
+[Back to Table of Contents](#toc)
+
 ### Unlabelling students: `unlabel`
 
 Unlabels a specific student or all students in a class, depending on the specified parameter.
@@ -481,6 +511,8 @@ An example is shown below.
 
 ![Remove Label](images/NoLabel.png "Remove label")
 
+[Back to Table of Contents](#toc)
+
 ### Clearing all entries: `clear`
 
 Clears all entries from EduBook.
@@ -492,15 +524,21 @@ Format: `clear`
 The `clear` command will permanently remove all student data. This action cannot be undone.
 </div>
 
+[Back to Table of Contents](#toc)
+
 ### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Back to Table of Contents](#toc)
+
 ### Saving the data
 
 EduBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to Table of Contents](#toc)
 
 ### Editing the data file
 
@@ -526,10 +564,13 @@ Certain edits can cause the EduBook to behave in unexpected ways (e.g., if a val
 Only edit the data file if you are confident that you can update it correctly.
 </div>
 
+[Back to Table of Contents](#toc)
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -545,6 +586,7 @@ _Details coming soon ..._
 **A**: Unfortunately, there is no command to undo the `clear` command. 
 We recommend saving a backup file as a precaution to prevent future incidents.
 
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -569,6 +611,7 @@ replacing "/" with "-".
 <br>
 A fix for this issue will be implemented in a future planned enhancement.
 
+[Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
 
