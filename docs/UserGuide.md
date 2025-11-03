@@ -540,10 +540,6 @@ _Details coming soon ..._
 **A**: Unfortunately, there is no command to undo the `clear` command. 
 We recommend saving a backup file as a precaution to prevent future incidents.
 
-**Q**: What should I do if I have multiple students with the exact same name? <br>
-**A**: Though unlikely, we recommend using the student's full name or adding identifying number. E.g. instead of adding 'Alex Yeoh',
-you can add 'Alex Ben Yeoh' or 'Alex Yeoh1'.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
