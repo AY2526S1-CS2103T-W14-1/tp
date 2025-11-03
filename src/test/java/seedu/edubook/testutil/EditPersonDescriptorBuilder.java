@@ -41,7 +41,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setTuitionClass(person.getTuitionClass());
         descriptor.setTags(person.getTags());
-        descriptor.setLabel(person.getLabel());
     }
 
     /**
