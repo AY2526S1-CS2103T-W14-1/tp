@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on [AddressBook Level 3 (AB3) project by the SE-EDU initiative.](https://se-education.org/addressbook-level3/)
+* Built using JavaFX (maintained by [OpenJDK](https://wiki.openjdk.org/display/OpenJFX)) for the GUI.
+* Uses [Jackson](https://github.com/FasterXML/jackson) for JSON data serialization and deserialization.
+* Uses [JUnit](https://junit.org) for testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -245,7 +248,7 @@ _{more aspects and alternatives to be added}_
 
 ### Label/Unlabel feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed label/unlabel mechanism is facilitated by `EduBook`. Additionally, it implements the following operations:
 
@@ -931,12 +934,12 @@ testers are expected to do more *exploratory* testing.
 1. Unlabeling a class with no students having an existing label
 
     1. Prerequisites: At least one student is in class "1A".
-       All students in class "1A" does not have a label.
+       All students in class "1A" do not have a label.
 
     1. Test case: `unlabel c/1A`<br>
        Expected: Error message displayed.
 
-Labeling students
+### Labeling students
 
 1. Labeling a student
 
@@ -948,7 +951,7 @@ Labeling students
 1. Labeling all students in a class
 
     1. Prerequisites: At least one student is in class "1A".
-       All students in class "1A" does not have a label.
+       All students in class "1A" do not have a label.
 
     1. Test case: `label l/Morning class c/1A`<br>
        Expected: All students in class "1A" is labeled as "Morning class". Success message displayed.
@@ -986,7 +989,7 @@ Labeling students
 
 Our project aims to provide an efficient contact management system for a tutor with a relatively large student base, 
 building on AddressBook Level 3 (AB3). Additional features include assigning and unassigning assignments, marking and 
-unmarking assignments as completed, labelling students and removing the labels, as well as viewing student data. 
+unmarking assignments as completed, labeling students and removing the labels, as well as viewing student data. 
 All the above could be done by class at once as well. These improvements are aimed to provide a cost-effective solution 
 to help tutors save time, money and manpower on repetitive tasks, while also enabling them to more effectively 
 handle their students' information.
