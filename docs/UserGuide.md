@@ -6,11 +6,10 @@ title: User Guide
 EduBook is an **all-in-one student management desktop application**, specially built for tutors handling 10-30 students across multiple classes.
 It helps you organize student details, track assignments, and even jot down important notes, so that you can stay on top of your teaching game!
 
-What makes EduBook **truly special** is that it combines the simplicity of text-based commands with a clean, easy-to-use user interface. 
-Its design lets you perform student management tasks quickly and efficiently, 
-regardless of whether you prefer typing or using the visual interface.
+What makes EduBook **truly special** is that it combines the simplicity of text-based commands with a clean, visually appealing user interface. 
+Its design lets you perform student management tasks quickly and efficiently.
 
-EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebook. With EduBook, everything is just **a few keystrokes** away. 
+EduBook is designed *by tutors, for tutors*. Gone are the days of spreadsheets or physical notebooks. With EduBook, everything is just **a few keystrokes** away. 
 
 * Table of Contents
 {:toc}
@@ -212,7 +211,7 @@ Examples:
 
 ### Deleting students: `delete`
 
-Removes the specified student (identified by name or index) from Edubook.
+Removes the specified student (identified by name or index) from EduBook.
 
 Format: `delete {INDEX | n/NAME | c/CLASS}`
 
@@ -350,23 +349,23 @@ Format: `mark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 
 * If `n/NAME` is used:
-    * Marks the assignment `ASSIGNMENT` of the student named `NAME` as completed.
+    * Marks the assignment `ASSIGNMENT` of the student named `NAME`.
     * The student must exist in EduBook.
     * The specified assignment must exist for the specified student.
     * The specified assignment must not already be marked.
 
 
 * If `c/CLASS` is used:
-    * Marks the assignment `ASSIGNMENT` as completed for every student in the specified class `CLASS`.
+    * Marks the assignment `ASSIGNMENT` for every student in the specified class `CLASS`.
     * Students who do not have the assignment or whose assignment is already marked are skipped.
     * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
     * At least one student in the specified class must currently have the assignment unmarked.
 
 Examples:
-* `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe` as completed
-* `mark a/Homework n/Bob` — marks `Homework` of `Bob` as completed
-* `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` as completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked
-* `mark a/Homework c/Tutorial Group 2` — marks `Homework` as completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked
+* `mark a/Tutorial 1 n/John Doe` — marks `Tutorial 1` of `John Doe`.
+* `mark a/Homework n/Bob` — marks `Homework` of `Bob`.
+* `mark a/Tutorial 1 c/Class 1-A` — marks `Tutorial 1` for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already marked.
+* `mark a/Homework c/Tutorial Group 2` — marks `Homework` for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already marked.
 
 Upon successful marking of an assignment, the assignment should turn green as shown:
 
@@ -374,7 +373,7 @@ Upon successful marking of an assignment, the assignment should turn green as sh
 
 ### Unmarking assignments: `unmark`
 
-Unmarks an assignment as not completed for a specific student or for all students in a class, depending on the specified parameter.
+Unmarks an assignment for a specific student or for all students in a class, depending on the specified parameter, removing its completed status.
 
 Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
@@ -383,23 +382,23 @@ Format: `unmark a/ASSIGNMENT {n/NAME | c/CLASS}`
 
 
 * If `n/NAME` is used:
-  * Unmarks the assignment `ASSIGNMENT` of the student named `NAME` as not completed.
+  * Unmarks the assignment `ASSIGNMENT` of the student named `NAME`.
   * The student must exist in EduBook.
   * The specified assignment must exist for the specified student.
   * The specified assignment must not already be unmarked.  
 
 
 * If `c/CLASS` is used:
-  * Unmarks the assignment `ASSIGNMENT` as not completed for every student in the specified class `CLASS`.
+  * Unmarks the assignment `ASSIGNMENT` for every student in the specified class `CLASS`.
   * Students who do not have the assignment or whose assignment is already unmarked are skipped.
   * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
   * At least one student in the specified class must currently have the assignment marked.
 
 Examples:
-* `unmark a/Tutorial 1 n/John Doe` — unmarks `Tutorial 1` of `John Doe` as not completed
-* `unmark a/Homework n/Bob` — unmarks `Homework` of `Bob` as not completed
-* `unmark a/Tutorial 1 c/Class 1-A` — unmarks `Tutorial 1` as not completed for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already unmarked
-* `unmark a/Homework c/Tutorial Group 2` — unmarks `Homework` as not completed for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already unmarked
+* `unmark a/Tutorial 1 n/John Doe` — unmarks `Tutorial 1` of `John Doe`.
+* `unmark a/Homework n/Bob` — unmarks `Homework` of `Bob`.
+* `unmark a/Tutorial 1 c/Class 1-A` — unmarks `Tutorial 1` for all students in `Class 1-A`, skipping those who do not have the assignment or whose assignment is already unmarked
+* `unmark a/Homework c/Tutorial Group 2` — unmarks `Homework` for all students in `Tutorial Group 2`, skipping those who do not have the assignment or whose assignment is already unmarked
 
 Upon successful unmarking, the assignment will revert to red colour as shown:
 
@@ -408,6 +407,12 @@ Upon successful unmarking, the assignment will revert to red colour as shown:
 ### Labelling students: `label`
 
 Labels a specific student or all students in a class, depending on the specified parameter.
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+Each student can have at most one label at a time.
+</div>
+
+<br>
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**<br>
 Use **labels** when you want to highlight the most *important* thing you want to remember about a student — like “Needs Help” or “Great Participation.”<br>
@@ -530,7 +535,7 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EduBook home folder. <br>
 
 **Q**: How do I restore to full view after doing `view`? <br>
@@ -545,8 +550,25 @@ We recommend saving a backup file as a precaution to prevent future incidents.
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to 
+using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file 
+created by the application before running the application again.
+
+2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, 
+the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+
+3. **Adding students with duplicate names**, if you wish to add a student with a name that already exists in EduBook
+(e.g. another “Alex Yeoh”), you can temporarily differentiate them by adding short identifiers to their names.
+For example, "Alex Yeoh Math" and "Alex Yeoh Year 3".
+<br>
+Support for duplicate names will be added in a future planned enhancement.
+
+4. **Using special prefixes for class name results in unclear error message**, if you want to enter a Class name 
+"Class n/2", the "n/" may be seen as a name prefix instead. The recommended solution would be to use "Class n-2" instead, 
+replacing "/" with "-".
+<br>
+A fix for this issue will be implemented in a future planned enhancement.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

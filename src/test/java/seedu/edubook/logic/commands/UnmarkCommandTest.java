@@ -46,7 +46,7 @@ import seedu.edubook.model.target.NameTarget;
 public class UnmarkCommandTest {
 
     @Test
-    public void constructor_nullAssignment_throwsNullPointerException() {
+    public void constructor_nullAssignmentName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new UnmarkCommand(null, NAME_TARGET_AMY));
     }
 
@@ -188,58 +188,58 @@ public class UnmarkCommandTest {
 
     @Test
     public void equals_nameTarget() {
-        UnmarkCommand unassignHomeworkAmy = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
-        UnmarkCommand unassignHomeworkBenson = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+        UnmarkCommand unmarkHomeworkAmy = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
+        UnmarkCommand unmarkHomeworkBenson = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
                 NAME_TARGET_BENSON);
-        UnmarkCommand unassignLabAmy = new UnmarkCommand(ASSIGNMENT_LAB.assignmentName, NAME_TARGET_AMY);
+        UnmarkCommand unmarkLabAmy = new UnmarkCommand(ASSIGNMENT_LAB.assignmentName, NAME_TARGET_AMY);
 
-        // same object -> true
-        assertEquals(unassignHomeworkAmy, unassignHomeworkAmy);
+        // Equivalence partition: same object (same assignment & same target)
+        assertEquals(unmarkHomeworkAmy, unmarkHomeworkAmy);
 
-        // same values -> true
+        // Equivalence partition: same assignment & same target (different object)
         UnmarkCommand copy = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName, NAME_TARGET_AMY);
-        assertEquals(unassignHomeworkAmy, copy);
+        assertEquals(unmarkHomeworkAmy, copy);
 
-        // different assignment -> false
-        assertNotEquals(unassignHomeworkAmy, unassignLabAmy);
+        // Equivalence partition: different assignment, same target
+        assertNotEquals(unmarkHomeworkAmy, unmarkLabAmy);
 
-        // different target -> false
-        assertNotEquals(unassignHomeworkAmy, unassignHomeworkBenson);
+        // Equivalence partition: same assignment, different target
+        assertNotEquals(unmarkHomeworkAmy, unmarkHomeworkBenson);
 
-        // null -> false
-        assertNotEquals(null, unassignHomeworkAmy);
+        // Equivalence partition: comparing with null
+        assertNotEquals(null, unmarkHomeworkAmy);
 
-        // different type -> false
-        assertNotEquals(1, unassignHomeworkAmy);
+        // Equivalence partition: different type
+        assertNotEquals(1, unmarkHomeworkAmy);
     }
 
     @Test
     public void equals_classTarget() {
-        UnmarkCommand unassignHomeworkClassA = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+        UnmarkCommand unmarkHomeworkClassA = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
                 CLASS_TARGET_AMY);
-        UnmarkCommand unassignHomeworkClassACopy = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+        UnmarkCommand unmarkHomeworkClassACopy = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
                 CLASS_TARGET_AMY);
-        UnmarkCommand unassignHomeworkClassB = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
+        UnmarkCommand unmarkHomeworkClassB = new UnmarkCommand(ASSIGNMENT_HOMEWORK.assignmentName,
                 CLASS_TARGET_BENSON);
-        UnmarkCommand unassignLabClassA = new UnmarkCommand(ASSIGNMENT_LAB.assignmentName, CLASS_TARGET_AMY);
+        UnmarkCommand unmarkLabClassA = new UnmarkCommand(ASSIGNMENT_LAB.assignmentName, CLASS_TARGET_AMY);
 
-        // same object -> true
-        assertEquals(unassignHomeworkClassA, unassignHomeworkClassA);
+        // Equivalence partition: same object (same assignment & same class target)
+        assertEquals(unmarkHomeworkClassA, unmarkHomeworkClassA);
 
-        // same values -> true
-        assertEquals(unassignHomeworkClassA, unassignHomeworkClassACopy);
+        // Equivalence partition: same assignment & same class target (different object)
+        assertEquals(unmarkHomeworkClassA, unmarkHomeworkClassACopy);
 
-        // different class -> false
-        assertNotEquals(unassignHomeworkClassA, unassignHomeworkClassB);
+        // Equivalence partition: same assignment, different class target
+        assertNotEquals(unmarkHomeworkClassA, unmarkHomeworkClassB);
 
-        // different assignment -> false
-        assertNotEquals(unassignHomeworkClassA, unassignLabClassA);
+        // Equivalence partition: different assignment, same class target
+        assertNotEquals(unmarkHomeworkClassA, unmarkLabClassA);
 
-        // different type -> false
-        assertNotEquals(1, unassignHomeworkClassA);
+        // Equivalence partition: different type
+        assertNotEquals(1, unmarkHomeworkClassA);
 
-        // null -> false
-        assertNotEquals(null, unassignHomeworkClassA);
+        // Equivalence partition: comparing with null
+        assertNotEquals(null, unmarkHomeworkClassA);
     }
 
     @Test

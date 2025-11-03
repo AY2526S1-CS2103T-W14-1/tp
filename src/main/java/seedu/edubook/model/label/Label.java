@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 import static seedu.edubook.model.commons.Name.MAX_NAME_LENGTH;
 
+import seedu.edubook.commons.util.StringUtil;
+
 /**
  * Represents a Label in EduBook
  */
@@ -47,7 +49,7 @@ public class Label {
     public Label(String labelContent) {
         requireNonNull(labelContent);
         checkArgument(isValidLabel(labelContent), MESSAGE_CONSTRAINTS);
-        this.labelContent = labelContent;
+        this.labelContent = StringUtil.normalizeSpaces(labelContent);
         this.isEmpty = false;
     }
 

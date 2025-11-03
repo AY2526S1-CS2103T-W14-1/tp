@@ -3,6 +3,8 @@ package seedu.edubook.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
+import seedu.edubook.commons.util.StringUtil;
+
 /**
  * Represents a Person's class in EduBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidClass(String)}
@@ -32,7 +34,7 @@ public class TuitionClass {
     public TuitionClass(String tuitionClass) {
         requireNonNull(tuitionClass);
         checkArgument(isValidClass(tuitionClass), MESSAGE_CONSTRAINTS);
-        value = tuitionClass;
+        value = StringUtil.normalizeSpaces(tuitionClass);
     }
 
     /**
