@@ -77,4 +77,14 @@ public class StringUtil {
         assert maxLength >= 0 : "max length can't be negative";
         return test.length() <= maxLength;
     }
+
+    /**
+     * Replaces multiple spaces in {@code input} with a single space.
+     *
+     * @param input cannot be null
+     */
+    public static String normalizeSpaces(String input) {
+        requireNonNull(input);
+        return input.replaceAll("\\s+", " ");
+    }
 }
