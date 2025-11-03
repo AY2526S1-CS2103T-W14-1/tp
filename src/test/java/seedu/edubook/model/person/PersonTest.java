@@ -2,9 +2,11 @@ package seedu.edubook.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_LABEL_GOOD;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -19,17 +21,22 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.logic.commands.exceptions.AssignmentAlreadyExistsException;
 import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
+import seedu.edubook.logic.commands.exceptions.LabelAlreadyExistsException;
+import seedu.edubook.logic.commands.exceptions.LabelNotFoundException;
 import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.assignment.AssignmentName;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.testutil.PersonBuilder;
 
 public class PersonTest {
 
     private Assignment test;
+    private Label label;
 
     @BeforeEach
     public void setUp() {
         test = new Assignment(new AssignmentName("CA1"));
+        label = new Label(VALID_LABEL_GOOD);
     }
 
     @Test
@@ -75,6 +82,43 @@ public class PersonTest {
         Person person = new PersonBuilder().build();
         Assignment notAdded = new Assignment(new AssignmentName("CA2"));
         assertThrows(AssignmentNotFoundException.class, () -> person.withRemovedAssignment(notAdded));
+    }
+
+    @Test
+    public void withAddedLabel_newLabel_success() throws LabelAlreadyExistsException {
+        Person person = new PersonBuilder().build();
+        Person updatedPerson = person.withAddedLabel(label);
+
+        // should contain label
+        assertEquals(label, updatedPerson.getLabel());
+
+        // check for immutability - original person should not be changed.
+        assertNotEquals(person.getLabel(), label);
+    }
+
+    @Test
+    public void withAddedLabel_personHaveLabel_throwsException() throws LabelAlreadyExistsException {
+        Person person = new PersonBuilder().build();
+        Person updatedPerson = person.withAddedLabel(label);
+        assertThrows(LabelAlreadyExistsException.class, () -> updatedPerson.withAddedLabel(label));
+    }
+
+    @Test
+    public void withRemovedLabel_existingLabel_success() throws CommandException {
+        Person person = new PersonBuilder().build().withAddedLabel(label);
+        Person updatedPerson = person.withRemovedLabel();
+
+        // updated person should no longer contain it
+        assertNotEquals(updatedPerson.getLabel(), label);
+
+        // check for immutability - original person should not be changed.
+        assertEquals(person.getLabel(), label);
+    }
+
+    @Test
+    public void withRemovedLabel_noLabel_throwsLabelNotFoundException() {
+        Person person = new PersonBuilder().build();
+        assertThrows(LabelNotFoundException.class, person::withRemovedLabel);
     }
 
     @Test

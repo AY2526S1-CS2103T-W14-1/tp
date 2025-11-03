@@ -19,11 +19,9 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.edubook.logic.commands.exceptions.AssignmentNotFoundException;
 import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.logic.commands.exceptions.LabelNotFoundException;
 import seedu.edubook.model.ModelManager;
-import seedu.edubook.model.assignment.Assignment;
 import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Email;
 import seedu.edubook.model.person.Person;
@@ -42,21 +40,44 @@ public class UnlabelCommandTest {
         assertThrows(NullPointerException.class, () -> new UnlabelCommand(null));
     }
 
+    @Test
+    public void execute_classTargetSingleStudent_success() throws CommandException {
+        ModelStub model = new ModelStub();
+        UnlabelCommand command = new UnlabelCommand(CLASS_TARGET_AMY);
+
+        CommandResult result = command.execute(model);
+
+        String expectedMessage = CLASS_TARGET_AMY.getUnlabelSuccessMessage(1, 0);
+
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
 
     @Test
-    public void execute_nameTargetNoLabel_failure() throws CommandException {
-        ModelStub model = new ModelStub();
+    public void execute_classTargetMultipleStudents_successAndSkip() throws CommandException {
+        ModelStubMultipleStudents model = new ModelStubMultipleStudents();
+        UnlabelCommand command = new UnlabelCommand(CLASS_TARGET_AMY);
 
-        UnlabelCommand command = new UnlabelCommand(NAME_TARGET_BENSON);
+        CommandResult result = command.execute(model);
+
+        // 3 students: 1 skipped (no assignment), 2 successful removals
+        String expectedMessage = CLASS_TARGET_AMY.getUnlabelSuccessMessage(2, 1);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_nameTargetNoLabel_throwsLabelNotFoundException() {
+        ModelStubOneStudentSkipped model = new ModelStubOneStudentSkipped();
+
+        UnlabelCommand command = new UnlabelCommand(NAME_TARGET_AMY);
 
         CommandException e = assertThrows(LabelNotFoundException.class, () -> command.execute(model));
-        assertEquals(LabelNotFoundException.MESSAGE_STUDENT_ALREADY_UNASSIGNED,
+        assertEquals(LabelNotFoundException.forStudent().getMessage(),
                 e.getMessage());
     }
 
     @Test
-    public void execute_classTargetSingleStudentNoLabel_failure() throws CommandException {
-        ModelStub model = new ModelStub();
+    public void execute_classTargetNoLabel_throwsLabelNotFoundException() {
+        ModelStubAllStudentsSkipped model = new ModelStubAllStudentsSkipped();
         UnlabelCommand command = new UnlabelCommand(CLASS_TARGET_AMY);
 
         CommandException e = assertThrows(LabelNotFoundException.class, () -> command.execute(model));
@@ -167,7 +188,7 @@ public class UnlabelCommandTest {
                     }
 
                     @Override
-                    public Person withRemovedLabel() {
+                    public PersonStub withRemovedLabel() {
                         return this;
                     }
                 };
@@ -213,9 +234,57 @@ public class UnlabelCommandTest {
         }
     }
 
+    static class ModelStubMultipleStudents extends ModelStub {
+        @Override
+        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+            Phone phone = new Phone("99999999");
+            Email email = new Email("dummy@edu.com");
+
+            PersonStub alice = new PersonStub(ALICE.getName(), phone, email, tuitionClass, new HashSet<>());
+            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub tom = new PersonStub(new PersonName("Tom"), phone, email, tuitionClass, new HashSet<>());
+
+            // Bob has no label (skip), Alice & Tom can be unlabeled successfully
+            bob.missingLabel = true;
+            return List.of(alice, bob, tom);
+        }
+    }
+
+    static class ModelStubAllStudentsSkipped extends ModelStub {
+        @Override
+        public List<Person> findPersonsByClass(TuitionClass tuitionClass) {
+            Phone phone = new Phone("11111111");
+            Email email = new Email("dummy@edu.com");
+
+            PersonStub alice = new PersonStub(new PersonName("Alice"), phone, email, tuitionClass, new HashSet<>());
+            PersonStub bob = new PersonStub(new PersonName("Bob"), phone, email, tuitionClass, new HashSet<>());
+
+            // both don't have a label
+            alice.missingLabel = true;
+            bob.missingLabel = true;
+
+            return List.of(alice, bob);
+        }
+    }
+
+    static class ModelStubOneStudentSkipped extends ModelStub {
+        @Override
+        public PersonStub findPersonByName(PersonName name) throws PersonNotFoundException {
+            Phone phone = new Phone("11111111");
+            Email email = new Email("dummy@edu.com");
+            TuitionClass tuitionClass = new TuitionClass(VALID_CLASS_AMY);
+
+            PersonStub alice = new PersonStub(name, phone, email, tuitionClass, new HashSet<>());
+
+            alice.missingLabel = true;
+
+            return alice;
+        }
+    }
+
     static class PersonStub extends Person {
         private final PersonName name;
-        private boolean missingAssignment = false;
+        private boolean missingLabel = false;
 
         PersonStub(PersonName name, Phone phone, Email email, TuitionClass tuitionClass, Set<Tag> tags) {
             super(name, phone, email, tuitionClass, tags);
@@ -228,13 +297,11 @@ public class UnlabelCommandTest {
         }
 
         @Override
-        public PersonStub withRemovedAssignment(Assignment assignment) throws AssignmentNotFoundException {
-            if (missingAssignment) {
-                throw AssignmentNotFoundException.forStudent();
+        public PersonStub withRemovedLabel() throws LabelNotFoundException {
+            if (missingLabel) {
+                throw LabelNotFoundException.forStudent();
             }
             return this;
         }
-
-
     }
 }
