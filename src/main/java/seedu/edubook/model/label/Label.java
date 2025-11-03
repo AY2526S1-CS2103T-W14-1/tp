@@ -61,6 +61,13 @@ public class Label {
     }
 
     /**
+     *  Returns label content without the brackets.
+     */
+    public String getLabelContent() {
+        return this.labelContent;
+    }
+
+    /**
      * Return whether label is empty.
      */
     public boolean isEmpty() {
