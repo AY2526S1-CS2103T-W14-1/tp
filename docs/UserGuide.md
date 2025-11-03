@@ -211,7 +211,7 @@ Examples:
 
 ### Deleting students: `delete`
 
-Removes the specified student (identified by name or index) from EduBook.
+Removes the specified student (identified by index, name or class) from EduBook.
 
 Format: `delete {INDEX | n/NAME | c/CLASS}`
 
