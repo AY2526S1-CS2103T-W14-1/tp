@@ -3,6 +3,8 @@ package seedu.edubook.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
+import seedu.edubook.commons.util.StringUtil;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -25,7 +27,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = StringUtil.normalizeSpaces(tagName);
     }
 
     /**
