@@ -66,6 +66,48 @@ public class NameTargetTest {
     }
 
     @Test
+    public void getMarkSuccessMessage_formatsCorrectly() {
+        String result = NAME_TARGET_AMY.getMarkSuccessMessage("Tutorial 1" , 1, 0, 0);
+
+        assertEquals("Assignment \"Tutorial 1\" marked for student: \"Amy Bee\"", result);
+    }
+
+    @Test
+    public void getUnmarkSuccessMessage_formatsCorrectly() {
+        String result = NAME_TARGET_AMY.getUnmarkSuccessMessage("Tutorial 1" , 1, 0, 0);
+
+        assertEquals("Assignment \"Tutorial 1\" unmarked for student: \"Amy Bee\"", result);
+    }
+
+    @Test
+    public void getLabelSuccessMessage_formatsCorrectly() {
+        String result = NAME_TARGET_AMY.getLabelSuccessMessage("Top Student" , 1, 0);
+
+        assertEquals("New label \"Top Student\" created for student: \"Amy Bee\"", result);
+    }
+
+    @Test
+    public void getUnlabelSuccessMessage_formatsCorrectly() {
+        String result = NAME_TARGET_AMY.getUnlabelSuccessMessage(1, 0);
+
+        assertEquals("Existing label removed from student: \"Amy Bee\"", result);
+    }
+
+    @Test
+    public void getViewSuccessMessage_formatsCorrectly() {
+        String result = NAME_TARGET_AMY.getViewSuccessMessage();
+
+        assertEquals("Here are the details of \"Amy Bee\": ", result);
+    }
+
+    @Test
+    public void getDeleteSuccessMessage_formatsCorrectly() {
+        String result = NAME_TARGET_AMY.getDeleteSuccessMessage();
+
+        assertEquals("Student \"Amy Bee\" has been deleted", result);
+    }
+
+    @Test
     public void equalsAndHashCode() {
         Target nameTargetAmy1 = NAME_TARGET_AMY;
         Target nameTargetAmy2 = new NameTarget(new PersonName("Amy Bee"));

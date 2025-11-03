@@ -15,7 +15,7 @@ import seedu.edubook.model.person.Person;
 public class AssignmentTarget implements Target {
 
     /** Error message when the assignment cannot be found in the model. */
-    public static final String MESSAGE_NO_ASSIGNMENT_FOUND = "Assignment \"%1$s\" not found";
+    public static final String MESSAGE_NO_ASSIGNMENT_FOUND = "No students found with assignment \"%1$s\"";
 
     /** Template for message when viewing assignment is successful. */
     private static final String MESSAGE_VIEW_SUCCESS =

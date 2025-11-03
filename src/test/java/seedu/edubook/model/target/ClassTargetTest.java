@@ -67,6 +67,51 @@ public class ClassTargetTest {
         assertEquals("Assignment \"Tutorial 1\" unassigned from class \"Class A\" (2 unassigned, 0 skipped)", result);
     }
 
+
+    @Test
+    public void getMarkSuccessMessage_formatsCorrectly() {
+        String result = CLASS_TARGET_AMY.getMarkSuccessMessage("Tutorial 1" , 1, 0, 0);
+
+        assertEquals("Assignment \"Tutorial 1\" marked for class \"Class A\" "
+                + "(1 marked, 0 already marked, 0 not exist)", result);
+    }
+
+    @Test
+    public void getUnmarkSuccessMessage_formatsCorrectly() {
+        String result = CLASS_TARGET_AMY.getUnmarkSuccessMessage("Tutorial 1" , 1, 0, 0);
+
+        assertEquals("Assignment \"Tutorial 1\" unmarked for class \"Class A\" "
+                + "(1 unmarked, 0 already unmarked, 0 not exist)", result);
+    }
+
+    @Test
+    public void getLabelSuccessMessage_formatsCorrectly() {
+        String result = CLASS_TARGET_AMY.getLabelSuccessMessage("Top Student" , 1, 0);
+
+        assertEquals("Label \"Top Student\" assigned to class \"Class A\" (1 labeled, 0 skipped)", result);
+    }
+
+    @Test
+    public void getUnlabelSuccessMessage_formatsCorrectly() {
+        String result = CLASS_TARGET_AMY.getUnlabelSuccessMessage(1, 0);
+
+        assertEquals("Label removed from class \"Class A\" (1 unlabeled, 0 skipped)", result);
+    }
+
+    @Test
+    public void getViewSuccessMessage_formatsCorrectly() {
+        String result = CLASS_TARGET_AMY.getViewSuccessMessage();
+
+        assertEquals("Here are the details of all students in class \"Class A\": ", result);
+    }
+
+    @Test
+    public void getDeleteSuccessMessage_formatsCorrectly() {
+        String result = CLASS_TARGET_AMY.getDeleteSuccessMessage();
+
+        assertEquals("All students in class \"Class A\" have been deleted", result);
+    }
+
     @Test
     public void equals() {
         Target classTargetAmy1 = CLASS_TARGET_AMY;

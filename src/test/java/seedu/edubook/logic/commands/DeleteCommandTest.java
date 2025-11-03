@@ -2,27 +2,37 @@ package seedu.edubook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.edubook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.edubook.logic.commands.CommandTestUtil.showPersonAtName;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_AMY;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_BENSON;
+import static seedu.edubook.testutil.TypicalClassTargets.CLASS_TARGET_NONEXISTENT;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_AMY;
+import static seedu.edubook.testutil.TypicalNameTargets.NAME_TARGET_BENSON;
 import static seedu.edubook.testutil.TypicalPersonNames.NAME_FIRST_PERSON;
 import static seedu.edubook.testutil.TypicalPersonNames.NAME_SECOND_PERSON;
 import static seedu.edubook.testutil.TypicalPersonNames.NAME_THIRD_PERSON;
 import static seedu.edubook.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.Messages;
+import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.model.person.PersonName;
+import seedu.edubook.model.target.ClassTarget;
 import seedu.edubook.model.target.NameTarget;
 
 /**
@@ -59,11 +69,13 @@ public class DeleteCommandTest {
     public void execute_validNameUnfilteredList_success() {
         //Initialise to first person
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
         for (Person p : model.getFilteredPersonList()) {
             if (p.getName().equals(NAME_FIRST_PERSON)) {
                 personToDelete = p;
             }
         }
+
         DeleteCommand deleteCommand = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -82,6 +94,33 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model,
                 String.format(NameTarget.MESSAGE_PERSON_NOT_FOUND, invalidName));
+    }
+
+    @Test
+    public void execute_validClassUnfilteredList_success() throws CommandException {
+        DeleteCommand command = new DeleteCommand(CLASS_TARGET_BENSON);
+        String expectedMessage = String.format(
+                CLASS_TARGET_BENSON.getDeleteSuccessMessage(), CLASS_TARGET_BENSON.getDisplayName());
+
+        ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        List<Person> studentsToDelete = CLASS_TARGET_BENSON.getPersons(model);
+
+        for (Person p : studentsToDelete) {
+            expectedModel.deletePerson(p);
+        }
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_nonExistentClass_throwsCommandException() {
+        String expectedMessage = String.format(
+                ClassTarget.MESSAGE_NO_STUDENTS_FOUND, CLASS_TARGET_NONEXISTENT.getDisplayName());
+
+        DeleteCommand command = new DeleteCommand(CLASS_TARGET_NONEXISTENT);
+
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
@@ -174,18 +213,43 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void equals_bothHaveTargetNameSameName_returnsTrue() {
-        DeleteCommand command1 = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));;
-        DeleteCommand command2 = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));;
-        assertTrue(command1.equals(command2));
+    public void equals_nameTarget() {
+        DeleteCommand deleteAmy1 = new DeleteCommand(NAME_TARGET_AMY);
+        DeleteCommand deleteBenson = new DeleteCommand(NAME_TARGET_BENSON);
+        DeleteCommand deleteAmy2 = new DeleteCommand(NAME_TARGET_AMY);
+
+        // same object -> true
+        assertEquals(deleteAmy1, deleteAmy2);
+
+        // different types -> false
+        assertNotEquals(1, deleteAmy1);
+
+        // null -> false
+        assertNotEquals(null, deleteAmy1);
+
+        // same assignment but different person name -> false
+        assertNotEquals(deleteBenson, deleteAmy1);
     }
 
     @Test
-    public void equals_bothHaveTargetNameDifferentName_returnsFalse() {
-        DeleteCommand command1 = new DeleteCommand(new NameTarget(NAME_FIRST_PERSON));;
-        DeleteCommand command2 = new DeleteCommand(new NameTarget(NAME_SECOND_PERSON));;
-        assertFalse(command1.equals(command2));
+    public void equals_classTarget() {
+        DeleteCommand deleteClassA1 = new DeleteCommand(CLASS_TARGET_AMY);
+        DeleteCommand deleteClassA2 = new DeleteCommand(CLASS_TARGET_AMY);
+        DeleteCommand deleteClassB = new DeleteCommand(CLASS_TARGET_BENSON);
+
+        // same object -> true
+        assertEquals(deleteClassA1, deleteClassA2);
+
+        // different class target -> false
+        assertNotEquals(deleteClassA1, deleteClassB);
+
+        // different type -> false
+        assertNotEquals(1, deleteClassA1);
+
+        // null -> false
+        assertNotEquals(null, deleteClassA1);
     }
+
 
     @Test
     public void toStringMethodIndex() {
