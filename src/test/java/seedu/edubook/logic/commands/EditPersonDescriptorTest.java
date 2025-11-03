@@ -7,6 +7,7 @@ import static seedu.edubook.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_CLASS_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_LABEL_GOOD;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -54,6 +55,10 @@ public class EditPersonDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different label -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withLabel(VALID_LABEL_GOOD).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
