@@ -9,7 +9,13 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+EduBook is based on the AddressBook-Level3 (AB3) project created by the SE-EDU initiative.
+
+External Java libraries were also used in the project for various functionalities:
+
+JavaFX: for the GUI
+JUnit5: for Unit testing
+Jackson: for processing JSON files
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1073,4 +1079,17 @@ iteration. The features are as listed below:
 1. **Support for special characters within a name**. Currently, when adding or editing a student, EduBook does not allow the
 input of special characters such as `/` or `-`. As this may be of some inconvenience to tutors when adding students, 
 the planned enhancement would hence be to relax the name validation by modifying EduBook to allow a limited set of safe
-special characters when entering names. This allows flexibility and reduces inconveniences for users.
+special characters when entering names. This allows flexibility and reduces inconveniences for tutors.
+
+2. **Support for duplicate student names**. Currently, EduBook does not allow tutors to add students who share the same name
+as names are used as unique identifiers to distinguish students. This may be of some inconvenience to tutors as 
+they are now not able to add 2 students of the same name, even though these students may exist in their classes. Hence, the
+planned enhancement would be to introduce a unique student ID system (possibly based on a auto-generated ID), 
+so that students with the same name can be added without conflict.
+
+3. **Auto-refresh GUI to reflect changes made to students outside the filtered list**. Currently, after filtering student information
+using `view` or `find`, should a tutor try to perform operations on other students not visible in the filtered list, the command
+will succeed. However, the list remains filtered and does not reflect the change. As a result, this may mislead tutors into
+thinking that the command failed or had no effect. The planned enhancement would be to modify the GUI such that it refreshes
+automatically and unfilters the list when a change is made to a student currently not visible. The tutor is hence made aware of 
+the successful change.
