@@ -1083,3 +1083,7 @@ iteration. The features are as listed below:
 input of special characters such as `/` or `-`. As this may be of some inconvenience to tutors when adding students, 
 the planned enhancement would hence be to relax the name validation by modifying EduBook to allow a limited set of safe
 special characters when entering names. This allows flexibility and reduces inconveniences for users.
+
+2. **Allowing class names to use special prefixes**. Currently, using "Class n/2" as class name will result in unexpected behaviour as "n/" is a special
+prefix used for NAME. As this may cause some inconvenience to tutor whose class is "Class n/2", the planned enhancement would be to
+differentiate when special prefixes are used for class names and when they are used to represent their own parameters. This allows for more flexibility in class naming.
