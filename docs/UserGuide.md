@@ -206,7 +206,7 @@ Examples:
 * `view a/Lab 3` — displays all students with the assignment `Lab 3`
 
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-  To restore full view, use the <a href="#listing-all-students--list"><code>list</code></a> command.
+  To restore full view, use the <a href="#listing-all-students-list"><code>list</code></a> command.
 </div>
 
 ### Deleting students: `delete`
