@@ -3,6 +3,8 @@ package seedu.edubook.model.commons;
 import static java.util.Objects.requireNonNull;
 import static seedu.edubook.commons.util.AppUtil.checkArgument;
 
+import seedu.edubook.commons.util.StringUtil;
+
 /**
  * Represents a name in the address book. Is inherited by other classes to represent a specific object's name.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -27,7 +29,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), getMessageConstraints());
-        fullName = name;
+        fullName = StringUtil.normalizeSpaces(name);
     }
 
     public String getMessageConstraints() {
