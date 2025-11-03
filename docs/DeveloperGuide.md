@@ -248,7 +248,7 @@ _{more aspects and alternatives to be added}_
 
 ### Label/Unlabel feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed label/unlabel mechanism is facilitated by `EduBook`. Additionally, it implements the following operations:
 
