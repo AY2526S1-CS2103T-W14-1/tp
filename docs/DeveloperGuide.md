@@ -13,6 +13,8 @@ title: Developer Guide
 * Built using JavaFX (maintained by [OpenJDK](https://wiki.openjdk.org/display/OpenJFX)) for the GUI.
 * Uses [Jackson](https://github.com/FasterXML/jackson) for JSON data serialization and deserialization.
 * Uses [JUnit](https://junit.org) for testing.
+* Uses [PlantUML](https://plantuml.com/) for modelling.
+* Uses [Gradle](https://gradle.org/) for build automation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,6 +32,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+
+<div markdown="span" class="alert alert-primary">:pushpin: **Note:**
+Internally, we use AddressBook to represent EduBook, and person to represent student. Class names inherited from AB3 may be unchanged.
+</div>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -71,7 +77,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-W14-1/tp/tree/master/src/main/java/seedu/edubook/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-W14-1/tp/tree/master/src/main/java/seedu/edubook/ui/Ui.java) and [`ErrorDisplayable.java`](https://github.com/AY2526S1-CS2103T-W14-1/tp/tree/master/src/main/java/seedu/edubook/ui/ErrorDisplayable.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -1077,3 +1083,7 @@ iteration. The features are as listed below:
 input of special characters such as `/` or `-`. As this may be of some inconvenience to tutors when adding students, 
 the planned enhancement would hence be to relax the name validation by modifying EduBook to allow a limited set of safe
 special characters when entering names. This allows flexibility and reduces inconveniences for users.
+
+2. **Allowing class names to use special prefixes**. Currently, using "Class n/2" as class name will result in unexpected behaviour as "n/" is a special
+prefix used for NAME. As this may cause some inconvenience to tutor whose class is "Class n/2", the planned enhancement would be to
+differentiate when special prefixes are used for class names and when they are used to represent their own parameters. This allows for more flexibility in class naming.
