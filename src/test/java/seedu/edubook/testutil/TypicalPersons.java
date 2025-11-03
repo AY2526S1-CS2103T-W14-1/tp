@@ -31,7 +31,8 @@ public class TypicalPersons {
             .withClass("Class 1-A")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withAssignments("Homework 2", "Tutorial 1").build();
+            .withAssignments("Homework 2", "Tutorial 1")
+            .withLabel("Top student").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withClass("T-01").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
