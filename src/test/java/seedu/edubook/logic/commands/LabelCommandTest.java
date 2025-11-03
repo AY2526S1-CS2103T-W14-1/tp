@@ -55,7 +55,7 @@ public class LabelCommandTest {
         CommandResult result = command.execute(model);
 
         String expectedMessage = NAME_TARGET_BENSON.getLabelSuccessMessage(
-                LABEL_GOOD.getLabelContent(), 1, 0);
+                LABEL_GOOD.labelContent, 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }
@@ -93,7 +93,7 @@ public class LabelCommandTest {
         CommandResult result = command.execute(model);
 
         String expectedMessage = CLASS_TARGET_AMY.getLabelSuccessMessage(
-                LABEL_BAD.getLabelContent(), 1, 0);
+                LABEL_BAD.labelContent, 1, 0);
 
         assertEquals(expectedMessage, result.getFeedbackToUser());
     }

@@ -76,7 +76,7 @@ public class LabelCommand extends Command {
         handleNoAssignments(successCount);
 
         // Generate success message
-        String message = target.getLabelSuccessMessage(label.getLabelContent(),
+        String message = target.getLabelSuccessMessage(label.labelContent,
                 successCount, skippedCount);
 
         assert message != null && !message.isBlank() : "generated message must not be null or empty";
