@@ -27,25 +27,26 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_CLASS);
 
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_NAME, PREFIX_CLASS);
+
+        try {
             if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_NAME, PREFIX_CLASS)
                     || !argMultimap.getPreamble().isEmpty()) {
                 Index index = ParserUtil.parseIndex(args);
                 return new DeleteCommand(index);
             }
 
-            validateDeleteCommandPrefixes(argMultimap);
-            Target target = parseDeleteTarget(argMultimap);
-
-            return new DeleteCommand(target);
-
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
+
+        validateDeleteCommandPrefixes(argMultimap);
+        Target target = parseDeleteTarget(argMultimap);
+
+        return new DeleteCommand(target);
     }
 
     /**
