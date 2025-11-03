@@ -918,7 +918,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least one student is in class "1A". 
        At least one student in class "1A" has a label.
 
-    1. Test case: `unlabel class c/1A`<br>
+    1. Test case: `unlabel c/1A`<br>
        Expected: All students in class "1A" has their label removed. Success message displayed.
 
 1. Unlabeling a student who does not have an existing label
