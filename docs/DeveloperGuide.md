@@ -425,8 +425,10 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
 
 **MSS**
 
-1.  User requests to view a student.
-2.  EduBook displays the student's details.
+1.  User requests to view a student, a class or an assignment.
+2.  EduBook checks whether the target is a student, a class or an assignment.
+3.  EduBook displays details of the specified student, all students in the specified class 
+    or all students with the specified assignment.
 
     Use case ends.
 
@@ -438,8 +440,8 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
   Use case ends.
 
 
-* 1b. Student does not exist
-  * 1b1. EduBook informs the user that the student does not exist.
+* 2a. Target does not exist
+  * 1b1. EduBook informs the user that the student, class or assignment does not exist.
 
   Use case ends.
 
@@ -634,6 +636,82 @@ For all use cases below, the **System** is the `EduBook` and the **Actor** is th
   some students' assignments are already unmarked, while some are missing the assignment
   * 3e1. EduBook informs the tutor that no assignments were unmarked, and reports how many students' assignments were
     already unmarked and how many did not exist.
+
+  Use case ends.
+
+
+**Use case: UC8** - Label a student.
+
+**MSS**
+
+1. User request to label a student.
+2. EduBook checks whether the target is a single student or a class.
+3. EduBook adds a label to the student or to every student in the class.
+4. EduBook informs the tutor that the student was successfully labeled,
+   or for a class, how many students were labeled and how many were skipped.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid
+    * 1a1. EduBook informs the tutor of the invalid input(s).
+
+  Use case ends.
+
+
+* 2a. Target does not exist
+    * 2a1. EduBook informs the tutor that the student or class does not exist.
+
+  Use case ends.
+
+
+* 3a. Student already has a label
+    * 3a1. EduBook informs the tutor that the student already has a label.
+
+  Use case ends.
+
+
+* 3b. Every student in the class has a label
+    * 3b1. EduBook informs the tutor that every student in the class has a label.
+
+  Use case ends.
+
+
+**Use case: UC9** - Unlabel a student.
+
+**MSS**
+
+1. User request to unlabel a student.
+2. EduBook checks whether the target is a single student or a class.
+3. EduBook removes the label from the specified student or from every student in the class.
+4. EduBook informs the tutor that the student was successfully unlabeled,
+   or for a class, how many students were unlabeled and how many were skipped.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more details are missing or invalid
+    * 1a1. EduBook informs the tutor of the invalid input(s).
+
+  Use case ends.
+
+
+* 2a. Target does not exist
+    * 2a1. EduBook informs the tutor that the student or class does not exist.
+
+  Use case ends.
+
+
+* 3a. Student does not have a label
+    * 3a1. EduBook informs the tutor that the student does not have a label.
+
+  Use case ends.
+
+
+* 3b. Every student in the class does not have a label
+    * 3b1. EduBook informs the tutor that every student in the class does not have a label.
 
   Use case ends.
 

@@ -465,7 +465,7 @@ Format: `label l/LABEL {n/NAME | c/CLASS}`
     * Applies the label `LABEL` to every student in the specified class `CLASS`.
     * The class must exist in EduBook (i.e. there is at least one student belonging to the specified class).
     * At least one student in the class must not have a current label. 
-    * Students who already have labels will keep their existing labels.
+    * Students who already have a label will keep their existing label.
 
 Examples:
 * `label l/Top student n/Bob` — applies `Top student` to `Bob`
