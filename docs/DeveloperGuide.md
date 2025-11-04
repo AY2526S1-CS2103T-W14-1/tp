@@ -168,6 +168,32 @@ Classes used by multiple components are in the `seedu.edubook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Label/Unlabel feature
+
+#### Implementation
+
+The label/unlabel mechanism is facilitated by `EduBook`. Additionally, it implements the following operations:
+
+* `EduBook#label()` — Adds a label for a person/class.
+* `Edubook#unlabel()` — Removes a label for a person/class.
+* `Edubook#edit()` — Edit the contents of a label of a person.
+
+Given below is an example usage scenario and how the label/unlabel mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `EduBook` will be initialized with the initial EduBook state.
+
+Step 2. The user executes `label n/John Doe l/Late for class` command to label John Doe in the EduBook.
+
+Step 3. The user executes `edit n/John Doe l/Serve detention` to edit the label from `Late for class` to `Serve detention`.
+
+Step 4. The user executes `unlabel n/John Doe` to remove the label.
+
+When labeling classes, students with existing labels will be skipped. This prevents existing labels from being overwritten.
+
+The following sequence diagram shows how a label operation goes through the `Logic` component:
+
+![LabelSequenceDiagram](images/LabelSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -251,47 +277,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### Label/Unlabel feature
-
-#### Implementation
-
-The proposed label/unlabel mechanism is facilitated by `EduBook`. Additionally, it implements the following operations:
-
-* `EduBook#label()` — Adds a label for a person.
-* `Edubook#unlabel()` — Removes a label for a person.
-* `Edubook#edit()` — Edit the contents of a label of a person.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the label/unlabel mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `EduBook` will be initialized with the initial EduBook state.
-
-![LabelState0](images/LabelState0.png)
-
-Step 2. The user executes `label n/John Doe l/Late for class` command to label John Doe in the EduBook. 
-
-![LabelState1](images/LabelState1.png)
-
-Step 3. The user executes `edit n/John Doe l/Serve detention` to edit the label from `Late for class` to `Serve detention`.
-
-![LabelState2](images/LabelState2.png)
-
-Step 4. The user executes `unlabel n/John Doe` to remove the label.
-
-![LabelState3](images/LabelState3.png)
-
-The following sequence diagram shows how a label operation goes through the `Logic` component:
-
-![LabelSequenceDiagram](images/LabelSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How label & unlabel executes:**
-
-{TBC}
-
 
 --------------------------------------------------------------------------------------------------------------------
 
