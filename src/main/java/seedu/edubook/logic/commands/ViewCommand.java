@@ -25,7 +25,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the details of a single student, all students in a class "
-            + " or all students with a particular assignment.\n"
+            + "or all students with a particular assignment.\n"
             + "Parameters: {"
             + PREFIX_PERSON_NAME + "NAME | "
             + PREFIX_CLASS + "CLASS | "

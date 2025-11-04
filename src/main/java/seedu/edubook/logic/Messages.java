@@ -53,10 +53,21 @@ public class Messages {
                 .append("; Class: ")
                 .append(person.getTuitionClass());
 
+        if (!person.getLabel().isEmpty()) {
+            builder.append("; Label: ").append(person.getLabel().labelContent);
+        }
+
         if (!person.getTags().isEmpty()) {
             builder.append("; Tags: ");
             person.getTags().forEach(builder::append);
         }
+
+        if (!person.getAssignments().isEmpty()) {
+            builder.append("; Assignments: ");
+            person.getAssignments().forEach(builder::append);
+        }
+
+
 
         return builder.toString();
     }

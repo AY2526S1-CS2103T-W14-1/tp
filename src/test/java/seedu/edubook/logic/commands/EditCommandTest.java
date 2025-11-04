@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.edubook.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.edubook.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_HOMEWORK;
+import static seedu.edubook.logic.commands.CommandTestUtil.VALID_LABEL_GOOD;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.edubook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -21,10 +22,12 @@ import org.junit.jupiter.api.Test;
 import seedu.edubook.commons.core.index.Index;
 import seedu.edubook.logic.Messages;
 import seedu.edubook.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.edubook.logic.commands.exceptions.CommandException;
 import seedu.edubook.model.AddressBook;
 import seedu.edubook.model.Model;
 import seedu.edubook.model.ModelManager;
 import seedu.edubook.model.UserPrefs;
+import seedu.edubook.model.label.Label;
 import seedu.edubook.model.person.Person;
 import seedu.edubook.testutil.EditPersonDescriptorBuilder;
 import seedu.edubook.testutil.PersonBuilder;
@@ -51,17 +54,23 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).withAssignments(VALID_ASSIGNMENT_HOMEWORK).build();
+                .withTags(VALID_TAG_HUSBAND).withAssignments(VALID_ASSIGNMENT_HOMEWORK)
+                .build();
+
+        System.out.println(editedPerson.getLabel().isEmpty);
+
+        editedPerson = editedPerson.withAddedLabel(new Label(VALID_LABEL_GOOD));
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withAssignments(VALID_ASSIGNMENT_HOMEWORK)
-                .build();
+                .withLabel(VALID_LABEL_GOOD).build();
+
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
