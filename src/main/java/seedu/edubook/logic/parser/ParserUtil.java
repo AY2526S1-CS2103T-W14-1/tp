@@ -37,6 +37,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+        System.out.println(trimmedIndex);
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
